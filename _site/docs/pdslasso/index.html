@@ -1,0 +1,388 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Stata package: pdslasso - The Stata Lasso Page</title>
+<meta name="description" content="An amazing website.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Stata Lasso Page">
+<meta property="og:title" content="Stata package: pdslasso">
+<meta property="og:url" content="http://localhost:4000/docs/pdslasso/">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/pdslasso/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Achim Ahrens",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Stata Lasso Page Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">The Stata Lasso Page</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/references/" >References</a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">lassopack</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/regularized_reg/" class="">Regularized regression</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/estimators/" class="">Estimation methods</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lasso2/" class="">Getting started (lasso2)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/cvlasso/" class="">Cross-validation (cvlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/rlasso/" class="">Rigorous lasso (rlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">pdslasso</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso/" class="active">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_models/" class="">Models</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Stata package: pdslasso">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Stata package: pdslasso
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <p><code class="highlighter-rouge">pdslasso</code> and <code class="highlighter-rouge">ivlasso</code> are routines for estimating structural parameters in linear models with many controls 
+and/or many instruments. The routines use methods for estimating sparse high-dimensional models, specifically the lasso 
+(Least Absolute Shrinkage and Selection Operator, <a href="https://doi.org/10.2307/2346178">Tibshirani 1996</a>) and the square-root-lasso 
+(Belloni et al. <a href="https://doi.org/10.1214/14-AOS1204">2011</a>, <a href="https://doi.org/10.1093/restud/rdt044">2014</a>).</p>
+
+<p>These estimators are used to select controls (<code class="highlighter-rouge">pdslasso</code>) and/or instruments (<code class="highlighter-rouge">ivlasso</code>) 
+from a large set of variables (possibly numbering more than the number of observations), in a setting where the 
+researcher is interested in estimating the causal impact of one or more (possibly endogenous) causal variables 
+of interest.</p>
+
+<p>Two approaches are implemented in <code class="highlighter-rouge">pdslasso</code> and <code class="highlighter-rouge">ivlasso</code>:</p>
+<ol>
+  <li>The <em>post-double-selection</em> methodology of Belloni et al. (<a href="https://doi.org/10.3982/ECTA9626">2012</a>, <a href="http://arxiv.org/abs/1201.0220">2013</a>, <a href="http://arxiv.org/abs/1201.0220">2014</a>, <a href="http://www.aeaweb.org/articles.php?doi=10.1257/jep.28.2.29">2015</a>, <a href="https://doi.org/10.1080/07350015.2015.1102733">2016</a>).</li>
+  <li>The <em>post-regularization</em> methodology of <a href="https://www.aeaweb.org/articles?id=10.1257/aer.p20151022">Chernozhukov, Hansen and Spindler (2015)</a>.</li>
+</ol>
+
+<p>For instrumental variable estimation, <code class="highlighter-rouge">ivlasso</code> implements weak-identification-robust hypothesis tests and confidence sets
+using the <a href="https://projecteuclid.org/euclid.aos/1387313390">Chernozhukov et al. (2013)</a> sup-score test.</p>
+
+<p>The implemention of these methods in <code class="highlighter-rouge">pdslasso</code> and <code class="highlighter-rouge">ivlasso</code> require the Stata program <code class="highlighter-rouge">rlasso</code> (available in the
+separate Stata module <a href="https://github.com/aahr1/lassopack">lassopack</a>), which provides lasso and square root-lasso estimation with data-driven penalization.</p>
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

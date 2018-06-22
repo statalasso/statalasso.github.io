@@ -1,0 +1,608 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Rigorous lasso - The Stata Lasso Page</title>
+<meta name="description" content="An amazing website.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Stata Lasso Page">
+<meta property="og:title" content="Rigorous lasso">
+<meta property="og:url" content="http://localhost:4000/docs/rlasso/">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/rlasso/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Achim Ahrens",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Stata Lasso Page Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">The Stata Lasso Page</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/references/" >References</a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">lassopack</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/regularized_reg/" class="">Regularized regression</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/estimators/" class="">Estimation methods</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lasso2/" class="">Getting started (lasso2)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/cvlasso/" class="">Cross-validation (cvlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/rlasso/" class="active">Rigorous lasso (rlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">pdslasso</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_models/" class="">Models</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Rigorous lasso">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Rigorous lasso
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#homoskedastic-lasso">Homoskedastic lasso</a></li>
+  <li><a href="#heteroskedastic-lasso">Heteroskedastic lasso</a></li>
+  <li><a href="#square-root-lasso">Square-root lasso</a></li>
+  <li><a href="#cluster-dependent-errors">Cluster-dependent errors</a></li>
+  <li><a href="#more">More</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p><code class="highlighter-rouge">rlasso</code> provides routines for estimating the coefficients of a lasso or square-root lasso
+   regression with data-dependent, theory-driven penalization.
+The number of regressors, <script type="math/tex">p</script>, may be large and possibly greater than the number of
+    observations, <script type="math/tex">N</script>.
+<code class="highlighter-rouge">rlasso</code> implements a version of the lasso that allows for heteroskedastic and clustered
+    errors; see Belloni et al. (<a href="https://doi.org/10.3982/ECTA9626">2012</a>, <a href="https://doi.org/10.1080/07350015.2015.1102733">2016</a>).</p>
+
+<p>We start again with the prostate cancer data for demonstration.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. clear
+. insheet using
+    https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, tab
+</code></pre></div></div>
+
+<h2 id="homoskedastic-lasso">Homoskedastic lasso</h2>
+
+<p>The optimal penalization depends on whether the errors
+are homoskedastic, heteroskedastic or cluster-dependent.</p>
+
+<p>Similar to <code class="highlighter-rouge">regress</code>, <code class="highlighter-rouge">rlasso</code> assumes homoskedasticity by default. 
+Under homoskedasticity, the optimal penalty level is given by</p>
+
+<script type="math/tex; mode=display">\lambda=\sigma2c\sqrt{N}\Phi^{-1}(1-(\gamma/\log(N))/(2p)),</script>
+
+<p>which guarantees that the “rigorous” lasso is well-behaved. 
+The unobserved <script type="math/tex">\sigma</script> is estimated using an iterative algorithm.</p>
+
+<p>To run the lasso with theory-driven penalization, type:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45
+
+---------------------------------------------------
+	 Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.4412170      0.5258519
+	  lweight |       0.2444777      0.6617699
+	      svi |       0.3075376      0.6656665
+	    _cons |*      0.9289640     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">e(lambda)</code> returns <script type="math/tex">\lambda</script>, and <code class="highlighter-rouge">e(lambda0)</code> stores <script type="math/tex">\lambda_0=\lambda/\hat{\sigma}</script>, i.e.,
+the penalty level excluding the standard deviation of the error.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. di e(lambda)
+44.34953
+
+. di e(lambda0)
+64.923165
+</code></pre></div></div>
+
+<p>In the homoskedastic case, penalty loadings are the vector of standard deviations
+ of the penalized regressors,</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. mat list e(eUps)
+
+e(eUps)[1,8]
+       lcavol    lweight        age       lbph        svi        lcp    gleason      pgg45
+r1  1.1725338  .42619718  7.4066407  1.4433089  .41185535  1.3910235  .71840212  28.058276
+</code></pre></div></div>
+
+<p>… and the <em>standardized</em> penalty loadings are a vector of 1s:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. mat list e(sUps)
+
+e(sUps)[1,8]
+     lcavol  lweight      age     lbph      svi      lcp  gleason    pgg45
+r1        1        1        1        1        1        1        1        1
+</code></pre></div></div>
+
+<h2 id="heteroskedastic-lasso">Heteroskedastic lasso</h2>
+
+<p>To allow for heteroskedasticity, we specify the <code class="highlighter-rouge">robust</code> option.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45,  ///
+	 robust
+
+---------------------------------------------------
+	 Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.4535055      0.5258519
+	  lweight |       0.2049280      0.6617699
+	      svi |       0.1826161      0.6656665
+	    _cons |*      1.0829425     -0.7771568
+---------------------------------------------------
+</code></pre></div></div>
+
+<p><script type="math/tex">\lambda</script> and <script type="math/tex">\lambda_0</script> are the same as for the homoskedastic case:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. di e(lambda)
+44.34953
+
+. di e(lambda0)
+64.923165
+</code></pre></div></div>
+
+<p>Penalty loadings account for heteroskedasticity as well as incorporating 
+the standard deviation of the regressors.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. mat list e(eUps)
+
+e(eUps)[1,8]
+       lcavol    lweight        age       lbph        svi        lcp    gleason      pgg45
+r1  1.2650782  .46499111  7.9879204  1.3883423  .49527773  1.6619626  .76718034  29.966303
+</code></pre></div></div>
+
+<p>The vector of standardized penalty loadings now differs from a vector of 1s:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. mat list e(sUps)
+
+e(sUps)[1,8]
+       lcavol    lweight        age       lbph        svi        lcp    gleason      pgg45
+r1  1.0789269  1.0910234  1.0784809  .96191628  1.2025526  1.1947768  1.0678982  1.0680023
+</code></pre></div></div>
+
+<h2 id="square-root-lasso">Square-root lasso</h2>
+
+<p>With the sqrt-lasso of 
+Belloni et al. (2011, 2014), the default penalty level is</p>
+
+<p><script type="math/tex">\lambda=\lambda_0=c \sqrt{N} \Phi^{-1}(1-(\gamma/\log N)/(2p))</script>.</p>
+
+<p>Note the difference by a factor of 2 compared to the standard lasso. More importantly,
+the optimal penalty level of the square-root lasso is independent of <script type="math/tex">\sigma</script>, 
+leading to a practical advantage.</p>
+
+<p>The square-root lasso is available through the <code class="highlighter-rouge">sqrt</code> option.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 sqrt
+
+---------------------------------------------------
+	 Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.4293894      0.5258519
+	  lweight |       0.1861616      0.6617699
+	      svi |       0.2574895      0.6656665
+	    _cons |*      1.1673922     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre></div></div>
+
+<p>In this example, lasso and square-root lasso select the same variables. 
+Thus the post-estimation OLS estimator, which
+is OLS using the variables selected, is the same in both cases.</p>
+
+<p>The estimated penalty level is:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. di e(lambda)
+32.461583
+</code></pre></div></div>
+
+<p>The square-root lasso also allows for heteroskedastic errors:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 sqrt robust
+
+---------------------------------------------------
+	 Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.4402037      0.5258519
+	  lweight |       0.1329878      0.6617699
+	      svi |       0.1264166      0.6656665
+	    _cons |*      1.3741342     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre></div></div>
+
+<h2 id="cluster-dependent-errors">Cluster-dependent errors</h2>
+
+<p>Both rigorous lasso and rigorous square-root lasso allow 
+for within-panel correlation (based on <a href="https://doi.org/10.1080/07350015.2015.1102733">Belloni et al., 2016, <em>JBES</em></a>).
+The <code class="highlighter-rouge">fe</code> option applies the within-transformation and <code class="highlighter-rouge">cluster()</code> specifies
+the cluster variable.</p>
+
+<p>In this example, we interact the variable <code class="highlighter-rouge">grade</code> and <code class="highlighter-rouge">age</code> using 
+Stata’s factor variable notation (see <code class="highlighter-rouge">help factor variables</code>).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. webuse nlswork
+. xtset idcode
+. rlasso ln_w i.grade#i.age ttl_exp tenure not_smsa south, ///
+	      fe cluster(idcode)
+
+---------------------------------------------------
+	 Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+	grade#age |
+	   11 17  |      -0.0323857     -0.3835856
+	   12 18  |      -0.1223743     -0.2091832
+	   12 19  |      -0.0480331     -0.1114017
+	   12 20  |      -0.0087304     -0.0631056
+	          |
+	  ttl_exp |       0.0207009      0.0225754
+	   tenure |       0.0108014      0.0123636
+	 not_smsa |      -0.0314770     -0.0948844
+---------------------------------------------------
+</code></pre></div></div>
+
+<p>The results of lasso and square-root lasso are again similar:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. rlasso ln_w i.grade#i.age ttl_exp tenure not_smsa south, ///
+              sqrt fe cluster(idcode)
+
+---------------------------------------------------
+	 Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+	grade#age |
+	   12 18  |      -0.1223057     -0.2087164
+	   12 19  |      -0.0479408     -0.1109979
+	   12 20  |      -0.0086753     -0.0627530
+	          |
+	  ttl_exp |       0.0206704      0.0226526
+	   tenure |       0.0107671      0.0123681
+	 not_smsa |      -0.0303104     -0.0957148
+---------------------------------------------------
+</code></pre></div></div>
+
+<h2 id="more">More</h2>
+
+<p>More information can be found in the help file:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>help rlasso
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>

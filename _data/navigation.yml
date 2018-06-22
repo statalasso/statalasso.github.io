@@ -1,0 +1,38 @@
+# main links
+main:
+  - title: "Home"
+    url: /
+  - title: "About"
+    url: /about/
+  - title: "References"
+    url: /references/
+
+# side bar
+docs:
+  - title: lassopack
+    children:
+      - title: "Overview"
+        url: /docs/lassopack/
+      - title: "Regularized regression"
+        url: /docs/regularized_reg/
+      - title: "Estimation methods"
+        url: /docs/estimators/
+      - title: "Getting started (lasso2)"
+        url: /docs/lasso2/
+      - title: "Cross-validation (cvlasso)"
+        url: /docs/cvlasso/
+      - title: "Rigorous lasso (rlasso)"
+        url: /docs/rlasso/
+      - title: "Citation"
+        url: /docs/lassopack_cite/
+
+  - title: pdslasso
+    children:
+      - title: "Overview"
+        url: /docs/pdslasso/
+      - title: "Models"
+        url: /docs/pdslasso_models/
+      - title: "Demonstration"
+        url: /docs/pdslasso_demo/
+      - title: "Citation"
+        url: /docs/pdslasso_cite/

@@ -1,0 +1,662 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Getting started with lasso2 - The Stata Lasso Page</title>
+<meta name="description" content="An amazing website.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Stata Lasso Page">
+<meta property="og:title" content="Getting started with lasso2">
+<meta property="og:url" content="http://localhost:4000/docs/lasso2/">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/lasso2/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Achim Ahrens",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Stata Lasso Page Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">The Stata Lasso Page</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/references/" >References</a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">lassopack</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/regularized_reg/" class="">Regularized regression</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/estimators/" class="">Estimation methods</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lasso2/" class="active">Getting started (lasso2)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/cvlasso/" class="">Cross-validation (cvlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/rlasso/" class="">Rigorous lasso (rlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">pdslasso</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_models/" class="">Models</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Getting started with lasso2">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Getting started with lasso2
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+          <aside class="sidebar__right">
+            <nav class="toc">
+              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
+              <ul class="toc__menu">
+  <li><a href="#general-demonstration">General demonstration</a></li>
+  <li><a href="#plotting">Plotting</a></li>
+  <li><a href="#the-lambda-option">The lambda() option</a></li>
+  <li><a href="#estimators">Estimators</a></li>
+  <li><a href="#information-criteria">Information criteria</a></li>
+  <li><a href="#predicted-values">Predicted values</a></li>
+  <li><a href="#adaptive-lasso">Adaptive lasso</a></li>
+  <li><a href="#more">More</a></li>
+</ul>
+            </nav>
+          </aside>
+        
+        <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>For demonstration purposes we use the <a href="/docs/prostate_data/">prostate cancer data set</a>, 
+which has been widely applied to demonstrate the lasso and related techniques.</p>
+
+<p>To load prostate cancer data:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. insheet using
+    https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, 
+    clear tab
+</code></pre></div></div>
+
+<h2 id="general-demonstration">General demonstration</h2>
+
+<p>By default, <code class="highlighter-rouge">lasso2</code> uses the lasso estimator (i.e., <code class="highlighter-rouge">alpha(1)</code>). Like Stata’s <code class="highlighter-rouge">regress</code>, 
+<code class="highlighter-rouge">lasso2</code> expects the dependent variable to be named first followed
+by a list of predictors.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
+
+  Knot|  ID     Lambda    s      L1-Norm        EBIC     R-sq   | Entered/removed
+------+---------------------------------------------------------+----------------
+     1|   1  163.62492     1     0.00000     35.57115   0.0000  | Added _cons.
+     2|   2  149.08894     2     0.06390     34.98739   0.0043  | Added lcavol.
+     3|   9   77.73509     3     0.40800     -0.15868   0.1488  | Added svi.
+     4|  11   64.53704     4     0.60174     -1.67592   0.2001  | Added lweight.
+     5|  21   25.45474     5     1.35340    -21.40796   0.4268  | Added pgg45.
+     6|  22   23.19341     6     1.39138    -13.98342   0.4436  | Added lbph.
+     7|  29   12.09306     7     1.58269    -10.83200   0.5334  | Added age.
+     8|  35    6.92010     8     1.71689     -5.57543   0.5820  | Added gleason.
+     9|  41    3.95993     9     1.83346      1.73747   0.6130  | Added lcp.
+Use 'long' option for full output. Type e.g. 'lasso2, lic(ebic)' to run the model selected by EBIC.
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">lasso2</code> obtains the solution for a list of <script type="math/tex">\lambda</script> values (see third column). 
+As <script type="math/tex">\lambda</script> decreases, predictors are added to the model. The last column on the right 
+indicates which predictors enter or leave the active set.</p>
+
+<h2 id="plotting">Plotting</h2>
+
+<p>We can plot the <em>coefficient path</em> using <code class="highlighter-rouge">plotpath()</code>. The option accepts <code class="highlighter-rouge">lnlambda</code>,
+<code class="highlighter-rouge">lambda</code> and <code class="highlighter-rouge">norm</code>, which asks Stata to plot the coefficient estimates
+against <script type="math/tex">\ln\lambda</script>, <script type="math/tex">\lambda</script> or the <script type="math/tex">\ell_1</script>-norm, respectively.</p>
+
+<p>For example, to plot the coefficients against <script type="math/tex">\ln\lambda</script>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+         plotpath(lnlambda) ///
+         plotopt(legend(off)) ///
+         plotlabel
+</code></pre></div></div>
+
+<p><code class="highlighter-rouge">plotopt()</code> allows to specify additional plotting options that are passed on to
+Stata’s <code class="highlighter-rouge">line</code> command. In the example, <code class="highlighter-rouge">legend(off)</code> is used to suppress the legend. 
+<code class="highlighter-rouge">plotlabel</code> triggers the display of variable labels next to the line.</p>
+
+<p>The resulting graph looks as follows:</p>
+
+<p><img src="/_img/plotpath.png" alt="" height="100%" width="100%" /></p>
+
+<p>To plot the coefficients against the <script type="math/tex">\ell_1</script>-norm, we can use:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2, plotpath(norm) ///
+	  plotlabel ///
+	  plotopt(legend(off))
+</code></pre></div></div>
+
+<p>By omitting the variable names (before the comma), 
+we make use of the <em>replay syntax</em>. 
+<code class="highlighter-rouge">lasso2</code> uses the previous <code class="highlighter-rouge">lasso2</code> results 
+which avoids time-consuming re-estimation.
+This only works if <code class="highlighter-rouge">lasso2</code> results are in memory.</p>
+
+<p>This creates the following graph:</p>
+
+<p><img src="/_img/plotpath_norm.png" alt="" height="100%" width="100%" /></p>
+
+<h2 id="the-lambda-option">The lambda() option</h2>
+
+<p>We can use the <code class="highlighter-rouge">lambda()</code> option to estimate the model that
+corresponds to a specific value of <script type="math/tex">\lambda</script>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 lambda(10)
+
+---------------------------------------------------
+	 Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.5000819      0.5234981
+	  lweight |       0.5144276      0.6152349
+	      age |      -0.0036627     -0.0190343
+	     lbph |       0.0468469      0.0954908
+	      svi |       0.5695171      0.6358643
+	    pgg45 |       0.0017981      0.0035248
+------------------+--------------------------------
+   Partialled-out*|
+------------------+--------------------------------
+	    _cons |      -0.0014767      0.5214696
+---------------------------------------------------
+</code></pre></div></div>
+
+<p>The output shows the lasso and post-estimation OLS estimates
+corresponding to <script type="math/tex">\lambda=10</script>.
+However, note that there is no justification for using <script type="math/tex">\lambda=10</script>
+over any other positive value. To pick the “optimal” value for <script type="math/tex">\lambda</script>, 
+we can use cross-validation (see <code class="highlighter-rouge">cvlasso</code>), theory-driven
+penalization (<code class="highlighter-rouge">rlasso</code>) or information criteria as discussed below.</p>
+
+<h2 id="estimators">Estimators</h2>
+
+<p>The default estimator of <code class="highlighter-rouge">lasso2</code> is the lasso, which corresponds to <code class="highlighter-rouge">alpha(1)</code>. 
+The <code class="highlighter-rouge">alpha()</code> option controls the elastic net parameter, which determines
+the relative contribution of <script type="math/tex">\ell_1</script> (lasso-type) to <script type="math/tex">\ell_2</script> (ridge-type) penalization.</p>
+
+<p>For ridge regression, use <code class="highlighter-rouge">alpha(0)</code>:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+         alpha(0) ///
+	 lambda(500)
+---------------------------------------------------
+	 Selected |           Ridge   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.1497346      0.5643413
+	  lweight |       0.2497274      0.6220198
+	      age |       0.0016636     -0.0212482
+	     lbph |       0.0294061      0.0967125
+	      svi |       0.2913161      0.7616733
+	      lcp |       0.0687956     -0.1060509
+	  gleason |       0.0771692      0.0492279
+	    pgg45 |       0.0023278      0.0044575
+------------------+--------------------------------
+   Partialled-out*|
+------------------+--------------------------------
+	    _cons |       0.6322244      0.1815609
+---------------------------------------------------
+</code></pre></div></div>
+
+<p>In contrast to the lasso, the ridge includes all predictors in the model. 
+It does not perform variable selection, even if <script type="math/tex">\lambda</script> is large,
+whereas the elastic net can 
+yield sparse solutions even when <script type="math/tex">\alpha</script> is small:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+         alpha(0.1) ///
+	 lambda(500)
+---------------------------------------------------
+	 Selected |     Elastic net   Post-est OLS
+	          |   (alpha=0.100)
+------------------+--------------------------------
+	   lcavol |       0.1222143      0.5378499
+	  lweight |       0.1236962      0.6620155
+	      svi |       0.1854247      0.6991923
+	      lcp |       0.0424339     -0.0813594
+	  gleason |       0.0116789      0.0322875
+	    pgg45 |       0.0008686      0.0036868
+------------------+--------------------------------
+   Partialled-out*|
+------------------+--------------------------------
+	    _cons |       1.7319371     -1.1240093
+---------------------------------------------------
+</code></pre></div></div>
+
+<p>Lastly, to employ square-root lasso, use the <code class="highlighter-rouge">sqrt</code> option:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+         sqrt ///
+	 lambda(20)
+</code></pre></div></div>
+
+<p>Note that the <code class="highlighter-rouge">alpha()</code> and <code class="highlighter-rouge">sqrt</code> option are incompatible.</p>
+
+<h2 id="information-criteria">Information criteria</h2>
+
+<p>To select the “best” value of lambda, 
+<code class="highlighter-rouge">lasso2</code> offers four information criteria:</p>
+<ul>
+  <li>Akaike Information Criterion (<script type="math/tex">AIC</script>),</li>
+  <li>Bayesian Information Criterion (<script type="math/tex">BIC</script>),</li>
+  <li>Extended Bayesian Information Criterion (<script type="math/tex">EBIC</script>)</li>
+  <li>and Corrected Akaike Information Criterion (<script type="math/tex">AICc</script>)</li>
+</ul>
+
+<p>By default, the <script type="math/tex">EBIC</script> is shown in the output.</p>
+
+<p>To estimate the model corresponding to the minimum information criterion, the 
+<code class="highlighter-rouge">lic()</code> is used which accepts <code class="highlighter-rouge">aic</code>, <code class="highlighter-rouge">bic</code>, <code class="highlighter-rouge">ebic</code> and <code class="highlighter-rouge">aicc</code>. <code class="highlighter-rouge">lic()</code> can 
+either be specified in the first <code class="highlighter-rouge">lasso2</code> call or using the replay syntax 
+(to avoid re-estimation).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 lic(aic)
+</code></pre></div></div>
+
+<p>The same can be achieved in two steps using the replay syntax:</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
+. lasso2, lic(aic)
+
+Use lambda=7.594796178345335 (selected by AIC).
+
+---------------------------------------------------
+	 Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+	   lcavol |       0.5057140      0.5234981
+	  lweight |       0.5386738      0.6152349
+	      age |      -0.0073599     -0.0190343
+	     lbph |       0.0585468      0.0954908
+	      svi |       0.5854749      0.6358643
+	    pgg45 |       0.0022134      0.0035248
+------------------+--------------------------------
+   Partialled-out*|
+------------------+--------------------------------
+	    _cons |       0.1243026      0.5214696
+---------------------------------------------------
+</code></pre></div></div>
+
+<p>As indicated in the output, the AIC selects <code class="highlighter-rouge">lambda=7.59</code>.</p>
+
+<h2 id="predicted-values">Predicted values</h2>
+
+<p>The <code class="highlighter-rouge">predict</code> post-estimation command allows to return residuals and predicted values. 
+In the output below, <code class="highlighter-rouge">xbhat1</code> is generated by re-estimating the model for <script type="math/tex">\lambda=10</script>.
+The <code class="highlighter-rouge">noisily</code> option triggers the display of the estimation results.
+<code class="highlighter-rouge">xbhat2</code> is generated by linear approximation using the two beta estimates closest to <code class="highlighter-rouge">lambda=10</code>.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
+. cap drop xbhat1
+. predict double xbhat1, xb l(10) noisily
+. cap drop xbhat2
+. predict double xbhat2, xb l(10) approx
+</code></pre></div></div>
+
+<p>Alternatively, we can explicitly run the model using <code class="highlighter-rouge">lambda(10)</code>.  If <code class="highlighter-rouge">lasso2</code> is called with a scalar
+<script type="math/tex">\lambda</script> value, the subsequent <code class="highlighter-rouge">predict</code> command requires no <code class="highlighter-rouge">lambda()</code> option.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 lambda(10)
+. cap drop xbhat3
+. predict double xbhat3, xb
+</code></pre></div></div>
+
+<p>All three methods yield the same results.  However note that the linear approximation
+is only exact for the lasso which is piecewise linear.</p>
+
+<h2 id="adaptive-lasso">Adaptive lasso</h2>
+
+<p>The adaptive lasso relies on an initial estimator to calculate the penalty loadings.
+ By default, <code class="highlighter-rouge">lasso2</code> uses OLS as the initial
+estimator as originally suggested by Zou (2006).  If the number of parameters exceeds
+the numbers of observations, univariate OLS is used; see Huang et al. (2008).</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+         adaptive
+. mat list e(Ups)
+</code></pre></div></div>
+
+<p>See the OLS estimates for comparison.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. reg lpsa lcavol lweight age lbph svi lcp gleason pgg45
+</code></pre></div></div>
+
+<p>Other initial estimators such as ridge regression are possible.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	 l(10) alpha(0)
+. mat bhat_ridge = e(b)
+. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, 
+	 adaptive adaloadings(bhat_ridge)
+. mat list e(Ups)
+</code></pre></div></div>
+
+<h2 id="more">More</h2>
+
+<p>Please check the help file for more information and examples.</p>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. help lasso2
+</code></pre></div></div>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2018 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
