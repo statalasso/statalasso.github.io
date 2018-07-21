@@ -5,6 +5,7 @@ permalink: /docs/pdslasso/
 sidebar:
   nav: "docs"
 toc:  false
+classes:  wide
 ---
 
 `pdslasso` and `ivlasso` are routines for estimating structural parameters in linear models with many controls 

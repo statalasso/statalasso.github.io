@@ -4,6 +4,7 @@ title: Citation
 permalink: /docs/lassopack_cite/
 sidebar:
   nav: "docs"
+classes:  wide
 ---
 
 

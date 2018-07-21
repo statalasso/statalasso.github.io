@@ -4,6 +4,7 @@ title: Citation
 permalink: /docs/pdslasso_cite/
 sidebar:
   nav: "docs"
+classes:  wide
 ---
 
 `pdslasso` and `ivlasso` are not official Stata commands.  They are free contributions to the research community,

@@ -5,6 +5,7 @@ layout:  single
 sidebar:
   nav: "docs"
 toc:  false
+classes:  wide
 ---
 
 <script type="text/javascript" async

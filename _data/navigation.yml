@@ -23,6 +23,12 @@ docs:
         url: /docs/cvlasso/
       - title: "Rigorous lasso (rlasso)"
         url: /docs/rlasso/
+      - title: "Help lasso2"
+        url: /docs/lasso2_help/
+      - title: "Help cvlasso"
+        url: /docs/cvlasso_help/
+      - title: "Help rlasso"
+        url: /docs/rlasso_help/
       - title: "Citation"
         url: /docs/lassopack_cite/
 
@@ -34,5 +40,7 @@ docs:
         url: /docs/pdslasso_models/
       - title: "Demonstration"
         url: /docs/pdslasso_demo/
+      - title: "Help file"
+        url: /docs/ivlasso_help/
       - title: "Citation"
         url: /docs/pdslasso_cite/
