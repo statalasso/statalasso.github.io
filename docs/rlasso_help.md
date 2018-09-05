@@ -1,6 +1,6 @@
 ---
-title: "Help file: lasso2"
-permalink: /docs/lasso2_help/
+title: "Help file: rlasso"
+permalink: /docs/rlasso_help/
 layout:  single
 sidebar:
   nav: "docs"
@@ -8,7 +8,7 @@ toc:  false
 classes:  wide
 ---
 
-<pre id="stlog-1" class="sthlp"><b>help rlasso</b>
+<pre id="stlog-1" style="font-size: 12px" class="sthlp"><b>help rlasso</b>
 -------------------------------------------------------------------------------------------------------------------
 
 <b><u>Title</u></b>

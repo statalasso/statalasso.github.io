@@ -353,7 +353,7 @@
               <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b> <b>ols</b> <b><u>l</u></b><b>ambda(</b><i>real</i><b>)</b> <b><u>lc</u></b><b>ount(</b><i>integer</i><b>)</b> <b><u>lminr</u></b><b>atio(</b><i>real</i><b>)</b> <b><u>lmax</u></b><b>(</b><i>real</i><b>)</b> <b><u>notp</u></b><b>en(</b><i>varlist</i><b>)</b>
               <b><u>par</u></b><b>tial(</b><i>varlist</i><b>)</b> <b><u>nor</u></b><b>ecover</b> <b><u>pload</u></b><b>ings(</b><i>string</i><b>)</b> <b><u>unitl</u></b><b>oadings</b> <b>prestd</b> <b><u>stdc</u></b><b>oef</b> <b>fe</b> <b>noftools</b> <b><u>noc</u></b><b>onstant</b>
               <b><u>tolo</u></b><b>pt(</b><i>real</i><b>)</b> <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b> <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b> <b><u>plot</u></b><b>path(</b><i>method</i><b>)</b> <b><u>plotv</u></b><b>ar(</b><i>varlist</i><b>)</b> <b><u>ploto</u></b><b>pt(</b><i>string</i><b>)</b> <b><u>plotl</u></b><b>abel</b>
-              <b>ic(</b><i>string</i><b>)</b> <b>noic</b> <b>long</b> <b>displayall</b> <b>postall</b> <b>postest</b> <b><u>ver</u></b><b>bose</b> <b><u>vver</u></b><b>bose</b> <b>wnorm</b>]
+              <b>ic(</b><i>string</i><b>)</b> <b>lic(</b><i>string</i><b>)</b> <b><u>ebicg</u></b><b>amma(</b><i>real</i><b>)</b> <b>noic</b> <b>long</b> <b>displayall</b> <b>postall</b> <b>postest</b> <b><u>ver</u></b><b>bose</b> <b><u>vver</u></b><b>bose</b> <b>wnorm</b>]
 
         Note: the <b>fe</b> option will take advantage of the <a href="#stlog-1-SG2016"><b>ftools</b></a> package (if installed) for the fixed-effects
               transformation; the speed gains using this package can be large.  See help ftools or click on ssc
@@ -396,6 +396,8 @@
                             minimum information criterion.  'aic', 'bic', 'aicc', and 'ebic' (the default) are
                             allowed.  Note the lower case spelling.  See <a href="#stlog-1-informationcriteria">Information criteria</a> for the definition
                             of each information criterion.
+    <b><u>ebicg</u></b><b>amma(</b><i>real</i><b>)</b>        controls the <i>gamma</i> parameter of the EBIC.  <i>gamma</i> needs to lie in the [0,1] interval.
+                            <i>gamma</i>=0 is equivalent to the BIC.  The default choice is <i>gamma</i>=1-log(n)/(2*log(p)).
     <b>postest</b>                Used in combination with <b>lic()</b>.  Stores estimation results of the model selected by
                             information criterion in <b>e()</b>.
     -------------------------------------------------------------------------------------------------------------
@@ -535,6 +537,7 @@
     <a href="#stlog-1-examples_adaptive">--Adaptive lasso</a>
     <a href="#stlog-1-saved_results">Saved results</a>
     <a href="#stlog-1-references">References</a>
+    <a href="#stlog-1-website">Website</a>
     <a href="#stlog-1-acknowledgements">Acknowledgements</a>
     <a href="#stlog-1-citation">Citation of lassopack</a>
 
@@ -699,7 +702,7 @@
         AIC     = N*log(RSS/N) + 2*<i>df</i>
         BIC     = N*log(RSS/N) + <i>df</i>*log(N) 
         AICc    = N*log(RSS/N) + 2*<i>df</i>*N/(N-<i>df</i>)
-        EBIC    = BIC + 2*<i>df</i>*log(p)
+        EBIC    = BIC + 2*<i>gamma</i>*<i>df</i>*log(p)
 
     where RSS(lambda,alpha) is the residual sum of squares and <i>df</i>(lambda,alpha) is the effective degrees of
     freedom, which is a measure of model complexity.  In the linear regression model, the degrees of freedom is
@@ -719,6 +722,10 @@
     addresses the shortcomings of the BIC when p is large by imposing a larger penalty on the number of
     coefficients.  Chen &amp; Chen (<a href="#stlog-1-Chen2008"><b>2008</b></a>) show that the EBIC performs better in terms of false discovery rate at the
     cost of a negligible reduction in the positive selection rate.
+
+    The EBIC depends on an additional parameter, <i>gamma</i>, which can be controlled using <b><u>ebicg</u></b><b>amma(</b><i>real</i><b>)</b>.  <i>gamma</i>=0
+    is equivalent to the BIC.  We follow Chen &amp; Chen (<a href="#stlog-1-Chen2008"><b>2008</b></a>, p. 768) and use <i>gamma</i>=1-log(n)/(2*log(p)) as the
+    default choice.  An upper and lower threshold is applied to ensure that <i>gamma</i> lies in the [0,1] interval.
 
     The EBIC is displayed in the output of <b>lasso2</b> by default (if lambda is a list), but all four information
     criteria are returned in <b>e()</b>.  The lambda values that minimize the information criteria for a given alpha are
@@ -1150,6 +1157,9 @@
 <a name="stlog-1-Zou2007"></a>    Zou, H., Hastie, T., &amp; Tibshirani, R. (2007). On the "degrees of freedom" of the lasso. Ann. Statist., 35(5),
         2173–2192.  https://doi.org/10.1214/009053607000000127
 
+<a name="stlog-1-website"></a><b><u>Website</u></b>
+
+    Please check our website https://statalasso.github.io/ for more information.
 
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 

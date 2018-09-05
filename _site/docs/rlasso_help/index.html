@@ -343,15 +343,15 @@
 
 <b><u>Title</u></b>
 
-    <b>rlasso</b> --  Progam for lasso and sqrt-lasso estimation with data-driven penalization
+    <b>rlasso</b> --  Program for lasso and sqrt-lasso estimation with data-driven penalization
 
 <a name="stlog-1-syntax"></a><b><u>Syntax</u></b>
 
-        <b>rlasso</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [ <b>,</b> <b>sqrt</b> <b>partial(</b><i>varlist</i><b>)</b> <b>pnotpen(</b><i>varlist</i><b>)</b> <b><u>noc</u></b><b>onstant</b> <b>fe</b>
-              <b>noftools</b> <b><u>r</u></b><b>obust</b> <b><u>cl</u></b><b>uster(</b><i>var</i><b>)</b> <b>center</b> <b><u>xdep</u></b><b>endent</b> <b>numsim(</b><i>int</i><b>)</b> <b>prestd</b> <b><u>tol</u></b><b>opt(</b><i>real</i><b>)</b> <b><u>tolu</u></b><b>ps(</b><i>real</i><b>)</b>
-              <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b> <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b> <b><u>maxupsi</u></b><b>ter(</b><i>int</i><b>)</b> <b>lassoups</b> <b><u>corrn</u></b><b>umber(</b><i>int</i><b>)</b> <b>lambda0(</b><i>real</i><b>)</b> <b><u>lalt</u></b><b>ernative</b>
-              <b>gamma(</b><i>real</i><b>)</b> <b>gammad(</b><i>real</i><b>)</b> <b>c(</b><i>real</i><b>)</b> <b>supscore</b> <b>ssnumsim(</b><i>int</i><b>)</b> <b>testonly</b> <b>seed(</b><i>real</i><b>)</b> <b>displayall</b> <b>postall</b> <b>pols</b>
-              <b><u>ver</u></b><b>bose</b> <b><u>vver</u></b><b>bose</b> ]
+        <b>rlasso</b> <i>depvar</i> <i>regressors</i> [<i>weight</i>] [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [ <b>,</b> <b>sqrt</b> <b>partial(</b><i>varlist</i><b>)</b> <b>pnotpen(</b><i>varlist</i><b>)</b>
+              <b><u>noc</u></b><b>onstant</b> <b>fe</b> <b>noftools</b> <b><u>r</u></b><b>obust</b> <b><u>cl</u></b><b>uster(</b><i>var</i><b>)</b> <b>center</b> <b><u>xdep</u></b><b>endent</b> <b>numsim(</b><i>int</i><b>)</b> <b>prestd</b> <b><u>tol</u></b><b>opt(</b><i>real</i><b>)</b>
+              <b><u>tolu</u></b><b>ps(</b><i>real</i><b>)</b> <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b> <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b> <b><u>maxupsi</u></b><b>ter(</b><i>int</i><b>)</b> <b>lassoups</b> <b><u>corrn</u></b><b>umber(</b><i>int</i><b>)</b> <b>lambda0(</b><i>real</i><b>)</b>
+              <b><u>lalt</u></b><b>ernative</b> <b>gamma(</b><i>real</i><b>)</b> <b>gammad(</b><i>real</i><b>)</b> <b>c(</b><i>real</i><b>)</b> <b>supscore</b> <b>ssnumsim(</b><i>int</i><b>)</b> <b>testonly</b> <b>seed(</b><i>real</i><b>)</b> <b>displayall</b>
+              <b>postall</b> <b>pols</b> <b><u>ver</u></b><b>bose</b> <b><u>vver</u></b><b>bose</b> ]
 
         Note: the <b>fe</b> option will take advantage of the <a href="#stlog-1-SG2016"><b>ftools</b></a> package (if installed) for the fixed-effects
               transform; the speed gains using this package can be large.  See help ftools or click on ssc
@@ -360,7 +360,7 @@
     <i>General options</i>       Description
     -------------------------------------------------------------------------------------------------------------
     <b>sqrt</b>                   use sqrt-lasso (default is standard lasso)
-    <b><u>noc</u></b><b>onstant</b>             suppress constant from regression
+    <b><u>noc</u></b><b>onstant</b>             suppress constant from regression (cannot be used with <b>aweights</b> or <b>pweights</b>)
     <b>fe</b>                     fixed-effects model (requires data to be <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>)
     <b>noftools</b>               do not use FTOOLS package for fixed-effects transform (slower; rarely used)
     <b>partial(</b><i>varlist</i><b>)</b>       variables partialled-out prior to lasso estimation, including the constant (if
@@ -447,6 +447,8 @@
     <b>rlasso</b> may be used with time-series or panel data, in which case the data must be tsset or xtset first; see
     help <a href="http://www.stata.com/help.cgi?tsset"><b>tsset</b></a> or <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.
 
+    <b>aweights</b> and <b>pweights</b> are supported; see help <a href="http://www.stata.com/help.cgi?weights"><b>weights</b></a>.  <b>pweights</b> is equivalent to <b>aweights</b> + <b>robust</b>.
+
     All varlists may contain time-series operators or factor variables; see help <a href="http://www.stata.com/help.cgi?varlist"><b>varlist</b></a>.
 
 
@@ -460,6 +462,7 @@
     <a href="#stlog-1-examples">Examples of usage</a>
     <a href="#stlog-1-saved_results">Saved results</a>
     <a href="#stlog-1-references">References</a>
+    <a href="#stlog-1-website">Website</a>
     <a href="#stlog-1-acknowledgements">Acknowledgements</a>
     <a href="#stlog-1-citation">Citation of lassopack</a>
 
@@ -625,19 +628,21 @@
     improved numerical precision or more stable results in the case of difficult problems vs. specifying the
     variables as unpenalized, but may be slower in terms of computation time.
 
-    By default the constant (if present) is not penalized; this is equivalent to mean-centering prior to
-    estimation.  The <b>partial(</b><i>varlist</i><b>)</b> option also partials out the constant (if present); to partial out just the
-    constant, specify <b>partial(</b><i>_cons</i><b>)</b>.  Both <b>partial(</b>.<b>)</b> and <b>fe</b> mean-center the data; the <b>nocons</b> option is
-    redundant in this case and may not be specified with these options.  If the <b>nocons</b> option is specified an
-    intercept is not included in the model, but the estimated penalty loadings (see <a href="#stlog-1-loadings">above</a>) are still estimated
-    using mean-centered regressors.
+    By default the constant (if present) is not penalized if there are no regressors being partialled out; this
+    is equivalent to mean-centering prior to estimation.  The exception to this is if <b>aweights</b> or <b>aweights</b> are
+    specified, in which case the constant is partialled-out.  The <b>partial(</b><i>varlist</i><b>)</b> option will automatically also
+    partial out the constant (if present); to partial out just the constant, specify <b>partial(</b><i>_cons</i><b>)</b>.  Both
+    <b>partial(</b>.<b>)</b> and <b>fe</b> mean-center the data; the <b>nocons</b> option is redundant in this case and may not be specified
+    with these options.  If the <b>nocons</b> option is specified an intercept is not included in the model, but the
+    estimated penalty loadings (see <a href="#stlog-1-loadings">above</a>) are still estimated using mean-centered regressors.
 
     The <b>prestd</b> and <b>pnotpen(</b><i>varlist</i><b>)</b> vs. <b>partial(</b><i>varlist</i><b>)</b> options can be used as simple checks for numerical
     stability by comparing results that should be equivalent in theory.
 
     The <b>fe</b> fixed-effects option is equivalent to (but computationally faster and more accurate than) specifying
     unpenalized panel-specific dummies.  The fixed-effects ("within") transformation also removes the constant as
-    well as the fixed effects.  The panel variable used by the <b>fe</b> option is the panel variable set by <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.
+    well as the fixed effects.  The panel variable used by the <b>fe</b> option is the panel variable set by <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.  To
+    use weights with fixed effects, the ftools must be installed.
 
 <a name="stlog-1-misc"></a><b><u>Miscellaneous</u></b>
 
@@ -899,7 +904,8 @@
         datasets.  https://ideas.repec.org/c/boc/bocode/s458213.html
 
 <a name="stlog-1-FHT2010"></a>    Friedman, J., Hastie, T., &amp; Tibshirani, R. (2010).  Regularization Paths for Generalized Linear Models via
-        Coordinate Descent.  <i>Journal of Statistical Software</i> 33(1), 1\9622.  https://doi.org/10.18637/jss.v033.i01
+        Coordinate Descent.  <i>Journal of Statistical Software</i> 33(1), 1\9622.  
+        https://doi.org/10.18637/jss.v033.i01
 
 <a name="stlog-1-FU1998"></a>    Fu, W.J.  1998.  Penalized regressions: The bridge versus the lasso.  <i>Journal of Computational and Graphical</i>
         <i>Statistics</i> 7(3):397-416.  http://www.tandfonline.com/doi/abs/10.1080/10618600.1998.10474784
@@ -916,6 +922,9 @@
 <a name="stlog-1-Yam2017"></a>    Yamada, H. 2017.  The Frisch-Waugh-Lovell Theorem for the lasso and the ridge regression.  <i>Communications in</i>
         <i>Statistics - Theory and Methods</i> 46(21):10897-10902.  http://dx.doi.org/10.1080/03610926.2016.1252403
 
+<a name="stlog-1-website"></a><b><u>Website</u></b>
+
+    Please check our website https://statalasso.github.io/ for more information.
 
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 

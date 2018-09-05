@@ -8,7 +8,7 @@ toc:  false
 classes:  wide
 ---
 
-<pre id="stlog-1" class="sthlp"><b>help pdslasso, help ivlasso</b>
+<pre id="stlog-1" style="font-size: 12px" class="sthlp"><b>help pdslasso, help ivlasso</b>
 -------------------------------------------------------------------------------------------------------------------
 
 <b><u>Title</u></b>

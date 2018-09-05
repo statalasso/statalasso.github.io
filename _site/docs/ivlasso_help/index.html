@@ -344,17 +344,17 @@
 <b><u>Title</u></b>
 
     <b>pdslasso</b> and<b> ivlasso</b> --
-                 Progams for post-selection and post-regularization OLS or IV estimation and inference
+                 Programs for post-selection and post-regularization OLS or IV estimation and inference
 
 <a name="stlog-1-syntax"></a><b><u>Syntax</u></b>
 
-        <b>pdslasso</b> <i>depvar</i> <i>regressors</i> <b>(</b><i>hd_controls</i><b>)</b> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [ <b>,</b> <b>partial(</b><i>varlist</i><b>)</b> <b>pnotpen(</b><i>varlist</i><b>)</b>
-              <b>aset(</b><i>varlist</i><b>)</b> <b>post(</b><i>method</i><b>)</b> <b><u>r</u></b><b>obust</b> <b><u>cl</u></b><b>uster(</b><i>var</i><b>)</b> <b>fe</b> <b>noftools</b> <b>rlasso</b>[<b>(</b><i>name</i><b>)</b>] <b>sqrt</b> <b><u>noi</u></b><b>sily</b>
-              <b><u>lopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>olsopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>noc</u></b><b>onstant</b> ]
+        <b>pdslasso</b> <i>depvar</i> <i>regressors</i> <b>(</b><i>hd_controls</i><b>)</b> [<i>weight</i>] [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [ <b>,</b> <b>partial(</b><i>varlist</i><b>)</b>
+              <b>pnotpen(</b><i>varlist</i><b>)</b> <b>aset(</b><i>varlist</i><b>)</b> <b>post(</b><i>method</i><b>)</b> <b><u>r</u></b><b>obust</b> <b><u>cl</u></b><b>uster(</b><i>var</i><b>)</b> <b>fe</b> <b>noftools</b> <b>rlasso</b>[<b>(</b><i>name</i><b>)</b>] <b>sqrt</b>
+              <b><u>noi</u></b><b>sily</b> <b><u>lopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>olsopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>noc</u></b><b>onstant</b> ]
 
         <b>ivlasso</b> <i>depvar</i> <i>regressors</i> [<b>(</b><i>hd_controls</i><b>)</b>] <b>(</b><i>endog</i><b>=</b><i>instruments</i><b>)</b> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [ <b>,</b> <b>partial(</b><i>varlist</i><b>)</b>
               <b>pnotpen(</b><i>varlist</i><b>)</b> <b>aset(</b><i>varlist</i><b>)</b> <b>post(</b><i>method</i><b>)</b> <b><u>r</u></b><b>obust</b> <b><u>cl</u></b><b>uster(</b><i>var</i><b>)</b> <b>fe</b> <b>noftools</b> <b>rlasso</b>[<b>(</b><i>name</i><b>)</b>] <b>sqrt</b>
-              <b><u>noi</u></b><b>sily</b> <b><u>lopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>ivopt</u></b><b>ions(</b><i>options</i><b>)</b> <b>first</b> <b>idstats</b> <b><u>supscore</u></b><b>ci</b> <b>ssgamma(</b><i>real</i><b>)</b> <b>ssgridmin(</b><i>real</i><b>)</b>
+              <b><u>noi</u></b><b>sily</b> <b><u>lopt</u></b><b>ions(</b><i>options</i><b>)</b> <b><u>ivopt</u></b><b>ions(</b><i>options</i><b>)</b> <b>first</b> <b>idstats</b> <b>sscset</b> <b>ssgamma(</b><i>real</i><b>)</b> <b>ssgridmin(</b><i>real</i><b>)</b>
               <b>ssgridmax(</b><i>real</i><b>)</b> <b>ssgridpoints(</b><i>integer 100</i><b>)</b> <b>ssgridmat(</b><i>name</i><b>)</b> <b><u>noc</u></b><b>onstant</b> ]
 
         Note: <b>pdslasso</b> requires <b>rlasso</b> to be installed; <b>ivlasso</b> also requires <b>ranktest</b>.  See help rlasso and help
@@ -386,7 +386,7 @@
     <b><u>ivopt</u></b><b>ions(</b><i>options</i><b>)</b>     (<b>ivlasso</b> only) options specific to PDS OLS or IV estimation of structural equation
     <b>first</b>                  (<b>ivlasso</b> only) display and store first-stage results for 2SLS
     <b>idstats</b>                (<b>ivlasso</b> only) request weak-identification statistics for 2SLS
-    <b><u>noc</u></b><b>onstant</b>             suppress constant from regression
+    <b><u>noc</u></b><b>onstant</b>             suppress constant from regression (cannot be used with <b>aweights</b> or <b>pweights</b>)
     -------------------------------------------------------------------------------------------------------------
 
     <i>Sup-score test</i>        Description
@@ -416,6 +416,8 @@
     <b>pdslasso</b> and <b>ivlasso</b> may be used with time-series or panel data, in which case the data must be tsset or
     xtset first; see help <a href="http://www.stata.com/help.cgi?tsset"><b>tsset</b></a> or <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.
 
+    <b>aweights</b> and <b>pweights</b> are supported; see help <a href="http://www.stata.com/help.cgi?weights"><b>weights</b></a>.  <b>pweights</b> is equivalent to <b>aweights</b> + <b>robust</b>.
+
     All varlists may contain time-series operators or factor variables; see help varlist.
 
 
@@ -426,6 +428,7 @@
     <a href="#stlog-1-examples">Examples of usage</a>
     <a href="#stlog-1-saved_results">Saved results</a>
     <a href="#stlog-1-references">References</a>
+    <a href="#stlog-1-website">Website</a>
     <a href="#stlog-1-acknowledgements">Acknowledgements</a>
     <a href="#stlog-1-citation">Citation of pdslasso and ivlasso</a>
 
@@ -536,10 +539,12 @@
     penalty loadings, so long as the same penalty loadings are used for the penalized regressors in both cases.
     Although the options are equivalent in theory, numerical results can differ in practice because of the
     different calculation methods used; see <a href="http://www.stata.com/help.cgi?rlasso#notpen"><b>rlasso</b></a> for further details.  The constant, if present, is always
-    unpenalized or partialled-out.  The <b>partial(</b><i>varlist</i><b>)</b> option always partials out the constant (if present)
-    along with the variables specified in <i>varlist</i>; to partial out just the constant, specify <b>partial(</b><i>_cons</i><b>)</b>.
-    Partialling-out of controls is done by <b>ivlasso</b>; partialling-out of instruments is done in the lasso
-    estimation by <b>rlasso</b>.
+    unpenalized or partialled-out By default the constant (if present) is not penalized if there are no
+    regressors being partialled out; this is equivalent to mean-centering prior to estimation.  The exception to
+    this is if <b>aweights</b> or <b>aweights</b> are specified, in which case the constant is partialled-out.  The
+    <b>partial(</b><i>varlist</i><b>)</b> option always partials out the constant (if present) along with the variables specified in
+    <i>varlist</i>; to partial out just the constant, specify <b>partial(</b><i>_cons</i><b>)</b>.  Partialling-out of controls is done by
+    <b>ivlasso</b>; partialling-out of instruments is done in the lasso estimation by <b>rlasso</b>.
 
     The lasso and sqrt-lasso estimations are obtained via numerical methods (coordinate descent).  Results can be
     unstable for difficult problems (e.g., if the scaling of variables covers a wide range of magnitudes).  Using
@@ -775,6 +780,9 @@
 <a name="stlog-1-Yam2017"></a>    Yamada, H. 2017.  The Frisch-Waugh-Lovell Theorem for the lasso and the ridge regression.  <i>Communications in</i>
         <i>Statistics - Theory and Methods</i> 46(21):10897-10902.  http://dx.doi.org/10.1080/03610926.2016.1252403
 
+<a name="stlog-1-website"></a><b><u>Website</u></b>
+
+    Please check our website https://statalasso.github.io/ for more information.
 
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 
