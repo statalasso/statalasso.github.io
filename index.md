@@ -13,10 +13,7 @@ toc:  true
 <div markdown="1">
 ## Welcome to the **Stata Lasso Page**
 
-On this website we introduce two packages for regularized regression in Stata: **lassopack** and **pdslasso**. The packages include features intended for *prediction*, *model selection* and *causal inference*. Thus, the routines are applicable in a wide range of settings. Both **lassopack** and **pdslasso** are available through the SSC repository:
-
-	ssc install lassopack
-	ssc install pdslasso
+On this website we introduce two packages for regularized regression in Stata: **lassopack** and **pdslasso**. The packages include features intended for *prediction*, *model selection* and *causal inference*. Thus, the routines are applicable in a wide range of settings. 
 
 The package **lassopack** implements lasso ([Tibshirani 1996](http://www.jstor.org/stable/2346178)), square-root lasso ([Belloni et al. 2011](https://doi.org/10.1093/biomet/asr043)), elastic net ([Zou & Hastie 2005](https://doi.org/10.1214/009053607000000127)), ridge regression ([Hoerl & Kennard 1970](https://doi.org/10.1080/00401706.1970.10488635)), adaptive lasso ([Zou 2006](https://doi.org/10.1198/016214506000000735)) and post-estimation OLS. 
 

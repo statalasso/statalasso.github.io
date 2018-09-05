@@ -19,7 +19,7 @@ locale                   : "en-US"
 title                    : "The Stata Lasso Page"
 title_separator          : "-"
 name                     : "Achim Ahrens"
-description              : "An amazing website."
+description              : "The Stata Lasso Page."
 url                      : # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : # the subpath of your site, e.g. "/blog"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
@@ -99,8 +99,8 @@ analytics:
 author:
   name             : "Your Name"
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio              : "I am an amazing person."
-  location         : "Somewhere"
+  bio              : "."
+  location         : ""
   email            :
   uri              :
   home             : # null (default), "absolute or relative url to link to author home"

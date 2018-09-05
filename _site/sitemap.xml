@@ -16,6 +16,9 @@
 <loc>http://localhost:4000/</loc>
 </url>
 <url>
+<loc>http://localhost:4000/installation/</loc>
+</url>
+<url>
 <loc>http://localhost:4000/docs/ivlasso_help/</loc>
 </url>
 <url>
