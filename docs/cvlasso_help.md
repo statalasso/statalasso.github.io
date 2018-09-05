@@ -8,7 +8,7 @@ toc:  false
 classes:  wide
 ---
 
-<pre id="stlog-1" style="font-size: 12px" class="sthlp"><b>help cvlasso</b>
+<pre id="stlog-1" class="sthlp"><b>help cvlasso</b>
 -------------------------------------------------------------------------------------------------------------------
 
 <b><u>Title</u></b>
@@ -182,6 +182,7 @@ classes:  wide
     <a href="#stlog-1-examples_rolling2">--Rolling cross-validation with panel data</a>
     <a href="#stlog-1-saved_results">Saved results</a>
     <a href="#stlog-1-references">References</a>
+    <a href="#stlog-1-website">Website</a>
     <a href="#stlog-1-acknowledgements">Acknowledgements</a>
     <a href="#stlog-1-citation">Citation of lassopack</a>
 
@@ -548,6 +549,9 @@ classes:  wide
 
     See <a href="http://www.stata.com/help.cgi?lasso2#references">lasso2</a> for further references.
 
+<a name="stlog-1-website"></a><b><u>Website</u></b>
+
+    Please check our website https://statalasso.github.io/ for more information.
 
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 
