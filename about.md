@@ -18,7 +18,7 @@ advice on the use of the [ftools](https://github.com/sergiocorreia/ftools) packa
 Achim Ahrens, Economic and Social Research Institute, Ireland  
 ![]({{ "/_img/aa_email.png" }}){:height="40%"}
      
-[Christian B Hansen](http://faculty.chicagobooth.edu/christian.hansen/research/), University of Chicago, USA  
+[Christian B Hansen](https://voices.uchicago.edu/christianhansen/), University of Chicago, USA  
 ![]({{ "/_img/ch_email.png" }}){:height="40%"}
 
 [Mark E Schaffer](https://ideas.repec.org/e/psc51.html), Heriot-Watt University, UK  
