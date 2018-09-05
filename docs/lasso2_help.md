@@ -831,6 +831,12 @@ classes:  wide
 
     Please check our website https://statalasso.github.io/ for more information.
 
+<a name="stlog-1-installation"></a><b><u>Installation</u></b>
+
+    To get the latest stable version of <i>lassopack</i> from our website, check the installation instructions at 
+    https://statalasso.github.io/installation/.  We update the stable website version more frequently than the
+    SSC version.
+
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 
     Thanks to Alexandre Belloni, who provided Matlab code for the square-root lasso estimator, Sergio Correia for
@@ -854,11 +860,4 @@ classes:  wide
         Christian B. Hansen, University of Chicago, USA
         Christian.Hansen@chicagobooth.edu
 
-        Mark E Schaffer, Heriot-Watt University, UK
-        m.e.schaffer@hw.ac.uk
-
-
-<b><u>Also see</u></b>
-
-       Help: <a href="http://www.stata.com/help.cgi?cvlasso"><b>cvlasso</b></a>, <a href="http://www.stata.com/help.cgi?rlasso"><b>rlasso</b></a>, <a href="http://www.stata.com/help.cgi?ivlasso"><b>ivlasso</b></a>, <a href="http://www.stata.com/help.cgi?pdslasso"><b>pdslasso</b></a> (if installed).
 </pre>

@@ -19,6 +19,8 @@ Both *LASSOPACK* and *PDSLASSO* are available through the SSC repository:
 	ssc install lassopack
 	ssc install pdslasso
 
+Note that *PDSLASSO* requires *LASSOPACK* to be installed. 
+
 ## Stable website version
 
 You can also get the latest stable version from our website. We update the website versions more

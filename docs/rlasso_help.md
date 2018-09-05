@@ -596,6 +596,12 @@ classes:  wide
 
     Please check our website https://statalasso.github.io/ for more information.
 
+<a name="stlog-1-installation"></a><b><u>Installation</u></b>
+
+    To get the latest stable version of <i>lassopack</i> from our website, check the installation instructions at 
+    https://statalasso.github.io/installation/.  We update the stable website version more frequently than the
+    SSC version.
+
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
 
     Thanks to Alexandre Belloni for providing Matlab code for the square-root-lasso and to Sergio Correia for
