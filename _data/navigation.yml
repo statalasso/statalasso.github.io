@@ -4,6 +4,8 @@ main:
     url: /
   - title: "Installation"
     url: /installation/
+  - title: "Slides"
+    url: /slides/
   - title: "About"
     url: /about/
   - title: "References"
