@@ -14,6 +14,6 @@ toc:  false
 ## 2018 London Stata Conference
 
 Presentation slides from our presentation at the [2018 London Stata Conference](https://www.stata.com/meeting/uk18/)
-will be uploaded here.
+are available [here](https://statalasso.github.io/pdf/StataConference2018_AhrensSchaffer.pdf).
 
 
