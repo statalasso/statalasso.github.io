@@ -1,0 +1,4 @@
+source: http://lib.stat.cmu.edu/datasets/boston
+The Boston house-price data of Harrison, D. and Rubinfeld, D.L. 'Hedonic prices and the demand for clean air',
+J. Environ. Economics & Management, vol.5, 81-102, 1978. 
+Used in Belsley, Kuh & Welsch, 'Regression diagnostics ...', Wiley, 1980. (51256 bytes) 
