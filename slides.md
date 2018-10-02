@@ -16,6 +16,8 @@ toc:  false
 Presentation slides from our presentation at the [2018 London Stata Conference](https://www.stata.com/meeting/uk18/)
 are available [here](https://statalasso.github.io/pdf/StataConference2018_AhrensSchaffer.pdf).
 
-Do file to reproduce results on Slide 41: [Download](https://raw.githubusercontent.com/statalasso/statalasso.github.io/master/dta/housing_demo.do).
+Please cite as: Ahrens, A., Hansen, C. B., & Schaffer, M. E. (2018). *LASSOPACK and PDSLASSO: Prediction, model selection and causal inference with regularized regression.* In London Stata Conference 2018 (No. 12). Stata Users Group.
+
+Do file to reproduce results on Slide 41/86: [Download](https://raw.githubusercontent.com/statalasso/statalasso.github.io/master/dta/housing_demo.do).
 
 
