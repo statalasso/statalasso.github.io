@@ -33,6 +33,8 @@ Varian, Hal R. 2014. [Big Data: New Tricks for Econometrics](https://www.aeaweb.
 [Summer Institute 2013 Econometric Methods for High-Dimensional Data](http://www.nber.org/econometrics_minicourse_2013/) 
 with Victor Chernozhukov, Matthew Gentzkow, Christian Hansen, Jesse Shapiro, Matthew Taddy.
 
+[Machinistas meet randomistas: useful ML tools for empirical researchers](https://www.nber.org/programs/dev/dev.html) by Esther Duflo. 
+
 ## Further references
 
 Acemoglu, D., Johnson, S. and Robinson, J.A. 2001.  [The colonial origins of comparative development: An empirical investigation](https://economics.mit.edu/files/4123).
