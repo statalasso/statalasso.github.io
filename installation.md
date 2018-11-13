@@ -14,12 +14,12 @@ classes:  wide
 <div markdown="1">
 ## SSC versions (September 9, 2018)
 
-Both *LASSOPACK* and *PDSLASSO* are available through the SSC repository:
+Both **lassopack** and **pdslasso** are available through the SSC repository:
 
 	ssc install lassopack
 	ssc install pdslasso
 
-Note that *PDSLASSO* requires *LASSOPACK* to be installed. 
+Note that **pdslasso** requires **lassopack** to be installed. 
 
 ## Latest versions
 
