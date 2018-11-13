@@ -12,7 +12,7 @@ classes:  wide
 </script>
 
 <div markdown="1">
-## SSC version (September 9, 2018)
+## SSC versions (September 9, 2018)
 
 Both *LASSOPACK* and *PDSLASSO* are available through the SSC repository:
 
@@ -21,13 +21,13 @@ Both *LASSOPACK* and *PDSLASSO* are available through the SSC repository:
 
 Note that *PDSLASSO* requires *LASSOPACK* to be installed. 
 
-## Latest *LASSOPACK* version 
+## Latest versions
 
-You can download the latest version of *LASSOPACK* (v1.1.01, 9Nov2018) as follows:
+You can download the latest version of **lassopack** (v1.1.01, 8Nov2018) and **pdslasso** (v1.0.10, 8Nov2018) from our github repositories as follows:
 
-	net install lassopack, ///
-		from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1101/")
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1101/") ///
+		replace
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1101/") ///
+		replace
 		
-This version includes a few more bug fixes. We encourage you to try it out. 
-
-
+These version includes a few more bug fixes. We encourage you to try it out. Feedback welcome. 
