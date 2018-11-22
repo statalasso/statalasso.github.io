@@ -23,9 +23,9 @@ Note that **pdslasso** requires **lassopack** to be installed.
 
 ## Latest versions
 
-You can download the latest version of **lassopack** (v1.1.01, 8Nov2018) and **pdslasso** (v1.0.10, 8Nov2018) from our github repositories as follows:
+You can download the latest version of **lassopack** (v1.1.02, 22Nov2018) and **pdslasso** (v1.0.10, 8Nov2018) from our github repositories as follows:
 
-	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1101/") ///
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1102/") ///
 		replace
 	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v1010/") ///
 		replace
