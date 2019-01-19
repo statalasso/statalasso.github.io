@@ -6,6 +6,10 @@ main:
     url: /installation/
   - title: "Slides"
     url: /slides/
+  - title: "Working paper"
+    url: /papers/
+#  - title: "Data"
+#    url: /data/
   - title: "About"
     url: /about/
   - title: "References"

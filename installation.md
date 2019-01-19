@@ -12,22 +12,32 @@ classes:  wide
 </script>
 
 <div markdown="1">
-## SSC versions (September 9, 2018)
+## SSC versions (January 15, 2019)
 
-Both **lassopack** and **pdslasso** are available through the SSC repository:
+The latest versions of **lassopack** (v1.2) and **pdslasso** (v1.1) are available through the SSC repository:
 
 	ssc install lassopack
 	ssc install pdslasso
 
 Note that **pdslasso** requires **lassopack** to be installed. 
 
-## Latest versions
+## Github versions (January 15, 2019)
 
-You can download the latest version of **lassopack** (v1.1.02, 22Nov2018) and **pdslasso** (v1.0.10, 8Nov2018) from our github repositories as follows:
+Alternatively you can download the packages via our website:
 
-	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v1102/") ///
-		replace
-	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v1010/") ///
-		replace
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v12/") 
+	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v11/") 
 		
-These version includes a few more bug fixes. We encourage you to try it out. Feedback welcome. 
+Add `replace` to overwrite existing versions of the packages. We update the Github version of the packages more frequently. Currently, both SSC and Github version are identical.
+
+## Verify installation
+
+To check that **lassopack** or **pdslasso** were installed correctly, 
+type 
+	
+	whichpkg lassopack
+	whichpkg pdslasso
+
+which requires the user-written package **whichpkg** to be installed. 
+
+

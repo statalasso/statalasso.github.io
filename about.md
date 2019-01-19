@@ -9,13 +9,15 @@ classes:  wide
 
 ## Acknowledgements
 
-Thanks to Alexandre Belloni, who provided Matlab code for the square-root lasso estimator, Sergio Correia for
-advice on the use of the [ftools](https://github.com/sergiocorreia/ftools) package, Martin Spindler and Jan Ditzen. 
-
+We thank Alexandre Belloni, who has provided MATLAB code for the square-root lasso, and Sergio Correia for 
+supporting us with the use of [ftools](https://github.com/sergiocorreia/ftools). We also thank Christopher 
+F Baum, Jan Ditzen, Martin Spindler,  as well as participants of the 2018 London Stata Conference and 
+the 2018 Swiss Stata Users Group meeting for
+ many helpful comments and suggestions. All remaining errors are our own.
 
 ## Authors
 
-Achim Ahrens, Economic and Social Research Institute, Ireland  
+[Achim Ahrens](https://www.esri.ie/people/achim-ahrens), Economic and Social Research Institute, Ireland  
 ![]({{ "/_img/aa_email.png" }}){:height="40%"}
      
 [Christian B Hansen](https://voices.uchicago.edu/christianhansen/), University of Chicago, USA  
@@ -27,4 +29,8 @@ Achim Ahrens, Economic and Social Research Institute, Ireland
 ## Issues and questions
 
 If you have encountered any issues or have questions, contact us via email or via [Statalist](https://www.statalist.org/).
+  
+## This page  
+  
+The Stata Lasso Page is maintained by Achim Ahrens. Last updated: 17-01-2019
 

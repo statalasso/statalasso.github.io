@@ -4,7 +4,8 @@ permalink: /docs/lasso2/
 layout:  single
 sidebar:
   nav: "docs"
-toc:  true
+toc:  false
+classes:  wide
 ---
 
 <script type="text/javascript" async
@@ -16,8 +17,8 @@ which has been widely applied to demonstrate the lasso and related techniques.
 
 To load prostate cancer data:
 
-	. insheet using
-	    https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, 
+	. insheet using ///
+	    https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data,  ///
 	    clear tab
 
 ## General demonstration
@@ -27,19 +28,20 @@ By default, `lasso2` uses the lasso estimator (i.e., `alpha(1)`). Like Stata's `
 by a list of predictors.
 
 	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
-
+	
 	  Knot|  ID     Lambda    s      L1-Norm        EBIC     R-sq   | Entered/removed
 	------+---------------------------------------------------------+----------------
-	     1|   1  163.62492     1     0.00000     35.57115   0.0000  | Added _cons.
-	     2|   2  149.08894     2     0.06390     34.98739   0.0043  | Added lcavol.
-	     3|   9   77.73509     3     0.40800     -0.15868   0.1488  | Added svi.
-	     4|  11   64.53704     4     0.60174     -1.67592   0.2001  | Added lweight.
-	     5|  21   25.45474     5     1.35340    -21.40796   0.4268  | Added pgg45.
-	     6|  22   23.19341     6     1.39138    -13.98342   0.4436  | Added lbph.
-	     7|  29   12.09306     7     1.58269    -10.83200   0.5334  | Added age.
-	     8|  35    6.92010     8     1.71689     -5.57543   0.5820  | Added gleason.
-	     9|  41    3.95993     9     1.83346      1.73747   0.6130  | Added lcp.
+	     1|   1  163.62492     1     0.00000     31.41226   0.0000  | Added _cons.
+	     2|   2  149.08894     2     0.06390     26.66962   0.0916  | Added lcavol.
+	     3|   9   77.73509     3     0.40800    -12.63533   0.4221  | Added svi.
+	     4|  11   64.53704     4     0.60174    -18.31145   0.4801  | Added lweight.
+	     5|  21   25.45474     5     1.35340    -42.20238   0.6123  | Added pgg45.
+	     6|  22   23.19341     6     1.39138    -38.93672   0.6175  | Added lbph.
+	     7|  29   12.09306     7     1.58269    -39.94418   0.6389  | Added age.
+	     8|  35    6.92010     8     1.71689    -38.84649   0.6516  | Added gleason.
+	     9|  41    3.95993     9     1.83346    -35.69248   0.6567  | Added lcp.
 	Use 'long' option for full output. Type e.g. 'lasso2, lic(ebic)' to run the model selected by EBIC.
+
 
 `lasso2` obtains the solution for a list of $$\lambda$$ values (see third column). 
 As $$\lambda$$ decreases, predictors are added to the model. The last column on the right 
@@ -64,7 +66,7 @@ Stata's `line` command. In the example, `legend(off)` is used to suppress the le
 
 The resulting graph looks as follows:
 
-![]({{ "/_img/plotpath.png" }}){:height="100%" width="100%"}
+![]({{ "/_img/plotpath.png" }}){:height="70%" width="70%"}
 
 To plot the coefficients against the $$\ell_1$$-norm, we can use:
 
@@ -80,7 +82,7 @@ This only works if `lasso2` results are in memory.
 
 This creates the following graph:
 
-![]({{ "/_img/plotpath_norm.png" }}){:height="100%" width="100%"}
+![]({{ "/_img/plotpath_norm.png" }}){:height="70%" width="70%"}
 
 ## The lambda() option
 

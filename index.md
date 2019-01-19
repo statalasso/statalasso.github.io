@@ -19,6 +19,7 @@ The package **lassopack** implements lasso ([Tibshirani 1996](http://www.jstor.o
 
 **pdslasso** offers methods to facilitate causal inference in structural models. The package allows to select control variables and/or instruments from a large set of variables in a setting where the researcher is interested in estimating the causal impact of one or more (possibly endogenous) causal variables of interest.
 
+
 ## When would you want to use **lassopack**?
 
 ### High-dimensional models

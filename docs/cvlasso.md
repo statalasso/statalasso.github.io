@@ -4,7 +4,8 @@ permalink: /docs/cvlasso/
 layout:  single
 sidebar:
   nav: "docs"
-toc:  true
+toc:  false
+classes:  wide
 ---
 
 <script type="text/javascript" async
@@ -31,8 +32,7 @@ the data is randomly partitioned into "folds".
 We use `seed(123)` throughout this demonstration to allow 
 reproducing the outputs below.
 
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 
 	K-fold cross-validation with 10 folds. Elastic net with alpha=1.
 	Fold 1 2 3 4 5 6 7 8 9 10 
@@ -72,15 +72,12 @@ To estimate the full model with either $$\lambda_{lopt}$$ or $$\lambda_{lse}$$, 
 use `lopt` or `lse`.
 Internally, `cvlasso` calls `lasso2` with either `lambda(14.566138)` or `lambda(36.930468)`.
         
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          lopt seed(123)
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          lse seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lopt seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lse seed(123)
 
 The same as above can be achieved using the replay syntax in two steps.
         
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 	. cvlasso, lopt
 	. cvlasso, lse
 
@@ -117,12 +114,11 @@ that minimizes the overall MSPE.
 We can plot the estimated mean-squared prediction error over $$\lambda$$.  Note that the
 plotting feature is not supported if we also cross-validate over $$\alpha$$.
         
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          seed(123) plotcv
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123) plotcv
 
 This produces the following graph:
 
-![]({{ "/_img/cvlasso.png" }}){:height="100%" width="100%"}
+![]({{ "/_img/cvlasso.png" }}){:height="70%" width="70%"}
 
 The two vertical lines indicate $$\lambda_{lopt}$$ and $$\lambda_{lse}$$ (dashed line).
 
@@ -134,13 +130,11 @@ using `plotopt()`.
 The predict postestimation command allows to obtain predicted values and residuals
 for either `e(lopt)` or `e(lse)`.
 	
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 	. cap drop xbhat1
 	. predict double xbhat1, lopt
 
-	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-	          seed(123)
+	. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 	. cap drop xbhat2
 	. predict double xbhat2, lse
 
