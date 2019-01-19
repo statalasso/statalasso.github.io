@@ -39,5 +39,3 @@ type
 	whichpkg pdslasso
 
 which requires the user-written package **whichpkg** to be installed. 
-
-
