@@ -131,6 +131,11 @@
           
             
             <li class="masthead__menu-item">
+              <a href="http://localhost:4000/papers/" >Working paper</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
               <a href="http://localhost:4000/about/" >About</a>
             </li>
           
@@ -319,6 +324,50 @@
         
       </li>
     
+      <li>
+        
+          <span class="nav__sub-title">lassologit</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_help/" class="">Help file</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
   </ul>
 </nav>
     
@@ -347,7 +396,7 @@
               <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
               <ul class="toc__menu">
   <li><a href="#welcome-to-the-stata-lasso-page">Welcome to the Stata Lasso Page</a></li>
-  <li><a href="#when-would-you-want-to-use-lassopack">When would you want to use lassopack?</a>
+  <li><a href="#when-would-you-want-to-use-lassopack--lassologit">When would you want to use lassopack &amp; lassologit?</a>
     <ul>
       <li><a href="#high-dimensional-models">High-dimensional models</a></li>
       <li><a href="#model-selection">Model selection</a></li>
@@ -371,13 +420,21 @@
 <div>
   <h2 id="welcome-to-the-stata-lasso-page">Welcome to the <strong>Stata Lasso Page</strong></h2>
 
-  <p>On this website we introduce two packages for regularized regression in Stata: <strong>lassopack</strong> and <strong>pdslasso</strong>. The packages include features intended for <em>prediction</em>, <em>model selection</em> and <em>causal inference</em>. Thus, the routines are applicable in a wide range of settings.</p>
+  <p>On this website we introduce three packages for regularized regression in Stata: 
+<strong>lassopack</strong>, <strong>lassologit</strong> and <strong>pdslasso</strong>. The packages include features intended for <em>prediction</em>,
+<em>model selection</em> and <em>causal inference</em>. Thus, the routines are applicable in a wide range of settings.</p>
 
-  <p>The package <strong>lassopack</strong> implements lasso (<a href="http://www.jstor.org/stable/2346178">Tibshirani 1996</a>), square-root lasso (<a href="https://doi.org/10.1093/biomet/asr043">Belloni et al. 2011</a>), elastic net (<a href="https://doi.org/10.1214/009053607000000127">Zou &amp; Hastie 2005</a>), ridge regression (<a href="https://doi.org/10.1080/00401706.1970.10488635">Hoerl &amp; Kennard 1970</a>), adaptive lasso (<a href="https://doi.org/10.1198/016214506000000735">Zou 2006</a>) and post-estimation OLS.</p>
+  <ul>
+    <li>The package <strong>lassopack</strong> implements lasso (<a href="http://www.jstor.org/stable/2346178">Tibshirani 1996</a>), 
+square-root lasso (<a href="https://doi.org/10.1093/biomet/asr043">Belloni et al. 2011</a>), 
+elastic net (<a href="https://doi.org/10.1214/009053607000000127">Zou &amp; Hastie 2005</a>), 
+ridge regression (<a href="https://doi.org/10.1080/00401706.1970.10488635">Hoerl &amp; Kennard 1970</a>), 
+adaptive lasso (<a href="https://doi.org/10.1198/016214506000000735">Zou 2006</a>) and post-estimation OLS.</li>
+    <li><strong>lassologit</strong> implements the logistic lasso for binary outcome models.</li>
+    <li><strong>pdslasso</strong> offers methods to facilitate causal inference in structural models. The package allows to select control variables and/or instruments from a large set of variables in a setting where the researcher is interested in estimating the causal impact of one or more (possibly endogenous) causal variables of interest.</li>
+  </ul>
 
-  <p><strong>pdslasso</strong> offers methods to facilitate causal inference in structural models. The package allows to select control variables and/or instruments from a large set of variables in a setting where the researcher is interested in estimating the causal impact of one or more (possibly endogenous) causal variables of interest.</p>
-
-  <h2 id="when-would-you-want-to-use-lassopack">When would you want to use <strong>lassopack</strong>?</h2>
+  <h2 id="when-would-you-want-to-use-lassopack--lassologit">When would you want to use <strong>lassopack</strong> &amp; <strong>lassologit</strong>?</h2>
 
   <h3 id="high-dimensional-models">High-dimensional models</h3>
 
@@ -466,7 +523,7 @@
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2019 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

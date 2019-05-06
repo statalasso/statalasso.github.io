@@ -28,9 +28,12 @@ the 2018 Swiss Stata Users Group meeting for
 
 ## Issues and questions
 
-If you have encountered any issues or have questions, contact us via email or via [Statalist](https://www.statalist.org/).
+If you have encountered any issues or have questions, contact us via email 
+or via [Statalist](https://www.statalist.org/).
+If you have a question that could be of general interest, please consider posting on 
+Statalist. Feel free to tag us or alert us to the post.
   
 ## This page  
   
-The Stata Lasso Page is maintained by Achim Ahrens. Last updated: 17-01-2019
+The Stata Lasso Page is maintained by Achim Ahrens. Last updated: 5 May 2019
 

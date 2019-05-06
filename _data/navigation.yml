@@ -52,3 +52,14 @@ docs:
         url: /docs/ivlasso_help/
       - title: "Citation"
         url: /docs/pdslasso_cite/
+        
+  - title: lassologit
+    children:
+      - title: "Overview"
+        url: /docs/lassologit/
+      - title: "Demonstration"
+        url: /docs/lassologit_demo/
+      - title: "Help file"
+        url: /docs/lassologit_help/
+      - title: "Citation"
+        url: /docs/lassologit_cite/

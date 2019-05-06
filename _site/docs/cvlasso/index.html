@@ -101,7 +101,7 @@
 
   </head>
 
-  <body class="layout--single">
+  <body class="layout--single wide">
 
     <!--[if lt IE 9]>
 <div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
@@ -127,6 +127,11 @@
             
             <li class="masthead__menu-item">
               <a href="http://localhost:4000/slides/" >Slides</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/papers/" >Working paper</a>
             </li>
           
             
@@ -319,6 +324,50 @@
         
       </li>
     
+      <li>
+        
+          <span class="nav__sub-title">lassologit</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_help/" class="">Help file</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
   </ul>
 </nav>
     
@@ -343,20 +392,6 @@
 
       <section class="page__content" itemprop="text">
         
-          <aside class="sidebar__right">
-            <nav class="toc">
-              <header><h4 class="nav__title"><i class="fas fa-file-alt"></i> On This Page</h4></header>
-              <ul class="toc__menu">
-  <li><a href="#k-fold-cross-validation">K-fold cross-validation</a></li>
-  <li><a href="#estimate-the-selected-model">Estimate the selected model</a></li>
-  <li><a href="#k-fold-cross-validation-over-lambda-and-alpha">K-fold cross-validation over lambda and alpha</a></li>
-  <li><a href="#plotting">Plotting</a></li>
-  <li><a href="#prediction">Prediction</a></li>
-  <li><a href="#store-intermediate-steps">Store intermediate steps</a></li>
-</ul>
-            </nav>
-          </aside>
-        
         <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
 </script>
 
@@ -380,8 +415,7 @@ the data is randomly partitioned into “folds”.</p>
 <p>We use <code class="highlighter-rouge">seed(123)</code> throughout this demonstration to allow 
 reproducing the outputs below.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          seed(123)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 
 K-fold cross-validation with 10 folds. Elastic net with alpha=1.
 Fold 1 2 3 4 5 6 7 8 9 10 
@@ -422,16 +456,13 @@ We denote these by <script type="math/tex">\lambda_{lopt}</script> and <script t
 use <code class="highlighter-rouge">lopt</code> or <code class="highlighter-rouge">lse</code>.
 Internally, <code class="highlighter-rouge">cvlasso</code> calls <code class="highlighter-rouge">lasso2</code> with either <code class="highlighter-rouge">lambda(14.566138)</code> or <code class="highlighter-rouge">lambda(36.930468)</code>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          lopt seed(123)
-. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          lse seed(123)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lopt seed(123)
+. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lse seed(123)
 </code></pre></div></div>
 
 <p>The same as above can be achieved using the replay syntax in two steps.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          seed(123)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 . cvlasso, lopt
 . cvlasso, lse
 </code></pre></div></div>
@@ -471,13 +502,12 @@ that minimizes the overall MSPE.</p>
 <p>We can plot the estimated mean-squared prediction error over <script type="math/tex">\lambda</script>.  Note that the
 plotting feature is not supported if we also cross-validate over <script type="math/tex">\alpha</script>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          seed(123) plotcv
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123) plotcv
 </code></pre></div></div>
 
 <p>This produces the following graph:</p>
 
-<p><img src="/_img/cvlasso.png" alt="" height="100%" width="100%" /></p>
+<p><img src="/_img/cvlasso.png" alt="" height="70%" width="70%" /></p>
 
 <p>The two vertical lines indicate <script type="math/tex">\lambda_{lopt}</script> and <script type="math/tex">\lambda_{lse}</script> (dashed line).</p>
 
@@ -489,13 +519,11 @@ using <code class="highlighter-rouge">plotopt()</code>.</p>
 <p>The predict postestimation command allows to obtain predicted values and residuals
 for either <code class="highlighter-rouge">e(lopt)</code> or <code class="highlighter-rouge">e(lse)</code>.</p>
 
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          seed(123)
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 . cap drop xbhat1
 . predict double xbhat1, lopt
 
-. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-          seed(123)
+. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
 . cap drop xbhat2
 . predict double xbhat2, lse
 </code></pre></div></div>
@@ -668,7 +696,7 @@ Estimate lasso with lambda=4828.76 (lopt).
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2018 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2019 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>

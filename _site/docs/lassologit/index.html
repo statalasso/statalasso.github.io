@@ -1,0 +1,500 @@
+<!doctype html>
+<!--
+  Minimal Mistakes Jekyll Theme 4.11.1 by Michael Rose
+  Copyright 2013-2018 Michael Rose - mademistakes.com | @mmistakes
+  Free for personal and commercial use under the MIT license
+  https://github.com/mmistakes/minimal-mistakes/blob/master/LICENSE.txt
+-->
+<html lang="en" class="no-js">
+  <head>
+    <meta charset="utf-8">
+
+<!-- begin _includes/seo.html --><title>Stata package: lassologit - The Stata Lasso Page</title>
+<meta name="description" content="The Stata Lasso Page.">
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="en_US">
+<meta property="og:site_name" content="The Stata Lasso Page">
+<meta property="og:title" content="Stata package: lassologit">
+<meta property="og:url" content="http://localhost:4000/docs/lassologit/">
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+
+<link rel="canonical" href="http://localhost:4000/docs/lassologit/">
+
+
+
+
+
+
+
+  <script type="application/ld+json">
+    {
+      "@context": "http://schema.org",
+      "@type": "Person",
+      "name": "Achim Ahrens",
+      "url": "http://localhost:4000",
+      "sameAs": null
+    }
+  </script>
+
+
+
+
+
+
+
+<!-- end _includes/seo.html -->
+
+
+<link href="/feed.xml" type="application/atom+xml" rel="alternate" title="The Stata Lasso Page Feed">
+
+<!-- http://t.co/dKP3o1e -->
+<meta name="HandheldFriendly" content="True">
+<meta name="MobileOptimized" content="320">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<script>
+  document.documentElement.className = document.documentElement.className.replace(/\bno-js\b/g, '') + ' js ';
+</script>
+
+<!-- For all browsers -->
+<link rel="stylesheet" href="/assets/css/main.css">
+
+<!--[if lte IE 9]>
+  <style>
+    /* old IE unsupported flexbox fixes */
+    .greedy-nav .site-title {
+      padding-right: 3em;
+    }
+    .greedy-nav button {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 100%;
+    }
+  </style>
+<![endif]-->
+
+
+    <!-- start custom head snippets -->
+
+<!-- insert favicons. use https://realfavicongenerator.net/ -->
+
+<!-- end custom head snippets -->
+
+  </head>
+
+  <body class="layout--single wide">
+
+    <!--[if lt IE 9]>
+<div class="notice--danger align-center" style="margin: 0;">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience.</div>
+<![endif]-->
+
+    <div class="masthead">
+  <div class="masthead__inner-wrap">
+    <div class="masthead__menu">
+      <nav id="site-nav" class="greedy-nav">
+        <a class="site-title" href="/">The Stata Lasso Page</a>
+        <ul class="visible-links">
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/" >Home</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/installation/" >Installation</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/slides/" >Slides</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/papers/" >Working paper</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/about/" >About</a>
+            </li>
+          
+            
+            <li class="masthead__menu-item">
+              <a href="http://localhost:4000/references/" >References</a>
+            </li>
+          
+        </ul>
+        
+        <button class="greedy-nav__toggle hidden" type="button">
+          <span class="visually-hidden">Toggle Menu</span>
+          <div class="navicon"></div>
+        </button>
+        <ul class="hidden-links hidden"></ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+    <div class="initial-content">
+      
+
+
+
+<div id="main" role="main">
+  
+  <div class="sidebar sticky">
+  
+  
+    
+      
+      
+      
+    
+    
+      
+
+<nav class="nav__list">
+  
+  <input id="ac-toc" name="accordion-toc" type="checkbox" />
+  <label for="ac-toc">Toggle Menu</label>
+  <ul class="nav__items">
+    
+      <li>
+        
+          <span class="nav__sub-title">lassopack</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/regularized_reg/" class="">Regularized regression</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/estimators/" class="">Estimation methods</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lasso2/" class="">Getting started (lasso2)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/cvlasso/" class="">Cross-validation (cvlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/rlasso/" class="">Rigorous lasso (rlasso)</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lasso2_help/" class="">Help lasso2</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/cvlasso_help/" class="">Help cvlasso</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/rlasso_help/" class="">Help rlasso</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassopack_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">pdslasso</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso/" class="">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_models/" class="">Models</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/ivlasso_help/" class="">Help file</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/pdslasso_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+      <li>
+        
+          <span class="nav__sub-title">lassologit</span>
+        
+
+        
+        <ul>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit/" class="active">Overview</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_demo/" class="">Demonstration</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_help/" class="">Help file</a></li>
+          
+            
+            
+
+            
+            
+
+            <li><a href="/docs/lassologit_cite/" class="">Citation</a></li>
+          
+        </ul>
+        
+      </li>
+    
+  </ul>
+</nav>
+    
+  
+  </div>
+
+
+  <article class="page" itemscope itemtype="http://schema.org/CreativeWork">
+    <meta itemprop="headline" content="Stata package: lassologit">
+    
+    
+    
+
+    <div class="page__inner-wrap">
+      
+        <header>
+          <h1 id="page-title" class="page__title" itemprop="headline">Stata package: lassologit
+</h1>
+          
+        </header>
+      
+
+      <section class="page__content" itemprop="text">
+        
+        <script type="text/javascript" async="" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+<p>The Stata package <strong>lassologit</strong> 
+is intended for classification tasks with binary outcomes.
+<strong>lassologit</strong> maximizes the penalized log-likelihood:</p>
+
+<script type="math/tex; mode=display">\frac{1}{N}  \sum_{i=1}^N \left\{y_i (\beta_0 + \boldsymbol{x}_i'\boldsymbol{\beta})
+- \log\left(1+e^{(\beta_0+\boldsymbol{x}_i'\boldsymbol{\beta})}\right)\right\}
+- \frac{\lambda}{N} ||\boldsymbol{\beta}||_1</script>
+
+<p>where <script type="math/tex">y_i</script> is the binary outcome variable and 
+<script type="math/tex">\boldsymbol{x}_i</script> is the vector of predictors. 
+<script type="math/tex">\boldsymbol{\beta}</script> is the vector of parameters
+to be estimated.
+The last term in the objective function 
+imposes a penalty on the absolute size of <script type="math/tex">\boldsymbol{\beta}</script>.
+The intercept <script type="math/tex">\beta_0</script>
+is (by default) not penalized.</p>
+
+<p><strong>lassologit</strong> implements the coordinate descent algorithm
+of Friedman, Hastie &amp; 
+Tibshirani (<a href="http://www.jstatsoft.org/v33/i01/">2010</a>, Section 3).
+For further speed improvements, we also utilize the 
+strong rule proposed in Tibshirani et al. (<a href="http://www.jstor.org/stable/41430939">2012</a>).</p>
+
+<p>Like <strong>lassopack</strong>, <strong>lassologit</strong> consists of three programs
+which correspond to three approaches for selecting the 
+tuning parameter <script type="math/tex">\lambda</script>:</p>
+
+<ul>
+  <li>The base program <code class="highlighter-rouge">lassologit</code> allows to 
+select the tuning parameter as the value of <script type="math/tex">\lambda</script>
+that minimizes either <script type="math/tex">AIC</script>, <script type="math/tex">BIC</script>, <script type="math/tex">AIC_c</script> or <script type="math/tex">EBIC</script>.</li>
+  <li><code class="highlighter-rouge">cvlassologit</code> supports <script type="math/tex">K</script>-fold cross-validation.
+<script type="math/tex">\lambda</script> may be selected as the value that minimizes the 
+estimated deviance or miss-classification rate.</li>
+  <li><code class="highlighter-rouge">rlassologit</code> implements theory-driven penalization for the 
+logistic lasso (see e.g. Belloni, Chernozhukov &amp; Wei,
+ <a href="https://doi.org/10.1080/07350015.2016.1166116">2016</a>).</li>
+</ul>
+
+
+        
+      </section>
+
+      <footer class="page__meta">
+        
+        
+
+
+        
+      </footer>
+
+      
+
+      
+    </div>
+
+    
+  </article>
+
+  
+  
+</div>
+    </div>
+
+    
+
+    <div class="page__footer">
+      <footer>
+        <!-- start custom footer snippets -->
+
+<!-- end custom footer snippets -->
+        <div class="page__footer-follow">
+  <ul class="social-icons">
+    
+      <li><strong>Follow:</strong></li>
+    
+    
+    
+    
+    
+    
+    <li><a href="/feed.xml"><i class="fas fa-fw fa-rss-square" aria-hidden="true"></i> Feed</a></li>
+  </ul>
+</div>
+
+<div class="page__footer-copyright">&copy; 2019 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+
+      </footer>
+    </div>
+
+    
+  <script src="/assets/js/main.min.js"></script>
+  <script src="https://use.fontawesome.com/releases/v5.0.9/js/all.js"></script>
+
+
+
+
+
+
+
+
+  </body>
+</html>
