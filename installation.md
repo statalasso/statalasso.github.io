@@ -14,17 +14,19 @@ classes:  wide
 <div markdown="1">
 ## lassopack and pdslasso
 
-The latest versions of **lassopack** (v1.3) and **pdslasso** (v1.1) are available through the SSC repository:
+The latest version of **pdslasso** (v1.1) is available through the SSC repository:
 
-	ssc install lassopack
 	ssc install pdslasso
+	
+Alternatively you can download the packages via our website:
+	
+	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master pdslasso_v11/") 
 
 Note that **pdslasso** requires **lassopack** to be installed. 
 
-Alternatively you can download the packages via our website:
+The latest stable version of **lassopack** (v1.3) is currently only available via github:
 
 	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v13/") 
-	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v11/") 
 		
 Add `replace` to overwrite existing versions of the packages. 
 
