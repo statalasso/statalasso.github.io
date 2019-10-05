@@ -12,7 +12,7 @@ classes:  wide
 </script>
 
 <div markdown="1">
-## lassopack and pdslasso (January 15, 2019)
+## lassopack and pdslasso
 
 The latest versions of **lassopack** (v1.3) and **pdslasso** (v1.1) are available through the SSC repository:
 
@@ -27,12 +27,13 @@ Alternatively you can download the packages via our website:
 	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v11/") 
 		
 Add `replace` to overwrite existing versions of the packages. 
-We update the Github version of the packages more frequently. 
-Currently, both SSC and Github version are identical.
+
+*Note:* We update the Github version of the packages more frequently. 
+Please check for updates on a regular basis.
 
 ## lassologit 
 
-We have integrated the lassologit programs into lassopack (as of version 1.3).
+We have integrated the lassologit programs into lassopack (as of version 1.3). You only need to install **lassopack**.
 
 ## Verify installation
 
