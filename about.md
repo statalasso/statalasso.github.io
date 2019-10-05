@@ -17,7 +17,7 @@ the 2018 Swiss Stata Users Group meeting for
 
 ## Authors
 
-[Achim Ahrens](https://www.esri.ie/people/achim-ahrens), Economic and Social Research Institute, Ireland  
+[Achim Ahrens](https://pp.ethz.ch/people/achim-ahrens.html), Public Policy Group, ETH Zurich, Switzerland
 ![]({{ "/_img/aa_email.png" }}){:height="40%"}
      
 [Christian B Hansen](https://voices.uchicago.edu/christianhansen/), University of Chicago, USA  
