@@ -35,5 +35,5 @@ Statalist. Feel free to tag us or alert us to the post.
   
 ## This page  
   
-The Stata Lasso Page is maintained by Achim Ahrens. Last updated: 6 Oct 2019
+The Stata Lasso Page is maintained by Achim Ahrens. Last updated: 16 Oct 2019
 
