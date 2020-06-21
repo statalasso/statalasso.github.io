@@ -20,13 +20,13 @@ The latest version of **pdslasso** (v1.1) is available through the SSC repositor
 	
 Alternatively you can download **pdslasso** via our website:
 	
-	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master pdslasso_v11/") 
+	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/") 
 
 Note that **pdslasso** requires **lassopack** to be installed. 
 
 The latest stable version of **lassopack** (v1.3.1, 16th October 2019) is currently only available via github:
 
-	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v131/") 
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/") 
 		
 Add `replace` to overwrite existing versions of the packages. 
 
