@@ -12,26 +12,36 @@ classes:  wide
 </script>
 
 <div markdown="1">
-## lassopack and pdslasso
+## SSC version
 
-The latest version of **pdslasso** (v1.1) is available through the SSC repository:
-
+You can get **lassopack** and **pdslasso** from SSC:
+	
+	ssc install lassopack
 	ssc install pdslasso
-	
-Alternatively you can download **pdslasso** via our website:
-	
-	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/") 
 
 Note that **pdslasso** requires **lassopack** to be installed. 
 
-The latest stable version of **lassopack** (v1.3.1, 16th October 2019) is currently only available via github:
-
-	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/") 
-		
 Add `replace` to overwrite existing versions of the packages. 
+	
+## Github installation
 
-*Note:* We update the Github version of the packages more frequently. 
+Please note that we update the SSC versions less frequently. You can get the lastest versions from github:  
+	
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/") 
+	net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/") 
+
 Please check for updates on a regular basis.
+
+## Installing old versions:
+
+We keep old versions of **lassopack** and **pdslasso** on github to 
+facilitate reproducibility.
+For example, to install version 1.2 of lassopack, simply use
+
+	net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v12")
+
+Check out our github repositories [here](https://github.com/statalasso/lassopack) and [here](https://github.com/statalasso/pdslasso)
+to see which old versions are available.
 
 ## lassologit 
 
@@ -45,3 +55,5 @@ type e.g.
 	whichpkg lassopack
 
 which requires the user-written package **whichpkg**. 
+
+We recommend to add this to your log files to facilitate reproducibility.
