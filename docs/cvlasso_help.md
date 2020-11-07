@@ -8,11 +8,7 @@ toc:  false
 classes:  wide
 ---
 
-<pre id="stlog-1" style="font-size: 12px" class="sthlp">---------------------------------------------------------------------------------------------------------
-<b>help cvlasso</b>                                                                               lassopack v1.2
----------------------------------------------------------------------------------------------------------
-
-<pre id="stlog-1" class="sthlp">-----------------------------------------------------------------------------------------------------
+<pre id="stlog-1" style="font-size: 12px" class="sthlp">-----------------------------------------------------------------------------------------------------
 <b>help cvlasso</b>                                                                         lassopack v1.4.0
 -----------------------------------------------------------------------------------------------------
 
@@ -229,7 +225,7 @@ classes:  wide
     1. Split the data into <i>K</i> groups, referred to as folds, of approximately equal size. Let n(<i>k</i>)
     denote the number of observations in the <i>k</i>th data partition with <i>k</i>=1,...,<i>K</i>.
 
-    2. The first fold is treated as the validation dataset and the remaining <i>K</i>-1 parts constitute
+    1. The first fold is treated as the validation dataset and the remaining <i>K</i>-1 parts constitute
     the training dataset.  The model is fit to the training data for a given value of lambda.  The
     resulting estimate is denoted as betahat(1,lambda).  The mean-squared prediction error for
     group 1 is computed as
@@ -241,12 +237,12 @@ classes:  wide
     The procedure is repeated for <i>k</i>=2,...,<i>K</i>.  Thus, MSPE(2,lambda), ..., MSPE(<i>K</i>,lambda) are
     calculated.
 
-    3. The <i>K</i>-fold cross-validation estimate of the MSPE, which serves as a measure of prediction
+    1. The <i>K</i>-fold cross-validation estimate of the MSPE, which serves as a measure of prediction
     performance, is
 
                 CV(lambda)=1/<i>K</i>*sum(MSPE(<i>k</i>,lambda)).
 
-    4. Step 2 and 3 are repeated for a range of lambda values.
+    1. Step 2 and 3 are repeated for a range of lambda values.
 
     <i>h</i>-step ahead rolling cross-validation proceeds in a similar way, except that the partitioning
     of training and validation takes account of the time-series structure.  Specifically, the
