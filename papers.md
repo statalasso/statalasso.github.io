@@ -12,28 +12,22 @@ classes:  wide
 </script>
 
 <div markdown="1">
-## Working Paper
+## Stata Journal paper
 
-A Working Paper entitled *lassopack: Model selection and prediction with regularized regression in Stata*
+A SJ Paper entitled *lassopack: Model selection and prediction with regularized regression in Stata*
 is now available. 
 
 ### Abstract:
 
- This article introduces **lassopack**, a suite of programs for regularized regression in Stata.
- **lassopack** implements  lasso, square-root lasso, elastic net, ridge regression, adaptive lasso and 
- post-estimation OLS. The methods are suitable for the high-dimensional setting where the number of 
- predictors $$p$$ may be large and possibly greater than the number of observations, $$n$$. 
-We offer three different approaches for selecting the penalization ('tuning') parameters: 
-information criteria (implemented in `lasso2`), $$K$$-fold cross-validation and $$h$$-step ahead 
-rolling cross-validation for cross-section, panel and time-series data (`cvlasso`), and theory-driven 
-('rigorous') penalization for the lasso and square-root lasso for cross-section and panel data (`rlasso`). 
-We discuss the theoretical framework and practical considerations for each approach. 
-We also present Monte Carlo results to compare the performance of the penalization approaches.
+In this article, we introduce **lassopack**, a suite of programs for regularized regression in Stata. **lassopack** implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso, and postestimation ordinary least squares. The methods are suitable for the high-dimensional setting, where the number of predictors *p* may be large and possibly greater than the number of observations, *n*. We offer three approaches for selecting the penalization (“tuning”) parameters: information criteria (implemented in `lasso2`), *K*-fold cross-validation and *h*-step-ahead rolling cross-validation for cross-section, panel, and time-series data (`cvlasso`), and theory-driven (“rigorous” or plugin) penalization for the lasso and square-root lasso for cross-section and panel data (`rlasso`). We discuss the theoretical framework and practical considerations for each approach. We also present Monte Carlo results to compare the performances of the penalization approaches.
 
-[Download (arXiv)](https://arxiv.org/abs/1901.05397)
+[Download earlier arXiv-Version](https://arxiv.org/abs/1901.05397)
+[Stata Journal](https://doi.org/10.1177%2F1536867X20909697) 
+
+Feel free to contact me (AA) if you have trouble accessing the SJ version.
 
 ### Suggested citation:
 
-Ahrens, A., Hansen, C.B., & Schaffer, M.E. (2019). 
-*lassopack: Model selection and prediction with regularized regression in Stata.* 
-arXiv:1901.05397.
+Ahrens A, Hansen CB, Schaffer ME (2020). 
+lassopack: Model selection and prediction with regularized regression in Stata. *The Stata Journal*. 
+20(1):176-235. doi:[10.1177/1536867X20909697](https://doi.org/10.1177%2F1536867X20909697)
