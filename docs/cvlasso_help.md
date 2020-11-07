@@ -12,42 +12,47 @@ classes:  wide
 <b>help cvlasso</b>                                                                               lassopack v1.2
 ---------------------------------------------------------------------------------------------------------
 
+<pre id="stlog-1" class="sthlp">-----------------------------------------------------------------------------------------------------
+<b>help cvlasso</b>                                                                         lassopack v1.4.0
+-----------------------------------------------------------------------------------------------------
+
 <b><u>Title</u></b>
 
-    <b>cvlasso</b> -- Program for cross-validation using lasso, square-root lasso, elastic net, adaptive lasso
-                 and post-OLS estimators
+    <b>cvlasso</b> -- Program for cross-validation using lasso, square-root lasso, elastic net, adaptive
+                 lasso and post-OLS estimators
 
 <a name="stlog-1-syntax"></a><b><u>Syntax</u></b>
 
     Full syntax
 
-        <b>cvlasso</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b><u>alp</u></b><b>ha(</b><i>numlist</i><b>)</b> <b><u>alphac</u></b><b>ount(</b><i>int</i><b>)</b> <b>sqrt</b> <b><u>ada</u></b><b>ptive</b>
-              <b><u>adal</u></b><b>oadings(</b><i>string</i><b>)</b> <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b> <b>ols</b> <b><u>l</u></b><b>ambda(</b><i>real</i><b>)</b> <b><u>lc</u></b><b>ount(</b><i>integer</i><b>)</b> <b><u>lminr</u></b><b>atio(</b><i>real</i><b>)</b>
-              <b><u>lmax</u></b><b>(</b><i>real</i><b>)</b> <b>lopt</b> <b>lse</b> <b><u>notp</u></b><b>en(</b><i>varlist</i><b>)</b> <b><u>par</u></b><b>tial(</b><i>varlist</i><b>)</b> <b><u>pload</u></b><b>ings(</b><i>string</i><b>)</b> <b><u>unitl</u></b><b>oadings</b>
-              <b><u>pres</u></b><b>td</b> <b>fe</b> <b>noftools</b> <b><u>noc</u></b><b>onstant</b> <b><u>tolo</u></b><b>pt(</b><i>real</i><b>)</b> <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b> <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b> <b><u>nf</u></b><b>olds(</b><i>int</i><b>)</b>
-              <b><u>foldv</u></b><b>ar(</b><i>varname</i><b>)</b> <b><u>savef</u></b><b>oldvar(</b><i>varname</i><b>)</b> <b><u>roll</u></b><b>ing</b> <b>h(</b><i>int</i><b>)</b> <b><u>or</u></b><b>igin(</b><i>int</i><b>)</b> <b><u>fixedw</u></b><b>indow</b> <b>seed(</b><i>real</i><b>)</b>
-              <b>plotcv</b> <b>plotopt(</b><i>string</i><b>)</b> <b>saveest(</b><i>string</i><b>)</b>]
+        <b>cvlasso</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b><u>alp</u></b><b>ha(</b><i>numlist</i><b>)</b> <b><u>alphac</u></b><b>ount(</b><i>int</i><b>)</b> <b>sqrt</b>
+              <b><u>ada</u></b><b>ptive</b> <b><u>adal</u></b><b>oadings(</b><i>string</i><b>)</b> <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b> <b>ols</b> <b><u>l</u></b><b>ambda(</b><i>real</i><b>)</b> <b><u>lc</u></b><b>ount(</b><i>integer</i><b>)</b>
+              <b><u>lminr</u></b><b>atio(</b><i>real</i><b>)</b> <b><u>lmax</u></b><b>(</b><i>real</i><b>)</b> <b>lopt</b> <b>lse</b> <b><u>notp</u></b><b>en(</b><i>varlist</i><b>)</b> <b><u>par</u></b><b>tial(</b><i>varlist</i><b>)</b> <b>psolver(</b><i>string</i><b>)</b>
+              <b><u>pload</u></b><b>ings(</b><i>string</i><b>)</b> <b><u>unitl</u></b><b>oadings</b> <b><u>pres</u></b><b>td</b> <b>fe</b> <b>noftools</b> <b><u>noc</u></b><b>onstant</b> <b><u>tolo</u></b><b>pt(</b><i>real</i><b>)</b>
+              <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b> <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b> <b><u>nf</u></b><b>olds(</b><i>int</i><b>)</b> <b><u>foldv</u></b><b>ar(</b><i>varname</i><b>)</b> <b><u>savef</u></b><b>oldvar(</b><i>varname</i><b>)</b> <b><u>roll</u></b><b>ing</b>
+              <b>h(</b><i>int</i><b>)</b> <b><u>or</u></b><b>igin(</b><i>int</i><b>)</b> <b><u>fixedw</u></b><b>indow</b> <b>seed(</b><i>real</i><b>)</b> <b>plotcv</b> <b>plotopt(</b><i>string</i><b>)</b> <b>saveest(</b><i>string</i><b>)</b>]
 
         Note: the <b>fe</b> option will take advantage of the <a href="#stlog-1-SG2016"><b>ftools</b></a> package (if installed) for the
               fixed-effects transform; the speed gains using this package can be large.  See help
               ftools or click on ssc install ftools to install.
 
     <i>Estimators</i>            Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b><u>a</u></b><b>lpha(</b><i>numlist</i><b>)</b>         a scalar elastic net parameter or an ascending list of elastic net
                             parameters.  If the number of alpha values is larger than 1,
                             cross-validation is conducted over alpha (and lambda).  The default is
                             alpha=1, which corresponds to the lasso estimator.  The elastic net
                             parameter controls the degree of L1-norm (lasso-type) to L2-norm
-                            (ridge-type) penalization.  Each alpha value must be in the interval [0,1].
-    <b><u>alphac</u></b><b>ount(</b><i>real</i><b>)</b>       number of alpha values used for cross-validation across alpha.  By default,
-                            cross-validation is only conducted across lambda, but not over alpha.
-                            Ignored if <b>alpha()</b> is specified.
+                            (ridge-type) penalization.  Each alpha value must be in the interval
+                            [0,1].
+    <b><u>alphac</u></b><b>ount(</b><i>real</i><b>)</b>       number of alpha values used for cross-validation across alpha.  By
+                            default, cross-validation is only conducted across lambda, but not over
+                            alpha.  Ignored if <b>alpha()</b> is specified.
     <b>sqrt</b>                   square-root lasso estimator.
     <b><u>ada</u></b><b>ptive</b>               adaptive lasso estimator.  The penalty loading for predictor j is set to
-                            1/abs(beta0(j))^theta where beta0(j) is the OLS estimate or univariate OLS
-                            estimate if p&gt;n.  Theta is the adaptive exponent, and can be controlled
-                            using the <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b> option.
+                            1/abs(beta0(j))^theta where beta0(j) is the OLS estimate or univariate
+                            OLS estimate if p&gt;n.  Theta is the adaptive exponent, and can be
+                            controlled using the <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b> option.
     <b><u>adal</u></b><b>oadings(</b><i>string</i><b>)</b>    alternative initial estimates, beta0, used for calculating adaptive
                             loadings.  For example, this could be the vector e(b) from an initial 
                             <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> estimation.  The elements of the vector are raised to the power
@@ -55,35 +60,38 @@ classes:  wide
     <b><u>adat</u></b><b>heta(</b><i>real</i><b>)</b>         exponent for calculating adaptive penalty loadings. See <b><u>ada</u></b><b>ptive</b> option.
                             Default=1.
     <b>ols</b>                    post-estimation OLS.  Note that cross-validation using OLS will in most
-                            cases lead to no unique optimal lambda (since MSPE is a step function over
-                            lambda).
-    ---------------------------------------------------------------------------------------------------
+                            cases lead to no unique optimal lambda (since MSPE is a step function
+                            over lambda).
+    -----------------------------------------------------------------------------------------------
     See overview of <a href="http://www.stata.com/help.cgi?lasso2#estimators">estimation methods</a>.
 
     <i>Lambda(s)</i>             Description
-    ---------------------------------------------------------------------------------------------------
-    <b><u>l</u></b><b>ambda(</b><i>numlist</i><b>)</b>        a scalar lambda value or list of descending lambda values. Each lambda value
-                            must be greater than 0.  If not specified, the default list is used which
-                            is given by <b>exp(rangen(log(lmax),log(lminratio*lmax),lcount))</b> (see 
-                            <a href="http://www.stata.com/help.cgi?mf_range"><b>mf_range</b></a>).
-    <b><u>lc</u></b><b>ount(</b><i>integer</i><b>)</b>†       number of lambda values for which the solution is obtained. Default is 100.
+    -----------------------------------------------------------------------------------------------
+    <b><u>l</u></b><b>ambda(</b><i>numlist</i><b>)</b>        a scalar lambda value or list of descending lambda values. Each lambda
+                            value must be greater than 0.  If not specified, the default list is
+                            used which is given by
+                            <b>exp(rangen(log(lmax),log(lminratio*lmax),lcount))</b> (see <a href="http://www.stata.com/help.cgi?mf_range"><b>mf_range</b></a>).
+    <b><u>lc</u></b><b>ount(</b><i>integer</i><b>)</b>†       number of lambda values for which the solution is obtained. Default is
+                            100.
     <b><u>lminr</u></b><b>atio(</b><i>real</i><b>)</b>†       ratio of minimum to maximum lambda. <b>lminratio</b> must be between 0 and 1.
                             Default is 1/1000.
-    <b><u>lmax</u></b><b>(</b><i>real</i><b>)</b>†            maximum lambda value. Default is 2*max(X'y), and max(X'y) in the case of the
-                            square-root lasso (where X is the pre-standardized regressor matrix and y
-                            is the vector of the response variable).
+    <b><u>lmax</u></b><b>(</b><i>real</i><b>)</b>†            maximum lambda value. Default is 2*max(X'y), and max(X'y) in the case of
+                            the square-root lasso (where X is the pre-standardized regressor matrix
+                            and y is the vector of the response variable).
     <b>lopt</b>                   after cross-validation, estimate model with lambda that minimized the
                             mean-squared prediction error
-    <b>lse</b>                    after cross-validation, estimate model with largest lambda that is within
-                            one standard deviation from lopt
-    ---------------------------------------------------------------------------------------------------
+    <b>lse</b>                    after cross-validation, estimate model with largest lambda that is
+                            within one standard deviation from lopt
+    -----------------------------------------------------------------------------------------------
     † Not applicable if lambda() is specified.
 
     <i>Loadings &amp; standardization</i> Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b><u>notp</u></b><b>en(</b><i>varlist</i><b>)</b>        sets penalty loadings to zero for predictors in <i>varlist</i>.  Unpenalized
                             predictors are always included in the model.
     <b><u>par</u></b><b>tial(</b><i>varlist</i><b>)</b>       variables in <i>varlist</i> are partialled out prior to estimation.
+    <b>psolver(</b><i>string</i><b>)</b>        override default solver used for partialling out (one of: qr, qrxx, lu,
+                            luxx, svd, svdxx, chol; default=qrxx)
     <b><u>pload</u></b><b>ings(</b><i>matrix</i><b>)</b>      a row-vector of penalty loadings; overrides the default standardization
                             loadings (in the case of the lasso, =sqrt(avg(x^2))).  The size of the
                             vector should equal the number of predictors (excluding partialled out
@@ -91,67 +99,70 @@ classes:  wide
     <b><u>unitl</u></b><b>oadings</b>           penalty loadings set to a vector of ones; overrides the default
                             standardization loadings (in the case of the lasso, =sqrt(avg(x^2)).
     <b><u>pres</u></b><b>td</b>                 dependent variable and predictors are standardized prior to estimation
-                            rather than standardized "on the fly" using penalty loadings.  See <a href="http://www.stata.com/help.cgi?lasso2#standardization">here</a> for
-                            more details.  By default the coefficient estimates are un-standardized
-                            (i.e., returned in original units).
-    ---------------------------------------------------------------------------------------------------
-    See <a href="http://www.stata.com/help.cgi?lasso2#standardization">discussion of standardization</a> in the <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> help file.  Also see Section <a href="#stlog-1-transform">Data transformations</a>
-    <a href="#stlog-1-transform">in cross-validation</a> below.
+                            rather than standardized "on the fly" using penalty loadings.  See <a href="http://www.stata.com/help.cgi?lasso2#standardization">here</a>
+                            for more details.  By default the coefficient estimates are
+                            un-standardized (i.e., returned in original units).
+    -----------------------------------------------------------------------------------------------
+    See <a href="http://www.stata.com/help.cgi?lasso2#standardization">discussion of standardization</a> in the <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> help file.  Also see Section <a href="#stlog-1-transform">Data</a>
+    <a href="#stlog-1-transform">transformations in cross-validation</a> below.
 
     <i>FE &amp; constant</i>         Description
-    ---------------------------------------------------------------------------------------------------
-    <b>fe</b>                     within-transformation is applied prior to estimation. Requires data to be
-                            xtset.
-    <b>noftools</b>               do not use FTOOLS package for fixed-effects transform (slower; rarely used)
+    -----------------------------------------------------------------------------------------------
+    <b>fe</b>                     within-transformation is applied prior to estimation. Requires data to
+                            be xtset.
+    <b>noftools</b>               do not use FTOOLS package for fixed-effects transform (slower; rarely
+                            used)
     <b><u>noc</u></b><b>onstant</b>             suppress constant from estimation.  Default behaviour is to partial the
                             constant out (i.e., to center the regressors).
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
 
     <i>Optimization</i>          Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b><u>tolo</u></b><b>pt(</b><i>real</i><b>)</b>           tolerance for lasso shooting algorithm (default=1e-10)
     <b><u>tolz</u></b><b>ero(</b><i>real</i><b>)</b>          minimum below which coeffs are rounded down to zero (default=1e-4)
     <b><u>maxi</u></b><b>ter(</b><i>int</i><b>)</b>           maximum number of iterations for the lasso shooting algorithm
                             (default=10,000)
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
 
     <i>Fold variable options</i> Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b>nfolds(</b><i>integer</i><b>)</b>        the number of folds used for <i>K</i>-fold cross-validation. Default is 10.
     <b>foldvar(</b><i>varname</i><b>)</b>       user-specified variable with fold IDs, ranging from 1 to #folds.  If not
                             specified, fold IDs are randomly generated such that each fold is of
                             approximately equal size.
     <b>savefoldvar(</b><i>varname</i><b>)</b>   saves the fold ID variable.  Not supported in combination with <b>rolling</b>.
-    <b><u>roll</u></b><b>ing</b>                uses rolling <i>h</i>-step ahead cross-validation. Requires the data to be tsset.
+    <b><u>roll</u></b><b>ing</b>                uses rolling <i>h</i>-step ahead cross-validation. Requires the data to be
+                            tsset.
     <b>h(</b><i>integer</i><b>)</b>‡            changes the forecasting horizon. Default is 1.
     <b><u>or</u></b><b>igin(</b><i>integer</i><b>)</b>‡       controls the number of observations in the first training dataset.
     <b><u>fixedw</u></b><b>indow</b>‡           ensures that the size of the training dataset is always the same.
-    <b>seed(</b><i>real</i><b>)</b>             set seed for the generation of a random fold variable. Only relevant if fold
-                            variable is randomly generated.
-    ---------------------------------------------------------------------------------------------------
+    <b>seed(</b><i>real</i><b>)</b>             set seed for the generation of a random fold variable. Only relevant if
+                            fold variable is randomly generated.
+    -----------------------------------------------------------------------------------------------
     ‡ Only applicable with <b>rolling</b> option.
 
     <i>Plotting options</i>      Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b><u>plotc</u></b><b>v</b>                 plots the estimated mean-squared prediction error as a function of
                             ln(lambda)
-    <b><u>ploto</u></b><b>pt(</b><i>varlist</i><b>)</b>       overwrites the default plotting options. All options are passed on to <a href="http://www.stata.com/help.cgi?line"><b>line</b></a>.
-    ---------------------------------------------------------------------------------------------------
+    <b><u>ploto</u></b><b>pt(</b><i>varlist</i><b>)</b>       overwrites the default plotting options. All options are passed on to 
+                            <a href="http://www.stata.com/help.cgi?line"><b>line</b></a>.
+    -----------------------------------------------------------------------------------------------
 
     <i>Display options</i>       Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b>omitgrid</b>               suppresses the display of mean-squared prediction errors
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
 
     <i>Store lasso2 results</i>  Description
-    ---------------------------------------------------------------------------------------------------
-    <b>saveest(</b><i>string</i><b>)</b>        saves <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> results from each step of the cross-validation in <i>string1</i>, ...,
-                            <i>stringK</i> where <i>K</i> is the number of folds.  Intermediate results can be
-                            restored using <a href="http://www.stata.com/help.cgi?estimates+restore"><b>estimates restore</b></a>.
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
+    <b>saveest(</b><i>string</i><b>)</b>        saves <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> results from each step of the cross-validation in <i>string1</i>,
+                            ..., <i>stringK</i> where <i>K</i> is the number of folds.  Intermediate results can
+                            be restored using <a href="http://www.stata.com/help.cgi?estimates+restore"><b>estimates restore</b></a>.
+    -----------------------------------------------------------------------------------------------
 
-    <b>cvlasso</b> may be used with time-series or panel data, in which case the data must be tsset or xtset
-    first; see help <a href="http://www.stata.com/help.cgi?tsset"><b>tsset</b></a> or <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.
+    <b>cvlasso</b> may be used with time-series or panel data, in which case the data must be tsset or
+    xtset first; see help <a href="http://www.stata.com/help.cgi?tsset"><b>tsset</b></a> or <a href="http://www.stata.com/help.cgi?xtset"><b>xtset</b></a>.
 
     All varlists may contain time-series operators or factor variables; see help varlist.
 
@@ -160,26 +171,31 @@ classes:  wide
         <b>cvlasso</b> [<b>,</b> <b>lopt</b> <b>lse</b> <b><u>postres</u></b><b>ults</b> <b><u>plotc</u></b><b>v(</b><i>method</i><b>)</b> <b><u>ploto</u></b><b>pt(</b><i>string</i><b>)</b>]
 
     <i>Replay options</i>        Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b>lopt</b>                   show estimation results using the model corresponding to lambda=<b>e(lopt)</b>
     <b>lse</b>                    show estimation results using the model corresponding to lambda=<b>e(lse)</b>
-    <b><u>postres</u></b><b>ults</b>            post <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> estimation results (to be used in combination with <b>lse</b> or <b>lopt</b>)
+    <b><u>postres</u></b><b>ults</b>            post <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> estimation results (to be used in combination with <b>lse</b> or
+                            <b>lopt</b>)
     <b><u>plotc</u></b><b>v(</b><i>method</i><b>)</b>         see plotting options above
     <b><u>ploto</u></b><b>pt(</b><i>string</i><b>)</b>        see plotting options above
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
 
     Postestimation:
 
-        <b>predict</b> [<a href="http://www.stata.com/help.cgi?datatypes"><i>type</i></a>] <a href="http://www.stata.com/help.cgi?newvar"><i>newvar</i></a> [<a href="http://www.stata.com/help.cgi?if"><i>if</i></a>] [<a href="http://www.stata.com/help.cgi?in"><i>in</i></a>] [<b>,</b> <b>xb</b> <b><u>r</u></b><b>esiduals</b> <b>lopt</b> <b>lse</b> <b><u>noi</u></b><b>sily</b>]
+        <b>predict</b> [<a href="http://www.stata.com/help.cgi?datatypes"><i>type</i></a>] <a href="http://www.stata.com/help.cgi?newvar"><i>newvar</i></a> [<a href="http://www.stata.com/help.cgi?if"><i>if</i></a>] [<a href="http://www.stata.com/help.cgi?in"><i>in</i></a>] [<b>,</b> <b>xb</b> <b>u</b> <b>e</b> <b>ue</b> <b>xbu</b> <b><u>r</u></b><b>esiduals</b> <b>lopt</b> <b>lse</b> <b><u>noi</u></b><b>sily</b>]
 
     <i>Predict options</i>       Description
-    ---------------------------------------------------------------------------------------------------
+    -----------------------------------------------------------------------------------------------
     <b>xb</b>                     compute predicted values (the default)
     <b><u>r</u></b><b>esiduals</b>              compute residuals
+    <b>e</b>                      generate overall error component e(it).  Only after <b>fe</b>.
+    <b>ue</b>                     generate combined residuals, i.e., u(i) + e(it). Only after <b>fe</b>.
+    <b>xbu</b>                    prediction including fixed effect, i.e., a + xb + u(i). Only after <b>fe</b>.
+    <b>u</b>                      fixed effect, i.e., u(i). Only after <b>fe</b>.
     <b>lopt</b>                   use lambda that minimized the mean-squared prediction error
     <b>lse</b>                    use the largest lambda that is within one standard deviation from lopt
-    <b><u>noi</u></b><b>sily</b>                show estimation output if re-estimation required.
-    ---------------------------------------------------------------------------------------------------
+    <b><u>noi</u></b><b>sily</b>                displays beta used for prediction.
+    -----------------------------------------------------------------------------------------------
 
 
 <b><u>Contents</u></b>
@@ -202,27 +218,28 @@ classes:  wide
 <a name="stlog-1-description"></a><b><u>Description</u></b>
 
     <b>cvlasso</b> implements <i>K</i>-fold cross-validation and <i>h</i>-step ahead rolling cross-validation for the
-    following estimators: lasso, square-root lasso, adaptive lasso, ridge regression, elastic net.  See
-    <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> for more information about these estimators.
+    following estimators: lasso, square-root lasso, adaptive lasso, ridge regression, elastic net.
+    See <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> for more information about these estimators.
 
     The purpose of cross-validation is to assess the out-of-sample prediction performance of the
     estimator.
 
     The steps for <i>K</i>-fold cross-validation over lambda can be summarized as follows:
 
-    1. Split the data into <i>K</i> groups, referred to as folds, of approximately equal size. Let n(<i>k</i>) denote
-    the number of observations in the <i>k</i>th data partition with <i>k</i>=1,...,<i>K</i>.
+    1. Split the data into <i>K</i> groups, referred to as folds, of approximately equal size. Let n(<i>k</i>)
+    denote the number of observations in the <i>k</i>th data partition with <i>k</i>=1,...,<i>K</i>.
 
-    2. The first fold is treated as the validation dataset and the remaining <i>K</i>-1 parts constitute the
-    training dataset.  The model is fit to the training data for a given value of lambda.  The
-    resulting estimate is denoted as betahat(1,lambda).  The mean-squared prediction error for group 1
-    is computed as
+    2. The first fold is treated as the validation dataset and the remaining <i>K</i>-1 parts constitute
+    the training dataset.  The model is fit to the training data for a given value of lambda.  The
+    resulting estimate is denoted as betahat(1,lambda).  The mean-squared prediction error for
+    group 1 is computed as
 
                 MSPE(1,lambda)=1/n(1)*sum([y(i) - x(i)'betahat(1,lambda)]^2)    
         
     for all i in the first data partition.
 
-    The procedure is repeated for <i>k</i>=2,...,<i>K</i>.  Thus, MSPE(2,lambda), ..., MSPE(<i>K</i>,lambda) are calculated.
+    The procedure is repeated for <i>k</i>=2,...,<i>K</i>.  Thus, MSPE(2,lambda), ..., MSPE(<i>K</i>,lambda) are
+    calculated.
 
     3. The <i>K</i>-fold cross-validation estimate of the MSPE, which serves as a measure of prediction
     performance, is
@@ -231,20 +248,22 @@ classes:  wide
 
     4. Step 2 and 3 are repeated for a range of lambda values.
 
-    <i>h</i>-step ahead rolling cross-validation proceeds in a similar way, except that the partitioning of
-    training and validation takes account of the time-series structure.  Specifically, the training
-    window is iteratively extended (or moved forward) by one step.  See below for more details.
+    <i>h</i>-step ahead rolling cross-validation proceeds in a similar way, except that the partitioning
+    of training and validation takes account of the time-series structure.  Specifically, the
+    training window is iteratively extended (or moved forward) by one step.  See below for more
+    details.
 
 <a name="stlog-1-folds"></a><b><u>Partitioning of folds</u></b>
 
-    <b>cvlasso</b> supports <i>K</i>-fold cross-validation and cross-validation using rolling <i>h</i>-step ahead forecasts.
-    <i>K</i>-fold cross-validation is the standard approach and relies on a fold ID variable.  Rolling <i>h</i>-step
-    ahead cross-validation is applicable with time-series data, or panels with large time dimension.
+    <b>cvlasso</b> supports <i>K</i>-fold cross-validation and cross-validation using rolling <i>h</i>-step ahead
+    forecasts.  <i>K</i>-fold cross-validation is the standard approach and relies on a fold ID variable.
+    Rolling <i>h</i>-step ahead cross-validation is applicable with time-series data, or panels with large
+    time dimension.
 
     <u>K-fold cross-validation</u>
 
-    The fold ID variable marks the observations which are used as validation data.  For example, a fold
-    ID variable (with three folds) could have the following structure:
+    The fold ID variable marks the observations which are used as validation data.  For example, a
+    fold ID variable (with three folds) could have the following structure:
 
             +------------------+
             | <b>fold   y      x  </b>|
@@ -257,9 +276,9 @@ classes:  wide
             | <b> 2     y6     x6 </b>|
             +------------------+
 
-    It is instructive to illustrate the cross-validation process implied by the above fold ID variable.
-    Let T denote a training observation and V denote a validation point.  The division of folds can be
-    summarized as follows:
+    It is instructive to illustrate the cross-validation process implied by the above fold ID
+    variable.  Let T denote a training observation and V denote a validation point.  The division
+    of folds can be summarized as follows:
 
                  Step
                                         
@@ -274,8 +293,8 @@ classes:  wide
               +-       -+
 
     In the first step, the 3rd and 5th observation are in the validation dataset and remaining data
-    constitute the training dataset.  In the second step, the validation dataset includes the 2nd and
-    6th observation, etc.
+    constitute the training dataset.  In the second step, the validation dataset includes the 2nd
+    and 6th observation, etc.
 
     By default, the fold ID variable is randomly generated such that each fold is of approximately
     equal size.  The default number of folds is equal to 10, but can be changed using the <b>nfolds()</b>
@@ -284,13 +303,13 @@ classes:  wide
     <u>Rolling h-step ahead cross-validation</u>
 
     To allow for time-series data, <b>cvlasso</b> supports cross-validation using rolling <i>h</i>-step forecasts
-    (option <b>rolling</b>); see Hyndman, <a href="#stlog-1-Hyndman2016"><b>2016</b></a>.  To use rolling cross-validation, the data must be tsset or
-    xtset.  The options <b>h()</b> and <b>origin()</b> control the forecasting horizon and the starting point of the
-    rolling forecast, respectively.
+    (option <b>rolling</b>); see Hyndman, <a href="#stlog-1-Hyndman2016"><b>2016</b></a>.  To use rolling cross-validation, the data must be tsset
+    or xtset.  The options <b>h()</b> and <b>origin()</b> control the forecasting horizon and the starting point
+    of the rolling forecast, respectively.
 
-    The following matrix illustrates the division between training and validation data over the course
-    of the cross-validation for the case of 1-step ahead forecasting (the default when <b>rolling</b> is
-    specified).
+    The following matrix illustrates the division between training and validation data over the
+    course of the cross-validation for the case of 1-step ahead forecasting (the default when
+    <b>rolling</b> is specified).
 
                     Step
                                         
@@ -306,10 +325,10 @@ classes:  wide
             8 | .  .  .  .  V |
               +-             -+
 
-    In the first iteration (illustrated in the first column), the first three observations are in the
-    training dataset, which corresponds to <b>origin(3)</b>.  The option <b>h()</b> controls the forecasting horizon
-    used for cross-validation (the default is 1).  If <b>h(2)</b> is specified, which corresponds to 2-step
-    ahead forecasting, the structure changes to:
+    In the first iteration (illustrated in the first column), the first three observations are in
+    the training dataset, which corresponds to <b>origin(3)</b>.  The option <b>h()</b> controls the forecasting
+    horizon used for cross-validation (the default is 1).  If <b>h(2)</b> is specified, which corresponds
+    to 2-step ahead forecasting, the structure changes to:
 
                     Step
                                         
@@ -326,8 +345,8 @@ classes:  wide
             9 | .  .  .  .  V |
               +-             -+
               
-    The <b><u>fixedw</u></b><b>indow</b> option ensures that the size of the training dataset is always the same. In this
-    example (using <b>h(1)</b>), each step uses three data points for training:
+    The <b><u>fixedw</u></b><b>indow</b> option ensures that the size of the training dataset is always the same. In
+    this example (using <b>h(1)</b>), each step uses three data points for training:
 
                     Step
                                         
@@ -347,24 +366,24 @@ classes:  wide
 <a name="stlog-1-transform"></a><b><u>Data transformations in cross-validation</u></b>
 
     An important principle in cross-validation is that the training dataset should not contain
-    information from the validation dataset.  This mimics the real-world situation where out-of-sample
-    predictions are made not knowing what the true response is.  The principle applies not only to
-    individual observations (the training and validation data do not overlap) but also to data
-    transformations.  Specifically, data transformations applied to the training data should not use
-    information from the validation data or full dataset.  In particular, standardization using the
-    full sample violates this principle.
+    information from the validation dataset.  This mimics the real-world situation where
+    out-of-sample predictions are made not knowing what the true response is.  The principle
+    applies not only to individual observations (the training and validation data do not overlap)
+    but also to data transformations.  Specifically, data transformations applied to the training
+    data should not use information from the validation data or full dataset.  In particular,
+    standardization using the full sample violates this principle.
 
     <b>cvlasso</b> implements this principle for all data transformations supported by <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a>:  data
     standardization, fixed effects and partialling-out.  In most applications using the estimators
-    supported by <b>cvlasso</b>, predictors are standardized to have mean zero and unit variance.  The above
-    principle means that the standardization applied to the training data is based only on observations
-    in the training data; further, the standardization transformation applied to the validation data
-    will also be based only on the means and variances of the observations in the training data.  The
-    same applies to the fixed effects transformation:  the group means used to implement the within
-    transformation to both the training data and the validation data are calculated using only the
-    training data.  Similarly, the projection coefficients used to "partial out" variables are
-    estimated using only the training data and are applied to both the training dataset and the
-    validation dataset.
+    supported by <b>cvlasso</b>, predictors are standardized to have mean zero and unit variance.  The
+    above principle means that the standardization applied to the training data is based only on
+    observations in the training data; further, the standardization transformation applied to the
+    validation data will also be based only on the means and variances of the observations in the
+    training data.  The same applies to the fixed effects transformation:  the group means used to
+    implement the within transformation to both the training data and the validation data are
+    calculated using only the training data.  Similarly, the projection coefficients used to
+    "partial out" variables are estimated using only the training data and are applied to both the
+    training dataset and the validation dataset.
 
 <a name="stlog-1-examples"></a><b><u>General introduction using K-fold cross-validation</u></b>
 
@@ -387,23 +406,24 @@ classes:  wide
       lpsa      log(prostate specific antigen)
 
     Load prostate cancer data.
-        . insheet using https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, clear
-            tab
+        . insheet using https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data,
+            clear tab
 
 <a name="stlog-1-examples_general"></a>    <u>General demonstration</u>
 
     10-fold cross-validation across lambda.  The lambda value that minimizes the mean-squared
-    prediction error is indicated by an asterisk (*).  A hat (^) marks the largest lambda at which the
-    MSPE is within one standard error of the minimal MSPE.  The former is returned in <b>e(lopt)</b>, the
-    latter in <b>e(lse)</b>.  We use <b>seed(123)</b> throughout this demonstration for replicability of folds.
+    prediction error is indicated by an asterisk (*).  A hat (^) marks the largest lambda at which
+    the MSPE is within one standard error of the minimal MSPE.  The former is returned in <b>e(lopt)</b>,
+    the latter in <b>e(lse)</b>.  We use <b>seed(123)</b> throughout this demonstration for replicability of
+    folds.
         . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123)
         . di e(lopt)
         . di e(lse)
 
     <u>Estimate the full model</u>
 
-    Estimate the the full model with either e(lopt) or e(lse).  <b>cvlasso</b> internally calls <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a> with
-    lambda=lopt or lse, respectively.
+    Estimate the the full model with either e(lopt) or e(lse).  <b>cvlasso</b> internally calls <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a>
+    with lambda=lopt or lse, respectively.
         . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lopt seed(123)
         . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, lse seed(123)
 
@@ -419,13 +439,14 @@ classes:  wide
     <u>Cross-validation over lambda and alpha</u>
 
     <b>alpha()</b> can be a scalar or list of elastic net parameters.  Each alpha value must lie in the
-    interval [0,1].  If <b>alpha()</b> is a list longer than 1, <b>cvlasso</b> cross-validates over lambda and alpha.
-    The table at the end of the output indicates the alpha value that minimizes the empirical MSPE.
+    interval [0,1].  If <b>alpha()</b> is a list longer than 1, <b>cvlasso</b> cross-validates over lambda and
+    alpha.  The table at the end of the output indicates the alpha value that minimizes the
+    empirical MSPE.
         . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, alpha(0 0.1 0.5 1) lc(10)
             seed(123)
 
-    Alternatively, the <b>alphacount()</b> option can be used to control the number of alpha values used for
-    cross-validation.
+    Alternatively, the <b>alphacount()</b> option can be used to control the number of alpha values used
+    for cross-validation.
         . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, alphac(3) lc(10) seed(123)
 
     <u>Plotting</u>
@@ -449,7 +470,8 @@ classes:  wide
 
     <b>cvlasso</b> calls internally <a href="http://www.stata.com/help.cgi?lasso2">lasso2</a>.  To see intermediate estimation results, we can use the
     <b>saveest(</b><i>string</i><b>)</b> option.
-        . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123) nfolds(3) saveest(step)
+        . cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123) nfolds(3)
+            saveest(step)
         . estimates dir
         . estimates restore step1
         . estimates replay step1
@@ -459,12 +481,12 @@ classes:  wide
     Load airline passenger data.
         . webuse air2, clear
 
-    There are 144 observations in the sample.  <b>origin()</b> controls the sample range used for training and
-    validation.  In this example, <b>origin(130)</b> implies that data up to and including <i>t</i>=130 are used for
-    training in the first iteration.  Data points <i>t</i>=131 to 144 are successively used for validation.
-    The notation `<i>a</i>-<i>b</i> (<i>v</i>)' indicates that data <i>a</i> to <i>b</i> are used for estimation (training), and data
-    point <i>v</i> is used for forecasting (validation).  Note that the training dataset starts with t=13
-    since 12 lags are used as predictors.
+    There are 144 observations in the sample.  <b>origin()</b> controls the sample range used for training
+    and validation.  In this example, <b>origin(130)</b> implies that data up to and including <i>t</i>=130 are
+    used for training in the first iteration.  Data points <i>t</i>=131 to 144 are successively used for
+    validation.  The notation `<i>a</i>-<i>b</i> (<i>v</i>)' indicates that data <i>a</i> to <i>b</i> are used for estimation
+    (training), and data point <i>v</i> is used for forecasting (validation).  Note that the training
+    dataset starts with t=13 since 12 lags are used as predictors.
         . cvlasso air L(1/12).air, rolling origin(130)
 
     The optimal model includes lags 1, 11 and 12.
@@ -473,8 +495,8 @@ classes:  wide
     The option <b>h()</b> controls the forecasting horizon (default=1).
         . cvlasso air L(1/12).air, rolling origin(130) h(2)
 
-    In the above examples, the size of the training dataset increases by one data point each step.  To
-    keep the size of the training dataset fixed, specify <b><u>fixedw</u></b><b>indow</b>.
+    In the above examples, the size of the training dataset increases by one data point each step.
+    To keep the size of the training dataset fixed, specify <b><u>fixedw</u></b><b>indow</b>.
         . cvlasso air L(1/12).air, rolling origin(130) fixedwindow
 
     Cross-validation over alpha with alpha={0, 0.1, 0.5, 1}.
@@ -486,7 +508,8 @@ classes:  wide
 
 <a name="stlog-1-examples_rolling2"></a><b><u>Panel data example using rolling h-step ahead cross-validation</u></b>
 
-    Rolling cross-validation can also be applied to panel data.  For demonstration, load Grunfeld data.
+    Rolling cross-validation can also be applied to panel data.  For demonstration, load Grunfeld
+    data.
         . webuse grunfeld, clear
 
     Apply <i>1</i>-step ahead cross-validation.
@@ -517,8 +540,8 @@ classes:  wide
       <b>e(nalpha)</b>          number of alphas
       <b>e(h)</b>               forecasting horizon for rolling forecasts (only returned if <b>rolling</b> is
                            specified)
-      <b>e(origin)</b>          number of observations in first training dataset (only returned if <b>rolling</b> is
-                           specified)
+      <b>e(origin)</b>          number of observations in first training dataset (only returned if <b>rolling</b>
+                           is specified)
       <b>e(lopt)</b>            optimal lambda (may be missing if no unique minimum MSPE)
       <b>e(lse)</b>             lambda se (may be missing if no unique minimum MSPE)
       <b>e(mspemin)</b>         minimum MSPE
@@ -557,8 +580,8 @@ classes:  wide
       <b>e(alpha)</b>           elastic net parameter
 
     matrices      
-      <b>e(mspe)</b>            matrix of MSPEs for each fold and lambda where each column corresponds to one
-                           lambda value and each row corresponds to one fold.
+      <b>e(mspe)</b>            matrix of MSPEs for each fold and lambda where each column corresponds to
+                           one lambda value and each row corresponds to one fold.
       <b>e(mmspe)</b>           column vector of MSPEs for each lambda
       <b>e(cvsd)</b>            column vector standard deviation of MSPE (for each lambda)
       <b>e(cvupper)</b>         column vector equal to MSPE + 1 standard deviation
@@ -566,8 +589,8 @@ classes:  wide
 
 <a name="stlog-1-references"></a><b><u>References</u></b>
 
-<a name="stlog-1-SG2016"></a>    Correia, S. 2016.  FTOOLS: Stata module to provide alternatives to common Stata commands optimized
-        for large datasets.  https://ideas.repec.org/c/boc/bocode/s458213.html
+<a name="stlog-1-SG2016"></a>    Correia, S. 2016.  FTOOLS: Stata module to provide alternatives to common Stata commands
+        optimized for large datasets.  https://ideas.repec.org/c/boc/bocode/s458213.html
 
 <a name="stlog-1-Hyndman2016"></a>    Hyndman, Rob J. (2016). Cross-validation for time series. <i>Hyndsight blog</i>, 5 December 2016.  
         https://robjhyndman.com/hyndsight/tscv/
@@ -580,11 +603,12 @@ classes:  wide
 
 <a name="stlog-1-installation"></a><b><u>Installation</u></b>
 
-    To get the latest stable version of <i>lassopack</i> from our website, check the installation instructions
-    at https://statalasso.github.io/installation/.  We update the stable website version more
-    frequently than the SSC version.
+    <b>cvlasso</b> is part of the <a href="http://www.stata.com/help.cgi?lassopack"><b>lassopack</b></a> package.  To get the latest stable version of <a href="http://www.stata.com/help.cgi?lassopack"><b>lassopack</b></a> from
+    our website, check the installation instructions at https://statalasso.github.io/installation/.
+    We update the stable website version more frequently than the SSC version.  Earlier versions of
+    <a href="http://www.stata.com/help.cgi?lassopack">lassopack</a> are also available from the website.
 
-    To verify that <i>lassopack</i> is correctly installed, click on or type whichpkg lassopack (which
+    To verify that <a href="http://www.stata.com/help.cgi?lassopack"><b>lassopack</b></a> is correctly installed, click on or type whichpkg lassopack (which
     requires <a href="http://www.stata.com/help.cgi?whichpkg"><b>whichpkg</b></a> to be installed; ssc install whichpkg).
 
 <a name="stlog-1-acknowledgements"></a><b><u>Acknowledgements</u></b>
@@ -594,25 +618,30 @@ classes:  wide
 
 <a name="stlog-1-citation"></a><b><u>Citation of cvlasso</u></b>
 
-    <b>cvlasso</b> is not an official Stata command. It is a free contribution to the research community, like
-    a paper. Please cite it as such:
+    <b>cvlasso</b> is not an official Stata command. It is a free contribution to the research community,
+    like a paper. Please cite it as such:
 
-    Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018.  cvlasso:  Program for cross-validation using lasso,
-        square-root lasso, elastic net, adaptive lasso and post-OLS estimators.  
-        http://ideas.repec.org/c/boc/bocode/s458458.html
+    Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018 (updated 2020).  LASSOPACK: Stata module for
+        lasso, square-root lasso, elastic net, ridge, adaptive lasso estimation and
+        cross-validation http://ideas.repec.org/c/boc/bocode/s458458.html
+
+    Ahrens, A., Hansen, C.B. and M.E. Schaffer. 2020.  lassopack: model selection and prediction
+        with regularized regression in Stata.  <i>The Stata Journal</i>, 20(1):176-235.  
+        https://journals.sagepub.com/doi/abs/10.1177/1536867X20909697.  Working paper version: 
+        https://arxiv.org/abs/1901.05397.
 
 <b><u>Authors</u></b>
 
-        Achim Ahrens, Economic and Social Research Institute, Ireland
-        achim.ahrens@esri.ie
+        Achim Ahrens, Public Policy Group, ETH Zurich, Switzerland
+        achim.ahrens@gess.ethz.ch
         
         Christian B. Hansen, University of Chicago, USA
         Christian.Hansen@chicagobooth.edu
 
-        Mark E Schaffer, Heriot-Watt University, UK
+        Mark E. Schaffer, Heriot-Watt University, UK
         m.e.schaffer@hw.ac.uk
 
 <b><u>Also see</u></b>
 
-       Help: <a href="http://www.stata.com/help.cgi?lasso2"><b>lasso2</b></a>, <a href="http://www.stata.com/help.cgi?rlasso"><b>rlasso</b></a> (if installed)
+       Help: <a href="http://www.stata.com/help.cgi?lasso2"><b>lasso2</b></a>, <a href="http://www.stata.com/help.cgi?lassologit"><b>lassologit</b></a>, <a href="http://www.stata.com/help.cgi?rlasso"><b>rlasso</b></a> (if installed)
 </pre>
