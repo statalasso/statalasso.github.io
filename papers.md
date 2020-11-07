@@ -31,3 +31,5 @@ Feel free to contact me (AA) if you have trouble accessing the SJ version.
 Ahrens A, Hansen CB, Schaffer ME (2020). 
 lassopack: Model selection and prediction with regularized regression in Stata. *The Stata Journal*. 
 20(1):176-235. doi:[10.1177/1536867X20909697](https://doi.org/10.1177%2F1536867X20909697)
+
+[Bibtex file](/dta/AHS2018.bib)
