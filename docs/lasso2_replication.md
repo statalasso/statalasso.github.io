@@ -38,7 +38,7 @@ commands.  The packages `haven` and `tidyr` need to be installed.
 ### Replication of StataCorp's lasso
 
 Replication of StataCorp's lasso and elasticnet requires only the rescaling
-of lambda by 2N.  N=69 so the lasso2 lambda becomes 138000/(2*69) = 1000
+of lambda by 2N.  N=69 so the `lasso2` lambda becomes 138000/(2*69) = 1000
 
     . lasso2 price mpg-foreign, lambda(138000)
     . lasso linear price mpg-foreign, grid(1, min(1000))
@@ -53,7 +53,7 @@ of lambda by 2N.  N=69 so the lasso2 lambda becomes 138000/(2*69) = 1000
 ### Notes on invariance and objective function
 
 glmnet uses the same definition of the lasso L0 penalty as StataCorp's 
-lasso, so lasso2's default parameterization again requires only rescaling by
+lasso, so `lasso2`'s default parameterization again requires only rescaling by
 2N.  When the lglmnet option is used with the lglmnet option, the L0 penalty
 should be provided using the glmnet definition.  To estimate in R, load
 glmnet with library("glmnet") and use the following command:
@@ -63,20 +63,20 @@ glmnet with library("glmnet") and use the following command:
     . lasso2 price mpg-foreign, lambda(138000)
     . lasso2 price mpg-foreign, lambda(1000) lglmnet
 
-The R code below uses glmnet to estimate an elastic net model.  lasso2 with
+The R code below uses glmnet to estimate an elastic net model.  `lasso2` with
 the lglmnet option will replicate it.
 
     > r<-glmnet(X,price,alpha=0.6,lambda=1000,thresh=1e-15)
 
     . lasso2 price mpg-foreign, alpha(0.6) lambda(1000) lglmnet
 
-lasso2's default parameterization of the elastic net (like StataCorp's 
+`lasso2`'s default parameterization of the elastic net (like StataCorp's 
 elasticnet) is not invariant to scaling:
 
 	. lasso2 price mpg-foreign, alpha(0.6) lambda(138000)
     . lasso2 price1000 mpg-foreign, alpha(0.6) lambda(138)
 
-When lasso2 uses the glmnet parameterization of the elastic net via the
+When `lasso2` uses the glmnet parameterization of the elastic net via the
 glmnet options, results are invariant to scaling:  the only difference is
 that the coefficients change by the same factor of proportionality as the
 dependent variable.
@@ -84,11 +84,11 @@ dependent variable.
     . lasso2 price mpg-foreign, alpha(0.6) lambda(1000) lglmnet
     . lasso2 price1000 mpg-foreign, alpha(0.6) lambda(1) lglmnet
 
-The reason that the default lasso2/StataCorp parameterization is not
+The reason that the default `lasso2`/StataCorp parameterization is not
 invariant to scaling is because the penalty on L2 norm is influenced by
 scaling, and this in turn affects the relative weights on the L1 and L2
 penalties.  The example below shows how to reparameterize so that the
-default lasso2 parameterization for the elastic net replicates the glmnet
+default `lasso2` parameterization for the elastic net replicates the glmnet
 parameterization.  The example using the scaling above, where the dependent
 variable is price1000 and the glmnet lambda=1.
 
@@ -97,19 +97,19 @@ The large-sample standard deviation of price1000 = 2.8912586.
 	. qui sum price1000
     . di r(sd) * 1/sqrt( r(N)/(r(N)-1))
 
-The lasso2 alpha = alpha(lglmnet)*SD(y) / (1-alpha(glmnet) +
+The `lasso2` alpha = alpha(lglmnet)*SD(y) / (1-alpha(glmnet) +
 alpha(glmnet)*SD(y)).  In this example, alpha = (0.6*2.8912586)/( 1-0.6 +
 0.6*2.89125856) = 0.81262488.
 
     . di (0.6*2.8912586)/( 1-0.6 + 0.6*2.8912586)
 
-The lasso2 lambda = 2N*lambda(lglmnet) * (alpha(lglmnet) +
+The `lasso2` lambda = 2N*lambda(lglmnet) * (alpha(lglmnet) +
 (1-alpha(lglmnet))/SD(y)).  In this example, lambda = 2*69*1 * (0.6 +
 (1-0.6)/2.8912586) = 101.89203.
 
     . di 2*69*( 0.6 + (1-0.6)/2.8912586)
 
-lasso2 using the glmnet and then replicated using the lasso2/StataCorp
+`lasso2` using the glmnet and then replicated using the `lasso2`/StataCorp
 parameterization:
 
     . lasso2 price1000 mpg-foreign, alpha(0.6) lambda(1) lglmnet
