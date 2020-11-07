@@ -18,5 +18,3 @@ Presentation slides from our presentation at the [2018 London Stata Conference](
 are available [here](https://statalasso.github.io/pdf/StataConference2018_AhrensSchaffer.pdf).
 
 Do file to reproduce results on Slide 41/86: [Download](https://raw.githubusercontent.com/statalasso/statalasso.github.io/master/dta/housing_demo.do).
-
-
