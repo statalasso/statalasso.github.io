@@ -43,9 +43,13 @@ For example, to install version 1.2 of lassopack, simply use
 Check out our github repositories [here](https://github.com/statalasso/lassopack) and [here](https://github.com/statalasso/pdslasso)
 to see which old versions are available.
 
-## lassologit 
+## Offline installation
 
-We have integrated the lassologit programs into lassopack (as of version 1.3). You only need to install **lassopack**.
+If you want to use **lassopack** or **pdslasso** in an offline environment, 
+we recommend to download the packages from the Github repositories. The links to 
+repositories are above; click the green button "Code" 
+and "Download ZIP". Then run `net install` as above but `from()`
+should refer to the downloaded and unzipped repository folder. 
 
 ## Verify installation
 

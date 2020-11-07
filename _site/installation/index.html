@@ -395,9 +395,9 @@
 </script>
 
 <div>
-  <h2 id="lassopack-and-pdslasso-january-15-2019">lassopack and pdslasso (January 15, 2019)</h2>
+  <h2 id="ssc-version">SSC version</h2>
 
-  <p>The latest versions of <strong>lassopack</strong> (v1.2) and <strong>pdslasso</strong> (v1.1) are available through the SSC repository:</p>
+  <p>You can get <strong>lassopack</strong> and <strong>pdslasso</strong> from SSC:</p>
 
   <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssc install lassopack
 ssc install pdslasso
@@ -405,22 +405,33 @@ ssc install pdslasso
 
   <p>Note that <strong>pdslasso</strong> requires <strong>lassopack</strong> to be installed.</p>
 
-  <p>Alternatively you can download the packages via our website:</p>
+  <p>Add <code class="highlighter-rouge">replace</code> to overwrite existing versions of the packages.</p>
 
-  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v12/") 
-net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/pdslasso_v11/") 
+  <h2 id="github-installation">Github installation</h2>
+
+  <p>Please note that we update the SSC versions less frequently. You can get the lastest versions from github:</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/") 
+net install pdslasso, from("https://raw.githubusercontent.com/statalasso/pdslasso/master/") 
 </code></pre></div>  </div>
 
-  <p>Add <code class="highlighter-rouge">replace</code> to overwrite existing versions of the packages. 
-We update the Github version of the packages more frequently. 
-Currently, both SSC and Github version are identical.</p>
+  <p>Please check for updates on a regular basis.</p>
+
+  <h2 id="installing-old-versions">Installing old versions:</h2>
+
+  <p>We keep old versions of <strong>lassopack</strong> and <strong>pdslasso</strong> on github to 
+facilitate reproducibility.
+For example, to install version 1.2 of lassopack, simply use</p>
+
+  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net install lassopack, from("https://raw.githubusercontent.com/statalasso/lassopack/master/lassopack_v12")
+</code></pre></div>  </div>
+
+  <p>Check out our github repositories <a href="https://github.com/statalasso/lassopack">here</a> and <a href="https://github.com/statalasso/pdslasso">here</a>
+to see which old versions are available.</p>
 
   <h2 id="lassologit">lassologit</h2>
 
-  <p><strong>lassologit</strong> is currently only available from Github:</p>
-
-  <div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>net install lassologit, from("https://raw.githubusercontent.com/statalasso/lassologit/master/lassologit_v01/") 
-</code></pre></div>  </div>
+  <p>We have integrated the lassologit programs into lassopack (as of version 1.3). You only need to install <strong>lassopack</strong>.</p>
 
   <h2 id="verify-installation">Verify installation</h2>
 
@@ -431,6 +442,8 @@ type e.g.</p>
 </code></pre></div>  </div>
 
   <p>which requires the user-written package <strong>whichpkg</strong>.</p>
+
+  <p>We recommend to add this to your log files to facilitate reproducibility.</p>
 </div>
 
         
@@ -478,7 +491,7 @@ type e.g.</p>
   </ul>
 </div>
 
-<div class="page__footer-copyright">&copy; 2019 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
+<div class="page__footer-copyright">&copy; 2020 Achim Ahrens. Powered by <a href="https://jekyllrb.com" rel="nofollow">Jekyll</a> &amp; <a href="https://mademistakes.com/work/minimal-mistakes-jekyll-theme/" rel="nofollow">Minimal Mistakes</a>.</div>
 
       </footer>
     </div>
