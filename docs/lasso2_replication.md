@@ -14,11 +14,11 @@ classes:  wide
 
 ## Replication of glmnet and StataCorp's lasso
 
-Use Stata's auto dataset with missing data dropped.  The variable `price1000`
+Use Stata's *auto* dataset with missing data dropped.  The variable `price1000`
 is used to illustrate scaling effects.
   
-	. sysuse auto, clear
-  	. drop if rep78==.
+    . sysuse auto, clear
+    . drop if rep78==.
     . gen double price1000 = price/1000
 
 ### Replication of glmnet
@@ -90,11 +90,12 @@ The reason that the default `lasso2` paramaterization
 is (like StataCorp's) no invariant to scaling because the penalty on *L2* norm is influenced by
 scaling, and this in turn affects the relative weights on the *L1* and *L2*
 penalties.  The example below shows how to reparameterize so that the
-default `lasso2` parameterization for the elastic net replicates the glmnet
+default `lasso2` parameterization for the elastic net replicates the `glmnet`
 parameterization.  The example using the scaling above, where the dependent
 variable is `price1000` and the `glmnet` *lambda=1*.
 
-Note: The large-sample standard deviation of price1000 = 2.8912586.
+Note: The large-sample standard deviation of `price1000`
+is equal to 2.8912586.
 	
 	. qui sum price1000
     . di r(sd) * 1/sqrt( r(N)/(r(N)-1))
@@ -109,7 +110,7 @@ The `lasso2` lambda = 2N*lambda(lglmnet) * (alpha(lglmnet) +
 
     . di 2*69*( 0.6 + (1-0.6)/2.8912586)
 
-`lasso2` using the glmnet and then replicated using the `lasso2`/StataCorp
+`lasso2` using the `glmnet` and then replicated using the `lasso2`/StataCorp
 parameterization:
 
     . lasso2 price1000 mpg-foreign, alpha(0.6) lambda(1) lglmnet
