@@ -2,9 +2,9 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>About on Stata ML Page</title>
-    <link>http://example.org/docs/about/</link>
+    <link>https://statalasso.github.io/docs/about/</link>
     <description>Recent content in About on Stata ML Page</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/docs/about/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://statalasso.github.io/docs/about/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

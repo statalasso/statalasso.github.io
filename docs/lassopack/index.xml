@@ -2,35 +2,35 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>LASSOPACK on Stata ML Page</title>
-    <link>http://example.org/docs/lassopack/</link>
+    <link>https://statalasso.github.io/docs/lassopack/</link>
     <description>Recent content in LASSOPACK on Stata ML Page</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/docs/lassopack/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://statalasso.github.io/docs/lassopack/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Package overview</title>
-      <link>http://example.org/docs/lassopack/package_overview/</link>
+      <link>https://statalasso.github.io/docs/lassopack/package_overview/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/package_overview/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/package_overview/</guid>
       <description>The package consists of the following programs:   lasso2 implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso and post-estimation OLS. The lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996), the square-root-lasso (Belloni et al. 2011) and the adaptive lasso (Zou 2006) are regularization methods that use   \(\ell_1\)  norm penalization to achieve sparse solutions: of the full set of  \(p\)  predictors, typically most will have coefficients set to zero.</description>
     </item>
     
     <item>
       <title>Estimation methods</title>
-      <link>http://example.org/docs/lassopack/estimators/</link>
+      <link>https://statalasso.github.io/docs/lassopack/estimators/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/estimators/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/estimators/</guid>
       <description>Ridge regression The ridge estimator (Hoerl &amp;amp; Kennard, 1970) can be written as
   \[\hat{\beta}_{Ridge} = (X&amp;#39;X&amp;#43;\lambda I_p)^{-1}X&amp;#39;y.\]  Thus, even if the regressor matrix is not full rank (e.g. because  \(p&amp;gt;N\)  ), the problem becomes nonsingular by adding a constant to the diagonal of  \(X&amp;#39;X\)  . Another advantage of the ridge estimator over least squares stems from the variance-bias trade-off. Ridge regression may improve over ordinary least squares by inducing a mild bias while decreasing the variance.</description>
     </item>
     
     <item>
       <title>Regularized regression</title>
-      <link>http://example.org/docs/lassopack/regularized_reg/</link>
+      <link>https://statalasso.github.io/docs/lassopack/regularized_reg/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/regularized_reg/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/regularized_reg/</guid>
       <description>Regularized regression lasso2 solves the elastic net problem
   \[\frac{1}{N} (y_i - x_i&amp;#39;\beta)^2 &amp;#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &amp;#43; \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
   \((y_i - x_i&amp;#39;\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization.</description>
@@ -38,10 +38,10 @@
     
     <item>
       <title>Getting started</title>
-      <link>http://example.org/docs/lassopack/lasso2/</link>
+      <link>https://statalasso.github.io/docs/lassopack/lasso2/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/lasso2/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/lasso2/</guid>
       <description>Load data For demonstration purposes we use the prostate cancer data set, which has been widely applied to demonstrate the lasso and related techniques.
 To load prostate cancer data:
 . insheet using /// https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, /// clear tab  General demonstration By default, lasso2 uses the lasso estimator (i.e., alpha(1)). Like Stata&amp;rsquo;s regress, lasso2 expects the dependent variable to be named first followed by a list of predictors.
@@ -50,30 +50,30 @@ To load prostate cancer data:
     
     <item>
       <title>Cross-validation</title>
-      <link>http://example.org/docs/lassopack/cvlasso/</link>
+      <link>https://statalasso.github.io/docs/lassopack/cvlasso/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/cvlasso/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/cvlasso/</guid>
       <description>Cross-validation In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
 cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation.</description>
     </item>
     
     <item>
       <title>Rigorous lasso</title>
-      <link>http://example.org/docs/lassopack/rlasso/</link>
+      <link>https://statalasso.github.io/docs/lassopack/rlasso/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/rlasso/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/rlasso/</guid>
       <description>Theory driven penalty rlasso provides routines for estimating the coefficients of a lasso or square-root lasso regression with data-dependent, theory-driven penalization. The number of regressors,   \(p\)  , may be large and possibly greater than the number of observations,  \(N\)  . rlasso implements a version of the lasso that allows for heteroskedastic and clustered errors; see Belloni et al. (2012, 2016).
 We start again with the prostate cancer data for demonstration.</description>
     </item>
     
     <item>
       <title>Comparison glmnet</title>
-      <link>http://example.org/docs/lassopack/lasso2_replication/</link>
+      <link>https://statalasso.github.io/docs/lassopack/lasso2_replication/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/lasso2_replication/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/lasso2_replication/</guid>
       <description>Replication of glmnet and StataCorp&amp;rsquo;s lasso Use Stata&amp;rsquo;s auto dataset with missing data dropped. The variable price1000 is used to illustrate scaling effects.
 . sysuse auto, clear . drop if rep78==. . gen double price1000 = price/1000  Replication of glmnet To load the data into R for comparison with glmnet, use the following commands. The packages haven and tidyr need to be installed.
 &amp;gt; auto &amp;lt;- haven::read_dta(&amp;quot;http://www.stata-press.com/data/r9/auto.dta&amp;quot;) &amp;gt; auto &amp;lt;- tidyr::drop_na() &amp;gt; n &amp;lt;- nrow(auto) &amp;gt; price &amp;lt;- auto$price &amp;gt; X &amp;lt;- auto[, c(&amp;quot;mpg&amp;quot;, &amp;quot;rep78&amp;quot;, &amp;quot;headroom&amp;quot;, &amp;quot;trunk&amp;quot;, &amp;quot;weight&amp;quot;, &amp;quot;length&amp;quot;, &amp;quot;turn&amp;quot;, &amp;quot;displacement&amp;quot;, &amp;quot;gear_ratio&amp;quot;, &amp;quot;foreign&amp;quot;)] &amp;gt; X$foreign &amp;lt;- as.</description>
@@ -81,10 +81,10 @@ We start again with the prostate cancer data for demonstration.</description>
     
     <item>
       <title>Installation</title>
-      <link>http://example.org/docs/lassopack/installation/</link>
+      <link>https://statalasso.github.io/docs/lassopack/installation/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/installation/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/installation/</guid>
       <description>SSC version You can get lassopack from SSC:
 ssc install lassopack  Add replace to overwrite existing versions of the packages.
 Github installation Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
@@ -94,10 +94,10 @@ Installing old versions: We keep old versions of lassopack on github to facilita
     
     <item>
       <title>Citation</title>
-      <link>http://example.org/docs/lassopack/lassopack_cite/</link>
+      <link>https://statalasso.github.io/docs/lassopack/lassopack_cite/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/lassopack_cite/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/lassopack_cite/</guid>
       <description>Citation lassopack is not an official Stata package. It is a free contribution to the research community, like a paper.
 Please cite it as such:
 Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018. LASSOPACK: Stata module for lasso, square-root lasso, elastic net, ridge, adaptive lasso estimation and cross-validation. http://ideas.repec.org/c/boc/bocode/s458458.html

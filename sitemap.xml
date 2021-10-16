@@ -2,80 +2,80 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://example.org/docs/lassopack/help/lasso2_help/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/help/lasso2_help/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/pdslasso_models/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_models/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/package_overview/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/package_overview/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/pdslasso_demo/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_demo/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/estimators/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/estimators/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/help/cvlasso_help/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/help/cvlasso_help/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/regularized_reg/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/regularized_reg/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/lasso2/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/lasso2/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/getting_started/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/getting_started/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/help/rlasso_help/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/help/rlasso_help/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/help/lassologit_help/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/pdslasso_panel/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/cvlasso/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/cvlasso/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/regression/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/regression/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/rlasso/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/rlasso/</loc>
   </url><url>
-    <loc>http://example.org/docs/about/</loc>
+    <loc>https://statalasso.github.io/docs/about/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/classification/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/classification/</loc>
   </url><url>
-    <loc>http://example.org/docs/papers/</loc>
+    <loc>https://statalasso.github.io/docs/papers/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/lassologit/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/lassologit/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/ivlasso_help/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/ivlasso_help/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/parallel/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/parallel/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/help/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/help/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/lasso2_replication/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/lasso2_replication/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/installation/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/installation/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/help/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/help/</loc>
   </url><url>
-    <loc>http://example.org/docs/pdslasso/pdslasso_cite/</loc>
+    <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_cite/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/installation/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/installation/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/installation/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/installation/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/lassopack_cite/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/lassopack_cite/</loc>
   </url><url>
-    <loc>http://example.org/docs/pystacked/citation/</loc>
+    <loc>https://statalasso.github.io/docs/pystacked/citation/</loc>
   </url><url>
-    <loc>http://example.org/categories/</loc>
+    <loc>https://statalasso.github.io/categories/</loc>
   </url><url>
-    <loc>http://example.org/docs/</loc>
+    <loc>https://statalasso.github.io/docs/</loc>
   </url><url>
-    <loc>http://example.org/docs/lassopack/lassologit/lassologit_demo/</loc>
+    <loc>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</loc>
   </url><url>
-    <loc>http://example.org/</loc>
+    <loc>https://statalasso.github.io/</loc>
   </url><url>
-    <loc>http://example.org/tags/</loc>
+    <loc>https://statalasso.github.io/tags/</loc>
   </url>
 </urlset>

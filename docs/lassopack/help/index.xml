@@ -2,43 +2,43 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Help files on Stata ML Page</title>
-    <link>http://example.org/docs/lassopack/help/</link>
+    <link>https://statalasso.github.io/docs/lassopack/help/</link>
     <description>Recent content in Help files on Stata ML Page</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en-us</language><atom:link href="http://example.org/docs/lassopack/help/index.xml" rel="self" type="application/rss+xml" />
+    <language>en-us</language><atom:link href="https://statalasso.github.io/docs/lassopack/help/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>help lasso2</title>
-      <link>http://example.org/docs/lassopack/help/lasso2_help/</link>
+      <link>https://statalasso.github.io/docs/lassopack/help/lasso2_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/help/lasso2_help/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/help/lasso2_help/</guid>
       <description>---------------------------------------------------------------------------------------------------------------------------------- help lasso2 lassopack v1.4.2 ---------------------------------------------------------------------------------------------------------------------------------- Title lasso2 -- Program for lasso, square-root lasso, elastic net, ridge, adaptive lasso and post-estimation OLS Syntax Full syntax lasso2 depvar regressors [if exp] [in range] [, alpha(real) sqrt adaptive adaloadings(string) adatheta(real) ols lambda(numlist) lcount(integer) lminratio(real) lmax(real) lglmnet notpen(varlist) partial(varlist) psolver(string) norecover ploadings(string) unitloadings prestd stdcoef fe noftools noconstant tolopt(real) tolzero(real) maxiter(int) plotpath(method) plotvar(varlist) plotopt(string) plotlabel ic(string) lic(string) ebicgamma(real) noic long displayall postall postresults verbose vverbose wnorm] Note: the fe option will take advantage of the ftools package (if installed) for the fixed-effects transformation; the speed gains using this package can be large.</description>
     </item>
     
     <item>
       <title>help cvlasso</title>
-      <link>http://example.org/docs/lassopack/help/cvlasso_help/</link>
+      <link>https://statalasso.github.io/docs/lassopack/help/cvlasso_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/help/cvlasso_help/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/help/cvlasso_help/</guid>
       <description>---------------------------------------------------------------------------------------------------------------------------------- help cvlasso lassopack v1.4.2 ---------------------------------------------------------------------------------------------------------------------------------- Title cvlasso -- Program for cross-validation using lasso, square-root lasso, elastic net, adaptive lasso and post-OLS estimators Syntax Full syntax cvlasso depvar regressors [if exp] [in range] [, alpha(numlist) alphacount(int) sqrt adaptive adaloadings(string) adatheta(real) ols lambda(real) lcount(integer) lminratio(real) lmax(real) lopt lse lglmnet notpen(varlist) partial(varlist) psolver(string) ploadings(string) unitloadings prestd fe noftools noconstant tolopt(real) tolzero(real) maxiter(int) nfolds(int) foldvar(varname) savefoldvar(varname) rolling h(int) origin(int) fixedwindow seed(real) plotcv plotopt(string) saveest(string)] Note: the fe option will take advantage of the ftools package (if installed) for the fixed-effects transform; the speed gains using this package can be large.</description>
     </item>
     
     <item>
       <title>help  rlasso</title>
-      <link>http://example.org/docs/lassopack/help/rlasso_help/</link>
+      <link>https://statalasso.github.io/docs/lassopack/help/rlasso_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/help/rlasso_help/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/help/rlasso_help/</guid>
       <description>---------------------------------------------------------------------------------------------------------------------------------- help rlasso lassopack v1.4.2 ---------------------------------------------------------------------------------------------------------------------------------- Title rlasso -- Program for lasso and sqrt-lasso estimation with data-driven penalization Syntax rlasso depvar regressors [weight] [if exp] [in range] [ , sqrt partial(varlist) pnotpen(varlist) psolver(string) norecover noconstant fe noftools robust cluster(varlist) bw(int) kernel(string) center xdependent numsim(int) prestd tolopt(real) tolpsi(real) tolzero(real) maxiter(int) maxpsiiter(int) maxabsx lassopsi corrnumber(int) lalternative gamma(real) maq c(real) c0(real) supscore ssnumsim(int) testonly seed(real) displayall postall ols verbose vverbose ] Note: the fe option will take advantage of the ftools package (if installed) for the fixed-effects transform; the speed gains using this package can be large.</description>
     </item>
     
     <item>
       <title>help lassologit</title>
-      <link>http://example.org/docs/lassopack/help/lassologit_help/</link>
+      <link>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
-      <guid>http://example.org/docs/lassopack/help/lassologit_help/</guid>
+      <guid>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</guid>
       <description></description>
     </item>
     
