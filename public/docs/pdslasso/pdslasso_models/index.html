@@ -1,0 +1,369 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Many instruments #  Belloni et al. (2012, Econometrica) consider the model
+  \[y_i = \alpha d_i + \varepsilon_i \\ d_i = z_i'\delta + u_i\]  where  \(y_i\)  is the dependent variable,  \(d_i\)  is an endogenous regressors and  \(z_i\)  is a  \(p_z\)  -dimensional vector of instruments.  \(p_z\)  is allowed to be large and may even exceed the sample size. We refer to  \(z_i\)  as high-dimensional.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Models">
+<meta property="og:description" content="Many instruments #  Belloni et al. (2012, Econometrica) consider the model
+  \[y_i = \alpha d_i + \varepsilon_i \\ d_i = z_i'\delta + u_i\]  where  \(y_i\)  is the dependent variable,  \(d_i\)  is an endogenous regressors and  \(z_i\)  is a  \(p_z\)  -dimensional vector of instruments.  \(p_z\)  is allowed to be large and may even exceed the sample size. We refer to  \(z_i\)  as high-dimensional.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/docs/pdslasso/pdslasso_models/"><meta property="article:section" content="docs">
+<title>Models | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=http://example.org/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=http://example.org/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle checked>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=http://example.org/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_models/ class=active>Models</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=http://example.org/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Models</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#many-instruments>Many instruments</a></li>
+<li><a href=#many-controls>Many controls</a></li>
+<li><a href=#many-controls-and-many-instruments>Many controls and many instruments</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h2 id=many-instruments>
+Many instruments
+<a class=anchor href=#many-instruments>#</a>
+</h2>
+<p>Belloni et al. (<a href=http://dx.doi.org/10.3982/ECTA9626>2012, Econometrica</a>) consider the model</p>
+<link rel=stylesheet href=/katex/katex.min.css>
+<script defer src=/katex/katex.min.js></script>
+<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
+\[y_i = \alpha d_i + \varepsilon_i \\
+d_i = z_i'\delta + u_i\]
+</span>
+<p>where <span>
+\(y_i\)
+</span>
+is the dependent variable, <span>
+\(d_i\)
+</span>
+is an endogenous regressors and <span>
+\(z_i\)
+</span>
+is a <span>
+\(p_z\)
+</span>
+-dimensional vector of instruments. <span>
+\(p_z\)
+</span>
+is allowed to be large and may even exceed the sample size. We refer to <span>
+\(z_i\)
+</span>
+as high-dimensional. The interest lies in estimating the causal effect of endogenous variable <span>
+\(d_i\)
+</span>
+on the outcome variable
+<span>
+\(y_i\)
+</span>
+.</p>
+<p>The choice and specification of instruments is crucial for the estimation of <span>
+\(\alpha\)
+</span>
+. However,
+often it is <em>a priori</em> not clear how to select or specify instruments. The situation of many instruments
+can arise because there are simply many instruments available and/or because we need to consider a large
+number of transformations of elementary variables to approximate the complex
+relationship between endogenous regressor <span>
+\(d_i\)
+</span>
+and instruments <span>
+\(z_i\)
+</span>
+.</p>
+<p>Belloni et al. suggest to apply the lasso with theory-driven penalization to the equation <span>
+\(d_i = z_i'\delta + u_i\)
+</span>
+. Under the assumption of (approximate) sparsity, the rigorous lasso (or square-root lasso) can be applied to select appropriate instruments and to predict <span>
+\(d_i\)
+</span>
+. <span>
+\(\hat{d}_i=z_i'\hat\delta\)
+</span>
+is then used as a as estimate of the optimal instrument, where <span>
+\(\hat\delta\)
+</span>
+is either the lasso, square-root lasso, post-lasso or post square-root lasso estimator. Instrument selection using lasso and square-root lasso is implemented in <code>ivlasso</code>.</p>
+<h2 id=many-controls>
+Many controls
+<a class=anchor href=#many-controls>#</a>
+</h2>
+<p>Next, we consider the case where <span>
+\(d_i\)
+</span>
+is exogenous, but there
+are many control variables.</p>
+<span>
+\(y_i = \alpha d_i + x_i'\beta + \varepsilon_i\)
+</span>
+<p>In this setting, we allow the <span>
+\(p_x\)
+</span>
+-dimensional vector of controls, <span>
+\(x_i\)
+</span>
+to be high-dimensional.
+The problem the researcher faces is that the &ldquo;right&rdquo; set of controls is not
+known. In traditional practice, this presents her with a difficult choice: use too
+few controls, or the wrong ones, and omitted variable bias will be present; use too
+many, and the model will suffer from overfitting.</p>
+<p>The <em>post-double-selection</em> (PDS) methodology introduced in Belloni, Chernozhukov and Hansen (<a href=https://doi.org/10.1093/restud/rdt044>2014</a>) uses the lasso estimator to select the controls. Specifically,
+the lasso is used twice:</p>
+<ol>
+<li>
+<p>estimate a lasso regression with <span>
+\(y_i\)
+</span>
+as the dependent
+variable and the control variables <span>
+\(x_i\)
+</span>
+as regressors;</p>
+</li>
+<li>
+<p>estimate a lasso regression with <span>
+\(d_i\)
+</span>
+as the dependent variable
+and again the control variables <span>
+\(x_i\)
+</span>
+as regressors.
+The lasso estimator achieves a sparse solution, i.e.,
+most coefficients are set to zero. The final choice of control variables to include
+in the OLS regression of <span>
+\(y_i\)
+</span>
+on <span>
+\(d_i\)
+</span>
+is the union of the controls selected selected in
+steps 1. and 2., hence the name <em>post-double selection</em> for the methodolgy.</p>
+</li>
+</ol>
+<p>The <em>post-regularization</em> or <em>CHS</em> methodology is closely related. Instead of using the lasso-selected controls
+in a post-regularization OLS estimation, the selected variables
+are used to construct orthogonalized versions of the dependent variable and the
+exogenous causal variables of interest. The orthogonalized versions are based
+either on the lasso or post-lasso estimated coefficients; the post-lasso is OLS
+applied to lasso-selected variables. See Chernozhukov, Hansen & Spindler
+(<a href="http://www.aeaweb.org/articles.php?doi=10.1257/aer.p20151022">2015</a>) for details.</p>
+<p>The <em>post-double-selection</em> and <em>post-regularization</em> approach
+for many controls are implemented in <code>pdslasso</code>.</p>
+<h2 id=many-controls-and-many-instruments>
+Many controls and many instruments
+<a class=anchor href=#many-controls-and-many-instruments>#</a>
+</h2>
+<p>Chernozhukov, Hansen & Spindler (<a href="http://www.aeaweb.org/articles.php?doi=10.1257/aer.p20151022">2015</a>)
+also consider the case where we have both many instruments and many controls:</p>
+<span>
+\[y_i = \alpha d_i + x_i'\beta +\varepsilon_i\\
+d_i = x_i'\gamma + z_i'\delta + u_i\]
+</span>
+<p>where <span>
+\(p_x\gg N\)
+</span>
+and/or <span>
+\(p_z\gg N\)
+</span>
+are allowed. The above model can be estimated using
+<code>ivlasso</code>, which allows for low and/or high-dimensional sets of instruments.</p>
+<p><strong>To summarise</strong>, <code>ivlasso</code> and <code>pdslasso</code> implement methods for:</p>
+<ul>
+<li>endogenous and/or exogenous regressors,</li>
+<li>low and high-dimensional instruments,</li>
+<li>low and high-dimensional control variables.</li>
+</ul>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#many-instruments>Many instruments</a></li>
+<li><a href=#many-controls>Many controls</a></li>
+<li><a href=#many-controls-and-many-instruments>Many controls and many instruments</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

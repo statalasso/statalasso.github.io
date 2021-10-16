@@ -1,0 +1,345 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Ridge regression #  The ridge estimator (Hoerl & Kennard, 1970) can be written as
+  \[\hat{\beta}_{Ridge} = (X'X+\lambda I_p)^{-1}X'y.\]  Thus, even if the regressor matrix is not full rank (e.g. because  \(p>N\)  ), the problem becomes nonsingular by adding a constant to the diagonal of  \(X'X\)  . Another advantage of the ridge estimator over least squares stems from the variance-bias trade-off. Ridge regression may improve over ordinary least squares by inducing a mild bias while decreasing the variance.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Estimation methods">
+<meta property="og:description" content="Ridge regression #  The ridge estimator (Hoerl & Kennard, 1970) can be written as
+  \[\hat{\beta}_{Ridge} = (X'X+\lambda I_p)^{-1}X'y.\]  Thus, even if the regressor matrix is not full rank (e.g. because  \(p>N\)  ), the problem becomes nonsingular by adding a constant to the diagonal of  \(X'X\)  . Another advantage of the ridge estimator over least squares stems from the variance-bias trade-off. Ridge regression may improve over ordinary least squares by inducing a mild bias while decreasing the variance.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/docs/lassopack/estimators/"><meta property="article:section" content="docs">
+<title>Estimation methods | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=http://example.org/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/estimators/ class=active>Estimation methods</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=http://example.org/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=http://example.org/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=http://example.org/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Estimation methods</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ridge-regression>Ridge regression</a></li>
+<li><a href=#lasso-estimator>Lasso estimator</a></li>
+<li><a href=#elastic-net>Elastic net</a></li>
+<li><a href=#adaptive-lasso>Adaptive lasso</a></li>
+<li><a href=#square-root-lasso>Square-root lasso</a></li>
+<li><a href=#post-estimation-ols>Post-estimation OLS</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h2 id=ridge-regression>
+Ridge regression
+<a class=anchor href=#ridge-regression>#</a>
+</h2>
+<p>The ridge estimator (Hoerl & Kennard, 1970) can be written as</p>
+<link rel=stylesheet href=/katex/katex.min.css>
+<script defer src=/katex/katex.min.js></script>
+<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
+\[\hat{\beta}_{Ridge} = (X'X+\lambda I_p)^{-1}X'y.\]
+</span>
+<p>Thus, even if the regressor matrix is not full rank (e.g. because <span>
+\(p>N\)
+</span>
+), the problem becomes
+nonsingular by adding a constant to the diagonal of <span>
+\(X'X\)
+</span>
+. Another advantage of the
+ridge estimator over least squares stems from the <em>variance-bias trade-off</em>. Ridge
+regression may improve over ordinary least squares by inducing a mild bias while
+decreasing the variance. For this reason, ridge regression is a popular method in
+the context of multicollinearity. In contrast to estimators relying on
+<span>
+\(\ell_1\)
+</span>
+-penalization, the ridge does not yield sparse solutions and keeps all predictors
+in the model.</p>
+<h2 id=lasso-estimator>
+Lasso estimator
+<a class=anchor href=#lasso-estimator>#</a>
+</h2>
+<p>The lasso minimizes the residual sum of squares (RSS) subject to a constraint on the
+absolute size of coefficient estimates. Tibshirani (1996) motivates the lasso with
+two major advantages over least squares. First, due to the nature of the <span>
+\(\ell_1\)
+</span>
+-penalty,
+the lasso tends to produce sparse solutions and thus facilitates model
+interpretation. Secondly, similar to ridge regression, lasso can outperform least
+squares in terms of prediction due to lower variance. Another advantage is that the
+lasso is computationally attractive due to its convex form. This is in contrast to
+model selection based on AIC or BIC (which employ <span>
+\(\ell_0\)
+</span>
+penalization) where each
+possible sub-model has to be estimated.</p>
+<h2 id=elastic-net>
+Elastic net
+<a class=anchor href=#elastic-net>#</a>
+</h2>
+<p>The elastic net applies a mix of <span>
+\(\ell_1\)
+</span>
+(lasso-type) and <span>
+\(\ell_2\)
+</span>
+(ridge-type) penalization.
+It combines some of the strengths of lasso and ridge regression. In the presence of
+groups of correlated regressors, the lasso selects typically only one variable from
+each group, whereas the ridge tends to produce similar coefficient estimates for
+groups of correlated variables. On the other hand, the ridge does not yield sparse
+solutions impeding model interpretation. The elastic net is able to produce sparse
+solutions (for some <span>
+\(\alpha\)
+</span>
+greater than zero) and retains (or drops) correlated
+variables jointly. (Zou & Hastie, 2005)</p>
+<h2 id=adaptive-lasso>
+Adaptive lasso
+<a class=anchor href=#adaptive-lasso>#</a>
+</h2>
+<p>The lasso is only variable selection consistent under the rather strong
+<em>irrepresentable condition</em>, which imposes constraints on the degree of correlation
+between predictors in the true model and predictors outside of the model (see Zhao &
+Yu, 2006; Meinshausen & Bühlmann, 2006). Zou (2006) proposes the adaptive lasso
+which uses penalty loadings</p>
+<span>
+\(\hat\beta_{0,j}|^{-\theta}\)
+</span>
+<p>for <span>
+\(j=1,...,p\)
+</span>
+where <span>
+\(\hat\beta_{0,j}\)
+</span>
+is an initial estimator. The adaptive lasso is variable-selection consistent for fixed <span>
+\(p\)
+</span>
+under
+weaker assumptions than the standard lasso. If <span>
+\(p&lt;N\)
+</span>
+, OLS can be used as the initial
+estimator. Huang et al. (2008) suggest to use univariate OLS if <span>
+\(p>N\)
+</span>
+. Other initial
+estimators are possible. (Zou, 2006)</p>
+<h2 id=square-root-lasso>
+Square-root lasso
+<a class=anchor href=#square-root-lasso>#</a>
+</h2>
+<p>The sqrt-lasso is a modification of the lasso that minimizes sqrt(RSS) instead of
+RSS, while also imposing an <span>
+\(\ell_1\)
+</span>
+-penalty. The main advantage of the sqrt-lasso over
+the standard lasso is that the theoretically grounded, data-driven optimal <span>
+\(\lambda\)
+</span>
+is
+independent of the unknown error variance under homoskedasticity. (Belloni et al., 2011, 2014)</p>
+<h2 id=post-estimation-ols>
+Post-estimation OLS
+<a class=anchor href=#post-estimation-ols>#</a>
+</h2>
+<p>Penalized regression methods induce a bias that can be alleviated by post-estimation
+OLS, which applies OLS to the predictors selected by the first-stage variable
+selection method. For the case of the lasso, Belloni and Chernozhukov (2013) have
+shown that the post-lasso OLS performs at least as well as the lasso under mild
+additional assumptions.</p>
+<p>For further information on the lasso and related methods, see for example the
+textbooks by Hastie et al. (<a href=https://web.stanford.edu/~hastie/ElemStatLearn/>2009</a>, <a href=http://www-bcf.usc.edu/~gareth/ISL/>2015</a>; both available for free) and Bühlmann & Van
+de Geer (2011).</p>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#ridge-regression>Ridge regression</a></li>
+<li><a href=#lasso-estimator>Lasso estimator</a></li>
+<li><a href=#elastic-net>Elastic net</a></li>
+<li><a href=#adaptive-lasso>Adaptive lasso</a></li>
+<li><a href=#square-root-lasso>Square-root lasso</a></li>
+<li><a href=#post-estimation-ols>Post-estimation OLS</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

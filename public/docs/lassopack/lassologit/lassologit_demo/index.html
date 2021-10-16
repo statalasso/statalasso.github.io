@@ -1,0 +1,417 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Logistic Lasso: Spam data #  For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
+Predictors v1-v48 percentage of words in the e-mail that match a specific word, i.e. 100 * (number of times the word appears in the e-mail) divided by total number of words in e-mail.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Example using Spam data">
+<meta property="og:description" content="Logistic Lasso: Spam data #  For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
+Predictors v1-v48 percentage of words in the e-mail that match a specific word, i.e. 100 * (number of times the word appears in the e-mail) divided by total number of words in e-mail.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/docs/lassopack/lassologit/lassologit_demo/"><meta property="article:section" content="docs">
+<title>Example using Spam data | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=http://example.org/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle checked>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=http://example.org/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/lassologit/lassologit_demo/ class=active>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=http://example.org/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=http://example.org/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Example using Spam data</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#logistic-lasso-spam-data>Logistic Lasso: Spam data</a>
+<ul>
+<li><a href=#introduction-to-lassologit>Introduction to lassologit</a></li>
+<li><a href=#information-criteria>Information criteria</a></li>
+<li><a href=#cross-validation-with-cvlassologit>Cross-validation with cvlassologit</a></li>
+<li><a href=#rigorous-penalization-with-rlassologit>Rigorous penalization with rlassologit</a></li>
+<li><a href=#prediction>Prediction</a></li>
+<li><a href=#assessing-prediction-accuracy-with-holdout>Assessing prediction accuracy with holdout()</a></li>
+<li><a href=#plotting-with-lassologit>Plotting with lassologit</a></li>
+<li><a href=#plotting-with-cvlassologit>Plotting with cvlassologit</a></li>
+</ul>
+</li>
+<li><a href=#more>More</a></li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h2 id=logistic-lasso-spam-data>
+Logistic Lasso: Spam data
+<a class=anchor href=#logistic-lasso-spam-data>#</a>
+</h2>
+<p>For demonstration we consider the <a href=https://archive.ics.uci.edu/ml/datasets/spambase>Spambase Data Set</a>
+from the Machine Learning Repository. The data set
+includes 4,601 observations and 57 variables. The aim is
+to predict if an email is spam (i.e., unsolicited commercial e-mail) or
+not. Each observation corresponds to one email.</p>
+<pre><code>Predictors    
+  v1-v48    percentage of words in the e-mail that match a specific word, i.e.
+              100 * (number of times the word appears in the e-mail) divided by
+              total number of words in e-mail.  To see which word each predictor
+              corresponds to, see link below.
+  v49-v54   percentage of characters in the e-mail that match a specific
+              character, i.e. 100 * (number of times the character appears in
+              the e-mail) divided by total number of characters in e-mail.  To
+              see which character each predictor corresponds to, see link below.
+  v55       average length of uninterrupted sequences of capital letters
+  v56       length of longest uninterrupted sequence of capital letters
+  v57       total number of capital letters in the e-mail
+
+Outcome       
+  v58       denotes whether the e-mail was considered spam (1) or not (0).
+
+. insheet using https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, clear comma
+</code></pre>
+<h3 id=introduction-to-lassologit>
+Introduction to lassologit
+<a class=anchor href=#introduction-to-lassologit>#</a>
+</h3>
+<p>The basic syntax for lassologit is to specify the dependent variable followed by
+a list of predictors:</p>
+<pre><code>. lassologit v58 v1-v57
+</code></pre>
+<p>The output of lassologit shows the penalty levels (<code>lambda</code>), the number of
+predictors included (<code>s</code>), the $$\ell_1$$ norm, one information criterion ($$EBIC$$ by
+default), McFadden&rsquo;s Pseudo-$$R^2$$ and, in the last column,
+which predictors are included/removed
+from the model.</p>
+<p>By default, one line per <em>knot</em> is shown. Knots are points at which predictors
+enter or leave the model.</p>
+<p>To obtain the logistic lasso estimate for a user-specified
+scalar lambda or a list of lambdas,
+the <code>lambda(numlist)</code> option can be used.
+Note that output and the objects stored in <code>e()</code> depend on whether lambda is only
+one value or a list of more than one value.</p>
+<h3 id=information-criteria>
+Information criteria
+<a class=anchor href=#information-criteria>#</a>
+</h3>
+<p>To estimate the model selected by one of the information criteria, use the <code>lic()</code>
+option:</p>
+<pre><code>. lassologit v58 v1-v57
+. lassologit, lic(ebic)
+. lassologit, lic(aicc)
+</code></pre>
+<p>In the above example, we use the replay syntax that works similar to a
+post-estimation command. <code>lassologit</code> reports the logistic lasso estimates and the
+post-logit estimates (from applying logit estimation to the model selected by
+the logitistic lasso) for the value of lambda selected by the specified
+information criterion.</p>
+<p><strong>NB:</strong> <code>lic()</code> does not change the estimation results in memory. The advantage
+is that this way <code>lic()</code> can be used multiple times to compare results without
+that we need to re-estimate the model.</p>
+<p>To store the model selected by one of the information criteria,
+add <code>postresults</code>:</p>
+<pre><code>. lassologit, lic(ebic) postresults
+</code></pre>
+<h3 id=cross-validation-with-cvlassologit>
+Cross-validation with cvlassologit
+<a class=anchor href=#cross-validation-with-cvlassologit>#</a>
+</h3>
+<p><code>cvlassologit</code> implements $$K$$-fold cross-validation where the data is by default
+randomly partitioned.</p>
+<p>Here, we use $$K=3$$ and <code>seed(123)</code> to set the seed for reproducibility. (Be
+patient, this takes a minute.)</p>
+<pre><code>. cvlassologit v58 v1-v57, nfolds(3) seed(123)
+</code></pre>
+<p>The output shows the prediction performance measured by deviance for each $$\lambda$$
+value. To estimate the model selected by cross-validation we can specify <code>lopt</code>
+or <code>lse</code> using the replay syntax.</p>
+<pre><code>. cvlassologit, lopt
+. cvlassologit, lse
+</code></pre>
+<h3 id=rigorous-penalization-with-rlassologit>
+Rigorous penalization with rlassologit
+<a class=anchor href=#rigorous-penalization-with-rlassologit>#</a>
+</h3>
+<p>Lastly, we consider the logistic lasso with rigorous penalization:</p>
+<pre><code>. rlassologit v58 v1-v57
+</code></pre>
+<p><code>rlassologit</code> displays the logistic lasso solution and the post-logit solution.</p>
+<p>The rigorous lambda is returned in <code>e(lambda)</code> and, in this example, is equal to <code>79.207801</code>.</p>
+<pre><code>. di e(lambda)
+</code></pre>
+<p>We get the same result when specifying the rigorous lambda manually using the
+<code>lambda()</code> option of lassologit:</p>
+<pre><code>. lassologit v58 v1-v57, lambda(79.207801)
+</code></pre>
+<h3 id=prediction>
+Prediction
+<a class=anchor href=#prediction>#</a>
+</h3>
+<p>After selecting a model, we can use predict to obtain predicted probabilities or
+linear predictions.</p>
+<p>First, we select a model using <code>lic()</code> in combination with <code>postresults</code> as above:</p>
+<pre><code>. lassologit v58 v1-v57
+. lassologit, lic(ebic) postresults
+</code></pre>
+<p>Then, we use <code>predict</code>:</p>
+<pre><code>. predict double phat, pr
+. predict double xbhat, xb
+</code></pre>
+<p><code>pr</code> saves the predicted probability of success and <code>xb</code> saves the linear predicted
+values.</p>
+<p>Note that the use of <code>postresults</code> is required. Without <code>postresults</code> the results
+of the estimation with the selected penalty level are not stored.</p>
+<p>The approach for <code>cvlassologit</code> is very similar:</p>
+<pre><code>. cvlassologit v58 v1-v57
+. cvlassologit, lopt postresults
+. predict double phat, pr
+</code></pre>
+<p>In the case of <code>rlassologit</code>, we don&rsquo;t need to select a specific penalty level and
+we also don&rsquo;t need to specify <code>postresults</code>.</p>
+<pre><code>. rlassologit v58 v1-v57
+. predict double phat, pr
+</code></pre>
+<h3 id=assessing-prediction-accuracy-with-holdout>
+Assessing prediction accuracy with holdout()
+<a class=anchor href=#assessing-prediction-accuracy-with-holdout>#</a>
+</h3>
+<p>We can leave one partition of the data out of the estimation sample and check
+the accuracy of prediction using the <code>holdout(varname)</code> option.</p>
+<p>We first define a binary holdout variable:</p>
+<pre><code>. gen myholdout = (_n&gt;4500)
+</code></pre>
+<p>There are 4,601 observations in the sample, and we exclude observations 4,501 to
+4,601 from the estimation.
+These observations are used to assess classification accuracy.
+The holdout variable should be set to 1 for all
+observations that we want to use for assessing classification accuracy.</p>
+<pre><code>. lassologit v58 v1-v57, holdout(myholdout)
+. mat list e(loss)
+
+. rlassologit v58 v1-v57, holdout(myholdout)
+. mat list e(loss)
+</code></pre>
+<p>The loss measure is returned in <code>e(loss)</code>. As with cross-validation, deviance is
+used by default. <code>lossmeasure(class)</code> will return the average number of
+miss-classifications.</p>
+<h3 id=plotting-with-lassologit>
+Plotting with lassologit
+<a class=anchor href=#plotting-with-lassologit>#</a>
+</h3>
+<p><code>lassologit</code> supports plotting of the coefficient path over $$\lambda$$. Here, we
+create the plot using the replay syntax, but the same can be achieved in one
+line:</p>
+<pre><code>. lassologit v58 v1-v57
+. lassologit, plotpath(lambda) plotvar(v1-v5) plotlabel plotopt(legend(off))
+</code></pre>
+<p>In the above example, we use the following settings: <code>plotpath(lambda)</code> plots
+estimates against lambda. <code>plotvar(v1-v5)</code> restricts the set of variables plotted
+to <code>v1-v5</code> (to avoid that the graph is too cluttered). <code>plotlabel</code> puts variable
+labels next to the lines. <code>plotopt(legend(off))</code> turns the legend off.</p>
+<h3 id=plotting-with-cvlassologit>
+Plotting with cvlassologit
+<a class=anchor href=#plotting-with-cvlassologit>#</a>
+</h3>
+<p>The <code>plotcv</code> option creates a graph of the estimates loss a function of lambda:</p>
+<pre><code>. cvlassologit v58 v1-v57, nfolds(3) seed(123)
+. cvlassologit v58 v1-v57, plotcv
+</code></pre>
+<p>The vertical solid red line indicates the value of lambda that minimizes the
+loss function. The dashed red line corresponds to the largest lambda for which
+MSPE is within one standard error of the minimum loss.</p>
+<h2 id=more>
+More
+<a class=anchor href=#more>#</a>
+</h2>
+<p>More information can be found in the help file:</p>
+<pre><code>help lassologit
+</code></pre>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#logistic-lasso-spam-data>Logistic Lasso: Spam data</a>
+<ul>
+<li><a href=#introduction-to-lassologit>Introduction to lassologit</a></li>
+<li><a href=#information-criteria>Information criteria</a></li>
+<li><a href=#cross-validation-with-cvlassologit>Cross-validation with cvlassologit</a></li>
+<li><a href=#rigorous-penalization-with-rlassologit>Rigorous penalization with rlassologit</a></li>
+<li><a href=#prediction>Prediction</a></li>
+<li><a href=#assessing-prediction-accuracy-with-holdout>Assessing prediction accuracy with holdout()</a></li>
+<li><a href=#plotting-with-lassologit>Plotting with lassologit</a></li>
+<li><a href=#plotting-with-cvlassologit>Plotting with cvlassologit</a></li>
+</ul>
+</li>
+<li><a href=#more>More</a></li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

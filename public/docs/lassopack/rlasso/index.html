@@ -1,0 +1,419 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Theory driven penalty #  rlasso provides routines for estimating the coefficients of a lasso or square-root lasso regression with data-dependent, theory-driven penalization. The number of regressors,   \(p\)  , may be large and possibly greater than the number of observations,  \(N\)  . rlasso implements a version of the lasso that allows for heteroskedastic and clustered errors; see Belloni et al. (2012, 2016).
+We start again with the prostate cancer data for demonstration.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Rigorous lasso">
+<meta property="og:description" content="Theory driven penalty #  rlasso provides routines for estimating the coefficients of a lasso or square-root lasso regression with data-dependent, theory-driven penalization. The number of regressors,   \(p\)  , may be large and possibly greater than the number of observations,  \(N\)  . rlasso implements a version of the lasso that allows for heteroskedastic and clustered errors; see Belloni et al. (2012, 2016).
+We start again with the prostate cancer data for demonstration.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="http://example.org/docs/lassopack/rlasso/"><meta property="article:section" content="docs">
+<title>Rigorous lasso | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=http://example.org/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/rlasso/ class=active>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=http://example.org/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=http://example.org/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=http://example.org/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=http://example.org/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=http://example.org/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=http://example.org/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Rigorous lasso</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#theory-driven-penalty>Theory driven penalty</a>
+<ul>
+<li><a href=#homoskedastic-lasso>Homoskedastic lasso</a></li>
+<li><a href=#heteroskedastic-lasso>Heteroskedastic lasso</a></li>
+<li><a href=#square-root-lasso>Square-root lasso</a></li>
+<li><a href=#cluster-dependent-errors>Cluster-dependent errors</a></li>
+<li><a href=#more>More</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h2 id=theory-driven-penalty>
+Theory driven penalty
+<a class=anchor href=#theory-driven-penalty>#</a>
+</h2>
+<p><code>rlasso</code> provides routines for estimating the coefficients of a lasso or square-root lasso
+regression with data-dependent, theory-driven penalization.
+The number of regressors,
+<link rel=stylesheet href=/katex/katex.min.css>
+<script defer src=/katex/katex.min.js></script>
+<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
+\(p\)
+</span>
+, may be large and possibly greater than the number of
+observations, <span>
+\(N\)
+</span>
+.
+<code>rlasso</code> implements a version of the lasso that allows for heteroskedastic and clustered
+errors; see Belloni et al. (<a href=https://doi.org/10.3982/ECTA9626>2012</a>, <a href=https://doi.org/10.1080/07350015.2015.1102733>2016</a>).</p>
+<p>We start again with the prostate cancer data for demonstration.</p>
+<pre><code>. clear
+. insheet using
+    https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, tab
+</code></pre>
+<h3 id=homoskedastic-lasso>
+Homoskedastic lasso
+<a class=anchor href=#homoskedastic-lasso>#</a>
+</h3>
+<p>The optimal penalization depends on whether the errors
+are homoskedastic, heteroskedastic or cluster-dependent.</p>
+<p>Similar to <code>regress</code>, <code>rlasso</code> assumes homoskedasticity by default.
+Under homoskedasticity, the optimal penalty level is given by</p>
+<span>
+\[\lambda=\sigma2c\sqrt{N}\Phi^{-1}(1-\gamma/(2p)), \]
+</span>
+<p>which guarantees that the &ldquo;rigorous&rdquo; lasso is well-behaved.
+The unobserved <span>
+\(\sigma\)
+</span>
+is estimated using an iterative algorithm.</p>
+<p>To run the lasso with theory-driven penalization, type:</p>
+<pre><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45
+
+---------------------------------------------------
+         Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+           lcavol |       0.4400059      0.5258519
+          lweight |       0.2385063      0.6617699
+              svi |       0.3024128      0.6656665
+            _cons |*      0.9533782     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre>
+<p><code>e(lambda)</code> returns <span>
+\(\lambda\)
+</span>
+, and <code>e(lambda0)</code> stores <span>
+\(\lambda_0=\lambda/\hat{\sigma}\)
+</span>
+, i.e.,
+the penalty level excluding the standard deviation of the error.</p>
+<pre><code>. di e(lambda)
+44.984163
+
+. di e(lambda0)
+64.923165
+</code></pre>
+<h3 id=heteroskedastic-lasso>
+Heteroskedastic lasso
+<a class=anchor href=#heteroskedastic-lasso>#</a>
+</h3>
+<p>To allow for heteroskedasticity, we specify the <code>robust</code> option.</p>
+<pre><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, robust
+
+---------------------------------------------------
+         Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+           lcavol |       0.4518205      0.5258519
+          lweight |       0.2047086      0.6617699
+              svi |       0.1995573      0.6656665
+            _cons |*      1.0823460     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre>
+<p>The names of selected predictors are stored in <code>e(selected)</code> (without constant) and <code>e(selected0)</code> (with constant):</p>
+<pre><code>. di e(selected0)
+lcavol lweight svi _cons
+
+. di e(selected)
+lcavol lweight svi
+</code></pre>
+<h3 id=square-root-lasso>
+Square-root lasso
+<a class=anchor href=#square-root-lasso>#</a>
+</h3>
+<p>With the sqrt-lasso of
+Belloni et al. (2011, 2014), the default penalty level is</p>
+<span>
+\(\lambda=c \sqrt{N} \Phi^{-1}(1-\gamma/(2p)).\)
+</span>
+<p>Note the difference by a factor of 2 compared to the standard lasso. More importantly,
+the optimal penalty level of the square-root lasso is independent of <span>
+\(\sigma\)
+</span>
+,
+leading to a practical advantage.</p>
+<p>The square-root lasso is available through the <code>sqrt</code> option.</p>
+<pre><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, sqrt
+
+---------------------------------------------------
+     Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+       lcavol |       0.4293894      0.5258519
+      lweight |       0.1861616      0.6617699
+          svi |       0.2574895      0.6656665
+        _cons |*      1.1673922     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre>
+<p>In this example, lasso and square-root lasso select the same variables.
+Thus the post-estimation OLS estimator, which
+is OLS using the variables selected, is the same in both cases.</p>
+<p>The estimated penalty level is:</p>
+<pre><code>. di e(lambda)
+32.461583
+</code></pre>
+<p>The square-root lasso also allows for heteroskedastic errors:</p>
+<pre><code>. rlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, sqrt robust
+
+---------------------------------------------------
+     Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+       lcavol |       0.4402037      0.5258519
+      lweight |       0.1329878      0.6617699
+          svi |       0.1264166      0.6656665
+        _cons |*      1.3741342     -0.7771568
+---------------------------------------------------
+*Not penalized
+</code></pre>
+<h3 id=cluster-dependent-errors>
+Cluster-dependent errors
+<a class=anchor href=#cluster-dependent-errors>#</a>
+</h3>
+<p>Both rigorous lasso and rigorous square-root lasso allow
+for within-panel correlation (based on <a href=https://doi.org/10.1080/07350015.2015.1102733>Belloni et al., 2016, <em>JBES</em></a>).
+The <code>fe</code> option applies the within-transformation and <code>cluster()</code> specifies
+the cluster variable.</p>
+<p>NB: The two regressions below take a few minutes to run,
+and you might need to increase the maximum matsize
+using <code>set matsize</code>.</p>
+<p>In this example, we interact the variable <code>grade</code> and <code>age</code> using
+Stata&rsquo;s factor variable notation (see <code>help factor variables</code>).</p>
+<pre><code>. webuse nlswork
+. xtset idcode
+. rlasso ln_w i.grade#i.age ttl_exp tenure not_smsa south, ///
+          fe cluster(idcode)
+
+---------------------------------------------------
+         Selected |           Lasso   Post-est OLS
+------------------+--------------------------------
+        grade#age |
+           12 18  |      -0.1226071     -0.2087164
+           12 19  |      -0.0481608     -0.1109979
+           12 20  |      -0.0088640     -0.0627530
+                  |
+          ttl_exp |       0.0206773      0.0226526
+           tenure |       0.0107726      0.0123681
+         not_smsa |      -0.0305386     -0.0957148
+---------------------------------------------------
+</code></pre>
+<p>The results of cluster lasso and cluster square-root lasso are again similar:</p>
+<pre><code>. rlasso ln_w i.grade#i.age ttl_exp tenure not_smsa south, ///
+              sqrt fe cluster(idcode)
+
+         Selected |      Sqrt-lasso   Post-est OLS
+------------------+--------------------------------
+        grade#age |
+           12 18  |      -0.1223057     -0.2087164
+           12 19  |      -0.0479408     -0.1109979
+           12 20  |      -0.0086753     -0.0627530
+                  |
+          ttl_exp |       0.0206704      0.0226526
+           tenure |       0.0107671      0.0123681
+         not_smsa |      -0.0303104     -0.0957148
+---------------------------------------------------
+</code></pre>
+<h3 id=more>
+More
+<a class=anchor href=#more>#</a>
+</h3>
+<p>More information can be found in the help file:</p>
+<pre><code>help rlasso
+</code></pre>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#theory-driven-penalty>Theory driven penalty</a>
+<ul>
+<li><a href=#homoskedastic-lasso>Homoskedastic lasso</a></li>
+<li><a href=#heteroskedastic-lasso>Heteroskedastic lasso</a></li>
+<li><a href=#square-root-lasso>Square-root lasso</a></li>
+<li><a href=#cluster-dependent-errors>Cluster-dependent errors</a></li>
+<li><a href=#more>More</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
