@@ -1,0 +1,217 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Stacking regression with pystacked #  pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&rsquo;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &ldquo;base learners&rdquo;) into a final prediction to improve performance. The currently-supported base learners are:
+ Linear regression Logistic regression Lasso, ridge and elastic net Support vector machines Gradient boosted trees Random forest Multi-layer Perceptron  pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&rsquo;s machine learning algorithms.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="PYSTACKED">
+<meta property="og:description" content>
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/">
+<title>PYSTACKED | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+<link rel=alternate type=application/rss+xml href=https://statalasso.github.io/docs/pystacked/index.xml title="Stata ML Page">
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle checked>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pystacked/ class=active>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>PYSTACKED</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown><h2 id=stacking-regression-with-pystacked>
+Stacking regression with <strong>pystacked</strong>
+<a class=anchor href=#stacking-regression-with-pystacked>#</a>
+</h2>
+<p><code>pystacked</code> implements stacking regression (<a href=https://doi.org/10.1016/S0893-6080%2805%2980023-1>Wolpert, 1992</a>) via <a href=https://scikit-learn.org/stable/>scikit-learn</a>&rsquo;s
+<a href=https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html>sklearn.ensemble.StackingRegressor</a> and
+<a href=https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html>sklearn.ensemble.StackingClassifier</a>. Stacking is a
+way of combining predictions from multiple supervised machine learners (the &ldquo;base learners&rdquo;)
+into a final prediction to improve performance. The currently-supported base learners are:</p>
+<ul>
+<li>Linear regression</li>
+<li>Logistic regression</li>
+<li>Lasso, ridge and elastic net</li>
+<li>Support vector machines</li>
+<li>Gradient boosted trees</li>
+<li>Random forest</li>
+<li>Multi-layer Perceptron</li>
+</ul>
+<p><code>pystacked</code> can also be used with a single base learner and, thus, provides an easy-to-use API
+for <a href=https://scikit-learn.org/stable/>scikit-learn</a>&rsquo;s machine learning algorithms.</p>
+<p><img src=/_img/stacking.png#center alt></p>
+<blockquote class="book-hint warning">
+<code>pystacked</code> has just been released (October 2021). Please try it out and let us know if you run into problems. Feedback welcome and appreciated.
+</blockquote>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>

@@ -1,0 +1,323 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Replication of glmnet and StataCorp&rsquo;s lasso #  Use Stata&rsquo;s auto dataset with missing data dropped. The variable price1000 is used to illustrate scaling effects.
+. sysuse auto, clear . drop if rep78==. . gen double price1000 = price/1000  Replication of glmnet #  To load the data into R for comparison with glmnet, use the following commands. The packages haven and tidyr need to be installed.
+> auto <- haven::read_dta(&#34;http://www.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Comparison glmnet">
+<meta property="og:description" content="Replication of glmnet and StataCorp&rsquo;s lasso #  Use Stata&rsquo;s auto dataset with missing data dropped. The variable price1000 is used to illustrate scaling effects.
+. sysuse auto, clear . drop if rep78==. . gen double price1000 = price/1000  Replication of glmnet #  To load the data into R for comparison with glmnet, use the following commands. The packages haven and tidyr need to be installed.
+> auto <- haven::read_dta(&#34;http://www.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/lasso2_replication/"><meta property="article:section" content="docs">
+<title>Comparison glmnet | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/ class=active>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Comparison glmnet</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#replication-of-glmnet-and-statacorps-lasso>Replication of glmnet and StataCorp&rsquo;s lasso</a>
+<ul>
+<li><a href=#replication-of-glmnet>Replication of glmnet</a></li>
+<li><a href=#replication-of-statacorps-lasso>Replication of StataCorp&rsquo;s lasso</a></li>
+<li><a href=#notes-on-invariance-and-objective-function>Notes on invariance and objective function</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown>
+<h2 id=replication-of-glmnet-and-statacorps-lasso>
+Replication of glmnet and StataCorp&rsquo;s lasso
+<a class=anchor href=#replication-of-glmnet-and-statacorps-lasso>#</a>
+</h2>
+<p>Use Stata&rsquo;s <em>auto</em> dataset with missing data dropped. The variable <code>price1000</code>
+is used to illustrate scaling effects.</p>
+<pre><code>. sysuse auto, clear
+. drop if rep78==.
+. gen double price1000 = price/1000
+</code></pre>
+<h3 id=replication-of-glmnet>
+Replication of glmnet
+<a class=anchor href=#replication-of-glmnet>#</a>
+</h3>
+<p>To load the data into <strong>R</strong> for comparison with <code>glmnet</code>, use the following
+commands. The packages <code>haven</code> and <code>tidyr</code> need to be installed.</p>
+<pre><code>&gt; auto &lt;- haven::read_dta(&quot;http://www.stata-press.com/data/r9/auto.dta&quot;)
+&gt; auto &lt;- tidyr::drop_na()
+&gt; n &lt;- nrow(auto)
+&gt; price &lt;- auto$price
+&gt; X &lt;- auto[, c(&quot;mpg&quot;, &quot;rep78&quot;, &quot;headroom&quot;, &quot;trunk&quot;, &quot;weight&quot;, &quot;length&quot;,
+&quot;turn&quot;, &quot;displacement&quot;, &quot;gear_ratio&quot;, &quot;foreign&quot;)]
+&gt; X$foreign &lt;- as.integer(X$foreign)
+&gt; X &lt;- as.matrix(X)
+</code></pre>
+<h3 id=replication-of-statacorps-lasso>
+Replication of StataCorp&rsquo;s lasso
+<a class=anchor href=#replication-of-statacorps-lasso>#</a>
+</h3>
+<p>Replication of StataCorp&rsquo;s lasso and elasticnet requires only the rescaling
+of lambda by <em>2N</em>. <em>N=69</em>; so the <code>lasso2</code> lambda becomes <em>138000/(2x69) = 1000</em>.</p>
+<pre><code>. lasso2 price mpg-foreign, lambda(138000)
+. lasso linear price mpg-foreign, grid(1, min(1000))
+. lassoselect lambda = 1000
+. lassocoef, display(coef, penalized)
+
+. lasso2 price mpg-foreign, alpha(0.6) lambda(138000)
+. elasticnet linear price mpg-foreign, alphas(0.6) grid(1, min(1000))
+. lassoselect alpha = 0.6 lambda = 1000
+. lassocoef, display(coef, penalized)
+</code></pre>
+<h3 id=notes-on-invariance-and-objective-function>
+Notes on invariance and objective function
+<a class=anchor href=#notes-on-invariance-and-objective-function>#</a>
+</h3>
+<p><code>glmnet</code> uses the same definition of the lasso <em>L1</em> penalty as StataCorp&rsquo;s
+<code>lasso</code>, so <code>lasso2</code>&rsquo;s default parameterization again requires only rescaling by
+<em>2N</em>. When the <code>lglmnet</code> option is used with the <code>lglmnet</code> option, the <em>L1</em> penalty
+should be provided using the <code>glmnet</code> definition. To estimate in <strong>R</strong>, load
+<code>glmnet</code> with <code>library("glmnet")</code> and use the following command:</p>
+<pre><code>&gt; r&lt;-glmnet(X,price,alpha=1,lambda=1000,thresh=1e-15)
+</code></pre>
+<p>To achieve the same results with <code>lasso2</code>:</p>
+<pre><code>. lasso2 price mpg-foreign, lambda(138000)
+. lasso2 price mpg-foreign, lambda(1000) lglmnet
+</code></pre>
+<p>The <strong>R</strong> code below uses <code>glmnet</code> to estimate an elastic net model. <code>lasso2</code> with
+the <code>lglmnet</code> option will replicate it.</p>
+<pre><code>&gt; r&lt;-glmnet(X,price,alpha=0.6,lambda=1000,thresh=1e-15)
+
+. lasso2 price mpg-foreign, alpha(0.6) lambda(1000) lglmnet
+</code></pre>
+<p><code>lasso2</code>&rsquo;s default parameterization of the elastic net (like StataCorp&rsquo;s
+<code>elasticnet</code>) is not invariant to scaling:</p>
+<pre><code>. lasso2 price mpg-foreign, alpha(0.6) lambda(138000)
+. lasso2 price1000 mpg-foreign, alpha(0.6) lambda(138)
+</code></pre>
+<p>When <code>lasso2</code> uses the <code>glmnet</code> parameterization of the elastic net via the
+<code>lglmnet</code> option, results are invariant to scaling: the only difference is
+that the coefficients change by the same factor of proportionality as the
+dependent variable.</p>
+<pre><code>. lasso2 price mpg-foreign, alpha(0.6) lambda(1000) lglmnet
+. lasso2 price1000 mpg-foreign, alpha(0.6) lambda(1) lglmnet
+</code></pre>
+<p>The reason that the default <code>lasso2</code> paramaterization
+is (like StataCorp&rsquo;s) no invariant to scaling because the penalty on <em>L2</em> norm is influenced by
+scaling, and this in turn affects the relative weights on the <em>L1</em> and <em>L2</em>
+penalties. The example below shows how to reparameterize so that the
+default <code>lasso2</code> parameterization for the elastic net replicates the <code>glmnet</code>
+parameterization. The example using the scaling above, where the dependent
+variable is <code>price1000</code> and the <code>glmnet</code> <em>lambda=1</em>.</p>
+<p>Note: The large-sample standard deviation of <code>price1000</code>
+is equal to 2.8912586.</p>
+<pre><code>. qui sum price1000
+. di r(sd) * 1/sqrt( r(N)/(r(N)-1))
+</code></pre>
+<p>The <code>lasso2</code> alpha = alpha(lglmnet)xSD(y) / (1-alpha(glmnet) +
+alpha(glmnet)xSD(y)). In this example, <em>alpha = 0.81262488</em>.</p>
+<pre><code>. di (0.6*2.8912586)/( 1-0.6 + 0.6*2.8912586)
+</code></pre>
+<p>The <code>lasso2</code> lambda = 2N*lambda(lglmnet) * (alpha(lglmnet) +
+(1-alpha(lglmnet))/SD(y)). In this example, <em>lambda = 101.89203</em>.</p>
+<pre><code>. di 2*69*( 0.6 + (1-0.6)/2.8912586)
+</code></pre>
+<p><code>lasso2</code> using the <code>glmnet</code> and then replicated using the <code>lasso2</code>/StataCorp
+parameterization:</p>
+<pre><code>. lasso2 price1000 mpg-foreign, alpha(0.6) lambda(1) lglmnet
+. lasso2 price1000 mpg-foreign, alpha(.81262488) lambda(101.89203)</code></pre>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#replication-of-glmnet-and-statacorps-lasso>Replication of glmnet and StataCorp&rsquo;s lasso</a>
+<ul>
+<li><a href=#replication-of-glmnet>Replication of glmnet</a></li>
+<li><a href=#replication-of-statacorps-lasso>Replication of StataCorp&rsquo;s lasso</a></li>
+<li><a href=#notes-on-invariance-and-objective-function>Notes on invariance and objective function</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>

@@ -1,0 +1,724 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn's sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine learning algorithms.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Help file">
+<meta property="og:description" content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn's sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine learning algorithms.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/help/"><meta property="article:section" content="docs">
+<title>Help file | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle checked>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/help/ class=active>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Help file</strong>
+<label for=toc-control>
+</label>
+</div>
+</header>
+<article class=markdown>
+<pre id=stlog-1 style=font-size:11px class=sthlp>----------------------------------------------------------------------------------------------------------------------------------
+<b>help pystacked</b>                                                                                                                v0.1
+----------------------------------------------------------------------------------------------------------------------------------
+
+<b><u>Title</u></b>
+
+    <b>pystacked</b> --  Stata program for Stacking Regression
+
+<b><u>Overview</u></b>
+
+    <b>pystacked</b> implements stacking regression (<a href=#stlog-1-Wolpert1992><b>Wolpert, 1992</b></a>) via scikit-learn's sklearn.ensemble.StackingRegressor and
+    sklearn.ensemble.StackingClassifier.  Stacking is a way of combining predictions from multiple supervised machine learners
+    (the "base learners") into a final prediction to improve performance.  The currently-supported base learners are linear
+    regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP).
+
+    <b>pystacked</b> can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine
+    learning algorithms.
+
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href=http://www.stata.com/help.cgi?python><b>here</b></a> and
+    here for how to set up Python for Stata on your system.
+
+<a name=stlog-1-methodopts></a><b><u>Contents</u></b>
+
+        <a href=#stlog-1-syntax_overview><b>Syntax overview</b></a>
+        <a href=#stlog-1-syntax1><b>Syntax 1</b></a>
+        <a href=#stlog-1-syntax2><b>Syntax 2</b></a>
+        <a href=#stlog-1-syntax2><b>Other options</b></a>
+        <a href=#stlog-1-otheropts><b>Predictions</b></a>
+        <a href=#stlog-1-section_stacking><b>Stacking</b></a>
+        <a href=#stlog-1-base_learners><b>Supported base learners</b></a>
+        <a href=#stlog-1-base_learners_opt><b>Base learners: Options</b></a>
+        <a href=#stlog-1-pipelines><b>Pipelines</b></a>
+        <a href=#stlog-1-example_prostate><b>Example Stacking Regression</b></a>
+        <a href=#stlog-1-example_spam><b>Example Stacking Classification</b></a>
+        <a href=#stlog-1-installation><b>Installation</b></a>
+        <a href=#stlog-1-misc><b>Misc (references, contact, etc.)</b></a>
+
+<a name=stlog-1-syntax_overview></a><b><u>Syntax overview</u></b>
+
+    There are two alternative syntaxes. The <u>first syntax</u> is:
+
+        <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>methods(</b><i>string</i><b>)</b> <b>cmdopt1(</b><i>string</i><b>)</b> <b>cmdopt2(</b><i>string</i><b>)</b> <b>...</b>  <b>pipe1(</b><i>string</i><b>)</b>
+              <b>pipe2(</b><i>string</i><b>)</b> <b>...</b>  <a href=#stlog-1-otheropts><i>otheropts</i></a> ]
+
+    The <u>second syntax</u> is:
+
+        <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>
+              <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b>...</b>  [<b>,</b> <a href=#stlog-1-otheropts><i>otheropts</i></a> ]
+
+    The first syntax uses <b>methods(</b><i>string</i><b>)</b> to select base learners, where <i>string</i> is a list of base learners.  Options are passed
+    on to base learners via <b>cmdopt1(</b><i>string</i><b>)</b>, <b>cmdopt2(</b><i>string</i><b>)</b> to <b>cmdopt10(</b><i>string</i><b>)</b>.  That is, up to 10 base learners can be
+    specified and options are passed on in the order in which they appear in <b>methods(</b><i>string</i><b>)</b> (see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>).  Likewise,
+    the <b>pipe*(</b><i>string</i><b>)</b> option can be used for pre-processing predictors within Python on the fly (see <a href=#stlog-1-pipelines><b>Pipelines</b></a>).
+
+    The second syntax imposes no limit on the number of base learners (aside from the increasing computational complexity). Base
+    learners are added before the comma using <b>method(</b><i>string</i><b>)</b> together with <b>opt(</b><i>string</i><b>)</b> and separated by "||".
+
+<a name=stlog-1-syntax1></a><b><u>Syntax 1</u></b>
+
+    <i>Option</i>                Description
+    ----------------------------------------------------------------------------------------------------------------------------
+    <b>methods(</b><i>string</i><b>)</b>        a list of base learners, defaults to "<i>ols lassoic gradboost</i>" for regression and "<i>logit lassocv</i>
+                            <i>gradboost</i>" for classification; see <a href=#stlog-1-base_learners><b>Base learners</b></a>.
+    <b>cmdopt*(</b><i>string</i><b>)</b>        options passed to the base learners, see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>.
+    <b>pipe*(</b><i>string</i><b>)</b>          pipelines passed to the base learners, see <a href=#stlog-1-pipelines><b>Pipelines</b></a>.
+    ----------------------------------------------------------------------------------------------------------------------------
+    <i>Note:</i> <b>*</b> is replaced with 1 to 10. The number refers to the order given in <b>methods(</b><i>string</i><b>)</b>.
+
+<a name=stlog-1-syntax2></a><b><u>Syntax 2</u></b>
+
+    <i>Option</i>                Description
+    ----------------------------------------------------------------------------------------------------------------------------
+    <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>         a base learner, see <a href=#stlog-1-base_learners><b>Base learners</b></a>.
+    <b>opt(</b><i>string</i><b>)</b>            options, see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>.
+    <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>       pipelines applied to the predictors, see <a href=#stlog-1-pipelines><b>Pipelines</b></a>.
+    ----------------------------------------------------------------------------------------------------------------------------
+
+<a name=stlog-1-otheropts></a><b><u>Other options</u></b>
+
+    <i>Option</i>                Description
+    ----------------------------------------------------------------------------------------------------------------------------
+    <b>type(</b><i>string</i><b>)</b>           <i>reg(ress)</i> for regression problems or <i>class(ify)</i> for classification problems.
+    <b><u>final</u></b><b>est(</b><i>string</i><b>)</b>       final estimator used to combine base learners.  This can be <i>nnls</i> (non-negative least squares, the
+                            default), <i>ols</i> (ordinary least squares) or <i>ridge</i> for (logistic) ridge, which is the sklearn default.
+                            For more information, see <a href=#stlog-1-section_stacking><b>here</b></a>.
+    <b><u>nosavep</u></b><b>red</b>             do not save predicted values (do not use if <b>predict</b> is used after estimation)
+    <b><u>nosavet</u></b><b>ransform</b>        do not save predicted values of each base learner (do not use if <b>predict</b> with <b><u>transf</u></b><b>orm</b> is used after
+                            estimation)
+    <b>njobs(</b><i>int</i><b>)</b>             number of jobs for parallel computing. The default is 1 (no parallelization), -1 uses all available
+                            CPUs, -2 uses all CPUs minus 1.
+    <b>backend(</b><i>string</i><b>)</b>        joblib backend used for parallelization; the default is 'loky' under Linux/MacOS and 'threading'
+                            under Windows.  See here for more information.
+    <b>folds(</b><i>int</i><b>)</b>             number of folds used for cross-validation (not relevant for voting); default is 5
+    <b>pyseed(</b><i>int</i><b>)</b>            set the Python seed. Note that, since <b>pystacked</b> uses Python, using <a href=http://www.stata.com/help.cgi?set+seed><b>set seed</b></a> won't be sufficient for
+                            replication.
+    ----------------------------------------------------------------------------------------------------------------------------
+
+    <i>Voting</i>                Description
+    ----------------------------------------------------------------------------------------------------------------------------
+    <b>voting</b>                 use voting regressor (ensemble.VotingRegressor) or voting classifier (ensemble.VotingClassifier); see
+                            <a href=#stlog-1-section_stacking><b>here</b></a> for a brief explanation.
+    <b><u>votet</u></b><b>ype(</b><i>string</i><b>)</b>       type of voting classifier:  <i>hard</i> (default) or <i>soft</i>
+    <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>   positive weights used for voting regression/classification.  The length of <i>numlist</i> should be the
+                            number of base learners - 1. The last weight is calculated to ensure that sum(weights)=1.
+    ----------------------------------------------------------------------------------------------------------------------------
+
+<a name=stlog-1-prediction></a><b><u>Prediction</u></b>
+
+    To get predicted values:
+
+        <b>predict</b> <i>type</i> <i>newname</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>pr</b> <b>xb</b> ]
+
+    To get fitted values for each base learner:
+
+        <b>predict</b> <i>type</i> <i>stub</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b><u>transf</u></b><b>orm</b> ]
+
+    <i>Option</i>                Description
+    ----------------------------------------------------------------------------------------------------------------------------
+    <b>pr</b>                     predicted probability (classification only)
+    <b>xb</b>                     the default; predicted value (regression) or predicted class (classification)
+    <b><u>transf</u></b><b>orm</b>              predicted values for each base learner
+    ----------------------------------------------------------------------------------------------------------------------------
+
+    <i>Note:</i> Predicted values (in and out-sample) are calculated when <b>pystacked</b> is run and stored in Python memory. <b>predict</b> pulls
+    the predicted values from Python memory and saves them in Stata memory. This means that no changes on the data in Stata
+    memory should be made <i>between</i> <b>pystacked</b> call and <b>predict</b> call. If changes to the data set are made, <b>predict</b> will return an
+    error.
+
+<a name=stlog-1-section_stacking></a><b><u>Stacking</u></b>
+
+    Stacking is a way of combining cross-validated predictions from multiple base learners into a final prediction. A final
+    estimator is used to combine the base predictions.
+
+    The default final predictor for stacking regession is non-negative least squares (NNLS) without an intercept.  The NNLS
+    coefficients are standardized to sum to one.  Note that in this respect we deviate from the scikit-learn default and follow
+    the recommendation in Hastie et al. (<a href=#stlog-1-Hastie2009><b>2009</b></a>, p. 290).  The scikit-learn defaults for the final estimator are ridge regression
+    for stacking regression and {browse:
+    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.Logisti
+    &gt; cRegression":logistic ridge} for classification tasks.  To use the scikit-learn default, use <b><u>final</u></b><b>est(</b><i>ridge</i><b>)</b>.  <b>pystacked</b>
+    also supports ordinary (unconstrained) least squares as the final estimator (<b><u>final</u></b><b>est(</b><i>ols</i><b>)</b>).
+
+    An alternative to stacking is voting. Voting regression uses the weighted average of base learners to form predictions. By
+    default, the unweighted average is used, but the user can specify weights using <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>. Voting classifier uses
+    a majority rule by default (hard voting). An alternative is soft voting where the (weighted) probabilities are used to form
+    the final prediction.
+
+<a name=stlog-1-base_learners></a><b><u>Supported base learners</u></b>
+
+    The following base learners are supported:
+
+    Base learners           
+      <i>ols</i>                   Linear regression <i>(regression only)</i>
+      <i>logit</i>                 Logistic regression <i>(classification only)</i>
+      <i>lassoic</i>               Lasso with penalty chosen by AIC/BIC <i>(regression only)</i>
+      <i>lassocv</i>               Lasso with cross-validated penalty
+      <i>ridgecv</i>               Ridge with cross-validated penalty
+      <i>elasticcv</i>             Elastic net with cross-validated penalty
+      <i>svm</i>                   Support vector machines
+      <i>gradboost</i>             Gradient boosting
+      <i>rf</i>                    Random forest
+      <i>linsvm</i>                Linear SVM
+      <i>nnet</i>                  Neural net
+
+    The base learners can be chosen using the <b>methods(</b><i>lassoic gradboost nnet</i><b>)</b> (Syntax 1) or <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> options (Syntax 2).
+
+    Please see links in the next section for more information on each method.
+
+<a name=stlog-1-base_learners_opt></a><b><u>Base learners: Options</u></b>
+
+    This section lists the options of each base learners supported by <b>pystacked</b>.  Options can be passed to the base learners via
+    <b>cmdopt*(</b><i>string</i><b>)</b> (Syntax 1) or <b>opt(</b><i>string</i><b>)</b> (Syntax 2).  The defaults are adopted from scikit-learn, with some modifications
+    highlighted below.
+
+    For the sake of brevity, the base learners options are not discussed here in detail.  Please see the scikit-learn
+    documentations linked below.  We <i>strongly recommend</i> that you read the scikit-learn documentation carefully.
+
+    <u>Linear regression</u>
+    Methods <i>ols</i>
+    <i>Type:</i> <i>reg</i>
+    <i>Documentation:</i> linear_model.LinearRegression
+
+        <b><u>nocons</u></b><b>tant</b> <b><u>non</u></b><b>ormalize</b> <b><u>pos</u></b><b>itive</b>
+
+    <u>Logistic regression</u>
+    Methods: <i>logit</i>
+    Type: <i>class</i>
+    Documentation: linear_model.LogisticRegression
+
+        <b><u>nocons</u></b><b>tant</b>
+
+    <u>Penalized regression with information criteria</u>
+    Methods <i>lassoic</i>
+    Type: <i>reg</i>
+    Documentation: linear_model.LassoLarsIC
+
+        <b>criterion(</b><i>aic</i>|<i>bic</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>max_iter(</b><i>int 500</i><b>)</b> <b>eps(</b><i>real</i><b>)</b> <b>positive</b>
+
+    <u>Penalized regression with cross-validation</u>
+
+      Methods: <i>lassocv</i>, <i>ridgecv</i> and <i>elasticv</i>
+      Type: <i>regress</i>
+      Documentation: linear_model.ElasticNetCV
+
+        <b>l1_ratio(</b><i>real 0</i>.<i>5</i><b>)</b> <b>eps(</b><i>real 1e-3</i><b>)</b> <b>n_alphas(</b><i>integer 100</i><b>)</b> <b>alphas(</b><i>numlist</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b><u>non</u></b><b>ormalize</b> <b>max_iter(</b><i>integer 1000</i><b>)</b>
+        <b>tol(</b><i>real 1e-4</i><b>)</b> <b>cv(</b><i>integer 5</i><b>)</b> <b>n_jobs(</b><i>integer 1</i><b>)</b> <b>positive</b> <b>random_state(</b><i>integer</i><b>)</b> <b>selection(</b><i>cyclic</i>|<i>random</i><b>)</b>
+
+    Note: <i>lassocv</i> uses <b>l1_ratio(</b><i>1</i><b>)</b>, <i>ridgecv</i> uses <b>l1_ratio(</b><i>0</i><b>)</b>, <i>elasticcv</i> uses <b>l1_ratio(</b>.<i>5</i><b>)</b>; other options are the same.
+
+    <u>Penalized logistic regression with cross-validation</u>
+    Methods: <i>lassocv</i>, <i>ridgecv</i> and <i>elasticv</i>
+    Type: <i>class</i>
+    Documentation: linear_model.LogisticRegressionCV
+
+        <b>l1_ratios(</b><i>numlist</i><b>)</b> <b><u>c</u></b><b>s(</b><i>integer 10</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>cv(</b><i>integer 5</i><b>)</b> <b>penalty(</b><i>l1</i>|<i>l2</i>|<i>elasticnet</i><b>)</b> <b>solver(</b><i>string</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b>
+        <b>max_iter(</b><i>integer 100</i><b>)</b> <b>n_jobs(</b><i>integer 1</i><b>)</b> <b>norefit</b> <b>intercept_scaling(</b><i>real 1</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b>
+
+    Note: <i>lassocv</i> uses <b>penalty(</b><i>l1</i><b>)</b>, <i>ridgecv</i> uses <b>penalty(</b><i>l2</i><b>)</b>, <i>elasticcv</i> uses <b>penalty(</b><i>elasticnet</i><b>)</b><i> l1_ratios</i><b>(</b><i>0 </i>.<i>5 1</i><b>)</b>; other
+    options are the same.
+
+    <u>Random forest classifier</u>
+    Method: <i>rf</i>
+    Type: <i>class</i>
+    Documentation: ensemble.RandomForestClassifier
+
+        <b>n_estimators(</b><i>int 100</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b> <b>max_depth(</b><i>int</i><b>)</b> <b>min_samples_split(</b><i>integer 2</i><b>)</b> <b>min_samples_leaf(</b><i>integer 1</i><b>)</b>
+        <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b> <b>max_leaf_nodes(</b><i>int</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b><u>noboots</u></b><b>trap</b>
+        <b>oob_score</b> <b>n_jobs(</b><i>int</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b> <b>max_samples(</b><i>integer</i><b>)</b>
+
+    <u>Random forest regressor</u>
+    Method: <i>rf</i>
+    Type: <i>reg</i>
+    Documentation: ensemble.RandomForestRegressor
+
+        <b>n_estimators(</b><i>int 100</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b> <b>max_depth(</b><i>int</i><b>)</b> <b>min_samples_split(</b><i>integer</i><b>)</b> <b>min_samples_leaf(</b><i>integer</i><b>)</b>
+        <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b> <b>max_leaf_nodes(</b><i>integer</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b><u>noboots</u></b><b>trap</b>
+        <b>oob_score</b> <b>n_jobs(</b><i>integer 1</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b> <b>max_samples(</b><i>integer</i><b>)</b>
+
+    <u>Gradient boosted classification trees</u>
+    Method: <i>gradboost</i>
+    Type: <i>class</i>
+    Documentation: ensemble.GradientBoostingClassifier
+
+        <b>loss(</b><i>deviance</i>|<i>exponential</i><b>)</b> <b>learning_rate(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_estimators(</b><i>integer 100</i><b>)</b> <b>subsample(</b><i>real 1</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b>
+        <b>min_samples_split(</b><i>integer 2</i><b>)</b> <b>min_samples_leaf(</b><i>integer 1</i><b>)</b> <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_depth(</b><i>integer 3</i><b>)</b>
+        <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b>init(</b><i>string</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>max_features(</b><i>auto</i>|<i>sqrt</i>|<i>log2</i><b>)</b> <b>max_leaf_nodes(</b><i>integer</i><b>)</b>
+        <b>warm_start</b> <b>validation_fraction(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_iter_no_change(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b>
+
+    <u>Gradient boosted regression trees</u>
+    Method: <i>gradboost</i>
+    Type: <i>reg</i>
+    Documentation: ensemble.GradientBoostingRegressor
+
+        <b>loss(</b><i>string</i><b>)</b> <b>learning_rate(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_estimators(</b><i>integer 100</i><b>)</b> <b>subsample(</b><i>real 1</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b>
+        <b>min_samples_split(</b><i>integer 2</i><b>)</b> <b>min_samples_leaf(</b><i>integer 1</i><b>)</b> <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_depth(</b><i>integer 3</i><b>)</b>
+        <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b>init(</b><i>string</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>9</i><b>)</b>
+        <b>max_leaf_nodes(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>validation_fraction(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_iter_no_change(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>ccp_alpha(</b><i>real</i>
+        <i>0</i><b>)</b>
+
+    <u>Linear SVM (SVC)</u>
+    Method: <i>linsvm</i>
+    Type: <i>class</i>
+    Documentation: svm.LinearSVC
+
+        <b>penalty(</b><i>string</i><b>)</b> <b>loss(</b><i>string</i><b>)</b> <b>primal</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>intercept_scaling(</b><i>real 1</i><b>)</b> <b>random_state(</b><i>integer</i>
+        <i>-1</i><b>)</b> <b>max_iter(</b><i>integer 1000</i><b>)</b>
+
+    <u>Linear SVM (SVR)</u>
+    Method: <i>linsvm</i>
+    Type: <i>reg</i>
+    Documentation: svm.LinearSVR
+
+        <b>epsilon(</b><i>real 0</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b>loss(</b><i>string</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>intercept_scaling(</b><i>real 1</i><b>)</b> <b>primal</b> <b>random_state(</b><i>integer</i>
+        <i>-1</i><b>)</b> <b>max_iter(</b><i>integer 1000</i><b>)</b>
+
+    <u>SVM (SVR)</u>
+    Method: <i>svm</i>
+    Type: <i>class</i>
+    Documentation: svm.SVR
+
+        <b><u>ker</u></b><b>nel(</b><i>linear</i>|<i>poly</i>|<i>rbf</i>|<i>sigmoid</i><b>)</b> <b>degree(</b><i>integer 3</i><b>)</b> <b><u>gam</u></b><b>ma(</b><i>scale</i>|<i>auto</i><b>)</b> <b>coef0(</b><i>real 0</i><b>)</b> <b>tol(</b><i>real 1e-3</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b>epsilon(</b><i>real</i>
+        <i>0</i>.<i>1</i><b>)</b> <b><u>noshr</u></b><b>inking</b> <b>cache_size(</b><i>real 200</i><b>)</b> <b>max_iter(</b><i>integer -1</i><b>)</b>
+
+    <u>SVM (SVC)</u>
+    Method: <i>svm</i>
+    Type: <i>reg</i>
+    Documentation: svm.SVC
+
+        <b>c(</b><i>real 1</i><b>)</b> <b><u>ker</u></b><b>nel(</b><i>linear</i>|<i>poly</i>|<i>rbf</i>|<i>sigmoid</i><b>)</b> <b>degree(</b><i>integer 3</i><b>)</b> <b><u>gam</u></b><b>ma(</b><i>scale</i>|<i>auto</i><b>)</b> <b>coef0(</b><i>real 0</i><b>)</b> <b>probability</b> <b>tol(</b><i>real 1e-3</i><b>)</b>
+        <b>epsilon(</b><i>real 0</i>.<i>1</i><b>)</b> <b><u>noshr</u></b><b>inking</b> <b>cache_size(</b><i>real 200</i><b>)</b> <b>max_iter(</b><i>integer -1</i><b>)</b> <b>decision_function_shape(</b><i>ovr</i>|<i>ovo</i><b>)</b> <b>break_ties</b>
+        <b>random_state(</b><i>integer -1</i><b>)</b>
+
+    <u>Neural net classifier (Multi-layer Perceptron)</u>
+    Method: <i>nnet</i>
+    Type: <i>class</i>
+    Documentation: sklearn.neural_network.MLPClassifier
+
+        <b>hidden_layer_sizes(</b><i>numlist &gt;0 integer</i><b>)</b> <b>activation(</b><i>identity</i>|<i>logistic</i>|<i>tanh</i>|<i>relu</i><b>)</b> <b>solver(</b><i>lbfgs</i>|<i>sgd</i>|<i>adam</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>0001</i><b>)</b>
+        <b>batch_size(</b><i>integer</i><b>)</b> <b>learning_rate(</b><i>constant</i>|<i>invscaling</i>|<i>adaptive</i><b>)</b> <b>learning_rate_init(</b><i>real -1</i><b>)</b> <b>power_t(</b><i>real </i>.<i>5</i><b>)</b>
+        <b>max_iter(</b><i>integer 200</i><b>)</b> <b><u>nosh</u></b><b>uffle</b> <b>random_state(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>verbose</b> <b>warm_start</b> <b>momentum(</b><i>real </i>.<i>9</i><b>)</b>
+        <b><u>nonest</u></b><b>erovs_momentum</b> <b>early_stopping</b> <b>validation_fraction(</b><i>real </i>.<i>1</i><b>)</b> <b>beta_1(</b><i>real </i>.<i>9</i><b>)</b> <b>beta_2(</b><i>real </i>.<i>999</i><b>)</b> <b>epsilon(</b><i>real 1e-8</i><b>)</b>
+        <b>n_iter_no_change(</b><i>integer 10</i><b>)</b> <b>max_fun(</b><i>integer 15000</i><b>)</b>
+
+    <u>Neural net regressor (Multi-layer Perceptron)</u>
+    Method: <i>nnet</i>
+    Type: <i>reg</i>
+    Documentation: sklearn.neural_network.MLPRegressor
+
+        <b>hidden_layer_sizes(</b><i>numlist &gt;0 integer</i><b>)</b> <b>activation(</b><i>identity</i>|<i>logistic</i>|<i>tanh</i>|<i>relu</i><b>)</b> <b>solver(</b><i>lbfgs</i>|<i>sgd</i>|<i>adam</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>0001</i><b>)</b>
+        <b>batch_size(</b><i>integer</i><b>)</b> <b>learning_rate(</b><i>constant</i>|<i>invscaling</i>|<i>adaptive</i><b>)</b> <b>learning_rate_init(</b><i>real 0</i>.<i>001</i><b>)</b> <b>power_t(</b><i>real </i>.<i>5</i><b>)</b>
+        <b>max_iter(</b><i>integer 200</i><b>)</b> <b><u>nosh</u></b><b>uffle</b> <b>random_state(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>verbose</b> <b>warm_start</b> <b>momentum(</b><i>real </i>.<i>9</i><b>)</b>
+        <b>NONESTerovs_momentum</b> <b>early_stopping</b> <b>validation_fraction(</b><i>real </i>.<i>1</i><b>)</b> <b>beta_1(</b><i>real </i>.<i>9</i><b>)</b> <b>beta_2(</b><i>real </i>.<i>999</i><b>)</b> <b>epsilon(</b><i>real 1e-8</i><b>)</b>
+        <b>n_iter_no_change(</b><i>integer 10</i><b>)</b> <b>max_fun(</b><i>integer 15000</i><b>)</b>
+
+<a name=stlog-1-pipelines></a><b><u>Pipelines</u></b>
+
+    Scikit-learn uses pipelines to pre-preprocess input data on the fly.  Pipelines can be used to impute missing observations
+    or create transformation of predictors such as interactions and polynomials.  For example, when using linear machine
+    learners such as the lasso, it is recommended to create interactions. This can be done on the fly in Python.
+
+    The following pipelines are currently supported:
+
+    Pipelines               
+      <i>stdscaler</i>             StandardScaler()
+      <i>minmaxscaler</i>          MinMaxScaler()
+      <i>medianimputer</i>         SimpleImputer(strategy='median')
+      <i>knnimputer</i>            KNNImputer()
+      <i>poly2</i>                 PolynomialFeatures(degree=2)
+      <i>poly3</i>                 PolynomialFeatures(degree=3)
+
+    Pipelines can be passed to the base learners via <b>pipe*(</b><i>string</i><b>)</b> (Syntax 1) or <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> (Syntax 2).
+
+    NB: Users should take care when employing pipelines that they don't accidentally introduce data leakage.  For example, a
+    pipeline that transforms the data prior to passing the data to a base learner that uses cross-validation could do this if
+    the data transformation (e.g., standardizing predictors) uses information from the entire dataset.
+
+<a name=stlog-1-example_prostate></a><b><u>Example using Boston Housing data (Harrison et al., </u></b><a href=#stlog-1-Harrison1978><b><u>1978</u></b></a><b><u>)</u></b>
+
+<a name=stlog-1-examples_data></a>    <u>Data set</u>
+
+    The data set is available from the UCI Machine Learning Repository.  The following variables are included in the data set of
+    506 observations:
+
+    Predictors    
+      CRIM      per capita crime rate by town
+      ZN        proportion of residential land zoned for lots over 25,000 sq.ft.
+      INDUS     proportion of non-retail business acres per town
+      CHAS      Charles River dummy variable (= 1 if tract bounds river; 0 otherwise)
+      NOX       nitric oxides concentration (parts per 10 million)
+      RM        average number of rooms per dwelling
+      AGE       proportion of owner-occupied units built prior to 1940
+      DIS       weighted distances to five Boston employment centres
+      RAD       index of accessibility to radial highways
+      TAX       full-value property-tax rate per $10,000
+      PTRATIO   pupil-teacher ratio by town
+      B         1000(Bk - 0.63)^2 where Bk is the proportion Black by town
+      LSTAT     % lower status of the population
+
+    Outcome       
+      MEDV      Median value of owner-occupied homes in $1000's
+
+    <u>Getting started</u>
+
+    Load housing data.
+        . insheet using https://statalasso.github.io/dta/housing.csv, clear
+
+    Define a global for the model:
+        . global model medv crim-lstat
+
+    Stacking regression with lasso, random forest and gradient boosting.
+        . pystacked $model, type(regress) pyseed(123) methods(lassoic rf gradboost)
+
+    The weights determine how much each base learner contributes to the final stacking prediction.
+
+    Getting the predicted values:
+        . predict double yhat, xb
+
+    We can also save the predicted values of each base learner:
+        . predict double yhat, transform
+
+    <u>Using pipelines (Syntax 1)</u>
+
+    Pipelines allow pre-processing predictors on the fly. For example, linear estimators might perform better if interactions
+    are provided as inputs. Here, we use interactions and 2nd-order polynomials for ols and lasso, but not for the random
+    forest. Note that the base inputs in Stata are only provided in levels.
+        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2) pipe2(poly2)
+        . predict a, transf
+
+    You can verify that you get the same ols and lasso predicted values when creating the polynomials in Stata:
+        . pystacked medv c.(crim-lstat)# #c.(crim-lstat), type(regress) pyseed(123) methods(ols lassoic rf)
+        . predict b, transf
+        . list a1 b1 a2 b2
+
+    Note that the stacking weights are different in the second estimation.  This is because we also include 2nd-order
+    polynomials as inputs for the random forest.
+
+    You can also use the same base learner more than once with different pipelines and/or different options.
+        . pystacked $model, type(regress) pyseed(123) methods(lassoic lassoic lassoic) pipe2(poly2) pipe3(poly3)
+
+    <u>Options of base learners (Syntax 1)</u>
+
+    We can pass options to the base learners using {cmdopt*(string)}. In this example, we change the maximum tree depth for the
+    random forest. Since random forest is the third base learner, we use {cmdopt3(max_depth(3))}.
+        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2) pipe2(poly2) cmdopt3(max_depth(3))
+
+    You can verify that the option has been passed to Python correctly:
+        . di e(pyopt3)
+
+    <u>Using the alternative syntax (Syntax 2)</u>
+
+    The same results as above can be achieved using the alternative syntax, which imposes no limit on the number of base
+    learners.
+        . pystacked $model || m(ols) pipe(poly2) || m(lassoic) pipe(poly2) || m(rf) opt(max_depth(3)) , type(regress)
+            pyseed(123)
+
+    <u>Single base learners</u>
+
+    You can use <b>pystacked</b> with a single base learner.  In this example, we are using a conventional random forest:
+        . pystacked $model, type(regress) pyseed(123) methods(rf)
+
+    <u>Voting</u>
+
+    You can also use pre-defined weights. Here, we assign weights of 0.5 to OLS, .1 to the lasso and, implicitly, .4 to the
+    random foreset.
+        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2) pipe2(poly2) voting voteweights(.5
+            .1)
+
+<a name=stlog-1-example_spam></a><b><u>Classification Example using Spam data</u></b>
+
+    <u>Data set</u>
+
+    For demonstration we consider the Spambase Data Set from the UCI Machine Learning Repository.  The data includes 4,601
+    observations and 57 variables.  The aim is to predict whether an email is spam (i.e., unsolicited commercial e-mail) or not.
+    Each observation corresponds to one email.
+
+    Predictors    
+      v1-v48    percentage of words in the e-mail that match a specific <i>word</i>, i.e. 100 * (number of times the word appears in
+                  the e-mail) divided by total number of words in e-mail.  To see which word each predictor corresponds to, see
+                  link below.
+      v49-v54   percentage of characters in the e-mail that match a specific <i>character</i>, i.e. 100 * (number of times the
+                  character appears in the e-mail) divided by total number of characters in e-mail.  To see which character each
+                  predictor corresponds to, see link below.
+      v55       average length of uninterrupted sequences of capital letters
+      v56       length of longest uninterrupted sequence of capital letters
+      v57       total number of capital letters in the e-mail
+
+    Outcome       
+      v58       denotes whether the e-mail was considered spam (1) or not (0).
+
+    For more information about the data see https://archive.ics.uci.edu/ml/datasets/spambase.
+
+    Load spam data.
+        . insheet using https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, clear comma
+
+    We consider three base learners: logit, random forest and gradient boosting:
+        . pystacked v58 v1-v57, type(class) pyseed(123) methods(logit rf gradboost) njobs(4) pipe1(poly2)
+
+    <u>Out-of-sample classification.</u>
+
+    As the data is ordered by outcome, we first shuffle the data randomly.
+        . set seed 42
+        . gen u = runiform()
+        . sort u
+
+    Estimation on the first 2000 observations.
+        . pystacked v58 v1-v57 if _n&lt;=2000, type(class) pyseed(123) methods(logit rf gradboost) njobs(4) pipe1(poly2)
+
+    We can get both the predicted probabilities or the predicted class:
+        . predict spam, class
+        . predict spam_p, pr
+
+    Confusion matrix.
+        . tab spam v58 if _n&lt;=2000, cell
+        . tab spam v58 if _n&gt;2000, cell
+
+<a name=stlog-1-installation></a><b><u>Installation</u></b>
+
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href=http://www.stata.com/help.cgi?python><b>help python</b></a>
+    and the Stata blog for how to set up Python on your system.  Installing Anaconda is in most cases the easiest way of
+    installing Python including all required packages.
+
+    You can check your scikit-learn version using:
+        . python: import sklearn
+        . python: sklearn.__version__
+
+    <i>Updating scikit-learn:</i>  If you use Anaconda, update scikit-learn through your Anaconda Python distribution. Make sure that
+    you have linked Stata with the correct Python installation using python query.
+
+    If you use pip, you can update scikit-learn by typing "&lt;Python path&gt; -m pip install -U scikit-learn" into the <i>terminal</i>, or
+    directly in Stata:
+        . shell &lt;Python path&gt; -m pip install -U scikit-learn
+
+    Note that you might need to restart Stata for changes to your Python installation to take effect.
+
+    For further information, see https://scikit-learn.org/stable/install.html.
+
+    To install/update <b>pystacked</b>, type
+        . net install pystacked, from(https://raw.githubusercontent.com/aahrens1/pystacked/main) replace
+
+<a name=stlog-1-misc></a><b><u>References</u></b>
+<a name=stlog-1-Harrison1978></a>
+    Harrison, D. and Rubinfeld, D.L (1978). Hedonic prices and the demand for clean air. <i>J. Environ. Economics &amp; Management</i>,
+    vol.5, 81-102, 1978.
+
+<a name=stlog-1-Hastie2009></a>    Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009).  The elements of statistical learning: data mining, inference, and
+    prediction. Springer Science &amp; Business Media.
+
+<a name=stlog-1-Wolpert1992></a>    Wolpert, David H. Stacked generalization. <i>Neural networks</i> 5.2 (1992): 241-259.  
+    https://doi.org/10.1016/S0893-6080(05)80023-1
+
+<b><u>Contact</u></b>
+
+    If you encounter an error, contact us via email. If you have a question, you can also post on Statalist (please tag @Achim
+    Ahrens).
+
+<b><u>Acknowledgements</u></b>
+
+    <b>pystacked</b> took some inspiration from Michael Droste's pylearn, which implements other Sklearn programs for Stata.  Thanks to
+    Jan Ditzen for testing an early version of the program. All remaining errors are our own.
+
+<b><u>Citation</u></b>
+
+    Please also cite scikit-learn; see https://scikit-learn.org/stable/about.html.
+
+<b><u>Authors</u></b>
+
+        Achim Ahrens, Public Policy Group, ETH Zurich, Switzerland
+        achim.ahrens@gess.ethz.ch
+
+        Christian B. Hansen, University of Chicago, USA
+
+        Mark E. Schaffer, Heriot-Watt University, UK
+</pre>
+</article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+</main>
+</body>
+</html>

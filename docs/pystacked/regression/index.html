@@ -1,0 +1,315 @@
+<!doctype html><html lang=en dir=ltr>
+<head>
+<meta charset=utf-8>
+<meta name=viewport content="width=device-width,initial-scale=1">
+<meta name=description content="Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train>.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.">
+<meta name=theme-color content="#FFFFFF">
+<meta name=color-scheme content="light dark"><meta property="og:title" content="Regression">
+<meta property="og:description" content="Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train>.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.">
+<meta property="og:type" content="article">
+<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/regression/"><meta property="article:section" content="docs">
+<title>Regression | Stata ML Page</title>
+<link rel=manifest href=/manifest.json>
+<link rel=icon href=/favicon.png type=image/x-icon>
+<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
+<script defer src=/flexsearch.min.js></script>
+<script defer src=/en.search.min.0b9fe2fc444213e5811e9db8b972dc01217779c7c9dfad976afa25ce122b529e.js integrity="sha256-C5/i/ERCE+WBHp24uXLcASF3ecfJ362XavolzhIrUp4=" crossorigin=anonymous></script>
+</head>
+<body dir=ltr>
+<input type=checkbox class="hidden toggle" id=menu-control>
+<input type=checkbox class="hidden toggle" id=toc-control>
+<main class="container flex">
+<aside class=book-menu>
+<div class=book-menu-content>
+<nav>
+<h2 class=book-brand>
+<a class="flex align-center" href=/><span>Stata ML Page</span>
+</a>
+</h2>
+<div class=book-search>
+<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
+<div class="book-search-spinner hidden"></div>
+<ul id=book-search-results></ul>
+</div>
+<ul>
+<li class=book-section-flat>
+<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
+<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
+</li>
+<li>
+<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
+<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
+</li>
+<li>
+<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
+<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
+<a role=button>Help files</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
+<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
+</li>
+</ul>
+</li>
+<li class=book-section-flat>
+<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle checked>
+<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
+<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
+</label>
+<ul>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/regression/ class=active>Regression</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
+</li>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/about/>About</a>
+<ul>
+</ul>
+</li>
+<li>
+<a href=https://statalasso.github.io/docs/papers/>Paper</a>
+<ul>
+</ul>
+</li>
+</ul>
+</nav>
+<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+</div>
+</aside>
+<div class=book-page>
+<header class=book-header>
+<div class="flex align-center justify-between">
+<label for=menu-control>
+<img src=/svg/menu.svg class=book-icon alt=Menu>
+</label>
+<strong>Regression</strong>
+<label for=toc-control>
+<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
+</label>
+</div>
+<aside class="hidden clearfix">
+<nav id=TableOfContents>
+<ul>
+<li><a href=#stacking-regression>Stacking regression</a>
+<ul>
+<li><a href=#alternative-syntax>Alternative Syntax</a></li>
+<li><a href=#changing-the-final-estimator>Changing the final estimator</a></li>
+<li><a href=#predictions>Predictions</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</aside>
+</header>
+<article class=markdown><h2 id=stacking-regression>
+Stacking regression
+<a class=anchor href=#stacking-regression>#</a>
+</h2>
+<p>First load the Boston housing data and split the data randomly in training and test sample:</p>
+<pre tabindex=0><code>. insheet using ///
+	https://statalasso.github.io/dta/housing.csv,  ///
+	clear comma
+. set seed 789
+. gen train=rnormal()
+. replace train=train&gt;.75
+</code></pre><p>We now consider a more complicated <code>pystacked</code> application with
+4 base learners: linear regression, lasso with AIC-chosen
+penalty, random forest and gradient boosting:</p>
+<pre tabindex=0><code>. pystacked medv crim-lstat if train,				///
+	type(regress) pyseed(123)					///
+	methods(ols lassoic lassoic rf gradboost)			///
+	pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.01)		///
+	n_estimators(1000))
+
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0009770
+  lassoic        |      0.0000000
+  lassoic        |      0.2865443
+  rf             |      0.2629368
+  gradboost      |      0.4495419
+</code></pre><p>In this example, we use the lasso twice&mdash;once with and once without the <code>poly2</code> pipeline. Indeed, nothing keeps us from using base learners multiple times. This way we can compare and combine different sets of options.</p>
+<p>Note the numbering of the <code>pipe*()</code> and <code>cmdopt*()</code> options: We apply the <code>poly2</code> pipe to the first and third method (<em>ols</em> and <em>lassoic</em>). We also change the default learning rate and number of estimators for gradient boosting (the 5th estimator).</p>
+<p>The weights determine how much each method contributes to the final stacking contribution. <em>lassoic</em> without <code>poly2</code> receives a weight of 0, while <em>lassoic</em> with <code>poly2</code> gets a positive weight.</p>
+<blockquote class="book-hint warning">
+You can verify that options are being passed on to scikit-learn correctly using, e.g.,
+<code>di e(pyopt1)</code> after estimation.
+</blockquote>
+<h3 id=alternative-syntax>
+Alternative Syntax
+<a class=anchor href=#alternative-syntax>#</a>
+</h3>
+<p>The above syntax becomes, admittedly, a bit difficult to read, especially with many methods and many options. We offer an alternative syntax for easier use with many base learners. Another advantage of this alternative syntax is that it doesn&rsquo;t impose a limit on the number of base learners, whereas the previous syntax only works with up to 10 base learners.</p>
+<pre tabindex=0><code>. pystacked medv crim-lstat if train                                     || ///
+                 m(ols) pipe(poly2)                                      || ///
+                 m(lassoic)                                              || ///
+                 m(lassoic) pipe(poly2)                                  || ///
+                 m(rf)                                                   || ///
+                 m(gradboost) opt(learning_rate(0.01) n_estimators(1000))   ///
+                 , type(regress) pyseed(123) 
+</code></pre><h3 id=changing-the-final-estimator>
+Changing the final estimator
+<a class=anchor href=#changing-the-final-estimator>#</a>
+</h3>
+<p>The default final learner of <code>pystacked</code>
+is non-negative least squares (NNLS) where the weights are standardized to sum to 1. The following example demonstrates why using NNLS is a good idea. Here we change the final estimator to ridge:</p>
+<pre tabindex=0><code>. pystacked medv crim-lstat if train                                      || ///
+                 m(ols) pipe(poly2)                                       || ///
+                 m(lassoic)                                               || ///
+                 m(lassoic) pipe(poly2)                                   || ///
+                 m(rf)                                                    || ///
+                 m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) 	 ///
+                 , type(regress) pyseed(123) finalest(ridge)
+
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0024167
+  lassoic        |     -0.2479425
+  lassoic        |      0.7035482
+  rf             |      0.5091350
+  gradboost      |      0.2330788
+
+</code></pre><p>The second base learner (<code>lassoic</code> without <code>poly2</code>) receives a negative weight and the total sum of weights is greater than 1. Thus, we might end up with more &ldquo;extreme&rdquo; predictions.</p>
+<h3 id=predictions>
+Predictions
+<a class=anchor href=#predictions>#</a>
+</h3>
+<p>In addition to the stacking predicted values, we can also get the predicted values of each base learner using the <code>transform</code> option:</p>
+<pre tabindex=0><code>. predict double yh, xb
+
+. predict double ytrans, transf
+
+. list yh ytrans* if _n &lt;= 5
+
+     +---------------------------------------------------------------------+
+     |        yh     ytrans1     ytrans2     ytrans3   ytrans4     ytrans5 |
+     |---------------------------------------------------------------------|
+  1. | 28.224864    24.16234   30.418286    30.14668    25.676   24.230348 |
+  2. | 23.247924   22.962887   25.708668   25.059641    22.454   20.273125 |
+  3. | 33.321977   31.672703    31.20616   31.444894    31.136    31.01379 |
+  4. | 33.348748   36.276995   29.749546   30.880321    31.214   31.065185 |
+  5. | 34.001815   36.277167   29.699732   30.733921    32.471   31.510242 |
+     +---------------------------------------------------------------------+
+</code></pre></article>
+<footer class=book-footer>
+<div class="flex flex-wrap justify-between">
+</div>
+<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+</footer>
+<div class=book-comments>
+</div>
+<label for=menu-control class="hidden book-menu-overlay"></label>
+</div>
+<aside class=book-toc>
+<div class=book-toc-content>
+<nav id=TableOfContents>
+<ul>
+<li><a href=#stacking-regression>Stacking regression</a>
+<ul>
+<li><a href=#alternative-syntax>Alternative Syntax</a></li>
+<li><a href=#changing-the-final-estimator>Changing the final estimator</a></li>
+<li><a href=#predictions>Predictions</a></li>
+</ul>
+</li>
+</ul>
+</nav>
+</div>
+</aside>
+</main>
+</body>
+</html>
