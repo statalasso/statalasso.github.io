@@ -1,0 +1,3 @@
+baseURL = 'https://statalasso.github.io/'
+languageCode = 'en-us'
+title = 'Stata ML Page'
