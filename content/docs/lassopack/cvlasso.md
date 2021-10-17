@@ -111,7 +111,7 @@ plotting feature is not supported if we also cross-validate over {{< katex >}}\a
 
 This produces the following graph:
 
-![](/_img/cvlasso.png#center)
+![](/img/cvlasso.png#center)
 
 The two vertical lines indicate {{< katex >}}\lambda_{lopt}{{< /katex >}} and {{< katex >}}\lambda_{lse}{{< /katex >}} (dashed line).
 

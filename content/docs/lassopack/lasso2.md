@@ -59,7 +59,7 @@ Stata's `line` command. In the example, `legend(off)` is used to suppress the le
 
 The resulting graph looks as follows:
 
-![](/_img/plotpath.png#center)
+![](/img/plotpath.png#center)
 
 To plot the coefficients against the $$\ell_1$$-norm, we can use:
 

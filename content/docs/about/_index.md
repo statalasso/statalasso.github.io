@@ -13,13 +13,13 @@ F Baum, Jan Ditzen, Martin Spindler, Victor Chernozhukov, Ben Jann, Di Liu, Said
 ## Authors
 
 [Achim Ahrens](https://pp.ethz.ch/people/achim-ahrens.html), Public Policy Group, ETH Zurich, Switzerland  
-![](/_img/aa_email.png) 
+![](/img/aa_email.png) 
      
 [Christian B Hansen](https://voices.uchicago.edu/christianhansen/), University of Chicago, USA  
-![](/_img/ch_email.png)
+![](/img/ch_email.png)
 
 [Mark E Schaffer](https://ideas.repec.org/e/psc51.html), Heriot-Watt University, UK  
-![](/_img/ms_email.png)
+![](/img/ms_email.png)
 
 ## Issues and questions
 
