@@ -54,11 +54,9 @@ The lasso is only variable selection consistent under the rather strong
 between predictors in the true model and predictors outside of the model (see Zhao &
 Yu, 2006; Meinshausen & Bühlmann, 2006).  Zou (2006) proposes the adaptive lasso
 which uses penalty loadings
-
 {{< katex >}}
-\hat\beta_{0,j}|^{-\theta}
+|\hat\beta_{0,j}|^{-\theta}
 {{< /katex >}}
-
 for {{< katex >}}j=1,...,p{{< /katex >}} where {{< katex >}}\hat\beta_{0,j}{{< /katex >}} is an initial estimator.  The adaptive lasso is variable-selection consistent for fixed {{< katex >}}p{{< /katex >}} under
 weaker assumptions than the standard lasso.  If {{< katex >}}p<N{{< /katex >}}, OLS can be used as the initial
 estimator.  Huang et al. (2008) suggest to use univariate OLS if {{< katex >}}p>N{{< /katex >}}.  Other initial

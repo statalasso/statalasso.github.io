@@ -25,7 +25,7 @@ into a final prediction to improve performance.  The currently-supported base le
 `pystacked` can also be used with a single base learner and, thus, provides an easy-to-use API
 for [scikit-learn](https://scikit-learn.org/stable/)'s machine learning algorithms.
 
-![](/_img/stacking.png#center)	
+![](/_img/stacking.png)	
 
 {{< hint warning >}} 
 `pystacked` has just been released (October 2021). Please try it out and let us know if you run into problems. Feedback welcome and appreciated.
