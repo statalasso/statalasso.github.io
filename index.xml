@@ -93,7 +93,7 @@ To load prostate cancer data:
       
       <guid>https://statalasso.github.io/docs/pystacked/getting_started/</guid>
       <description>Getting started #  Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and split the data in training/test sample.
+Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
 . clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
 . pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done.</description>
     </item>
@@ -122,7 +122,7 @@ Gradient boosting #  We load the example data set and split the data in training
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</guid>
-      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology proposed in Belloni et al., 2014. There is one issue we have to take into account: Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in the context of panel data.
+      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:</description>
     </item>
     

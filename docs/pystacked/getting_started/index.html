@@ -4,13 +4,13 @@
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Getting started #  Before we get into stacking, let&rsquo;s first use pystacked as a &ldquo;regular&rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and split the data in training/test sample.
+Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
 . clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&gt;.75 As an example, we run pystacked with gradient boosting:
 . pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Getting started" />
 <meta property="og:description" content="Getting started #  Before we get into stacking, let&rsquo;s first use pystacked as a &ldquo;regular&rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and split the data in training/test sample.
+Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
 . clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&gt;.75 As an example, we run pystacked with gradient boosting:
 . pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done." />
 <meta property="og:type" content="article" />
@@ -23,7 +23,18 @@ Gradient boosting #  We load the example data set and split the data in training
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.a8bdd81b4e963767f397cda064c8883fdf69fdc5c1654ee4e1f809768287345e.js" integrity="sha256-qL3YG06WN2fzl82gZMiIP99p/cXBZU7k4fgJdoKHNF4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.c724703ab72456aa0d4e7994f9e868d4abf7c18f6506f9c479bd0ef611a0510b.js" integrity="sha256-xyRwOrckVqoNTnmU&#43;eho1Kv3wY9lBvnEeb0O9hGgUQs=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -630,7 +641,7 @@ program for machine learning.</p>
   Gradient boosting
   <a class="anchor" href="#gradient-boosting">#</a>
 </h3>
-<p>We load the example data set and split the data in training/test sample.</p>
+<p>We load the example data set and randomly split the data in training/test sample.</p>
 <pre tabindex="0"><code>. clear all
 . insheet using ///
                  https://statalasso.github.io/dta/housing.csv,  ///
@@ -654,13 +665,13 @@ need to use the option <code>pyseed(42)</code>.
 </blockquote>
 
 <p>We use the <code>type</code> option to indicate that we consider a regression task rather than a classification task. <code>method(gradboost)</code> selects gradient boosting with regression trees. We will later see that we can specify more than one learner in <code>method()</code>.</p>
-<p>The output isn&rsquo;t particularly informative since we only consider one method. Yet, we have fitted 100 boosted trees in the background. We can use <code>predict</code> in the Stata-typical way to obtain predicted values:</p>
+<p>The output isn&rsquo;t particularly informative since&ndash;for now&ndash;we only consider one method. Yet, <code>pystacked</code> has fitted 100 boosted trees in the background. We can use <code>predict</code> in the Stata-typical way to obtain predicted values:</p>
 <pre tabindex="0"><code>. predict double ygb if !train
 </code></pre><h3 id="options">
   Options
   <a class="anchor" href="#options">#</a>
 </h3>
-<p>We pass on options to scitkit-learn and fine-tune our gradient booster. For this, we use the
+<p>We can pass options to scitkit-learn and fine-tune our gradient booster. For this, we use the
 <code>cmdopt1()</code> option. The options are listed in the help file and on the scikit-learn documentation
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">here</a>.
 We need to use <code>cmdopt1()</code> because <em>gradboost</em> is the first (and only) method we are using with
@@ -670,8 +681,8 @@ We need to use <code>cmdopt1()</code> because <em>gradboost</em> is the first (a
 Please study the scikit-learn documentation carefully when using <code>pystacked</code>.
 </blockquote>
 
-<p>For demonstation, we try two things: first, we reduce the learning rate
-from 0.1 to 0.01, and secondly we in addition increase the number of trees to 1000.</p>
+<p>For demonstation, we try two things: (1) we reduce the learning rate
+from 0.1 to 0.01, and (2) we reduce the learning rate and, in addition, increase the number of trees to 1000.</p>
 <pre tabindex="0"><code>. pystacked medv crim-lstat if train, ///
        type(regress) pyseed(243) method(gradboost) ///
        cmdopt1(learning_rate(.01))
@@ -692,12 +703,12 @@ from 0.1 to 0.01, and secondly we in addition increase the number of trees to 10
     rgb_sq |        394    20.08567    83.25935   8.54e-06   830.1214
    rgb2_sq |        394    32.50195    87.89791   .0010292   780.5784
    rgb3_sq |        394    19.92709    83.60578   .0000584   828.6569
-</code></pre><p>Reducing the learning rate without increasing the number of trees deteriorate prediction performance; yet, if we also increase the number of trees, we might be able to improve performance.</p>
+</code></pre><p>Reducing the learning rate without increasing the number of trees has deteriorated prediction performance; yet, if we also increase the number of trees, we might be able to improve prediction performance.</p>
 <h3 id="pipelines">
   Pipelines
   <a class="anchor" href="#pipelines">#</a>
 </h3>
-<p>We can make use of pipelines to pre-process our predictors. This will become especially useful in the context of stacking when we want to pass 2nd-order polynomials to one method, but not the other. Here, we use lasso with and without the <code>poly2</code> pipeline.</p>
+<p>We can make use of pipelines to pre-process our predictors. This will become especially useful in the context of stacking when we want to pass 2nd-order polynomials to one method, but not the other. Here, we use lasso with and without the <code>poly2</code> pipeline:</p>
 <pre tabindex="0"><code>. pystacked medv crim-lstat if train, ///
        type(regress) pyseed(243) method(lassocv)  
 . predict double ylasso1 if !train

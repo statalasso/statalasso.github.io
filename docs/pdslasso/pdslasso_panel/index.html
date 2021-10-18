@@ -3,11 +3,11 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology proposed in Belloni et al., 2014. There is one issue we have to take into account: Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in the context of panel data.
+<meta name="description" content="Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Panel FE" />
-<meta property="og:description" content="Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology proposed in Belloni et al., 2014. There is one issue we have to take into account: Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in the context of panel data.
+<meta property="og:description" content="Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" /><meta property="article:section" content="docs" />
@@ -19,7 +19,18 @@ For demonstation, we consider the nlswork example data set:" />
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.a8bdd81b4e963767f397cda064c8883fdf69fdc5c1654ee4e1f809768287345e.js" integrity="sha256-qL3YG06WN2fzl82gZMiIP99p/cXBZU7k4fgJdoKHNF4=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.c724703ab72456aa0d4e7994f9e868d4abf7c18f6506f9c479bd0ef611a0510b.js" integrity="sha256-xyRwOrckVqoNTnmU&#43;eho1Kv3wY9lBvnEeb0O9hGgUQs=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -599,7 +610,7 @@ https://github.com/alex-shpak/hugo-book
   Panel FE and Clustering
   <a class="anchor" href="#panel-fe-and-clustering">#</a>
 </h2>
-<p><code>pdslasso</code> and <code>ivlasso</code> can also be applied to fixed effect panel models using the methodology proposed in <a href="https://doi.org/10.1080/07350015.2015.1102733">Belloni et al., 2014</a>. There is one issue we have to take into account: Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in the context of panel data.</p>
+<p><code>pdslasso</code> and <code>ivlasso</code> can also be applied to fixed effect panel models using the methodology of <a href="https://doi.org/10.1080/07350015.2015.1102733">Belloni et al., 2014</a>. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.</p>
 <p>For demonstation, we consider the <code>nlswork</code> example data set:</p>
 <pre tabindex="0"><code>. webuse nlswork, clear
 . xtset idcode year

@@ -13,7 +13,7 @@
       
       <guid>https://statalasso.github.io/docs/pystacked/getting_started/</guid>
       <description>Getting started #  Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and split the data in training/test sample.
+Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
 . clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
 . pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done.</description>
     </item>

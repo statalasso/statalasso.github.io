@@ -33,7 +33,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</guid>
-      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology proposed in Belloni et al., 2014. There is one issue we have to take into account: Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in the context of panel data.
+      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:</description>
     </item>
     
