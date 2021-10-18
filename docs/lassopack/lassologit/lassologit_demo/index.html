@@ -19,7 +19,7 @@ Predictors v1-v48 percentage of words in the e-mail that match a specific word, 
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a8bdd81b4e963767f397cda064c8883fdf69fdc5c1654ee4e1f809768287345e.js" integrity="sha256-qL3YG06WN2fzl82gZMiIP99p/cXBZU7k4fgJdoKHNF4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -658,8 +658,20 @@ a list of predictors:</p>
 <pre><code>. lassologit v58 v1-v57
 </code></pre>
 <p>The output of lassologit shows the penalty levels (<code>lambda</code>), the number of
-predictors included (<code>s</code>), the $$\ell_1$$ norm, one information criterion ($$EBIC$$ by
-default), McFadden&rsquo;s Pseudo-$$R^2$$ and, in the last column,
+predictors included (<code>s</code>), the 
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(\ell_1\)
+</span>
+ norm, one information criterion (<span>
+  \(EBIC\)
+</span>
+ by
+default), McFadden&rsquo;s Pseudo-<span>
+  \(R^2\)
+</span>
+ and, in the last column,
 which predictors are included/removed
 from the model.</p>
 <p>By default, one line per <em>knot</em> is shown. Knots are points at which predictors
@@ -695,13 +707,22 @@ add <code>postresults</code>:</p>
   Cross-validation with cvlassologit
   <a class="anchor" href="#cross-validation-with-cvlassologit">#</a>
 </h3>
-<p><code>cvlassologit</code> implements $$K$$-fold cross-validation where the data is by default
+<p><code>cvlassologit</code> implements <span>
+  \(K\)
+</span>
+-fold cross-validation where the data is by default
 randomly partitioned.</p>
-<p>Here, we use $$K=3$$ and <code>seed(123)</code> to set the seed for reproducibility.  (Be
+<p>Here, we use <span>
+  \(K=3\)
+</span>
+ and <code>seed(123)</code> to set the seed for reproducibility.  (Be
 patient, this takes a minute.)</p>
 <pre><code>. cvlassologit v58 v1-v57, nfolds(3) seed(123)
 </code></pre>
-<p>The output shows the prediction performance measured by deviance for each $$\lambda$$
+<p>The output shows the prediction performance measured by deviance for each <span>
+  \(\lambda\)
+</span>
+
 value.  To estimate the model selected by cross-validation we can specify <code>lopt</code>
 or <code>lse</code> using the replay syntax.</p>
 <pre><code>. cvlassologit, lopt

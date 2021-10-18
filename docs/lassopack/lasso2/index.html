@@ -21,7 +21,7 @@ To load prostate cancer data:
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.a8bdd81b4e963767f397cda064c8883fdf69fdc5c1654ee4e1f809768287345e.js" integrity="sha256-qL3YG06WN2fzl82gZMiIP99p/cXBZU7k4fgJdoKHNF4=" crossorigin="anonymous"></script>
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -601,13 +601,6 @@ https://github.com/alex-shpak/hugo-book
   <ul>
     <li><a href="#load-data">Load data</a></li>
     <li><a href="#general-demonstration">General demonstration</a></li>
-    <li><a href="#plotting">Plotting</a></li>
-    <li><a href="#the-lambda-option">The lambda() option</a></li>
-    <li><a href="#estimators">Estimators</a></li>
-    <li><a href="#information-criteria">Information criteria</a></li>
-    <li><a href="#predicted-values">Predicted values</a></li>
-    <li><a href="#adaptive-lasso">Adaptive lasso</a></li>
-    <li><a href="#more">More</a></li>
   </ul>
 </nav>
 
@@ -653,221 +646,312 @@ by a list of predictors.</p>
      9|  41    3.95993     9     1.83346    -35.69248   0.6567  | Added lcp.
 Use 'long' option for full output. Type e.g. 'lasso2, lic(ebic)' to run the model selected by EBIC.
 </code></pre>
-<p><code>lasso2</code> obtains the solution for a list of $$\lambda$$ values (see third column).
-As $$\lambda$$ decreases, predictors are added to the model. The last column on the right
-indicates which predictors enter or leave the active set.</p>
-<h2 id="plotting">
-  Plotting
-  <a class="anchor" href="#plotting">#</a>
-</h2>
-<p>We can plot the <em>coefficient path</em> using <code>plotpath()</code>. The option accepts <code>lnlambda</code>,
-<code>lambda</code> and <code>norm</code>, which asks Stata to plot the coefficient estimates
-against $$\ln\lambda$$, $$\lambda$$ or the $$\ell_1$$-norm, respectively.</p>
-<p>For example, to plot the coefficients against $$\ln\lambda$$:</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-         plotpath(lnlambda) ///
-         plotopt(legend(off)) ///
-         plotlabel
-</code></pre>
-<p><code>plotopt()</code> allows to specify additional plotting options that are passed on to
-Stata&rsquo;s <code>line</code> command. In the example, <code>legend(off)</code> is used to suppress the legend.
-<code>plotlabel</code> triggers the display of variable labels next to the line.</p>
-<p>The resulting graph looks as follows:</p>
-<p><img src="/img/plotpath.png#center" alt="" /></p>
-<p>To plot the coefficients against the $$\ell_1$$-norm, we can use:</p>
-<pre><code>. lasso2, plotpath(norm) ///
-      plotlabel ///
-      plotopt(legend(off))
-</code></pre>
-<p>By omitting the variable names (before the comma),
-we make use of the <em>replay syntax</em>.
-<code>lasso2</code> uses the previous <code>lasso2</code> results
+<p><code>lasso2</code> obtains the solution for a list of <span>
+  \(\lambda&lt;span&gt;
+  \( values (see third column). 
+As &amp;lt;span&amp;gt;
+  \(\lambda&amp;amp;lt;span&amp;amp;gt;
+  \( decreases, predictors are added to the model. The last column on the right 
+indicates which predictors enter or leave the active set. 
+
+## Plotting
+
+We can plot the *coefficient path* using `plotpath()`. The option accepts `lnlambda`,
+`lambda` and `norm`, which asks Stata to plot the coefficient estimates
+against &amp;amp;amp;lt;span&amp;amp;amp;gt;
+  \(\ln\lambda&amp;amp;amp;amp;lt;span&amp;amp;amp;amp;gt;
+  \(, &amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;gt;
+  \(\lambda&amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;gt;
+  \( or the &amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\ell_1&amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(-norm, respectively.
+
+For example, to plot the coefficients against &amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\ln\lambda&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(:
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	         plotpath(lnlambda) ///
+	         plotopt(legend(off)) ///
+	         plotlabel
+
+`plotopt()` allows to specify additional plotting options that are passed on to
+Stata&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#39;s `line` command. In the example, `legend(off)` is used to suppress the legend. 
+`plotlabel` triggers the display of variable labels next to the line.
+
+The resulting graph looks as follows:
+
+![](/img/plotpath.png#center)
+
+To plot the coefficients against the &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\ell_1&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(-norm, we can use:
+
+	. lasso2, plotpath(norm) ///
+		  plotlabel ///
+		  plotopt(legend(off))
+
+By omitting the variable names (before the comma), 
+we make use of the *replay syntax*. 
+`lasso2` uses the previous `lasso2` results 
 which avoids time-consuming re-estimation.
-This only works if <code>lasso2</code> results are in memory.</p>
-<p>This creates the following graph:</p>
-<p>![]({{ &ldquo;/_img/plotpath_norm.png&rdquo; }}){:height=&ldquo;70%&rdquo; width=&ldquo;70%&quot;}</p>
-<h2 id="the-lambda-option">
-  The lambda() option
-  <a class="anchor" href="#the-lambda-option">#</a>
-</h2>
-<p>We can use the <code>lambda()</code> option to estimate the model that
-corresponds to a specific value of $$\lambda$$.</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-     lambda(10)
+This only works if `lasso2` results are in memory.
 
----------------------------------------------------
-     Selected |           Lasso   Post-est OLS
-------------------+--------------------------------
-       lcavol |       0.5000819      0.5234981
-      lweight |       0.5144276      0.6152349
-          age |      -0.0036627     -0.0190343
-         lbph |       0.0468469      0.0954908
-          svi |       0.5695171      0.6358643
-        pgg45 |       0.0017981      0.0035248
-------------------+--------------------------------
-   Partialled-out*|
-------------------+--------------------------------
-        _cons |      -0.0014767      0.5214696
----------------------------------------------------
-</code></pre>
-<p>The output shows the lasso and post-estimation OLS estimates
-corresponding to $$\lambda=10$$.
-However, note that there is no justification for using $$\lambda=10$$
-over any other positive value. To pick the &ldquo;optimal&rdquo; value for $$\lambda$$,
-we can use cross-validation (see <code>cvlasso</code>), theory-driven
-penalization (<code>rlasso</code>) or information criteria as discussed below.</p>
-<h2 id="estimators">
-  Estimators
-  <a class="anchor" href="#estimators">#</a>
-</h2>
-<p>The default estimator of <code>lasso2</code> is the lasso, which corresponds to <code>alpha(1)</code>.
-The <code>alpha()</code> option controls the elastic net parameter, which determines
-the relative contribution of $$\ell_1$$ (lasso-type) to $$\ell_2$$ (ridge-type) penalization.</p>
-<p>For ridge regression, use <code>alpha(0)</code>:</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-         alpha(0) ///
-     lambda(500)
----------------------------------------------------
-     Selected |           Ridge   Post-est OLS
-------------------+--------------------------------
-       lcavol |       0.1497346      0.5643413
-      lweight |       0.2497274      0.6220198
-          age |       0.0016636     -0.0212482
-         lbph |       0.0294061      0.0967125
-          svi |       0.2913161      0.7616733
-          lcp |       0.0687956     -0.1060509
-      gleason |       0.0771692      0.0492279
-        pgg45 |       0.0023278      0.0044575
-------------------+--------------------------------
-   Partialled-out*|
-------------------+--------------------------------
-        _cons |       0.6322244      0.1815609
----------------------------------------------------
-</code></pre>
-<p>In contrast to the lasso, the ridge includes all predictors in the model.
-It does not perform variable selection, even if $$\lambda$$ is large,
-whereas the elastic net can
-yield sparse solutions even when $$\alpha$$ is small:</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-         alpha(0.1) ///
-     lambda(500)
----------------------------------------------------
-     Selected |     Elastic net   Post-est OLS
-              |   (alpha=0.100)
-------------------+--------------------------------
-       lcavol |       0.1222143      0.5378499
-      lweight |       0.1236962      0.6620155
-          svi |       0.1854247      0.6991923
-          lcp |       0.0424339     -0.0813594
-      gleason |       0.0116789      0.0322875
-        pgg45 |       0.0008686      0.0036868
-------------------+--------------------------------
-   Partialled-out*|
-------------------+--------------------------------
-        _cons |       1.7319371     -1.1240093
----------------------------------------------------
-</code></pre>
-<p>Lastly, to employ square-root lasso, use the <code>sqrt</code> option:</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-         sqrt ///
-     lambda(20)
-</code></pre>
-<p>Note that the <code>alpha()</code> and <code>sqrt</code> option are incompatible.</p>
-<h2 id="information-criteria">
-  Information criteria
-  <a class="anchor" href="#information-criteria">#</a>
-</h2>
-<p>To select the &ldquo;best&rdquo; value of lambda,
-<code>lasso2</code> offers four information criteria:</p>
-<ul>
-<li>Akaike Information Criterion ($$AIC$$),</li>
-<li>Bayesian Information Criterion ($$BIC$$),</li>
-<li>Extended Bayesian Information Criterion ($$EBIC$$)</li>
-<li>and Corrected Akaike Information Criterion ($$AICc$$)</li>
-</ul>
-<p>By default, the $$EBIC$$ is shown in the output.</p>
-<p>To estimate the model corresponding to the minimum information criterion, the
-<code>lic()</code> is used which accepts <code>aic</code>, <code>bic</code>, <code>ebic</code> and <code>aicc</code>. <code>lic()</code> can
-either be specified in the first <code>lasso2</code> call or using the replay syntax
-(to avoid re-estimation).</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-     lic(aic)
-</code></pre>
-<p>The same can be achieved in two steps using the replay syntax:</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
-. lasso2, lic(aic)
+This creates the following graph:
 
-Use lambda=7.594796178345335 (selected by AIC).
+![]({&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/img/plotpath_norm.png#center)
 
----------------------------------------------------
-     Selected |           Lasso   Post-est OLS
-------------------+--------------------------------
-       lcavol |       0.5057140      0.5234981
-      lweight |       0.5386738      0.6152349
-          age |      -0.0073599     -0.0190343
-         lbph |       0.0585468      0.0954908
-          svi |       0.5854749      0.6358643
-        pgg45 |       0.0022134      0.0035248
-------------------+--------------------------------
-   Partialled-out*|
-------------------+--------------------------------
-        _cons |       0.1243026      0.5214696
----------------------------------------------------
-</code></pre>
-<p>As indicated in the output, the AIC selects <code>lambda=7.59</code>.</p>
-<h2 id="predicted-values">
-  Predicted values
-  <a class="anchor" href="#predicted-values">#</a>
-</h2>
-<p>The <code>predict</code> post-estimation command allows to return residuals and predicted values.
-In the output below, <code>xbhat1</code> is generated by re-estimating the model for $$\lambda=10$$.
-The <code>noisily</code> option triggers the display of the estimation results.
-<code>xbhat2</code> is generated by linear approximation using the two beta estimates closest to <code>lambda=10</code>.</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
-. cap drop xbhat1
-. predict double xbhat1, xb l(10) noisily
-. cap drop xbhat2
-. predict double xbhat2, xb l(10) approx
-</code></pre>
-<p>Alternatively, we can explicitly run the model using <code>lambda(10)</code>.  If <code>lasso2</code> is called with a scalar
-$$\lambda$$ value, the subsequent <code>predict</code> command requires no <code>lambda()</code> option.</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-     lambda(10)
-. cap drop xbhat3
-. predict double xbhat3, xb
-</code></pre>
-<p>All three methods yield the same results.  However note that the linear approximation
-is only exact for the lasso which is piecewise linear.</p>
-<h2 id="adaptive-lasso">
-  Adaptive lasso
-  <a class="anchor" href="#adaptive-lasso">#</a>
-</h2>
-<p>The adaptive lasso relies on an initial estimator to calculate the penalty loadings.
-By default, <code>lasso2</code> uses OLS as the initial
+## The lambda() option
+
+We can use the `lambda()` option to estimate the model that
+corresponds to a specific value of 
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;link rel=&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;stylesheet&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34; href=&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/katex/katex.min.css&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34; /&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;script defer src=&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/katex/katex.min.js&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/script&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;script defer src=&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;/katex/auto-render.min.js&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34; onload=&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;renderMathInElement(document.body);&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/script&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+. 
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+		 lambda(10)
+
+	---------------------------------------------------
+		 Selected |           Lasso   Post-est OLS
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		   lcavol |       0.5000819      0.5234981
+		  lweight |       0.5144276      0.6152349
+		      age |      -0.0036627     -0.0190343
+		     lbph |       0.0468469      0.0954908
+		      svi |       0.5695171      0.6358643
+		    pgg45 |       0.0017981      0.0035248
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+	   Partialled-out*|
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		    _cons |      -0.0014767      0.5214696
+	---------------------------------------------------
+
+The output shows the lasso and post-estimation OLS estimates
+corresponding to &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda=10\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+.
+However, note that there is no justification for using &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda=10\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+
+over any other positive value. To pick the &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;optimal&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34; value for &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+, 
+we can use cross-validation (see `cvlasso`), theory-driven
+penalization (`rlasso`) or information criteria as discussed below. 
+
+## Estimators 
+
+The default estimator of `lasso2` is the lasso, which corresponds to `alpha(1)`. 
+The `alpha()` option controls the elastic net parameter, which determines
+the relative contribution of &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\ell_1\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ (lasso-type) to &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\ell_2\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ (ridge-type) penalization.
+
+For ridge regression, use `alpha(0)`:
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	         alpha(0) ///
+		 lambda(500)
+	---------------------------------------------------
+		 Selected |           Ridge   Post-est OLS
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		   lcavol |       0.1497346      0.5643413
+		  lweight |       0.2497274      0.6220198
+		      age |       0.0016636     -0.0212482
+		     lbph |       0.0294061      0.0967125
+		      svi |       0.2913161      0.7616733
+		      lcp |       0.0687956     -0.1060509
+		  gleason |       0.0771692      0.0492279
+		    pgg45 |       0.0023278      0.0044575
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+	   Partialled-out*|
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		    _cons |       0.6322244      0.1815609
+	---------------------------------------------------
+
+
+In contrast to the lasso, the ridge includes all predictors in the model. 
+It does not perform variable selection, even if &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ is large,
+whereas the elastic net can 
+yield sparse solutions even when &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\alpha\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ is small:
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	         alpha(0.1) ///
+		 lambda(500)
+	---------------------------------------------------
+		 Selected |     Elastic net   Post-est OLS
+		          |   (alpha=0.100)
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		   lcavol |       0.1222143      0.5378499
+		  lweight |       0.1236962      0.6620155
+		      svi |       0.1854247      0.6991923
+		      lcp |       0.0424339     -0.0813594
+		  gleason |       0.0116789      0.0322875
+		    pgg45 |       0.0008686      0.0036868
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+	   Partialled-out*|
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		    _cons |       1.7319371     -1.1240093
+	---------------------------------------------------
+
+
+Lastly, to employ square-root lasso, use the `sqrt` option:
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	         sqrt ///
+		 lambda(20)
+
+Note that the `alpha()` and `sqrt` option are incompatible.
+
+## Information criteria
+
+To select the &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34;best&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#34; value of lambda, 
+`lasso2` offers four information criteria: 
+- Akaike Information Criterion (&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(AIC\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+),
+- Bayesian Information Criterion (&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(BIC\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+),
+- Extended Bayesian Information Criterion (&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(EBIC\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+) 
+- and Corrected Akaike Information Criterion (&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(AICc\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+)
+
+By default, the &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(EBIC\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ is shown in the output.
+
+To estimate the model corresponding to the minimum information criterion, the 
+`lic()` is used which accepts `aic`, `bic`, `ebic` and `aicc`. `lic()` can 
+either be specified in the first `lasso2` call or using the replay syntax 
+(to avoid re-estimation).
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+		 lic(aic)
+	
+The same can be achieved in two steps using the replay syntax:
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
+	. lasso2, lic(aic)
+
+	Use lambda=7.594796178345335 (selected by AIC).
+
+	---------------------------------------------------
+		 Selected |           Lasso   Post-est OLS
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		   lcavol |       0.5057140      0.5234981
+		  lweight |       0.5386738      0.6152349
+		      age |      -0.0073599     -0.0190343
+		     lbph |       0.0585468      0.0954908
+		      svi |       0.5854749      0.6358643
+		    pgg45 |       0.0022134      0.0035248
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+	   Partialled-out*|
+	------------------&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;#43;--------------------------------
+		    _cons |       0.1243026      0.5214696
+	---------------------------------------------------
+
+As indicated in the output, the AIC selects `lambda=7.59`.
+
+## Predicted values
+
+The `predict` post-estimation command allows to return residuals and predicted values. 
+In the output below, `xbhat1` is generated by re-estimating the model for &amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda=10\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+.
+The `noisily` option triggers the display of the estimation results.
+`xbhat2` is generated by linear approximation using the two beta estimates closest to `lambda=10`.
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45
+	. cap drop xbhat1
+	. predict double xbhat1, xb l(10) noisily
+	. cap drop xbhat2
+	. predict double xbhat2, xb l(10) approx
+
+Alternatively, we can explicitly run the model using `lambda(10)`.  If `lasso2` is called with a scalar
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+  \(\lambda\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;
+ value, the subsequent `predict` command requires no `lambda()` option.
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+		 lambda(10)
+	. cap drop xbhat3
+	. predict double xbhat3, xb
+
+All three methods yield the same results.  However note that the linear approximation
+is only exact for the lasso which is piecewise linear.
+
+## Adaptive lasso
+
+The adaptive lasso relies on an initial estimator to calculate the penalty loadings.
+ By default, `lasso2` uses OLS as the initial
 estimator as originally suggested by Zou (2006).  If the number of parameters exceeds
-the numbers of observations, univariate OLS is used; see Huang et al. (2008).</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-         adaptive
-. mat list e(Ups)
-</code></pre>
-<p>See the OLS estimates for comparison.</p>
-<pre><code>. reg lpsa lcavol lweight age lbph svi lcp gleason pgg45
-</code></pre>
-<p>Other initial estimators such as ridge regression are possible.</p>
-<pre><code>. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-     l(10) alpha(0)
-. mat bhat_ridge = e(b)
-. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, 
-     adaptive adaloadings(bhat_ridge)
-. mat list e(Ups)
-</code></pre>
-<h2 id="more">
-  More
-  <a class="anchor" href="#more">#</a>
-</h2>
-<p>Please check the help file for more information and examples.</p>
-<pre><code>. help lasso2
-</code></pre>
+the numbers of observations, univariate OLS is used; see Huang et al. (2008).
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+	         adaptive
+	. mat list e(Ups)
+
+See the OLS estimates for comparison.
+
+	. reg lpsa lcavol lweight age lbph svi lcp gleason pgg45
+
+Other initial estimators such as ridge regression are possible.
+
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+		 l(10) alpha(0)
+	. mat bhat_ridge = e(b)
+	. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45, 
+		 adaptive adaloadings(bhat_ridge)
+	. mat list e(Ups)
+
+## More
+
+Please check the help file for more information and examples.
+
+	. help lasso2\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;amp;gt;\)
+&amp;amp;amp;amp;lt;/span&amp;amp;amp;amp;gt;\)
+&amp;amp;amp;lt;/span&amp;amp;amp;gt;\)
+&amp;amp;lt;/span&amp;amp;gt;\)
+&amp;lt;/span&amp;gt;\)
+&lt;/span&gt;\)
+</span>
+</p>
 </article>
  
       
@@ -911,13 +995,6 @@ the numbers of observations, univariate OLS is used; see Huang et al. (2008).</p
   <ul>
     <li><a href="#load-data">Load data</a></li>
     <li><a href="#general-demonstration">General demonstration</a></li>
-    <li><a href="#plotting">Plotting</a></li>
-    <li><a href="#the-lambda-option">The lambda() option</a></li>
-    <li><a href="#estimators">Estimators</a></li>
-    <li><a href="#information-criteria">Information criteria</a></li>
-    <li><a href="#predicted-values">Predicted values</a></li>
-    <li><a href="#adaptive-lasso">Adaptive lasso</a></li>
-    <li><a href="#more">More</a></li>
   </ul>
 </nav>
 
