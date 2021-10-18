@@ -1,324 +1,796 @@
-<!doctype html><html lang=en dir=ltr>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Regularized regression #  lasso2 solves the elastic net problem
-  \[\frac{1}{N} (y_i - x_i'\beta)^2 + \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 + \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
-  \((y_i - x_i'\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization.">
-<meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Regularized regression">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Regularized regression #  lasso2 solves the elastic net problem
+  \[\frac{1}{N} (y_i - x_i&#39;\beta)^2 &#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &#43; \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
+  \((y_i - x_i&#39;\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Regularized regression" />
 <meta property="og:description" content="Regularized regression #  lasso2 solves the elastic net problem
-  \[\frac{1}{N} (y_i - x_i'\beta)^2 + \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 + \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
-  \((y_i - x_i'\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/regularized_reg/"><meta property="article:section" content="docs">
+  \[\frac{1}{N} (y_i - x_i&#39;\beta)^2 &#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &#43; \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
+  \((y_i - x_i&#39;\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/regularized_reg/" /><meta property="article:section" content="docs" />
+
+
+
 <title>Regularized regression | Stata ML Page</title>
-<link rel=manifest href=/manifest.json>
-<link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
-<script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E+4I=" crossorigin=anonymous></script>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
 </head>
-<body dir=ltr>
-<input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control>
-<main class="container flex">
-<aside class=book-menu>
-<div class=book-menu-content>
-<nav>
-<h2 class=book-brand>
-<a class="flex align-center" href=/><span>Stata ML Page</span>
-</a>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
 </h2>
-<div class=book-search>
-<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
-<div class="book-search-spinner hidden"></div>
-<ul id=book-search-results></ul>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
 </div>
-<ul>
-<li class=book-section-flat>
-<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
-<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/ class=active>Regularized regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
-</li>
-<li>
-<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
-<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
-</li>
-<li>
-<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
-<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
-<a role=button>Help files</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
-<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
-<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/about/>About</a>
-<ul>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/papers/>Paper</a>
-<ul>
-</ul>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle" checked />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class=" active">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </nav>
-<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Regularized regression</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
 </div>
-</aside>
-<div class=book-page>
-<header class=book-header>
-<div class="flex align-center justify-between">
-<label for=menu-control>
-<img src=/svg/menu.svg class=book-icon alt=Menu>
-</label>
-<strong>Regularized regression</strong>
-<label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
-</label>
-</div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#regularized-regression>Regularized regression</a></li>
-<li><a href=#how-to-select-lambda>How to select lambda</a></li>
-</ul>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#regularized-regression">Regularized regression</a></li>
+    <li><a href="#how-to-select-lambda">How to select lambda</a></li>
+  </ul>
 </nav>
-</aside>
-</header>
-<article class=markdown><h2 id=regularized-regression>
-Regularized regression
-<a class=anchor href=#regularized-regression>#</a>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="regularized-regression">
+  Regularized regression
+  <a class="anchor" href="#regularized-regression">#</a>
 </h2>
 <p><code>lasso2</code> solves the elastic net problem</p>
-<link rel=stylesheet href=/katex/katex.min.css>
-<script defer src=/katex/katex.min.js></script>
-<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
-\[\frac{1}{N} (y_i - x_i'\beta)^2 + \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 + \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]
+
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \[\frac{1}{N} (y_i - x_i&#39;\beta)^2 &#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &#43; 	\frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]
 </span>
+
 <p>where</p>
 <ul>
 <li><span>
-\((y_i - x_i'\beta)^2\)
+  \((y_i - x_i&#39;\beta)^2\)
 </span>
-is the residual sum of squares (RSS),</li>
+ is the residual sum of squares (RSS),</li>
 <li><span>
-\(\beta\)
+  \(\beta\)
 </span>
-is a <span>
-\(p\)
+ is a <span>
+  \(p\)
 </span>
 -dimensional parameter vector,</li>
 <li><span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-is the overall penalty level, which controls the general degree of penalization,</li>
+ is the overall penalty level, which controls the general degree of penalization,</li>
 <li><span>
-\(\alpha\)
+  \(\alpha\)
 </span>
-is the elastic net parameter, which determines the relative contribution of <span>
-\(\ell_1\)
+ is the elastic net parameter, which determines the relative contribution of <span>
+  \(\ell_1\)
 </span>
-(lasso-type) to <span>
-\(\ell_2\)
+ (lasso-type) to <span>
+  \(\ell_2\)
 </span>
-(ridge-type) penalization. <span>
-\(\alpha=1\)
+  (ridge-type) penalization. <span>
+  \(\alpha=1\)
 </span>
-corresponds to the lasso; <span>
-\(\alpha=0\)
+ corresponds to the lasso; <span>
+  \(\alpha=0\)
 </span>
-is ridge regression.</li>
+ is ridge regression.</li>
 <li><span>
-\(\Psi\)
+  \(\Psi\)
 </span>
-is a <span>
-\(p\)
+ is a <span>
+  \(p\)
 </span>
-by <span>
-\(p\)
+ by <span>
+  \(p\)
 </span>
-diagonal matrix of predictor-specific penalty loadings.</li>
+ diagonal matrix of predictor-specific penalty loadings.</li>
 <li><span>
-\(N\)
+  \(N\)
 </span>
-is the number of observations</li>
+ is the number of observations</li>
 </ul>
 <p>In addition, <code>lasso2</code> estimates the square-root lasso (sqrt-lasso) estimator,
 which is defined as the solution to the following objective function:</p>
 <span>
-\[\sqrt{\frac{1}{N} (y_i - x_i'\beta)^2} + \frac{\lambda}{N} \alpha ||\Psi\beta ||_1\]
+  \[\sqrt{\frac{1}{N} (y_i - x_i&#39;\beta)^2} &#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1\]
 </span>
-<p><code>lasso2</code> implements the elastic net and sqrt-lasso using coordinate descent algorithms. The algorithm (then
-referred to as &ldquo;shooting&rdquo;) was first proposed by <a href=https://doi.org/10.2307/1390712>Fu (1998)</a> for the lasso, and by <a href=http://hdl.handle.net/1887/12096>Van der Kooij (2007)</a> for the elastic net. <a href=https://doi.org/10.1093/biomet/asr043>Belloni et al. (2011)</a> implement the coordinate descent for the sqrt-lasso, and have kindly provided Matlab code.</p>
+
+<p><code>lasso2</code> implements the elastic net and sqrt-lasso using coordinate descent algorithms.  The algorithm (then
+referred to as &ldquo;shooting&rdquo;) was first proposed by <a href="https://doi.org/10.2307/1390712">Fu (1998)</a> for the lasso, and by <a href="http://hdl.handle.net/1887/12096">Van der Kooij (2007)</a> for the elastic net.  <a href="https://doi.org/10.1093/biomet/asr043">Belloni et al. (2011)</a> implement the coordinate descent for the sqrt-lasso, and have kindly provided  Matlab code.</p>
 <p>Penalized regression methods, such as the elastic net and the sqrt-lasso, rely on tuning parameters that control
-the degree and type of penalization. The estimation methods implemented in <code>lasso2</code> use two tuning parameters:
+the degree and type of penalization.  The estimation methods implemented in <code>lasso2</code> use two tuning parameters:
 <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-and <span>
-\(\alpha\)
+ and <span>
+  \(\alpha\)
 </span>
 .  </p>
-<h2 id=how-to-select-lambda>
-How to select lambda
-<a class=anchor href=#how-to-select-lambda>#</a>
+<h2 id="how-to-select-lambda">
+  How to select lambda
+  <a class="anchor" href="#how-to-select-lambda">#</a>
 </h2>
 <p><strong>lassopack</strong> offers three approaches for selecting the &ldquo;optimal&rdquo; <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-and <span>
-\(\alpha\)
+ and <span>
+  \(\alpha\)
 </span>
-value, which are implemented in <code>lasso2</code>, <code>cvlasso</code> and <code>rlasso</code>, respectively.</p>
+ value, which are implemented in <code>lasso2</code>, <code>cvlasso</code> and <code>rlasso</code>, respectively.</p>
 <ol>
 <li><em>Cross-validation:</em> The penalty level <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-may be chosen by cross-validation in order to optimize out-of-sample prediction
-performance. <span>
-\(K\)
+ may be chosen by cross-validation in order to optimize out-of-sample prediction
+performance.  <span>
+  \(K\)
 </span>
 -fold cross-validation and rolling cross-validation (for panel and time-series data) are
-implemented in cvlasso. <code>cvlasso</code> also supports cross-validation across <span>
-\(\alpha\)
+implemented in cvlasso.  <code>cvlasso</code> also supports cross-validation across <span>
+  \(\alpha\)
 </span>
 .</li>
-<li><em>Theory-driven:</em> Theoretically justified and feasible penalty levels and loadings are available for the lasso and sqrt-lasso via the separate command <code>rlasso</code>. The penalization is chosen to dominate the noise of the data-generating process
+<li><em>Theory-driven:</em> Theoretically justified and feasible penalty levels and loadings are available for the lasso and sqrt-lasso via the separate command <code>rlasso</code>.  The penalization is chosen to dominate the noise of the data-generating process
 (represented by the score vector), which allows derivation of theoretical results with regard to consistent
-prediction and parameter estimation. Since the error variance is in practice unknown, Belloni et al. (<a href=https://doi.org/10.3982/ECTA9626>2012</a>)
+prediction and parameter estimation.  Since the error variance is in practice unknown, Belloni et al. (<a href="https://doi.org/10.3982/ECTA9626">2012</a>)
 introduce the rigorous (or feasible) lasso that relies on an iterative algorithm for estimating the optimal
-penalization and is valid in the presence of non-Gaussian and heteroskedastic errors. Belloni et al. (<a href=https://doi.org/10.1080/07350015.2015.1102733>2016</a>) extend the framework to the panel data setting. In the case of the sqrt-lasso under homoskedasticity, the optimal penalty level is independent of the unknown error variance, leading to a practical advantage and better performance in finite samples (see Belloni et al., <a href=https://doi.org/10.1214/14-AOS1204>2011</a>, <a href=https://doi.org/10.1093/restud/rdt044>2014</a>).</li>
+penalization and is valid in the presence of non-Gaussian and heteroskedastic errors.  Belloni et al. (<a href="https://doi.org/10.1080/07350015.2015.1102733">2016</a>) extend the framework to the panel data setting.  In the case of the sqrt-lasso under homoskedasticity, the optimal penalty level is independent of the unknown error variance, leading to a practical advantage and better performance in finite samples (see Belloni et al., <a href="https://doi.org/10.1214/14-AOS1204">2011</a>, <a href="https://doi.org/10.1093/restud/rdt044">2014</a>).</li>
 <li><em>Information criteria:</em> <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-can also be selected using information criteria. <code>lasso2</code> calculates four information criteria: Akaike
-Information Criterion (AIC; <a href=https://doi.org/10.1109/TAC.1974.1100705>Akaike, 1974</a>), Bayesian Information Criterion (BIC; <a href=https://doi.org/10.1214/aos/1176344136>Schwarz, 1978</a>), Extended Bayesian
-information criterion (EBIC; <a href=https://doi.org/10.1093/biomet/asn034>Chen & Chen, 2008</a>) and the corrected AIC (AICc; <a href=http://doi.org/10.1080/03610927808827599>Sugiura, 1978</a>, and <a href=http://doi.org/10.1093/biomet/76.2.297>Hurvich, 1989</a>).</li>
+ can also be selected using information criteria.  <code>lasso2</code> calculates four information criteria:  Akaike
+Information Criterion (AIC; <a href="https://doi.org/10.1109/TAC.1974.1100705">Akaike, 1974</a>), Bayesian Information Criterion (BIC; <a href="https://doi.org/10.1214/aos/1176344136">Schwarz, 1978</a>), Extended Bayesian
+information criterion (EBIC; <a href="https://doi.org/10.1093/biomet/asn034">Chen &amp; Chen, 2008</a>) and the corrected AIC (AICc; <a href="http://doi.org/10.1080/03610927808827599">Sugiura, 1978</a>, and <a href="http://doi.org/10.1093/biomet/76.2.297">Hurvich, 1989</a>).</li>
 </ol>
 </article>
-<footer class=book-footer>
-<div class="flex flex-wrap justify-between">
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
 </div>
-<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
-</footer>
-<div class=book-comments>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
 </div>
-<label for=menu-control class="hidden book-menu-overlay"></label>
-</div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#regularized-regression>Regularized regression</a></li>
-<li><a href=#how-to-select-lambda>How to select lambda</a></li>
-</ul>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#regularized-regression">Regularized regression</a></li>
+    <li><a href="#how-to-select-lambda">How to select lambda</a></li>
+  </ul>
 </nav>
-</div>
-</aside>
-</main>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

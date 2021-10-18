@@ -1,2 +1,20 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Stata ML Page</title><link>https://statalasso.github.io/docs/lassopack/lassologit/</link><description>Recent content on Stata ML Page</description><generator>Hugo -- gohugo.io</generator><language>en-us</language><atom:link href="https://statalasso.github.io/docs/lassopack/lassologit/index.xml" rel="self" type="application/rss+xml"/><item><title>Example using Spam data</title><link>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</guid><description>Logistic Lasso: Spam data # For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
-Predictors v1-v48 percentage of words in the e-mail that match a specific word, i.e. 100 * (number of times the word appears in the e-mail) divided by total number of words in e-mail.</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Stata ML Page</title>
+    <link>https://statalasso.github.io/docs/lassopack/lassologit/</link>
+    <description>Recent content on Stata ML Page</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="https://statalasso.github.io/docs/lassopack/lassologit/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Example using Spam data</title>
+      <link>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</guid>
+      <description>Logistic Lasso: Spam data #  For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
+Predictors v1-v48 percentage of words in the e-mail that match a specific word, i.e. 100 * (number of times the word appears in the e-mail) divided by total number of words in e-mail.</description>
+    </item>
+    
+  </channel>
+</rss>

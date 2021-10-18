@@ -1,183 +1,600 @@
-<!doctype html><html lang=en dir=ltr>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn's sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine learning algorithms.">
-<meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Help file">
-<meta property="og:description" content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn's sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine learning algorithms.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/help/"><meta property="article:section" content="docs">
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Help file" />
+<meta property="og:description" content="---------------------------------------------------------------------------------------------------------------------------------- help pystacked v0.1 ---------------------------------------------------------------------------------------------------------------------------------- Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/help/" /><meta property="article:section" content="docs" />
+
+
+
 <title>Help file | Stata ML Page</title>
-<link rel=manifest href=/manifest.json>
-<link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
-<script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E+4I=" crossorigin=anonymous></script>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
 </head>
-<body dir=ltr>
-<input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control>
-<main class="container flex">
-<aside class=book-menu>
-<div class=book-menu-content>
-<nav>
-<h2 class=book-brand>
-<a class="flex align-center" href=/><span>Stata ML Page</span>
-</a>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
 </h2>
-<div class=book-search>
-<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
-<div class="book-search-spinner hidden"></div>
-<ul id=book-search-results></ul>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
 </div>
-<ul>
-<li class=book-section-flat>
-<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
-<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
-</li>
-<li>
-<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
-<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
-</li>
-<li>
-<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
-<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
-<a role=button>Help files</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
-<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle checked>
-<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/help/ class=active>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/about/>About</a>
-<ul>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/papers/>Paper</a>
-<ul>
-</ul>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle" checked />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class=" active">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </nav>
-<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Help file</strong>
+
+  <label for="toc-control">
+    
+  </label>
 </div>
-</aside>
-<div class=book-page>
-<header class=book-header>
-<div class="flex align-center justify-between">
-<label for=menu-control>
-<img src=/svg/menu.svg class=book-icon alt=Menu>
-</label>
-<strong>Help file</strong>
-<label for=toc-control>
-</label>
-</div>
-</header>
-<article class=markdown>
-<pre id=stlog-1 style=font-size:11px class=sthlp>----------------------------------------------------------------------------------------------------------------------------------
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown">
+<pre id="stlog-1" style="font-size: 11px" class="sthlp">----------------------------------------------------------------------------------------------------------------------------------
 <b>help pystacked</b>                                                                                                                v0.1
 ----------------------------------------------------------------------------------------------------------------------------------
 
@@ -187,7 +604,7 @@
 
 <b><u>Overview</u></b>
 
-    <b>pystacked</b> implements stacking regression (<a href=#stlog-1-Wolpert1992><b>Wolpert, 1992</b></a>) via scikit-learn's sklearn.ensemble.StackingRegressor and
+    <b>pystacked</b> implements stacking regression (<a href="#stlog-1-Wolpert1992"><b>Wolpert, 1992</b></a>) via scikit-learn's sklearn.ensemble.StackingRegressor and
     sklearn.ensemble.StackingClassifier.  Stacking is a way of combining predictions from multiple supervised machine learners
     (the "base learners") into a final prediction to improve performance.  The currently-supported base learners are linear
     regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP).
@@ -195,73 +612,73 @@
     <b>pystacked</b> can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's machine
     learning algorithms.
 
-    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href=http://www.stata.com/help.cgi?python><b>here</b></a> and
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href="http://www.stata.com/help.cgi?python"><b>here</b></a> and
     here for how to set up Python for Stata on your system.
 
-<a name=stlog-1-methodopts></a><b><u>Contents</u></b>
+<a name="stlog-1-methodopts"></a><b><u>Contents</u></b>
 
-        <a href=#stlog-1-syntax_overview><b>Syntax overview</b></a>
-        <a href=#stlog-1-syntax1><b>Syntax 1</b></a>
-        <a href=#stlog-1-syntax2><b>Syntax 2</b></a>
-        <a href=#stlog-1-syntax2><b>Other options</b></a>
-        <a href=#stlog-1-otheropts><b>Predictions</b></a>
-        <a href=#stlog-1-section_stacking><b>Stacking</b></a>
-        <a href=#stlog-1-base_learners><b>Supported base learners</b></a>
-        <a href=#stlog-1-base_learners_opt><b>Base learners: Options</b></a>
-        <a href=#stlog-1-pipelines><b>Pipelines</b></a>
-        <a href=#stlog-1-example_prostate><b>Example Stacking Regression</b></a>
-        <a href=#stlog-1-example_spam><b>Example Stacking Classification</b></a>
-        <a href=#stlog-1-installation><b>Installation</b></a>
-        <a href=#stlog-1-misc><b>Misc (references, contact, etc.)</b></a>
+        <a href="#stlog-1-syntax_overview"><b>Syntax overview</b></a>
+        <a href="#stlog-1-syntax1"><b>Syntax 1</b></a>
+        <a href="#stlog-1-syntax2"><b>Syntax 2</b></a>
+        <a href="#stlog-1-syntax2"><b>Other options</b></a>
+        <a href="#stlog-1-otheropts"><b>Predictions</b></a>
+        <a href="#stlog-1-section_stacking"><b>Stacking</b></a>
+        <a href="#stlog-1-base_learners"><b>Supported base learners</b></a>
+        <a href="#stlog-1-base_learners_opt"><b>Base learners: Options</b></a>
+        <a href="#stlog-1-pipelines"><b>Pipelines</b></a>
+        <a href="#stlog-1-example_prostate"><b>Example Stacking Regression</b></a>
+        <a href="#stlog-1-example_spam"><b>Example Stacking Classification</b></a>
+        <a href="#stlog-1-installation"><b>Installation</b></a>
+        <a href="#stlog-1-misc"><b>Misc (references, contact, etc.)</b></a>
 
-<a name=stlog-1-syntax_overview></a><b><u>Syntax overview</u></b>
+<a name="stlog-1-syntax_overview"></a><b><u>Syntax overview</u></b>
 
     There are two alternative syntaxes. The <u>first syntax</u> is:
 
         <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>methods(</b><i>string</i><b>)</b> <b>cmdopt1(</b><i>string</i><b>)</b> <b>cmdopt2(</b><i>string</i><b>)</b> <b>...</b>  <b>pipe1(</b><i>string</i><b>)</b>
-              <b>pipe2(</b><i>string</i><b>)</b> <b>...</b>  <a href=#stlog-1-otheropts><i>otheropts</i></a> ]
+              <b>pipe2(</b><i>string</i><b>)</b> <b>...</b>  <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
 
     The <u>second syntax</u> is:
 
         <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>
-              <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b>...</b>  [<b>,</b> <a href=#stlog-1-otheropts><i>otheropts</i></a> ]
+              <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b>...</b>  [<b>,</b> <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
 
     The first syntax uses <b>methods(</b><i>string</i><b>)</b> to select base learners, where <i>string</i> is a list of base learners.  Options are passed
     on to base learners via <b>cmdopt1(</b><i>string</i><b>)</b>, <b>cmdopt2(</b><i>string</i><b>)</b> to <b>cmdopt10(</b><i>string</i><b>)</b>.  That is, up to 10 base learners can be
-    specified and options are passed on in the order in which they appear in <b>methods(</b><i>string</i><b>)</b> (see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>).  Likewise,
-    the <b>pipe*(</b><i>string</i><b>)</b> option can be used for pre-processing predictors within Python on the fly (see <a href=#stlog-1-pipelines><b>Pipelines</b></a>).
+    specified and options are passed on in the order in which they appear in <b>methods(</b><i>string</i><b>)</b> (see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>).  Likewise,
+    the <b>pipe*(</b><i>string</i><b>)</b> option can be used for pre-processing predictors within Python on the fly (see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>).
 
     The second syntax imposes no limit on the number of base learners (aside from the increasing computational complexity). Base
     learners are added before the comma using <b>method(</b><i>string</i><b>)</b> together with <b>opt(</b><i>string</i><b>)</b> and separated by "||".
 
-<a name=stlog-1-syntax1></a><b><u>Syntax 1</u></b>
+<a name="stlog-1-syntax1"></a><b><u>Syntax 1</u></b>
 
     <i>Option</i>                Description
     ----------------------------------------------------------------------------------------------------------------------------
     <b>methods(</b><i>string</i><b>)</b>        a list of base learners, defaults to "<i>ols lassoic gradboost</i>" for regression and "<i>logit lassocv</i>
-                            <i>gradboost</i>" for classification; see <a href=#stlog-1-base_learners><b>Base learners</b></a>.
-    <b>cmdopt*(</b><i>string</i><b>)</b>        options passed to the base learners, see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>.
-    <b>pipe*(</b><i>string</i><b>)</b>          pipelines passed to the base learners, see <a href=#stlog-1-pipelines><b>Pipelines</b></a>.
+                            <i>gradboost</i>" for classification; see <a href="#stlog-1-base_learners"><b>Base learners</b></a>.
+    <b>cmdopt*(</b><i>string</i><b>)</b>        options passed to the base learners, see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>.
+    <b>pipe*(</b><i>string</i><b>)</b>          pipelines passed to the base learners, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.
     ----------------------------------------------------------------------------------------------------------------------------
     <i>Note:</i> <b>*</b> is replaced with 1 to 10. The number refers to the order given in <b>methods(</b><i>string</i><b>)</b>.
 
-<a name=stlog-1-syntax2></a><b><u>Syntax 2</u></b>
+<a name="stlog-1-syntax2"></a><b><u>Syntax 2</u></b>
 
     <i>Option</i>                Description
     ----------------------------------------------------------------------------------------------------------------------------
-    <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>         a base learner, see <a href=#stlog-1-base_learners><b>Base learners</b></a>.
-    <b>opt(</b><i>string</i><b>)</b>            options, see <a href=#stlog-1-base_learners_opt><b>Command options</b></a>.
-    <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>       pipelines applied to the predictors, see <a href=#stlog-1-pipelines><b>Pipelines</b></a>.
+    <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>         a base learner, see <a href="#stlog-1-base_learners"><b>Base learners</b></a>.
+    <b>opt(</b><i>string</i><b>)</b>            options, see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>.
+    <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>       pipelines applied to the predictors, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.
     ----------------------------------------------------------------------------------------------------------------------------
 
-<a name=stlog-1-otheropts></a><b><u>Other options</u></b>
+<a name="stlog-1-otheropts"></a><b><u>Other options</u></b>
 
     <i>Option</i>                Description
     ----------------------------------------------------------------------------------------------------------------------------
     <b>type(</b><i>string</i><b>)</b>           <i>reg(ress)</i> for regression problems or <i>class(ify)</i> for classification problems.
     <b><u>final</u></b><b>est(</b><i>string</i><b>)</b>       final estimator used to combine base learners.  This can be <i>nnls</i> (non-negative least squares, the
                             default), <i>ols</i> (ordinary least squares) or <i>ridge</i> for (logistic) ridge, which is the sklearn default.
-                            For more information, see <a href=#stlog-1-section_stacking><b>here</b></a>.
+                            For more information, see <a href="#stlog-1-section_stacking"><b>here</b></a>.
     <b><u>nosavep</u></b><b>red</b>             do not save predicted values (do not use if <b>predict</b> is used after estimation)
     <b><u>nosavet</u></b><b>ransform</b>        do not save predicted values of each base learner (do not use if <b>predict</b> with <b><u>transf</u></b><b>orm</b> is used after
                             estimation)
@@ -270,20 +687,20 @@
     <b>backend(</b><i>string</i><b>)</b>        joblib backend used for parallelization; the default is 'loky' under Linux/MacOS and 'threading'
                             under Windows.  See here for more information.
     <b>folds(</b><i>int</i><b>)</b>             number of folds used for cross-validation (not relevant for voting); default is 5
-    <b>pyseed(</b><i>int</i><b>)</b>            set the Python seed. Note that, since <b>pystacked</b> uses Python, using <a href=http://www.stata.com/help.cgi?set+seed><b>set seed</b></a> won't be sufficient for
+    <b>pyseed(</b><i>int</i><b>)</b>            set the Python seed. Note that, since <b>pystacked</b> uses Python, using <a href="http://www.stata.com/help.cgi?set+seed"><b>set seed</b></a> won't be sufficient for
                             replication.
     ----------------------------------------------------------------------------------------------------------------------------
 
     <i>Voting</i>                Description
     ----------------------------------------------------------------------------------------------------------------------------
     <b>voting</b>                 use voting regressor (ensemble.VotingRegressor) or voting classifier (ensemble.VotingClassifier); see
-                            <a href=#stlog-1-section_stacking><b>here</b></a> for a brief explanation.
+                            <a href="#stlog-1-section_stacking"><b>here</b></a> for a brief explanation.
     <b><u>votet</u></b><b>ype(</b><i>string</i><b>)</b>       type of voting classifier:  <i>hard</i> (default) or <i>soft</i>
     <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>   positive weights used for voting regression/classification.  The length of <i>numlist</i> should be the
                             number of base learners - 1. The last weight is calculated to ensure that sum(weights)=1.
     ----------------------------------------------------------------------------------------------------------------------------
 
-<a name=stlog-1-prediction></a><b><u>Prediction</u></b>
+<a name="stlog-1-prediction"></a><b><u>Prediction</u></b>
 
     To get predicted values:
 
@@ -305,14 +722,14 @@
     memory should be made <i>between</i> <b>pystacked</b> call and <b>predict</b> call. If changes to the data set are made, <b>predict</b> will return an
     error.
 
-<a name=stlog-1-section_stacking></a><b><u>Stacking</u></b>
+<a name="stlog-1-section_stacking"></a><b><u>Stacking</u></b>
 
     Stacking is a way of combining cross-validated predictions from multiple base learners into a final prediction. A final
     estimator is used to combine the base predictions.
 
     The default final predictor for stacking regession is non-negative least squares (NNLS) without an intercept.  The NNLS
     coefficients are standardized to sum to one.  Note that in this respect we deviate from the scikit-learn default and follow
-    the recommendation in Hastie et al. (<a href=#stlog-1-Hastie2009><b>2009</b></a>, p. 290).  The scikit-learn defaults for the final estimator are ridge regression
+    the recommendation in Hastie et al. (<a href="#stlog-1-Hastie2009"><b>2009</b></a>, p. 290).  The scikit-learn defaults for the final estimator are ridge regression
     for stacking regression and {browse:
     "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#sklearn.linear_model.Logisti
     &gt; cRegression":logistic ridge} for classification tasks.  To use the scikit-learn default, use <b><u>final</u></b><b>est(</b><i>ridge</i><b>)</b>.  <b>pystacked</b>
@@ -323,7 +740,7 @@
     a majority rule by default (hard voting). An alternative is soft voting where the (weighted) probabilities are used to form
     the final prediction.
 
-<a name=stlog-1-base_learners></a><b><u>Supported base learners</u></b>
+<a name="stlog-1-base_learners"></a><b><u>Supported base learners</u></b>
 
     The following base learners are supported:
 
@@ -344,7 +761,7 @@
 
     Please see links in the next section for more information on each method.
 
-<a name=stlog-1-base_learners_opt></a><b><u>Base learners: Options</u></b>
+<a name="stlog-1-base_learners_opt"></a><b><u>Base learners: Options</u></b>
 
     This section lists the options of each base learners supported by <b>pystacked</b>.  Options can be passed to the base learners via
     <b>cmdopt*(</b><i>string</i><b>)</b> (Syntax 1) or <b>opt(</b><i>string</i><b>)</b> (Syntax 2).  The defaults are adopted from scikit-learn, with some modifications
@@ -490,7 +907,7 @@
         <b>NONESTerovs_momentum</b> <b>early_stopping</b> <b>validation_fraction(</b><i>real </i>.<i>1</i><b>)</b> <b>beta_1(</b><i>real </i>.<i>9</i><b>)</b> <b>beta_2(</b><i>real </i>.<i>999</i><b>)</b> <b>epsilon(</b><i>real 1e-8</i><b>)</b>
         <b>n_iter_no_change(</b><i>integer 10</i><b>)</b> <b>max_fun(</b><i>integer 15000</i><b>)</b>
 
-<a name=stlog-1-pipelines></a><b><u>Pipelines</u></b>
+<a name="stlog-1-pipelines"></a><b><u>Pipelines</u></b>
 
     Scikit-learn uses pipelines to pre-preprocess input data on the fly.  Pipelines can be used to impute missing observations
     or create transformation of predictors such as interactions and polynomials.  For example, when using linear machine
@@ -512,9 +929,9 @@
     pipeline that transforms the data prior to passing the data to a base learner that uses cross-validation could do this if
     the data transformation (e.g., standardizing predictors) uses information from the entire dataset.
 
-<a name=stlog-1-example_prostate></a><b><u>Example using Boston Housing data (Harrison et al., </u></b><a href=#stlog-1-Harrison1978><b><u>1978</u></b></a><b><u>)</u></b>
+<a name="stlog-1-example_prostate"></a><b><u>Example using Boston Housing data (Harrison et al., </u></b><a href="#stlog-1-Harrison1978"><b><u>1978</u></b></a><b><u>)</u></b>
 
-<a name=stlog-1-examples_data></a>    <u>Data set</u>
+<a name="stlog-1-examples_data"></a>    <u>Data set</u>
 
     The data set is available from the UCI Machine Learning Repository.  The following variables are included in the data set of
     506 observations:
@@ -603,7 +1020,7 @@
         . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2) pipe2(poly2) voting voteweights(.5
             .1)
 
-<a name=stlog-1-example_spam></a><b><u>Classification Example using Spam data</u></b>
+<a name="stlog-1-example_spam"></a><b><u>Classification Example using Spam data</u></b>
 
     <u>Data set</u>
 
@@ -651,9 +1068,9 @@
         . tab spam v58 if _n&lt;=2000, cell
         . tab spam v58 if _n&gt;2000, cell
 
-<a name=stlog-1-installation></a><b><u>Installation</u></b>
+<a name="stlog-1-installation"></a><b><u>Installation</u></b>
 
-    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href=http://www.stata.com/help.cgi?python><b>help python</b></a>
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See <a href="http://www.stata.com/help.cgi?python"><b>help python</b></a>
     and the Stata blog for how to set up Python on your system.  Installing Anaconda is in most cases the easiest way of
     installing Python including all required packages.
 
@@ -675,15 +1092,15 @@
     To install/update <b>pystacked</b>, type
         . net install pystacked, from(https://raw.githubusercontent.com/aahrens1/pystacked/main) replace
 
-<a name=stlog-1-misc></a><b><u>References</u></b>
-<a name=stlog-1-Harrison1978></a>
+<a name="stlog-1-misc"></a><b><u>References</u></b>
+<a name="stlog-1-Harrison1978"></a>
     Harrison, D. and Rubinfeld, D.L (1978). Hedonic prices and the demand for clean air. <i>J. Environ. Economics &amp; Management</i>,
     vol.5, 81-102, 1978.
 
-<a name=stlog-1-Hastie2009></a>    Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009).  The elements of statistical learning: data mining, inference, and
+<a name="stlog-1-Hastie2009"></a>    Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009).  The elements of statistical learning: data mining, inference, and
     prediction. Springer Science &amp; Business Media.
 
-<a name=stlog-1-Wolpert1992></a>    Wolpert, David H. Stacked generalization. <i>Neural networks</i> 5.2 (1992): 241-259.  
+<a name="stlog-1-Wolpert1992"></a>    Wolpert, David H. Stacked generalization. <i>Neural networks</i> 5.2 (1992): 241-259.  
     https://doi.org/10.1016/S0893-6080(05)80023-1
 
 <b><u>Contact</u></b>
@@ -709,16 +1126,57 @@
 
         Mark E. Schaffer, Heriot-Watt University, UK
 </pre>
+
+
 </article>
-<footer class=book-footer>
-<div class="flex flex-wrap justify-between">
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
 </div>
-<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
-</footer>
-<div class=book-comments>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
 </div>
-<label for=menu-control class="hidden book-menu-overlay"></label>
-</div>
-</main>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

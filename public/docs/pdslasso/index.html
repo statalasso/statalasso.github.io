@@ -1,254 +1,721 @@
-<!doctype html><html lang=en dir=ltr>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="When would you want to use pdslasso? #  pdslasso and ivlasso are routines for estimating structural parameters in linear models with many controls and/or many instruments. The routines use methods for estimating sparse high-dimensional models, specifically the lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996) and the square-root-lasso (Belloni et al. 2011, 2014).
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="When would you want to use pdslasso? #  pdslasso and ivlasso are routines for estimating structural parameters in linear models with many controls and/or many instruments. The routines use methods for estimating sparse high-dimensional models, specifically the lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996) and the square-root-lasso (Belloni et al. 2011, 2014).
 The purpose of pdslasso is to improve causal inference when the aim is to assess the effect of one or a few (possibly endogenous) regressors on the outcome variable.">
-<meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="PDSLASSO">
-<meta property="og:description" content>
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://statalasso.github.io/docs/pdslasso/">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="PDSLASSO" />
+<meta property="og:description" content="" />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://statalasso.github.io/docs/pdslasso/" />
+
 <title>PDSLASSO | Stata ML Page</title>
-<link rel=manifest href=/manifest.json>
-<link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
-<script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E+4I=" crossorigin=anonymous></script>
-<link rel=alternate type=application/rss+xml href=https://statalasso.github.io/docs/pdslasso/index.xml title="Stata ML Page">
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+<link rel="alternate" type="application/rss+xml" href="https://statalasso.github.io/docs/pdslasso/index.xml" title="Stata ML Page" />
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
 </head>
-<body dir=ltr>
-<input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control>
-<main class="container flex">
-<aside class=book-menu>
-<div class=book-menu-content>
-<nav>
-<h2 class=book-brand>
-<a class="flex align-center" href=/><span>Stata ML Page</span>
-</a>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
 </h2>
-<div class=book-search>
-<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
-<div class="book-search-spinner hidden"></div>
-<ul id=book-search-results></ul>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
 </div>
-<ul>
-<li class=book-section-flat>
-<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle>
-<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/cvlasso/>Cross-validation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
-</li>
-<li>
-<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
-<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
-</li>
-<li>
-<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
-<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
-<a role=button>Help files</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle checked>
-<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pdslasso/ class=active>PDSLASSO</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
-<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/about/>About</a>
-<ul>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/papers/>Paper</a>
-<ul>
-</ul>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle" checked />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="active">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </nav>
-<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>PDSLASSO</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
 </div>
-</aside>
-<div class=book-page>
-<header class=book-header>
-<div class="flex align-center justify-between">
-<label for=menu-control>
-<img src=/svg/menu.svg class=book-icon alt=Menu>
-</label>
-<strong>PDSLASSO</strong>
-<label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
-</label>
-</div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#when-would-you-want-to-use-pdslasso>When would you want to use <strong>pdslasso</strong>?</a>
-<ul>
-<li><a href=#many-control-variables>Many control variables</a></li>
-<li><a href=#many-instruments>Many instruments</a></li>
-</ul>
-</li>
-<li><a href=#methods>Methods</a></li>
-</ul>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#when-would-you-want-to-use-pdslasso">When would you want to use <strong>pdslasso</strong>?</a>
+      <ul>
+        <li><a href="#many-control-variables">Many control variables</a></li>
+        <li><a href="#many-instruments">Many instruments</a></li>
+      </ul>
+    </li>
+    <li><a href="#methods">Methods</a></li>
+  </ul>
 </nav>
-</aside>
-</header>
-<article class=markdown><h2 id=when-would-you-want-to-use-pdslasso>
-When would you want to use <strong>pdslasso</strong>?
-<a class=anchor href=#when-would-you-want-to-use-pdslasso>#</a>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="when-would-you-want-to-use-pdslasso">
+  When would you want to use <strong>pdslasso</strong>?
+  <a class="anchor" href="#when-would-you-want-to-use-pdslasso">#</a>
 </h2>
 <p><code>pdslasso</code> and <code>ivlasso</code> are routines for estimating structural parameters in linear models with many controls
 and/or many instruments. The routines use methods for estimating sparse high-dimensional models, specifically the lasso
-(Least Absolute Shrinkage and Selection Operator, <a href=https://doi.org/10.2307/2346178>Tibshirani 1996</a>) and the square-root-lasso
-(Belloni et al. <a href=https://doi.org/10.1214/14-AOS1204>2011</a>, <a href=https://doi.org/10.1093/restud/rdt044>2014</a>).</p>
+(Least Absolute Shrinkage and Selection Operator, <a href="https://doi.org/10.2307/2346178">Tibshirani 1996</a>) and the square-root-lasso
+(Belloni et al. <a href="https://doi.org/10.1214/14-AOS1204">2011</a>, <a href="https://doi.org/10.1093/restud/rdt044">2014</a>).</p>
 <p>The purpose of <strong>pdslasso</strong> is to improve causal inference when the aim is to assess the effect of one or a few (possibly endogenous) regressors on the outcome variable. <strong>pdslasso</strong> allows to select control variables and/or instruments.</p>
-<h3 id=many-control-variables>
-Many control variables
-<a class=anchor href=#many-control-variables>#</a>
+<h3 id="many-control-variables">
+  Many control variables
+  <a class="anchor" href="#many-control-variables">#</a>
 </h3>
 <p>The primary interest in an econometric analysis often lies in one or a few regressors, for which we want to estimate the causal effect on an outcome variable. However, to allow for a causal interpretation we need to control for confounding factors. Lasso-type techniques can be employed to appropriately select controls and thus improve the robustness of causal inference.</p>
-<h3 id=many-instruments>
-Many instruments
-<a class=anchor href=#many-instruments>#</a>
+<h3 id="many-instruments">
+  Many instruments
+  <a class="anchor" href="#many-instruments">#</a>
 </h3>
 <p>High-dimensional instruments can arise when there is inherently large number of potentially relevant instruments or when it&rsquo;s unclear how these instruments should be specified (e.g. dummy variables, interaction effects).</p>
-<h2 id=methods>
-Methods
-<a class=anchor href=#methods>#</a>
+<h2 id="methods">
+  Methods
+  <a class="anchor" href="#methods">#</a>
 </h2>
 <p>Two approaches are implemented in <code>pdslasso</code> and <code>ivlasso</code>:</p>
 <ol>
-<li>The <em>post-double-selection</em> methodology of Belloni et al. (<a href=https://doi.org/10.3982/ECTA9626>2012</a>, <a href=http://arxiv.org/abs/1201.0220>2013</a>, <a href=http://arxiv.org/abs/1201.0220>2014</a>, <a href="http://www.aeaweb.org/articles.php?doi=10.1257/jep.28.2.29">2015</a>, <a href=https://doi.org/10.1080/07350015.2015.1102733>2016</a>).</li>
+<li>The <em>post-double-selection</em> methodology of Belloni et al. (<a href="https://doi.org/10.3982/ECTA9626">2012</a>, <a href="http://arxiv.org/abs/1201.0220">2013</a>, <a href="http://arxiv.org/abs/1201.0220">2014</a>, <a href="http://www.aeaweb.org/articles.php?doi=10.1257/jep.28.2.29">2015</a>, <a href="https://doi.org/10.1080/07350015.2015.1102733">2016</a>).</li>
 <li>The <em>post-regularization</em> methodology of <a href="https://www.aeaweb.org/articles?id=10.1257/aer.p20151022">Chernozhukov, Hansen and Spindler (2015)</a>.</li>
 </ol>
 <p>For instrumental variable estimation, <code>ivlasso</code> implements weak-identification-robust hypothesis tests and confidence sets
-using the <a href=https://projecteuclid.org/euclid.aos/1387313390>Chernozhukov et al. (2013)</a> sup-score test.</p>
+using the <a href="https://projecteuclid.org/euclid.aos/1387313390">Chernozhukov et al. (2013)</a> sup-score test.</p>
 <p>The implemention of these methods in <code>pdslasso</code> and <code>ivlasso</code> require the Stata program <code>rlasso</code> (available in the
-separate Stata module <a href=https://github.com/aahr1/lassopack>lassopack</a>), which provides lasso and square root-lasso estimation with data-driven penalization.</p>
+separate Stata module <a href="https://github.com/aahr1/lassopack">lassopack</a>), which provides lasso and square root-lasso estimation with data-driven penalization.</p>
 </article>
-<footer class=book-footer>
-<div class="flex flex-wrap justify-between">
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
 </div>
-<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
-</footer>
-<div class=book-comments>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
 </div>
-<label for=menu-control class="hidden book-menu-overlay"></label>
-</div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#when-would-you-want-to-use-pdslasso>When would you want to use <strong>pdslasso</strong>?</a>
-<ul>
-<li><a href=#many-control-variables>Many control variables</a></li>
-<li><a href=#many-instruments>Many instruments</a></li>
-</ul>
-</li>
-<li><a href=#methods>Methods</a></li>
-</ul>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#when-would-you-want-to-use-pdslasso">When would you want to use <strong>pdslasso</strong>?</a>
+      <ul>
+        <li><a href="#many-control-variables">Many control variables</a></li>
+        <li><a href="#many-instruments">Many instruments</a></li>
+      </ul>
+    </li>
+    <li><a href="#methods">Methods</a></li>
+  </ul>
 </nav>
-</div>
-</aside>
-</main>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+

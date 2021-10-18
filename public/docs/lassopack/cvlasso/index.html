@@ -1,236 +1,661 @@
-<!doctype html><html lang=en dir=ltr>
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
 <head>
-<meta charset=utf-8>
-<meta name=viewport content="width=device-width,initial-scale=1">
-<meta name=description content="Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
 cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation.">
-<meta name=theme-color content="#FFFFFF">
-<meta name=color-scheme content="light dark"><meta property="og:title" content="Cross-validation">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Cross-validation" />
 <meta property="og:description" content="Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
-cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation.">
-<meta property="og:type" content="article">
-<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/cvlasso/"><meta property="article:section" content="docs">
+cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/cvlasso/" /><meta property="article:section" content="docs" />
+
+
+
 <title>Cross-validation | Stata ML Page</title>
-<link rel=manifest href=/manifest.json>
-<link rel=icon href=/favicon.png type=image/x-icon>
-<link rel=stylesheet href=/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css integrity="sha256-+qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P+QbU5blWs=" crossorigin=anonymous>
-<script defer src=/flexsearch.min.js></script>
-<script defer src=/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E+4I=" crossorigin=anonymous></script>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.5c3b697c4f7d9a2041a32a0413f5d6c1136bd5e28cb417f9a56107450ec4fb82.js" integrity="sha256-XDtpfE99miBBoyoEE/XWwRNr1eKMtBf5pWEHRQ7E&#43;4I=" crossorigin="anonymous"></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
 </head>
-<body dir=ltr>
-<input type=checkbox class="hidden toggle" id=menu-control>
-<input type=checkbox class="hidden toggle" id=toc-control>
-<main class="container flex">
-<aside class=book-menu>
-<div class=book-menu-content>
-<nav>
-<h2 class=book-brand>
-<a class="flex align-center" href=/><span>Stata ML Page</span>
-</a>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
 </h2>
-<div class=book-search>
-<input type=text id=book-search-input placeholder=Search aria-label=Search maxlength=64 data-hotkeys=s/>
-<div class="book-search-spinner hidden"></div>
-<ul id=book-search-results></ul>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
 </div>
-<ul>
-<li class=book-section-flat>
-<input type=checkbox id=section-a28c195407e662cdbffd5df0c1ccdd3c class=toggle checked>
-<label for=section-a28c195407e662cdbffd5df0c1ccdd3c class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/>LASSOPACK</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/package_overview/>Package overview</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/estimators/>Estimation methods</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/regularized_reg/>Regularized regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/cvlasso/ class=active>Cross-validation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/rlasso/>Rigorous lasso</a>
-</li>
-<li>
-<input type=checkbox id=section-7b22f9a619ffc04f2040b80267ff8ec1 class=toggle>
-<label for=section-7b22f9a619ffc04f2040b80267ff8ec1 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/>Lassologit</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/>Example using Spam data</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lasso2_replication/>Comparison glmnet</a>
-</li>
-<li>
-<input type=checkbox id=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class=toggle>
-<label for=section-de33cd2a5faa36dd8a4f9fdad33eadc5 class="flex justify-between">
-<a role=button>Help files</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/lasso2_help/>help lasso2</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/cvlasso_help/>help cvlasso</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/help/rlasso_help/>help rlasso</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/lassopack/lassopack_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-1660971b512dcfeb0bcc54343ae1329f class=toggle>
-<label for=section-1660971b512dcfeb0bcc54343ae1329f class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pdslasso/>PDSLASSO</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_models/>Models</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_demo/>Demonstration</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_panel/>Panel FE</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/ivlasso_help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pdslasso/pdslasso_cite/>Citation</a>
-</li>
-</ul>
-</li>
-<li class=book-section-flat>
-<input type=checkbox id=section-a6d0313d37b86997de2e3c697c4d2888 class=toggle>
-<label for=section-a6d0313d37b86997de2e3c697c4d2888 class="flex justify-between">
-<a href=https://statalasso.github.io/docs/pystacked/>PYSTACKED</a>
-</label>
-<ul>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/getting_started/>Getting started</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/regression/>Regression</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/classification/>Classification</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/parallel/>Parallelization</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/help/>Help file</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/installation/>Installation</a>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/pystacked/citation/>Citation</a>
-</li>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/about/>About</a>
-<ul>
-</ul>
-</li>
-<li>
-<a href=https://statalasso.github.io/docs/papers/>Paper</a>
-<ul>
-</ul>
-</li>
-</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle" checked />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class=" active">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </nav>
-<script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+
+
+  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Cross-validation</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
 </div>
-</aside>
-<div class=book-page>
-<header class=book-header>
-<div class="flex align-center justify-between">
-<label for=menu-control>
-<img src=/svg/menu.svg class=book-icon alt=Menu>
-</label>
-<strong>Cross-validation</strong>
-<label for=toc-control>
-<img src=/svg/toc.svg class=book-icon alt="Table of Contents">
-</label>
-</div>
-<aside class="hidden clearfix">
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cross-validation>Cross-validation</a>
-<ul>
-<li><a href=#k-fold-cross-validation>K-fold cross-validation</a></li>
-<li><a href=#estimate-the-selected-model>Estimate the selected model</a></li>
-<li><a href=#k-fold-cross-validation-over-lambda-and-alpha>K-fold cross-validation over lambda and alpha</a></li>
-<li><a href=#plotting>Plotting</a></li>
-<li><a href=#prediction>Prediction</a></li>
-<li><a href=#store-intermediate-steps>Store intermediate steps</a></li>
-</ul>
-</li>
-<li><a href=#time-series-example-using-rolling-h-step-ahead-cross-validation>Time-series example using rolling h-step ahead cross-validation</a></li>
-<li><a href=#panel-data-example-using-rolling-h-step-ahead-cross-validation>Panel data example using rolling h-step ahead cross-validation</a></li>
-<li><a href=#more>More</a></li>
-</ul>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#cross-validation">Cross-validation</a>
+      <ul>
+        <li><a href="#k-fold-cross-validation">K-fold cross-validation</a></li>
+        <li><a href="#estimate-the-selected-model">Estimate the selected model</a></li>
+        <li><a href="#k-fold-cross-validation-over-lambda-and-alpha">K-fold cross-validation over lambda and alpha</a></li>
+        <li><a href="#plotting">Plotting</a></li>
+        <li><a href="#prediction">Prediction</a></li>
+        <li><a href="#store-intermediate-steps">Store intermediate steps</a></li>
+      </ul>
+    </li>
+    <li><a href="#time-series-example-using-rolling-h-step-ahead-cross-validation">Time-series example using rolling h-step ahead cross-validation</a></li>
+    <li><a href="#panel-data-example-using-rolling-h-step-ahead-cross-validation">Panel data example using rolling h-step ahead cross-validation</a></li>
+    <li><a href="#more">More</a></li>
+  </ul>
 </nav>
-</aside>
-</header>
-<article class=markdown><h2 id=cross-validation>
-Cross-validation
-<a class=anchor href=#cross-validation>#</a>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="cross-validation">
+  Cross-validation
+  <a class="anchor" href="#cross-validation">#</a>
 </h2>
 <p>In the course of cross-validation, the data is repeatedly partitioned into training
 and validation data. The model is fit to the training data and the validation data is
 used to calculate the prediction error.
-This in turn enables us to identify the values of
-<link rel=stylesheet href=/katex/katex.min.css>
-<script defer src=/katex/katex.min.js></script>
-<script defer src=/katex/auto-render.min.js onload=renderMathInElement(document.body)></script><span>
-\(\lambda\)
+This in turn enables us to identify the values of 
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(\lambda\)
 </span>
-and <span>
-\(\alpha\)
+ and <span>
+  \(\alpha\)
 </span>
+
 that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).</p>
 <p><code>cvlasso</code> supports <span>
-\(K\)
+  \(K\)
 </span>
 -fold cross-validation and <span>
-\(h\)
+  \(h\)
 </span>
 -step ahead rolling cross-validation.
 The latter is intended for time-series or panel data with a large time dimension.
 <span>
-\(h\)
+  \(h\)
 </span>
 -step ahead rolling cross-validation was suggested by
-<a href=https://robjhyndman.com/hyndsight/tscv/>Rob H Hyndman in a blog post</a>.</p>
-<h3 id=k-fold-cross-validation>
-K-fold cross-validation
-<a class=anchor href=#k-fold-cross-validation>#</a>
+<a href="https://robjhyndman.com/hyndsight/tscv/">Rob H Hyndman in a blog post</a>.</p>
+<h3 id="k-fold-cross-validation">
+  K-fold cross-validation
+  <a class="anchor" href="#k-fold-cross-validation">#</a>
 </h3>
 <p>We begin with 10-fold cross-validation (the default).
 If no fold variable is specified (which can be done using the <code>foldvar()</code> option),
@@ -259,22 +684,22 @@ Fold 1 2 3 4 5 6 7 8 9 10
 </code></pre>
 <p>Note that parts of the output have been omitted for the sake of brevity. The columns 2 to 4 show
 the value of <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
 , the estimate of the mean-squared prediction error and the associated standard error.</p>
 <p>The <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-value that minimizes the mean-squared prediction error is indicated by an asterisk (<code>*</code>).
+ value that minimizes the mean-squared prediction error is indicated by an asterisk (<code>*</code>).
 A hat (<code>^</code>) marks the largest <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-at which the MSPE is within one standard error of the minimal MSPE.
+ at which the MSPE is within one standard error of the minimal MSPE.
 We denote these by <span>
-\(\lambda_{lopt}\)
+  \(\lambda_{lopt}\)
 </span>
-and <span>
-\(\lambda_{lse}\)
+ and <span>
+  \(\lambda_{lse}\)
 </span>
 , respectively. The former is returned in <code>e(lopt)</code>, the latter in <code>e(lse)</code>.</p>
 <pre><code>. di e(lopt)
@@ -283,15 +708,15 @@ and <span>
 . di e(lse)
 36.930468
 </code></pre>
-<h3 id=estimate-the-selected-model>
-Estimate the selected model
-<a class=anchor href=#estimate-the-selected-model>#</a>
+<h3 id="estimate-the-selected-model">
+  Estimate the selected model
+  <a class="anchor" href="#estimate-the-selected-model">#</a>
 </h3>
 <p>To estimate the full model with either <span>
-\(\lambda_{lopt}\)
+  \(\lambda_{lopt}\)
 </span>
-or <span>
-\(\lambda_{lse}\)
+ or <span>
+  \(\lambda_{lse}\)
 </span>
 , we can
 use <code>lopt</code> or <code>lse</code>.
@@ -308,20 +733,20 @@ Internally, <code>cvlasso</code> calls <code>lasso2</code> with either <code>lam
 <pre><code>. cvlasso, lopt postest
 . ereturn list
 </code></pre>
-<h3 id=k-fold-cross-validation-over-lambda-and-alpha>
-K-fold cross-validation over lambda and alpha
-<a class=anchor href=#k-fold-cross-validation-over-lambda-and-alpha>#</a>
+<h3 id="k-fold-cross-validation-over-lambda-and-alpha">
+  K-fold cross-validation over lambda and alpha
+  <a class="anchor" href="#k-fold-cross-validation-over-lambda-and-alpha">#</a>
 </h3>
-<p><code>alpha()</code> can be a scalar or list of elastic net parameters. Each <span>
-\(\alpha\)
+<p><code>alpha()</code> can be a scalar or list of elastic net parameters.  Each <span>
+  \(\alpha\)
 </span>
-value must lie
-in the interval [0,1]. If <code>alpha()</code> is a list longer than one, <code>cvlasso</code> cross-validates
+ value must lie
+in the interval [0,1].  If <code>alpha()</code> is a list longer than one, <code>cvlasso</code> cross-validates
 over <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-<em>and</em> <span>
-\(\alpha\)
+ <em>and</em> <span>
+  \(\alpha\)
 </span>
 .</p>
 <pre><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
@@ -338,44 +763,45 @@ Cross-validation over alpha (0 .1 .5 1).
 # alpha value that minimizes MSPE
 </code></pre>
 <p>The second column in the table indicates the value of <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-that minimizes
+ that minimizes
 the MSPE for a given value of <span>
-\(\alpha\)
+  \(\alpha\)
 </span>
 . A hash key (<code>#</code>) indicates that value of <span>
-\(\alpha\)
+  \(\alpha\)
 </span>
+
 that minimizes the overall MSPE.</p>
-<h3 id=plotting>
-Plotting
-<a class=anchor href=#plotting>#</a>
+<h3 id="plotting">
+  Plotting
+  <a class="anchor" href="#plotting">#</a>
 </h3>
 <p>We can plot the estimated mean-squared prediction error over <span>
-\(\lambda\)
+  \(\lambda\)
 </span>
-. Note that the
+.  Note that the
 plotting feature is not supported if we also cross-validate over <span>
-\(\alpha\)
+  \(\alpha\)
 </span>
 .</p>
 <pre><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, seed(123) plotcv
 </code></pre>
 <p>This produces the following graph:</p>
-<p><img src=/img/cvlasso.png#center alt></p>
+<p><img src="/img/cvlasso.png#center" alt="" /></p>
 <p>The two vertical lines indicate <span>
-\(\lambda_{lopt}\)
+  \(\lambda_{lopt}\)
 </span>
-and <span>
-\(\lambda_{lse}\)
+ and <span>
+  \(\lambda_{lse}\)
 </span>
-(dashed line).</p>
+ (dashed line).</p>
 <p>Similar to <code>lasso2</code>, <code>cvlasso</code> allows to pass plotting options on to Stata&rsquo;s <code>line</code>
 using <code>plotopt()</code>.</p>
-<h3 id=prediction>
-Prediction
-<a class=anchor href=#prediction>#</a>
+<h3 id="prediction">
+  Prediction
+  <a class="anchor" href="#prediction">#</a>
 </h3>
 <p>The predict postestimation command allows to obtain predicted values and residuals
 for either <code>e(lopt)</code> or <code>e(lse)</code>.</p>
@@ -387,11 +813,11 @@ for either <code>e(lopt)</code> or <code>e(lse)</code>.</p>
 . cap drop xbhat2
 . predict double xbhat2, lse
 </code></pre>
-<h3 id=store-intermediate-steps>
-Store intermediate steps
-<a class=anchor href=#store-intermediate-steps>#</a>
+<h3 id="store-intermediate-steps">
+  Store intermediate steps
+  <a class="anchor" href="#store-intermediate-steps">#</a>
 </h3>
-<p><code>cvlasso</code> calls <code>lasso2</code> internally. The <code>saveest(string)</code> allows to
+<p><code>cvlasso</code> calls <code>lasso2</code> internally.  The <code>saveest(string)</code> allows to
 access intermediate estimation results.</p>
 <pre><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
       seed(123) nfolds(3) saveest(step)
@@ -400,24 +826,25 @@ access intermediate estimation results.</p>
 . estimates replay step1
 </code></pre>
 <p><em>Note:</em> EBIC and <span>
-\(R^2\)
+  \(R^2\)
 </span>
-are not calculated to speed up the computation.</p>
-<h2 id=time-series-example-using-rolling-h-step-ahead-cross-validation>
-Time-series example using rolling h-step ahead cross-validation
-<a class=anchor href=#time-series-example-using-rolling-h-step-ahead-cross-validation>#</a>
+ are not calculated to speed up the computation.</p>
+<h2 id="time-series-example-using-rolling-h-step-ahead-cross-validation">
+  Time-series example using rolling h-step ahead cross-validation
+  <a class="anchor" href="#time-series-example-using-rolling-h-step-ahead-cross-validation">#</a>
 </h2>
 <p>Load airline passenger data:</p>
 <pre><code>. webuse air2, clear
 </code></pre>
-<p>There are 144 observations in the sample. <code>origin()</code> controls the sample range used
-for training and validation. In this example, <code>origin(130)</code> implies that data up to
+<p>There are 144 observations in the sample.  <code>origin()</code> controls the sample range used
+for training and validation.  In this example, <code>origin(130)</code> implies that data up to
 and including <span>
-\(t=130\)
+  \(t=130\)
 </span>
-are used for training in the first iteration. Data points <span>
-\(t=131,...,144\)
+ are used for training in the first iteration.  Data points <span>
+  \(t=131,...,144\)
 </span>
+
 are successively used for validation.</p>
 <pre><code>. cvlasso air L(1/12).air, rolling origin(130)
 Rolling forecasting cross-validation with 1-step ahead forecasts. Elastic net with alpha=1.
@@ -427,10 +854,10 @@ Training from-to (validation point): 13-130 (131), 13-131 (132), 13-132 (133), 1
 </code></pre>
 <p>The notation <code>a-b (v)</code> indicates that
 data <code>a</code> to <code>b</code> are used for estimation (training), and data point <code>v</code> is used for
-forecasting (validation). Note that the training dataset starts with <span>
-\(t=13\)
+forecasting (validation).  Note that the training dataset starts with <span>
+  \(t=13\)
 </span>
-since 12
+ since 12
 lags are used as predictors.</p>
 <p>The &ldquo;optimal&rdquo; model includes lags 1, 11 and 12.</p>
 <pre><code>. cvlasso, lopt
@@ -458,18 +885,18 @@ Training from-to (validation point): 13-130 (132), 13-131 (133), 13-132 (134), 1
 &gt; 13-140 (142), 13-141 (143), 13-142 (144).
 </code></pre>
 <p>In the above examples, the size of the training dataset increases by one data point
-each step. To keep the size of the training dataset fixed, specify <code>fixedwindow</code>.</p>
+each step.  To keep the size of the training dataset fixed, specify <code>fixedwindow</code>.</p>
 <pre><code>. cvlasso air L(1/12).air, rolling origin(130) fixedwindow
 Rolling forecasting cross-validation with 1-step ahead forecasts. Elastic net with alpha=1.
 Training from-to (validation point): 13-130 (131), 14-131 (132), 15-132 (133), 16-133 (134),
 &gt; 17-134 (135), 18-135 (136), 19-136 (137), 20-137 (138), 21-138 (139), 22-139 (140), 
 &gt; 23-140 (141), 24-141 (142), 25-142 (143), 26-143 (144).
 </code></pre>
-<h2 id=panel-data-example-using-rolling-h-step-ahead-cross-validation>
-Panel data example using rolling h-step ahead cross-validation
-<a class=anchor href=#panel-data-example-using-rolling-h-step-ahead-cross-validation>#</a>
+<h2 id="panel-data-example-using-rolling-h-step-ahead-cross-validation">
+  Panel data example using rolling h-step ahead cross-validation
+  <a class="anchor" href="#panel-data-example-using-rolling-h-step-ahead-cross-validation">#</a>
 </h2>
-<p>Rolling cross-validation can also be applied to panel data. For demonstration, load
+<p>Rolling cross-validation can also be applied to panel data.  For demonstration, load
 Grunfeld data.</p>
 <pre><code>. webuse grunfeld, clear
 </code></pre>
@@ -499,44 +926,89 @@ Estimate lasso with lambda=4828.76 (lopt).
         _cons |      42.6792365     21.8393696
 ---------------------------------------------------
 </code></pre>
-<h2 id=more>
-More
-<a class=anchor href=#more>#</a>
+<h2 id="more">
+  More
+  <a class="anchor" href="#more">#</a>
 </h2>
 <p>Please check the help file for more information and examples.</p>
 <pre><code>. help cvlasso
 </code></pre>
 </article>
-<footer class=book-footer>
-<div class="flex flex-wrap justify-between">
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
 </div>
-<script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
-</footer>
-<div class=book-comments>
+
+
+
+  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
 </div>
-<label for=menu-control class="hidden book-menu-overlay"></label>
-</div>
-<aside class=book-toc>
-<div class=book-toc-content>
-<nav id=TableOfContents>
-<ul>
-<li><a href=#cross-validation>Cross-validation</a>
-<ul>
-<li><a href=#k-fold-cross-validation>K-fold cross-validation</a></li>
-<li><a href=#estimate-the-selected-model>Estimate the selected model</a></li>
-<li><a href=#k-fold-cross-validation-over-lambda-and-alpha>K-fold cross-validation over lambda and alpha</a></li>
-<li><a href=#plotting>Plotting</a></li>
-<li><a href=#prediction>Prediction</a></li>
-<li><a href=#store-intermediate-steps>Store intermediate steps</a></li>
-</ul>
-</li>
-<li><a href=#time-series-example-using-rolling-h-step-ahead-cross-validation>Time-series example using rolling h-step ahead cross-validation</a></li>
-<li><a href=#panel-data-example-using-rolling-h-step-ahead-cross-validation>Panel data example using rolling h-step ahead cross-validation</a></li>
-<li><a href=#more>More</a></li>
-</ul>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#cross-validation">Cross-validation</a>
+      <ul>
+        <li><a href="#k-fold-cross-validation">K-fold cross-validation</a></li>
+        <li><a href="#estimate-the-selected-model">Estimate the selected model</a></li>
+        <li><a href="#k-fold-cross-validation-over-lambda-and-alpha">K-fold cross-validation over lambda and alpha</a></li>
+        <li><a href="#plotting">Plotting</a></li>
+        <li><a href="#prediction">Prediction</a></li>
+        <li><a href="#store-intermediate-steps">Store intermediate steps</a></li>
+      </ul>
+    </li>
+    <li><a href="#time-series-example-using-rolling-h-step-ahead-cross-validation">Time-series example using rolling h-step ahead cross-validation</a></li>
+    <li><a href="#panel-data-example-using-rolling-h-step-ahead-cross-validation">Panel data example using rolling h-step ahead cross-validation</a></li>
+    <li><a href="#more">More</a></li>
+  </ul>
 </nav>
-</div>
-</aside>
-</main>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
