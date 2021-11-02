@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.c724703ab72456aa0d4e7994f9e868d4abf7c18f6506f9c479bd0ef611a0510b.js" integrity="sha256-xyRwOrckVqoNTnmU&#43;eho1Kv3wY9lBvnEeb0O9hGgUQs=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1bb3b74be929529e1bfef270051d231986b20bdc96f8860be43485293ae38319.js" integrity="sha256-G7O3S&#43;kpUp4b/vJwBR0jGYayC9yW&#43;IYL5DSFKTrjgxk=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -615,6 +615,8 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#alternative-syntax">Alternative Syntax</a></li>
         <li><a href="#changing-the-final-estimator">Changing the final estimator</a></li>
         <li><a href="#predictions">Predictions</a></li>
+        <li><a href="#plotting">Plotting</a></li>
+        <li><a href="#mspe-table">MSPE table</a></li>
       </ul>
     </li>
   </ul>
@@ -721,6 +723,41 @@ is non-negative least squares (NNLS) where the weights are standardized to sum t
   4. | 33.348748   36.276995   29.749546   30.880321    31.214   31.065185 |
   5. | 34.001815   36.277167   29.699732   30.733921    32.471   31.510242 |
      +---------------------------------------------------------------------+
+</code></pre><h3 id="plotting">
+  Plotting
+  <a class="anchor" href="#plotting">#</a>
+</h3>
+<p><code>pystacked</code> also comes with plotting features. The <code>graph</code> option creates a scatter plot of predicted vs observed values for stacking and each base learner. There is no need to re-run the stacking estimation. You can also use <code>pystacked</code> with <code>graph</code> as a post-estimation command:</p>
+<pre tabindex="0"><code>. pystacked, graph holdout
+</code></pre><p><img src="/img/stacking_regression_tutorial.png#center" alt="" /></p>
+<p>Here, we show the out-of-sample predicted values. To see the in-sample predicted values, simply omit the <code>holdout</code> option. Note that the <code>holdout</code> option won&rsquo;t work if the estimation was run on the whole sample.</p>
+<h3 id="mspe-table">
+  MSPE table
+  <a class="anchor" href="#mspe-table">#</a>
+</h3>
+<p>The <code>table</code> option allows to compare stacking weights with in-sample and out-of-sample MSPE. As with the <code>graph</code> option, we can use <code>table</code> as a post-estimation command:</p>
+<pre tabindex="0"><code>. pystacked, table holdout
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0024167
+  lassoic        |     -0.2479425
+  lassoic        |      0.7035482
+  rf             |      0.5091350
+  gradboost      |      0.2330788
+
+Number of holdout observations:  394
+
+MSPE: In-Sample and Out-of-Sample
+-----------------------------------------------------
+  Method         | Weight   In-Sample   Out-of-Sample
+-----------------+-----------------------------------
+  STACKING       |    .        1.876         4.442
+  ols            | 0.002       1.876         4.442
+  lassoic        | -0.248      0.924        14.681
+  lassoic        | 0.704       4.636         5.424
+  rf             | 0.509       4.158         5.108
+  gradboost      | 0.233       1.373         4.489
 </code></pre></article>
  
       
@@ -767,6 +804,8 @@ is non-negative least squares (NNLS) where the weights are standardized to sum t
         <li><a href="#alternative-syntax">Alternative Syntax</a></li>
         <li><a href="#changing-the-final-estimator">Changing the final estimator</a></li>
         <li><a href="#predictions">Predictions</a></li>
+        <li><a href="#plotting">Plotting</a></li>
+        <li><a href="#mspe-table">MSPE table</a></li>
       </ul>
     </li>
   </ul>

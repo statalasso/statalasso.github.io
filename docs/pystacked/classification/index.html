@@ -19,7 +19,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.c724703ab72456aa0d4e7994f9e868d4abf7c18f6506f9c479bd0ef611a0510b.js" integrity="sha256-xyRwOrckVqoNTnmU&#43;eho1Kv3wY9lBvnEeb0O9hGgUQs=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1bb3b74be929529e1bfef270051d231986b20bdc96f8860be43485293ae38319.js" integrity="sha256-G7O3S&#43;kpUp4b/vJwBR0jGYayC9yW&#43;IYL5DSFKTrjgxk=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -611,6 +611,7 @@ https://github.com/alex-shpak/hugo-book
     <li><a href="#stacking-classifier">Stacking classifier</a>
       <ul>
         <li><a href="#confusion-matrix">Confusion matrix</a></li>
+        <li><a href="#roc-curve-and-auc">ROC curve and AUC</a></li>
       </ul>
     </li>
   </ul>
@@ -697,7 +698,40 @@ The example below is somewhat more complicated. Let&rsquo;s go through it step-b
 -----------+----------------------+----------
      Total |       995        606 |     1,601 
            |     62.15      37.85 |    100.00 
-</code></pre></article>
+</code></pre><p>The <code>table</code> option makes this even easier. The table below shows the in-sample and out-of-sample classification errors
+for stacking and each base learner&ndash;all in one table.</p>
+<pre tabindex="0"><code>. pystacked, table holdout
+ [...]
+Confusion matrix: In-Sample and Out-of-Sample
+------------------------------------------------------------
+  Method         | Weight      In-Sample       Out-of-Sample
+                 |             0       1         0       1  
+-----------------+------------------------------------------
+  STACKING     0 |    .      1792       1       964      31
+  STACKING     1 |    .         2    1205        43     563
+  logit        0 | 0.000     1087     706       571     424
+  logit        1 | 0.000       73    1134        40     566
+  rf           0 | 0.248     1792       1       961      34
+  rf           1 | 0.248        0    1207        46     560
+  gradboost    0 | 0.632     1792       1       960      35
+  gradboost    1 | 0.632        2    1205        43     563
+  nnet         0 | 0.032     1747      46       946      49
+  nnet         1 | 0.032      106    1101        72     534
+  nnet         0 | 0.004     1572     221       831     164
+  nnet         1 | 0.004       45    1162        33     573
+  nnet         0 | 0.085     1746      47       947      48
+  nnet         1 | 0.085      114    1093        70     536
+</code></pre><h3 id="roc-curve-and-auc">
+  ROC curve and AUC
+  <a class="anchor" href="#roc-curve-and-auc">#</a>
+</h3>
+<p><code>pystacked</code> supports ROC curves which allow to assess the classification performance for varying disrimination thresholds.
+The <em>y</em>-axis in an ROC plot corresponds to sensitivity (true positive rate) and the <em>x</em>-axis corresponds to 1-specificity (false positive rate). The Area Under the Curve (AUC) displayed below each ROC plot is a common evaluation metric for classification problems.</p>
+<pre tabindex="0"><code>. pystacked, graph(subtitle(Spam data)) ///
+            lgraph(plotopts(msymbol(i) ylabel(0 1, format(%3.1f)))) ///
+            holdout
+</code></pre><p><img src="/img/stacking_class_tutorial.png#center" alt="" /></p>
+</article>
  
       
 
@@ -741,6 +775,7 @@ The example below is somewhat more complicated. Let&rsquo;s go through it step-b
     <li><a href="#stacking-classifier">Stacking classifier</a>
       <ul>
         <li><a href="#confusion-matrix">Confusion matrix</a></li>
+        <li><a href="#roc-curve-and-auc">ROC curve and AUC</a></li>
       </ul>
     </li>
   </ul>

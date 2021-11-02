@@ -1,4 +1,4 @@
-<pre id="stlog-1" class="stlog"><samp>. insheet using ///
+. insheet using ///
 &gt;         https://statalasso.github.io/dta/housing.csv,  ///
 &gt;         clear comma
 (14 vars, 506 obs)
@@ -118,4 +118,3 @@ MSPE: In-Sample and Out-of-Sample
   lassoic        | 0.704       4.636         5.424
   rf             | 0.509       4.158         5.108
   gradboost      | 0.233       1.373         4.489
-</samp></pre>

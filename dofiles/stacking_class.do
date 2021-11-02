@@ -2,6 +2,8 @@ clear all
 
 adopath ++ /Users/kahrens/MyProjects/pystacked/ 
 
+webdoc init stacking_classification, replace logall plain
+
 insheet using ///
 	https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, ///
     clear comma
@@ -23,6 +25,5 @@ predict spam, class
 tab spam v58 if _n<=3000, cell
 tab spam v58 if _n>3000, cell
 
-
-
-
+pystacked, table holdout
+pystacked, graph(subtitle(Spam data)) lgraph(plotopts(msymbol(i) ylabel(0 1, format(%3.1f)))) holdout

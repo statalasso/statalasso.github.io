@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Stacking regression with pystacked #  pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&rsquo;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &ldquo;base learners&rdquo;) into a final prediction to improve performance. The currently-supported base learners are:
- Linear regression Logistic regression Lasso, ridge and elastic net Support vector machines Gradient boosted trees Random forest Multi-layer Perceptron  pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&rsquo;s machine learning algorithms.">
+<meta name="description" content="Stacked generalization with pystacked #  pystacked implements stacked generalization (Wolpert, 1992) via scikit-learn&rsquo;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &ldquo;base learners&rdquo;) into a final prediction to improve performance. The currently-supported base learners are:
+ Linear regression Logistic regression Lasso, ridge and elastic net Support vector machines Gradient boosted trees Random forest Neural nets (Multi-layer Perceptron)  pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&rsquo;s machine learning algorithms.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="PYSTACKED" />
 <meta property="og:description" content="" />
@@ -16,7 +16,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.c724703ab72456aa0d4e7994f9e868d4abf7c18f6506f9c479bd0ef611a0510b.js" integrity="sha256-xyRwOrckVqoNTnmU&#43;eho1Kv3wY9lBvnEeb0O9hGgUQs=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.1bb3b74be929529e1bfef270051d231986b20bdc96f8860be43485293ae38319.js" integrity="sha256-G7O3S&#43;kpUp4b/vJwBR0jGYayC9yW&#43;IYL5DSFKTrjgxk=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -604,11 +604,11 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="stacking-regression-with-pystacked">
-  Stacking regression with <strong>pystacked</strong>
-  <a class="anchor" href="#stacking-regression-with-pystacked">#</a>
+  <article class="markdown"><h2 id="stacked-generalization-with-pystacked">
+  Stacked generalization with <strong>pystacked</strong>
+  <a class="anchor" href="#stacked-generalization-with-pystacked">#</a>
 </h2>
-<p><code>pystacked</code> implements stacking regression (<a href="https://doi.org/10.1016/S0893-6080%2805%2980023-1">Wolpert, 1992</a>) via <a href="https://scikit-learn.org/stable/">scikit-learn</a>&rsquo;s
+<p><code>pystacked</code> implements stacked generalization (<a href="https://doi.org/10.1016/S0893-6080%2805%2980023-1">Wolpert, 1992</a>) via <a href="https://scikit-learn.org/stable/">scikit-learn</a>&rsquo;s
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingRegressor.html">sklearn.ensemble.StackingRegressor</a> and
 <a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.StackingClassifier.html">sklearn.ensemble.StackingClassifier</a>.  Stacking is a
 way of combining predictions from multiple supervised machine learners (the &ldquo;base learners&rdquo;)
@@ -620,7 +620,7 @@ into a final prediction to improve performance.  The currently-supported base le
 <li>Support vector machines</li>
 <li>Gradient boosted trees</li>
 <li>Random forest</li>
-<li>Multi-layer Perceptron</li>
+<li>Neural nets (Multi-layer Perceptron)</li>
 </ul>
 <p><code>pystacked</code> can also be used with a single base learner and, thus, provides an easy-to-use API
 for <a href="https://scikit-learn.org/stable/">scikit-learn</a>&rsquo;s machine learning algorithms.</p>
