@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.1bb3b74be929529e1bfef270051d231986b20bdc96f8860be43485293ae38319.js" integrity="sha256-G7O3S&#43;kpUp4b/vJwBR0jGYayC9yW&#43;IYL5DSFKTrjgxk=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -709,9 +709,7 @@ is non-negative least squares (NNLS) where the weights are standardized to sum t
 </h3>
 <p>In addition to the stacking predicted values, we can also get the predicted values of each base learner using the <code>transform</code> option:</p>
 <pre tabindex="0"><code>. predict double yh, xb
-
 . predict double ytrans, transf
-
 . list yh ytrans* if _n &lt;= 5
 
      +---------------------------------------------------------------------+
@@ -737,16 +735,7 @@ is non-negative least squares (NNLS) where the weights are standardized to sum t
 </h3>
 <p>The <code>table</code> option allows to compare stacking weights with in-sample and out-of-sample MSPE. As with the <code>graph</code> option, we can use <code>table</code> as a post-estimation command:</p>
 <pre tabindex="0"><code>. pystacked, table holdout
----------------------------------------
-  Method         |      Weight
------------------+---------------------
-  ols            |      0.0024167
-  lassoic        |     -0.2479425
-  lassoic        |      0.7035482
-  rf             |      0.5091350
-  gradboost      |      0.2330788
-
-Number of holdout observations:  394
+[...]
 
 MSPE: In-Sample and Out-of-Sample
 -----------------------------------------------------
