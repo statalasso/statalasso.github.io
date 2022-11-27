@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Parallelization #  pystacked can be run in parallel, even without a StataMP license.
-Here, we use pystacked with njobs(-1) which indicates that we want to use all available CPUs.
-. clear all . insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u . timer on 1 . pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) /// cmdopt1(n_estimators(1000)) . timer off 1 .">
+<meta name="description" content="Parallelization # pystacked can be run in parallel, even without a StataMP license.
+pystacked can be parallelized at the level of the base learners or at the stacking level (to speed up the cross-validation process). Example 1 below uses no parallelization (the default). Example 2 parallelizes the random forest base learner. Example 3 parallelizes at the top level.
+. insheet using /// &gt; https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// &gt; clear comma . set seed 42 .">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Parallelization" />
-<meta property="og:description" content="Parallelization #  pystacked can be run in parallel, even without a StataMP license.
-Here, we use pystacked with njobs(-1) which indicates that we want to use all available CPUs.
-. clear all . insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u . timer on 1 . pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) /// cmdopt1(n_estimators(1000)) . timer off 1 ." />
+<meta property="og:description" content="Parallelization # pystacked can be run in parallel, even without a StataMP license.
+pystacked can be parallelized at the level of the base learners or at the stacking level (to speed up the cross-validation process). Example 1 below uses no parallelization (the default). Example 2 parallelizes the random forest base learner. Example 3 parallelizes at the top level.
+. insheet using /// &gt; https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// &gt; clear comma . set seed 42 ." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/pystacked/parallel/" /><meta property="article:section" content="docs" />
 
@@ -21,7 +21,7 @@ Here, we use pystacked with njobs(-1) which indicates that we want to use all av
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -523,6 +523,40 @@ https://github.com/alex-shpak/hugo-book
       
     
       
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
         <li>
           
   
@@ -547,7 +581,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
   
 
           
@@ -579,7 +613,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -613,31 +647,65 @@ https://github.com/alex-shpak/hugo-book
   <a class="anchor" href="#parallelization">#</a>
 </h2>
 <p><code>pystacked</code> can be run in parallel, even without a StataMP license.</p>
-<p>Here, we use <code>pystacked</code> with <code>njobs(-1)</code> which indicates that we want to use all available CPUs.</p>
-<pre tabindex="0"><code>. clear all 
-. insheet using ///
-  https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, ///
-  clear comma
+<p><code>pystacked</code> can be parallelized at the level of the base learners <em>or</em> at the stacking level (to speed up the cross-validation process). Example 1 below uses no parallelization (the default). Example 2 parallelizes the random forest base learner. Example 3 parallelizes at the top level.</p>
+<pre tabindex="0"><code>. insheet using ///
+&gt;     https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, ///
+&gt;     clear comma
+
 . set seed 42
-. gen u = runiform()
-. sort u
+. gen uni=runiform()
+. sort uni
 
 . timer on 1
-. pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) ///
-             cmdopt1(n_estimators(1000))
+. pystacked v58 v1-v57, type(class) methods(rf gradboost nnet) ///
+&gt;             cmdopt1(n_estimators(1000))
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  rf             |      0.3698014
+  gradboost      |      0.5437376
+  nnet           |      0.0864610
+
 . timer off 1
 
 . timer on 2
-. pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) ///
-             cmdopt1(n_estimators(1000)) njobs(-1)
+. pystacked v58 v1-v57, type(class) methods(rf gradboost nnet) ///
+&gt;             cmdopt1(n_jobs(-1) n_estimators(1000))
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  rf             |      0.3293277
+  gradboost      |      0.5661072
+  nnet           |      0.1045651
+
 . timer off 2
 
+. timer on 3
+. pystacked v58 v1-v57, type(class) methods(rf gradboost nnet) ///
+&gt;             cmdopt1(n_estimators(1000)) njobs(-1)
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  rf             |      0.3514905
+  gradboost      |      0.5024690
+  nnet           |      0.1460405
+
+. timer off 3
+
 . timer list
-   1:     29.54 /        1 =      29.5380
-   2:     19.26 /        1 =      19.2600   
-</code></pre><p>If you don&rsquo;t want to use all CPUs, you can use, for example, <code>n_jobs(4)</code> to ask for 4 CPUs; see also the <a href="https://scikit-learn.org/stable/glossary.html">scikit-learn documentation</a>.</p>
+   1:    196.95 /        1 =     196.9510
+   2:     30.01 /        1 =      30.0140
+   3:     83.05 /        1 =      83.0450
+</code></pre><p>Which method is faster depends on the choice and number of base learners and number of folds. In this example, parallelizing the random forest is the fastest approach since we fit many trees independently.</p>
+<p><code>n_jobs(-1)</code> uses all available cores. If you don&rsquo;t want to use all CPUs, you can use, for example, <code>n_jobs(4)</code> to ask for 4 CPUs; see also the <a href="https://scikit-learn.org/stable/glossary.html">scikit-learn documentation</a>. <code>n_jobs(-2)</code> asks for all cores minus 1.</p>
 <blockquote class="book-hint warning">
-  You can change the backend used for parallelization using <code>backend()</code>; the default is &lsquo;loky&rsquo; under Linux/MacOS and &lsquo;threading&rsquo; under Windows. See <a href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.parallel_backend.html">here</a> for more information.
+  You can change the backend used for parallelization using <code>backend()</code>; the default is &rsquo;loky&rsquo; under Linux/MacOS and &rsquo;threading&rsquo; under Windows. See <a href="https://scikit-learn.org/stable/modules/generated/sklearn.utils.parallel_backend.html">here</a> for more information.
 </blockquote>
 
 </article>
@@ -656,7 +724,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

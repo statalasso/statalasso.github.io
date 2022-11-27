@@ -12,10 +12,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/getting_started/</guid>
-      <description>Getting started #  Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
-. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
-. pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done.</description>
+      <description>Getting started # Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
+Gradient boosting # We load the example data set and randomly split the data in training/test sample.
+. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) method(gradboost) Single base learner: no stacking done.</description>
     </item>
     
     <item>
@@ -24,9 +24,9 @@ Gradient boosting #  We load the example data set and randomly split the data in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/regression/</guid>
-      <description>Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
-. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
-. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.</description>
+      <description>Stacking regression # First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&amp;gt;.75 We now consider a more complicated pystacked application with 5 base learners: linear regression, two versions of lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) /// methods(ols lassoic lassoic rf gradboost) /// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.</description>
     </item>
     
     <item>
@@ -35,8 +35,8 @@ Gradient boosting #  We load the example data set and randomly split the data in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/classification/</guid>
-      <description>Stacking classifier #  Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
-. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u Stacking classification works very similar to stacking regression.</description>
+      <description>Stacking classifier # Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
+. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen uni=runiform() . sort uni Stacking classification works very similar to stacking regression. The example below is somewhat more complicated.</description>
     </item>
     
     <item>
@@ -45,9 +45,9 @@ Gradient boosting #  We load the example data set and randomly split the data in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/parallel/</guid>
-      <description>Parallelization #  pystacked can be run in parallel, even without a StataMP license.
-Here, we use pystacked with njobs(-1) which indicates that we want to use all available CPUs.
-. clear all . insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u . timer on 1 . pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) /// cmdopt1(n_estimators(1000)) . timer off 1 .</description>
+      <description>Parallelization # pystacked can be run in parallel, even without a StataMP license.
+pystacked can be parallelized at the level of the base learners or at the stacking level (to speed up the cross-validation process). Example 1 below uses no parallelization (the default). Example 2 parallelizes the random forest base learner. Example 3 parallelizes at the top level.
+. insheet using /// &amp;gt; https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// &amp;gt; clear comma . set seed 42 .</description>
     </item>
     
     <item>
@@ -65,9 +65,10 @@ Here, we use pystacked with njobs(-1) which indicates that we want to use all av
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/installation/</guid>
-      <description>Installation #  You can get the lastest versions from Github:
+      <description>Installation # You can get the lastest versions from Github:
 net install pystacked, /// from(https://raw.githubusercontent.com/aahrens1/pystacked/main) replace Please check for updates on a regular basis.
-pystacked requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher). Python and scikit-learn are available for free.  Setting up Python #  If you haven&amp;rsquo;t set up Python for Stata, type help python and check this Stata blog post for how to set up Python for Stata on your system.</description>
+pystacked requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher). Python and scikit-learn are available for free. You can also install from SSC, but note that we update the SSC version less regularly:
+ssc install pystacked Install old versions # To install an old version:</description>
     </item>
     
     <item>
@@ -76,7 +77,7 @@ pystacked requires at least Stata 16 (or higher), a Python installation and scik
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/citation/</guid>
-      <description>Citation #  pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
+      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
 Also cite scikit-learn as explained here:
 @article{scikit-learn, title={Scikit-learn: Machine Learning in {P}ython}, author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A.</description>
     </item>

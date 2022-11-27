@@ -1,0 +1,120 @@
+------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/kahrens/MyProjects/statalasso_website/static/dofiles/stacking_regression.log
+  log type:  text
+ opened on:  27 Nov 2022, 11:45:31
+
+. 
+. insheet using ///
+>     https://statalasso.github.io/dta/housing.csv,  ///
+>     clear comma
+(14 vars, 506 obs)
+
+. set seed 789
+
+. gen train=runiform()
+
+. replace train=train>.75
+(506 real changes made)
+
+. 
+. 
+. pystacked medv crim-lstat if train,                              ///
+>     type(regress)                                                ///
+>     methods(ols lassoic lassoic rf gradboost)                    ///
+>     pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.01)        ///
+>     n_estimators(1000))
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0139419
+  lassoic        |      0.0000000
+  lassoic        |      0.3959649
+  rf             |      0.5900932
+  gradboost      |      0.0000000
+
+. 
+. pystacked medv crim-lstat                                                 || ///
+>                  m(ols) pipe(poly2)                                       || ///
+>                  m(lassoic)                                               || ///
+>                  m(lassoic) pipe(poly2)                                   || ///
+>                  m(rf)                                                    || ///
+>                  m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) | ///
+>                  if train , type(regress)
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0000000
+  lassoic        |      0.0000000
+  lassoic        |      0.3696124
+  rf             |      0.6303876
+  gradboost      |      0.0000000
+
+. 
+. pystacked medv crim-lstat                                                 || ///
+>                  m(ols) pipe(poly2)                                       || ///
+>                  m(lassoic)                                               || ///
+>                  m(lassoic) pipe(poly2)                                   || ///
+>                  m(rf)                                                    || ///
+>                  m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) ///
+>                  if train, type(regress) finalest(singlebest)
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0000000
+  lassoic        |      0.0000000
+  lassoic        |      0.0000000
+  rf             |      0.0000000
+  gradboost      |      1.0000000
+
+. 
+. predict double yh, xb
+
+. predict double ybase, basexb
+
+. list yh ybase* if _n <= 5
+
+     +-----------------------------------------------------------------------+
+     |        yh      ybase1      ybase2      ybase3      ybase4      ybase5 |
+     |-----------------------------------------------------------------------|
+  1. | 24.726908   22.301384    30.27872   25.451438      25.721   24.726908 |
+  2. | 21.993344   22.596584   25.133314   23.908178      21.356   21.993344 |
+  3. | 32.628795   29.987554   31.027162   33.898635   32.968001   32.628795 |
+  4. | 34.027947   30.977113   29.428614    32.00817   33.098001   34.027947 |
+  5. | 35.215694   34.034215    28.85696   32.311613   35.109001   35.215694 |
+     +-----------------------------------------------------------------------+
+
+. 
+. pystacked, graph holdout
+Number of holdout observations:  361
+
+. graph export /Users/kahrens/MyProjects/statalasso_website/static/img/stacking_regression_tutorial.png, replace  
+file /Users/kahrens/MyProjects/statalasso_website/static/img/stacking_regression_tutorial.png saved as PNG format
+
+. pystacked, table holdout
+Number of holdout observations:  361
+
+RMSPE: In-Sample, CV, Holdout
+-----------------------------------------------------------------
+  Method         | Weight   In-Sample        CV         Holdout
+-----------------+-----------------------------------------------
+  STACKING       |    .        0.637        4.547        3.664
+  ols            | 0.000       1.308       18.660       11.529
+  lassoic        | 0.000       4.501        5.179        5.218
+  lassoic        | 0.000       1.798        4.913        4.964
+  rf             | 0.000       1.484        4.599        3.932
+  gradboost      | 1.000       0.637        4.547        3.664
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/kahrens/MyProjects/statalasso_website/static/dofiles/stacking_regression.log
+  log type:  text
+ closed on:  27 Nov 2022, 11:45:46
+------------------------------------------------------------------------------------------------------------------------

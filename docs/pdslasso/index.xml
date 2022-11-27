@@ -12,8 +12,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_models/</guid>
-      <description>Many instruments #  Belloni et al. (2012, Econometrica) consider the model
-  \[y_i = \alpha d_i &amp;#43; \varepsilon_i \\ d_i = z_i&amp;#39;\delta &amp;#43; u_i\]  where  \(y_i\)  is the dependent variable,  \(d_i\)  is an endogenous regressors and  \(z_i\)  is a  \(p_z\)  -dimensional vector of instruments.  \(p_z\)  is allowed to be large and may even exceed the sample size. We refer to  \(z_i\)  as high-dimensional.</description>
+      <description>Many instruments # Belloni et al. (2012, Econometrica) consider the model
+\[y_i = \alpha d_i &amp;#43; \varepsilon_i \\ d_i = z_i&amp;#39;\delta &amp;#43; u_i\] where \(y_i\) is the dependent variable, \(d_i\) is an endogenous regressors and \(z_i\) is a \(p_z\) -dimensional vector of instruments. \(p_z\) is allowed to be large and may even exceed the sample size. We refer to \(z_i\) as high-dimensional. The interest lies in estimating the causal effect of endogenous variable \(d_i\) on the outcome variable \(y_i\) .</description>
     </item>
     
     <item>
@@ -22,8 +22,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_demo/</guid>
-      <description>Demonstration #  We demonstrate the use of pdslasso and ivlasso using the data set of Acemoglu, Robinson &amp;amp; Johnson (2001).
-. clear . use https://statalasso.github.io/dta/AJR.dta Basic OLS #  We are interested in the effect of institutions (measured by avexpr) on income (logpgp95). We ignore endogeneity issues for now and begin with a simple regression of logpgp95 against avexpr:
+      <description>Demonstration # We demonstrate the use of pdslasso and ivlasso using the data set of Acemoglu, Robinson &amp;amp; Johnson (2001).
+. clear . use https://statalasso.github.io/dta/AJR.dta Basic OLS # We are interested in the effect of institutions (measured by avexpr) on income (logpgp95). We ignore endogeneity issues for now and begin with a simple regression of logpgp95 against avexpr:
 . reg logpgp95 avexpr Source | SS df MS Number of obs = 64 -------------+---------------------------------- F(1, 62) = 72.</description>
     </item>
     
@@ -33,7 +33,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</guid>
-      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
+      <description>Panel FE and Clustering # pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:</description>
     </item>
     
@@ -52,12 +52,12 @@ For demonstation, we consider the nlswork example data set:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/installation/</guid>
-      <description>SSC version #  You can get pdslasso from SSC:
-ssc install pdslasso  Note that pdslasso requires lassopack to be installed.
+      <description>SSC version # You can get pdslasso from SSC:
+ssc install pdslasso Note that pdslasso requires lassopack to be installed.
 Add replace to overwrite existing versions of the packages.
-Github installation #  Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
-net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;)  Please check for updates on a regular basis.
-Installing old versions: #  We keep old versions of lassopack and pdslasso on github to facilitate reproducibility.</description>
+Github installation # Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
+net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;) Please check for updates on a regular basis.
+Installing old versions: # We keep old versions of lassopack and pdslasso on github to facilitate reproducibility.</description>
     </item>
     
     <item>
@@ -66,7 +66,7 @@ Installing old versions: #  We keep old versions of lassopack and pdslasso on gi
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_cite/</guid>
-      <description>Citation #  pdslasso and ivlasso are not official Stata commands. They are free contributions to the research community, like a paper.
+      <description>Citation # pdslasso and ivlasso are not official Stata commands. They are free contributions to the research community, like a paper.
 Please cite it as such:
 Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018. pdslasso and ivlasso: Programs for post-selection and post-regularization OLS or IV estimation and inference. http://ideas.repec.org/c/boc/bocode/s458459.html
 Bibtex file</description>

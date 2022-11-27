@@ -3,22 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Getting started # Before we get into stacking, let&rsquo;s first use pystacked as a &ldquo;regular&rdquo; program for machine learning.
-Gradient boosting # We load the example data set and randomly split the data in training/test sample.
-. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&gt;.75 As an example, we run pystacked with gradient boosting:
-. pystacked medv crim-lstat if train, /// type(regress) method(gradboost) Single base learner: no stacking done.">
+<meta name="description" content="SSC version # You can get the lastest versions from github:
+net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) Please check for updates on a regular basis.
+Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &ldquo;Code&rdquo; and &ldquo;Download ZIP&rdquo;. Then run net install as above but from() should refer to the downloaded and unzipped repository folder.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Getting started" />
-<meta property="og:description" content="Getting started # Before we get into stacking, let&rsquo;s first use pystacked as a &ldquo;regular&rdquo; program for machine learning.
-Gradient boosting # We load the example data set and randomly split the data in training/test sample.
-. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&gt;.75 As an example, we run pystacked with gradient boosting:
-. pystacked medv crim-lstat if train, /// type(regress) method(gradboost) Single base learner: no stacking done." />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Installation" />
+<meta property="og:description" content="SSC version # You can get the lastest versions from github:
+net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) Please check for updates on a regular basis.
+Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &ldquo;Code&rdquo; and &ldquo;Download ZIP&rdquo;. Then run net install as above but from() should refer to the downloaded and unzipped repository folder." />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="https://statalasso.github.io/docs/pystacked/getting_started/" /><meta property="article:section" content="docs" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/installation/" /><meta property="article:section" content="docs" />
 
 
 
-<title>Getting started | Stata ML Page</title>
+<title>Installation | Stata ML Page</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
@@ -419,7 +417,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle" checked />
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
     <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
       <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
     </label>
@@ -435,7 +433,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class=" active">Getting started</a>
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
   
 
         </li>
@@ -531,7 +529,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
     <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
       <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
     </label>
@@ -547,7 +545,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class=" active">Installation</a>
   
 
         </li>
@@ -630,7 +628,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Getting started</strong>
+  <strong>Installation</strong>
 
   <label for="toc-control">
     
@@ -646,13 +644,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#getting-started">Getting started</a>
-      <ul>
-        <li><a href="#gradient-boosting">Gradient boosting</a></li>
-        <li><a href="#options">Options</a></li>
-        <li><a href="#pipelines">Pipelines</a></li>
-      </ul>
-    </li>
+    <li><a href="#ssc-version">SSC version</a></li>
+    <li><a href="#offline-installation">Offline installation</a></li>
   </ul>
 </nav>
 
@@ -665,118 +658,22 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="getting-started">
-  Getting started
-  <a class="anchor" href="#getting-started">#</a>
+  <article class="markdown"><h2 id="ssc-version">
+  SSC version
+  <a class="anchor" href="#ssc-version">#</a>
 </h2>
-<p>Before we get into stacking, let&rsquo;s first use <code>pystacked</code> as a &ldquo;regular&rdquo;
-program for machine learning.</p>
-<h3 id="gradient-boosting">
-  Gradient boosting
-  <a class="anchor" href="#gradient-boosting">#</a>
-</h3>
-<p>We load the example data set and randomly split the data in training/test sample.</p>
-<pre tabindex="0"><code>. clear all
-. insheet using ///
-                 https://statalasso.github.io/dta/housing.csv,  ///
-                 clear comma
-. set seed 789
-. gen train=runiform()
-. replace train=train&gt;.75
-</code></pre><p>As an example, we run <code>pystacked</code> with gradient boosting:</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train, ///
-          type(regress) method(gradboost)
-Single base learner: no stacking done.
-
-Stacking weights:
----------------------------------------
-  Method         |      Weight
------------------+---------------------
-  gradboost      |      1.0000000
-</code></pre><blockquote class="book-hint warning">
-  <em>Python seed</em><br>
-Since <code>pystacked</code> uses Python, we also need to take the Python seed into account to ensure
-replicability. <code>pystacked</code> does this automatically for you. The default (<code>pyseed(-1)</code>) draws a number between 0 and 10^8 in Stata which is then used as a Python seed.  This way, you only need to deal with the Stata seed. For example, <code>set seed 42</code> is sufficient, as the Python seed is generated automatically.
-</blockquote>
-
-<p>We use the <code>type</code> option to indicate that we consider a regression task rather than a classification task. <code>method(gradboost)</code> selects gradient boosting with regression trees. We will later see that we can specify more than one learner in <code>method()</code>.</p>
-<p>The output isn&rsquo;t particularly informative since&ndash;for now&ndash;we only consider one method. Yet, <code>pystacked</code> has fitted 100 boosted trees in the background. We can use <code>predict</code> in the Stata-typical way to obtain predicted values:</p>
-<pre tabindex="0"><code>. predict double ygb if !train
-</code></pre><h3 id="options">
-  Options
-  <a class="anchor" href="#options">#</a>
-</h3>
-<p>We can pass options to scitkit-learn and fine-tune our gradient booster. For this, we use the
-<code>cmdopt1()</code> option. We need to use <code>cmdopt1()</code> because <em>gradboost</em> is the first (and only) method we are using with
-<code>pystacked</code>.</p>
-<p>The options of each base learner are listed when you type:</p>
-<pre tabindex="0"><code>. _pyparse, type(reg) method(gradboost) print
-Default options: 
-loss(squared_error) learning_rate(.1) n_estimators(100) subsample(1) 
-criterion(friedman_mse) min_samples_split(2) min_samples_leaf(1) 
-min_weight_fraction_leaf(0) max_depth(3) min_impurity_decrease(0) 
-init(None) random_state(rng) max_features(None) alpha(.9) 
-max_leaf_nodes(None) warm_start(False) validation_fraction(.1) 
-n_iter_no_change(None) tol(.0001) ccp_alpha(0) 
-</code></pre><p>Check the scikit-learn documentation
-<a href="https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.GradientBoostingRegressor.html">here</a> to get more information
-about each option.</p>
-<blockquote class="book-hint warning">
-  <em>scikit-learn documentation</em><br>
-Please study the scikit-learn documentation carefully when using <code>pystacked</code>.
-</blockquote>
-
-<p>For demonstation, we try two things: (1) we reduce the learning rate
-from 0.1 to 0.01, and (2) we reduce the learning rate and, in addition, increase the number of trees to 1000.</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train, ///
-       type(regress) method(gradboost) ///
-       cmdopt1(learning_rate(.01))
-. predict double ygb2 if !train
-
-. pystacked medv crim-lstat if train, ///
-       type(regress) method(gradboost) ///
-       cmdopt1(learning_rate(.01) n_estimators(1000))
-. predict double ygb3 if !train
-</code></pre><p>We can then compare the performance across the three models:</p>
-<pre tabindex="0"><code>. gen double rgb_sq=(medv-ygb)^2
-. gen double rgb2_sq=(medv-ygb2)^2
-. gen double rgb3_sq=(medv-ygb3)^2
-
-. sum rgb* if!train
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-      rgb_sq |        361    14.19902    38.15371   .0000138   469.2815
-     rgb2_sq |        361    28.66256    50.82527   .0019822   437.9858
-     rgb3_sq |        361    13.38564    38.00065   8.70e-07   546.1962
-</code></pre><p>Reducing the learning rate without increasing the number of trees has deteriorated prediction performance; yet, if we also increase the number of trees, we might be able to improve prediction performance.</p>
-<h3 id="pipelines">
-  Pipelines
-  <a class="anchor" href="#pipelines">#</a>
-</h3>
-<p>We can make use of pipelines to pre-process our predictors. This will become especially useful in the context of stacking when we want to pass 2nd-order polynomials to one method, but not the other. Here, we use lasso with and without the <code>poly2</code> pipeline:</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train, ///
-       type(regress) method(lassocv)  
-. predict double ylasso1 if !train
-
-. pystacked medv crim-lstat if train, ///
-       type(regress) method(lassocv) ///
-       pipe1(poly2)
-. predict double ylasso2 if !train
-
-. gen double rlasso1_sq=(medv-ylasso1)^2
-. gen double rlasso2_sq=(medv-ylasso2)^2
-
-. sum *sq if !train
-
-    Variable |        Obs        Mean    Std. dev.       Min        Max
--------------+---------------------------------------------------------
-      rgb_sq |        361    14.19902    38.15371   .0000138   469.2815
-     rgb2_sq |        361    28.66256    50.82527   .0019822   437.9858
-     rgb3_sq |        361    13.38564    38.00065   8.70e-07   546.1962
-  rlasso1_sq |        361    28.03915    76.37714   .0006696   897.5598
-  rlasso2_sq |        361    22.85806    76.73137   4.81e-06   952.1228
-</code></pre><p>The interactions and squared terms improve the performance of the lasso. However,
-gradient boosting performance much better in this application.</p>
+<p>You can get the lastest versions from github:</p>
+<pre tabindex="0"><code>net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master)
+</code></pre><p>Please check for updates on a regular basis.</p>
+<h2 id="offline-installation">
+  Offline installation
+  <a class="anchor" href="#offline-installation">#</a>
+</h2>
+<p>If you want to use <strong>ddml</strong> in an offline environment,
+we recommend to download the packages from the Github repositories. The links to
+repositories are above; click the green button &ldquo;Code&rdquo;
+and &ldquo;Download ZIP&rdquo;. Then run <code>net install</code> as above but <code>from()</code>
+should refer to the downloaded and unzipped repository folder.</p>
 </article>
  
       
@@ -818,13 +715,8 @@ gradient boosting performance much better in this application.</p>
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#getting-started">Getting started</a>
-      <ul>
-        <li><a href="#gradient-boosting">Gradient boosting</a></li>
-        <li><a href="#options">Options</a></li>
-        <li><a href="#pipelines">Pipelines</a></li>
-      </ul>
-    </li>
+    <li><a href="#ssc-version">SSC version</a></li>
+    <li><a href="#offline-installation">Offline installation</a></li>
   </ul>
 </nav>
 

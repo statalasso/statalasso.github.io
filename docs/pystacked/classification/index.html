@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Stacking classifier #  Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
-. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u Stacking classification works very similar to stacking regression.">
+<meta name="description" content="Stacking classifier # Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
+. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen uni=runiform() . sort uni Stacking classification works very similar to stacking regression. The example below is somewhat more complicated.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Classification" />
-<meta property="og:description" content="Stacking classifier #  Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
-. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u Stacking classification works very similar to stacking regression." />
+<meta property="og:description" content="Stacking classifier # Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
+. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen uni=runiform() . sort uni Stacking classification works very similar to stacking regression. The example below is somewhat more complicated." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/pystacked/classification/" /><meta property="article:section" content="docs" />
 
@@ -19,7 +19,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -521,6 +521,40 @@ https://github.com/alex-shpak/hugo-book
       
     
       
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
         <li>
           
   
@@ -545,7 +579,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
   
 
           
@@ -577,7 +611,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -635,8 +669,8 @@ https://github.com/alex-shpak/hugo-book
     https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, ///
     clear comma
 . set seed 42
-. gen u = runiform()
-. sort u
+. gen uni=runiform()
+. sort uni
 </code></pre><p>Stacking classification works very similar to stacking regression.
 The example below is somewhat more complicated. Let&rsquo;s go through it step-by-step:</p>
 <ul>
@@ -644,27 +678,29 @@ The example below is somewhat more complicated. Let&rsquo;s go through it step-b
 <li>We apply the <code>poly2</code> pipeline to the logistic regressor, which creates squares and interaction terms of the predictors.</li>
 <li>For both gradient boosting and random forest, we increase the number of classification trees to 1000.</li>
 <li>We consider three types of neural nets: (1) with one layer of 100 neurons (the default), (2) three layers with 50 neurons each, (3) one layer of 200 neurons.</li>
-<li>Finally, we use <code>type(class)</code> to specify that we consider a classification task and <code>njobs(-1)</code> switches parallelization on with all available CPUs.</li>
+<li>We use <code>type(class)</code> to specify that we consider a classification task.</li>
+<li>Finally, <code>njobs(-1)</code> switches parallelization on with all available CPUs.</li>
 </ul>
 <p>Please note that this might take a while to run.</p>
-<pre tabindex="0"><code>. pystacked v58 v1-v57 if _n&lt;=3000                			|| ///
-                         m(logit) pipe(poly2)    			|| ///
-                         m(rf) opt(n_estimators(1000)) 		|| ///
-                         m(gradboost) opt(n_estimators(1000)) 		|| ///
-                         m(nnet)                                	|| ///
-                         m(nnet) opt(hidden_layer_sizes(50 50 50)) 	|| ///
-                         m(nnet) opt(hidden_layer_sizes(200)) 		|| ///
-                         , type(class) pyseed(123) njobs(-1) 
+<pre tabindex="0"><code>. pystacked v58 v1-v57                                  || ///
+&gt;             m(logit) pipe(poly2)                      || ///
+&gt;             m(rf) opt(n_estimators(1000))             || ///
+&gt;             m(gradboost) opt(n_estimators(1000))      || ///
+&gt;             m(nnet)                                   || ///
+&gt;             m(nnet) opt(hidden_layer_sizes(50 50 50)) || ///
+&gt;             m(nnet) opt(hidden_layer_sizes(200))      || ///
+&gt;             if _n&lt;=3000 , type(class) njobs(-1)
 
+Stacking weights:
 ---------------------------------------
   Method         |      Weight
 -----------------+---------------------
-  logit          |      0.0000000
-  rf             |      0.2479815
-  gradboost      |      0.6318673
-  nnet           |      0.0317621
-  nnet           |      0.0038639
-  nnet           |      0.0845252
+  logit          |      0.0016062
+  rf             |      0.0762563
+  gradboost      |      0.7524429
+  nnet           |      0.0810773
+  nnet           |      0.0574056
+  nnet           |      0.0312117
 </code></pre><h3 id="confusion-matrix">
   Confusion matrix
   <a class="anchor" href="#confusion-matrix">#</a>
@@ -690,37 +726,38 @@ The example below is somewhat more complicated. Let&rsquo;s go through it step-b
            |          v58
       spam |         0          1 |     Total
 -----------+----------------------+----------
-         0 |       964         43 |     1,007 
-           |     60.21       2.69 |     62.90 
+         0 |       962         43 |     1,005 
+           |     60.09       2.69 |     62.77 
 -----------+----------------------+----------
-         1 |        31        563 |       594 
-           |      1.94      35.17 |     37.10 
+         1 |        33        563 |       596 
+           |      2.06      35.17 |     37.23 
 -----------+----------------------+----------
      Total |       995        606 |     1,601 
-           |     62.15      37.85 |    100.00 
+           |     62.15      37.85 |    100.00  
 </code></pre><p>The <code>table</code> option makes this even easier. The table below shows the in-sample and out-of-sample classification errors
 for stacking and each base learner&ndash;all in one table.</p>
 <pre tabindex="0"><code>. pystacked, table holdout
- [...]
-Confusion matrix: In-Sample and Out-of-Sample
-------------------------------------------------------------
-  Method         | Weight      In-Sample       Out-of-Sample
-                 |             0       1         0       1  
------------------+------------------------------------------
-  STACKING     0 |    .      1792       1       964      31
-  STACKING     1 |    .         2    1205        43     563
-  logit        0 | 0.000     1087     706       571     424
-  logit        1 | 0.000       73    1134        40     566
-  rf           0 | 0.248     1792       1       961      34
-  rf           1 | 0.248        0    1207        46     560
-  gradboost    0 | 0.632     1792       1       960      35
-  gradboost    1 | 0.632        2    1205        43     563
-  nnet         0 | 0.032     1747      46       946      49
-  nnet         1 | 0.032      106    1101        72     534
-  nnet         0 | 0.004     1572     221       831     164
-  nnet         1 | 0.004       45    1162        33     573
-  nnet         0 | 0.085     1746      47       947      48
-  nnet         1 | 0.085      114    1093        70     536
+Number of holdout observations: 1601
+
+Confusion matrix: In-Sample, CV, Holdout
+-----------------------------------------------------------------------------
+  Method         | Weight      In-Sample             CV             Holdout
+                 |             0       1         0       1         0       1
+-----------------+-----------------------------------------------------------
+  STACKING     0 |    .      1792       2      1728      76       962      43
+  STACKING     1 |    .         1    1205        65    1131        33     563
+  logit        0 | 0.002     1077      68      1097      65       562      35
+  logit        1 | 0.002      716    1139       696    1142       433     571
+  rf           0 | 0.076     1792       0      1709     100       948      44
+  rf           1 | 0.076        1    1207        84    1107        47     562
+  gradboost    0 | 0.752     1792       2      1726      75       960      43
+  gradboost    1 | 0.752        1    1205        67    1132        35     563
+  nnet         0 | 0.081     1758     175      1671     113       957     100
+  nnet         1 | 0.081       35    1032       122    1094        38     506
+  nnet         0 | 0.057     1669      77      1650     125       910      55
+  nnet         1 | 0.057      124    1130       143    1082        85     551
+  nnet         0 | 0.031     1679      86      1654     116       911      54
+  nnet         1 | 0.031      114    1121       139    1091        84     552
 </code></pre><h3 id="roc-curve-and-auc">
   ROC curve and AUC
   <a class="anchor" href="#roc-curve-and-auc">#</a>
@@ -747,7 +784,7 @@ The <em>y</em>-axis in an ROC plot corresponds to sensitivity (true positive rat
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

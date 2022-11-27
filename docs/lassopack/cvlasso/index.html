@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
-cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation.">
+<meta name="description" content="Cross-validation # In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of \(\lambda\) and \(\alpha\) that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
+cvlasso supports \(K\) -fold cross-validation and \(h\) -step ahead rolling cross-validation.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Cross-validation" />
-<meta property="og:description" content="Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
-cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation." />
+<meta property="og:description" content="Cross-validation # In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of \(\lambda\) and \(\alpha\) that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
+cvlasso supports \(K\) -fold cross-validation and \(h\) -step ahead rolling cross-validation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/lassopack/cvlasso/" /><meta property="article:section" content="docs" />
 
@@ -19,7 +19,7 @@ cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling 
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -521,6 +521,40 @@ https://github.com/alex-shpak/hugo-book
       
     
       
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
         <li>
           
   
@@ -545,7 +579,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
   
 
           
@@ -577,7 +611,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -677,11 +711,11 @@ reproducing the outputs below.</p>
 
 K-fold cross-validation with 10 folds. Elastic net with alpha=1.
 Fold 1 2 3 4 5 6 7 8 9 10 
-      |         Lambda           MSPE       st. dev.
+	  |         Lambda           MSPE       st. dev.
 ----------+---------------------------------------------
-     1|      163.62492      1.3162136      .13064798 
-     2|      149.08894      1.2141972      .12282686 
-     3|      135.84429       1.114079      .11387635
+	 1|      163.62492      1.3162136      .13064798 
+	 2|      149.08894      1.2141972      .12282686 
+	 3|      135.84429       1.114079      .11387635
 ...
     17|      36.930468       .5827423      .06260056  ^ 
 ... 
@@ -764,12 +798,12 @@ over <span>
           alpha(0 0.1 0.5 1) seed(123)
 
 Cross-validation over alpha (0 .1 .5 1).
-     alpha | lopt*        Minimum MSPE
+	 alpha | lopt*        Minimum MSPE
    ------------+----------------------------
-     0.000 | 12.093063    .54348993
-     0.100 | 25.454739     .5418149
-     0.500 | 15.986318    .53499607
-     1.000 | 14.566138    .53408884  #
+	 0.000 | 12.093063    .54348993
+	 0.100 | 25.454739     .5418149
+	 0.500 | 15.986318    .53499607
+	 1.000 | 14.566138    .53408884  #
 * lambda value that minimizes MSPE for a given alpha
 # alpha value that minimizes MSPE
 </code></pre>
@@ -831,7 +865,7 @@ for either <code>e(lopt)</code> or <code>e(lse)</code>.</p>
 <p><code>cvlasso</code> calls <code>lasso2</code> internally.  The <code>saveest(string)</code> allows to
 access intermediate estimation results.</p>
 <pre><code>. cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
-      seed(123) nfolds(3) saveest(step)
+	  seed(123) nfolds(3) saveest(step)
 . estimates dir
 . estimates restore step1
 . estimates replay step1
@@ -875,17 +909,17 @@ lags are used as predictors.</p>
 Estimate lasso with lambda=315.16 (lopt).
 
 ---------------------------------------------------
-     Selected |           Lasso   Post-est OLS
+	 Selected |           Lasso   Post-est OLS
 ------------------+--------------------------------
-          air |
-          L1. |       0.1534004      0.1610229
-         L11. |       0.0638066      0.0724006
-         L12. |       0.8422566      0.8374074
+	      air |
+	      L1. |       0.1534004      0.1610229
+	     L11. |       0.0638066      0.0724006
+	     L12. |       0.8422566      0.8374074
 ------------------+--------------------------------
    Partialled-out*|
 ------------------+--------------------------------
-              |
-        _cons |      11.5075093      8.2797832
+	          |
+	    _cons |      11.5075093      8.2797832
 ---------------------------------------------------
 </code></pre>
 <p>The option <code>h()</code> controls the forecasting horizon (default is <code>h(1)</code>).</p>
@@ -922,19 +956,19 @@ Training from-to (validation point): 1945-1950 (1951), 1945-1951 (1952), 1945-19
 Estimate lasso with lambda=4828.76 (lopt).
 
 ---------------------------------------------------
-     Selected |           Lasso   Post-est OLS
+	 Selected |           Lasso   Post-est OLS
 ------------------+--------------------------------
-       mvalue |
-          L1. |       0.7289970      0.7343915
-          L5. |       0.1181815      0.1239170
-          L7. |       0.0027785      0.0062233
-          L8. |       0.0613727      0.0647928
-          L9. |       0.1014168      0.1031103
+	   mvalue |
+	      L1. |       0.7289970      0.7343915
+	      L5. |       0.1181815      0.1239170
+	      L7. |       0.0027785      0.0062233
+	      L8. |       0.0613727      0.0647928
+	      L9. |       0.1014168      0.1031103
 ------------------+--------------------------------
    Partialled-out*|
 ------------------+--------------------------------
-              |
-        _cons |      42.6792365     21.8393696
+	          |
+	    _cons |      42.6792365     21.8393696
 ---------------------------------------------------
 </code></pre>
 <h2 id="more">
@@ -960,7 +994,7 @@ Estimate lasso with lambda=4828.76 (lopt).
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  

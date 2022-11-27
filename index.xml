@@ -21,8 +21,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_models/</guid>
-      <description>Many instruments #  Belloni et al. (2012, Econometrica) consider the model
-  \[y_i = \alpha d_i &amp;#43; \varepsilon_i \\ d_i = z_i&amp;#39;\delta &amp;#43; u_i\]  where  \(y_i\)  is the dependent variable,  \(d_i\)  is an endogenous regressors and  \(z_i\)  is a  \(p_z\)  -dimensional vector of instruments.  \(p_z\)  is allowed to be large and may even exceed the sample size. We refer to  \(z_i\)  as high-dimensional.</description>
+      <description>Many instruments # Belloni et al. (2012, Econometrica) consider the model
+\[y_i = \alpha d_i &amp;#43; \varepsilon_i \\ d_i = z_i&amp;#39;\delta &amp;#43; u_i\] where \(y_i\) is the dependent variable, \(d_i\) is an endogenous regressors and \(z_i\) is a \(p_z\) -dimensional vector of instruments. \(p_z\) is allowed to be large and may even exceed the sample size. We refer to \(z_i\) as high-dimensional. The interest lies in estimating the causal effect of endogenous variable \(d_i\) on the outcome variable \(y_i\) .</description>
     </item>
     
     <item>
@@ -31,7 +31,7 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/package_overview/</guid>
-      <description>The package consists of the following programs: #    lasso2 implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso and post-estimation OLS. The lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996), the square-root-lasso (Belloni et al. 2011) and the adaptive lasso (Zou 2006) are regularization methods that use   \(\ell_1\)  norm penalization to achieve sparse solutions: of the full set of  \(p\)  predictors, typically most will have coefficients set to zero.</description>
+      <description>The package consists of the following programs: # lasso2 implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso and post-estimation OLS. The lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996), the square-root-lasso (Belloni et al. 2011) and the adaptive lasso (Zou 2006) are regularization methods that use \(\ell_1\) norm penalization to achieve sparse solutions: of the full set of \(p\) predictors, typically most will have coefficients set to zero.</description>
     </item>
     
     <item>
@@ -40,8 +40,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_demo/</guid>
-      <description>Demonstration #  We demonstrate the use of pdslasso and ivlasso using the data set of Acemoglu, Robinson &amp;amp; Johnson (2001).
-. clear . use https://statalasso.github.io/dta/AJR.dta Basic OLS #  We are interested in the effect of institutions (measured by avexpr) on income (logpgp95). We ignore endogeneity issues for now and begin with a simple regression of logpgp95 against avexpr:
+      <description>Demonstration # We demonstrate the use of pdslasso and ivlasso using the data set of Acemoglu, Robinson &amp;amp; Johnson (2001).
+. clear . use https://statalasso.github.io/dta/AJR.dta Basic OLS # We are interested in the effect of institutions (measured by avexpr) on income (logpgp95). We ignore endogeneity issues for now and begin with a simple regression of logpgp95 against avexpr:
 . reg logpgp95 avexpr Source | SS df MS Number of obs = 64 -------------+---------------------------------- F(1, 62) = 72.</description>
     </item>
     
@@ -51,8 +51,8 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/estimators/</guid>
-      <description>Ridge regression #  The ridge estimator (Hoerl &amp;amp; Kennard, 1970) can be written as
-  \[\hat{\beta}_{Ridge} = (X&amp;#39;X&amp;#43;\lambda I_p)^{-1}X&amp;#39;y.\]  Thus, even if the regressor matrix is not full rank (e.g. because  \(p&amp;gt;N\)  ), the problem becomes nonsingular by adding a constant to the diagonal of  \(X&amp;#39;X\)  . Another advantage of the ridge estimator over least squares stems from the variance-bias trade-off. Ridge regression may improve over ordinary least squares by inducing a mild bias while decreasing the variance.</description>
+      <description>Ridge regression # The ridge estimator (Hoerl &amp;amp; Kennard, 1970) can be written as
+\[\hat{\beta}_{Ridge} = (X&amp;#39;X&amp;#43;\lambda I_p)^{-1}X&amp;#39;y.\] Thus, even if the regressor matrix is not full rank (e.g. because \(p&amp;gt;N\) ), the problem becomes nonsingular by adding a constant to the diagonal of \(X&amp;#39;X\) . Another advantage of the ridge estimator over least squares stems from the variance-bias trade-off. Ridge regression may improve over ordinary least squares by inducing a mild bias while decreasing the variance.</description>
     </item>
     
     <item>
@@ -70,9 +70,9 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/regularized_reg/</guid>
-      <description>Regularized regression #  lasso2 solves the elastic net problem
-  \[\frac{1}{N} (y_i - x_i&amp;#39;\beta)^2 &amp;#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &amp;#43; \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\]  where
-  \((y_i - x_i&amp;#39;\beta)^2\)  is the residual sum of squares (RSS),  \(\beta\)  is a  \(p\)  -dimensional parameter vector,  \(\lambda\)  is the overall penalty level, which controls the general degree of penalization,  \(\alpha\)  is the elastic net parameter, which determines the relative contribution of  \(\ell_1\)  (lasso-type) to  \(\ell_2\)  (ridge-type) penalization.</description>
+      <description>Regularized regression # lasso2 solves the elastic net problem
+\[\frac{1}{N} (y_i - x_i&amp;#39;\beta)^2 &amp;#43; \frac{\lambda}{N} \alpha ||\Psi\beta ||_1 &amp;#43; \frac{\lambda}{2N}(1-\alpha)||\Psi\beta||_2\] where
+\((y_i - x_i&amp;#39;\beta)^2\) is the residual sum of squares (RSS), \(\beta\) is a \(p\) -dimensional parameter vector, \(\lambda\) is the overall penalty level, which controls the general degree of penalization, \(\alpha\) is the elastic net parameter, which determines the relative contribution of \(\ell_1\) (lasso-type) to \(\ell_2\) (ridge-type) penalization. \(\alpha=1\) corresponds to the lasso; \(\alpha=0\) is ridge regression.</description>
     </item>
     
     <item>
@@ -81,9 +81,10 @@
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/lasso2/</guid>
-      <description>Load data #  For demonstration purposes we use the prostate cancer data set, which has been widely applied to demonstrate the lasso and related techniques.
+      <description>Load data # For demonstration purposes we use the prostate cancer data set, which has been widely applied to demonstrate the lasso and related techniques.
 To load prostate cancer data:
-. insheet using /// https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, /// clear tab  General demonstration #  By default, lasso2 uses the lasso estimator (i.e., alpha(1)). Like Stata&amp;rsquo;s regress, lasso2 expects the dependent variable to be named first followed by a list of predictors.</description>
+. insheet using /// https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, /// clear tab General demonstration # By default, lasso2 uses the lasso estimator (i.e., alpha(1)). Like Stata&amp;rsquo;s regress, lasso2 expects the dependent variable to be named first followed by a list of predictors.
+. lasso2 lpsa lcavol lweight age lbph svi lcp gleason pgg45 Knot| ID Lambda s L1-Norm EBIC R-sq | Entered/removed ------+---------------------------------------------------------+---------------- 1| 1 163.</description>
     </item>
     
     <item>
@@ -92,10 +93,10 @@ To load prostate cancer data:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/getting_started/</guid>
-      <description>Getting started #  Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
-Gradient boosting #  We load the example data set and randomly split the data in training/test sample.
-. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
-. pystacked medv crim-lstat if train, /// type(regress) pyseed(243) method(gradboost) Single base learner: no stacking done.</description>
+      <description>Getting started # Before we get into stacking, let&amp;rsquo;s first use pystacked as a &amp;ldquo;regular&amp;rdquo; program for machine learning.
+Gradient boosting # We load the example data set and randomly split the data in training/test sample.
+. clear all . insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&amp;gt;.75 As an example, we run pystacked with gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) method(gradboost) Single base learner: no stacking done.</description>
     </item>
     
     <item>
@@ -122,7 +123,7 @@ Gradient boosting #  We load the example data set and randomly split the data in
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</guid>
-      <description>Panel FE and Clustering #  pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
+      <description>Panel FE and Clustering # pdslasso and ivlasso can also be applied to fixed effect panel models using the methodology of Belloni et al., 2014. Since the appropriate level of regularization depends on the error structure, we need to accommodate cluster dependence that is likely to be present in panel data. Ignoring cluster dependence would lead to a regularization level that is too low.
 For demonstation, we consider the nlswork example data set:</description>
     </item>
     
@@ -132,8 +133,8 @@ For demonstation, we consider the nlswork example data set:</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/cvlasso/</guid>
-      <description>Cross-validation #  In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of   \(\lambda\)  and  \(\alpha\)  that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
-cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling cross-validation.</description>
+      <description>Cross-validation # In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of \(\lambda\) and \(\alpha\) that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
+cvlasso supports \(K\) -fold cross-validation and \(h\) -step ahead rolling cross-validation.</description>
     </item>
     
     <item>
@@ -142,9 +143,9 @@ cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/regression/</guid>
-      <description>Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
-. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&amp;gt;.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
-. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.</description>
+      <description>Stacking regression # First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&amp;gt;.75 We now consider a more complicated pystacked application with 5 base learners: linear regression, two versions of lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) /// methods(ols lassoic lassoic rf gradboost) /// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.</description>
     </item>
     
     <item>
@@ -153,7 +154,7 @@ cvlasso supports  \(K\)  -fold cross-validation and  \(h\)  -step ahead rolling 
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/rlasso/</guid>
-      <description>Theory driven penalty #  rlasso provides routines for estimating the coefficients of a lasso or square-root lasso regression with data-dependent, theory-driven penalization. The number of regressors,   \(p\)  , may be large and possibly greater than the number of observations,  \(N\)  . rlasso implements a version of the lasso that allows for heteroskedastic and clustered errors; see Belloni et al. (2012, 2016).
+      <description>Theory driven penalty # rlasso provides routines for estimating the coefficients of a lasso or square-root lasso regression with data-dependent, theory-driven penalization. The number of regressors, \(p\) , may be large and possibly greater than the number of observations, \(N\) . rlasso implements a version of the lasso that allows for heteroskedastic and clustered errors; see Belloni et al. (2012, 2016).
 We start again with the prostate cancer data for demonstration.</description>
     </item>
     
@@ -163,8 +164,8 @@ We start again with the prostate cancer data for demonstration.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/classification/</guid>
-      <description>Stacking classifier #  Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
-. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u Stacking classification works very similar to stacking regression.</description>
+      <description>Stacking classifier # Stacking can be applied in a similar way to classification problems. For demonstration, we consider the Spambase Data Set from the Machine Learning Repository. We load the data and shuffle the observations around since they are ordered by outcome.
+. insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen uni=runiform() . sort uni Stacking classification works very similar to stacking regression. The example below is somewhat more complicated.</description>
     </item>
     
     <item>
@@ -182,9 +183,9 @@ We start again with the prostate cancer data for demonstration.</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/parallel/</guid>
-      <description>Parallelization #  pystacked can be run in parallel, even without a StataMP license.
-Here, we use pystacked with njobs(-1) which indicates that we want to use all available CPUs.
-. clear all . insheet using /// https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// clear comma . set seed 42 . gen u = runiform() . sort u . timer on 1 . pystacked v58 v1-v57, type(class) pyseed(123) methods(rf gradboost nnet) /// cmdopt1(n_estimators(1000)) . timer off 1 .</description>
+      <description>Parallelization # pystacked can be run in parallel, even without a StataMP license.
+pystacked can be parallelized at the level of the base learners or at the stacking level (to speed up the cross-validation process). Example 1 below uses no parallelization (the default). Example 2 parallelizes the random forest base learner. Example 3 parallelizes at the top level.
+. insheet using /// &amp;gt; https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, /// &amp;gt; clear comma . set seed 42 .</description>
     </item>
     
     <item>
@@ -202,9 +203,20 @@ Here, we use pystacked with njobs(-1) which indicates that we want to use all av
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/lasso2_replication/</guid>
-      <description>Replication of glmnet and StataCorp&amp;rsquo;s lasso #  Use Stata&amp;rsquo;s auto dataset with missing data dropped. The variable price1000 is used to illustrate scaling effects.
-. sysuse auto, clear . drop if rep78==. . gen double price1000 = price/1000  Replication of glmnet #  To load the data into R for comparison with glmnet, use the following commands. The packages haven and tidyr need to be installed.
-&amp;gt; auto &amp;lt;- haven::read_dta(&amp;quot;http://www.</description>
+      <description>Replication of glmnet and StataCorp&amp;rsquo;s lasso # Use Stata&amp;rsquo;s auto dataset with missing data dropped. The variable price1000 is used to illustrate scaling effects.
+. sysuse auto, clear . drop if rep78==. . gen double price1000 = price/1000 Replication of glmnet # To load the data into R for comparison with glmnet, use the following commands. The packages haven and tidyr need to be installed.
+&amp;gt; auto &amp;lt;- haven::read_dta(&amp;quot;http://www.stata-press.com/data/r9/auto.dta&amp;quot;) &amp;gt; auto &amp;lt;- tidyr::drop_na() &amp;gt; n &amp;lt;- nrow(auto) &amp;gt; price &amp;lt;- auto$price &amp;gt; X &amp;lt;- auto[, c(&amp;quot;mpg&amp;quot;, &amp;quot;rep78&amp;quot;, &amp;quot;headroom&amp;quot;, &amp;quot;trunk&amp;quot;, &amp;quot;weight&amp;quot;, &amp;quot;length&amp;quot;, &amp;quot;turn&amp;quot;, &amp;quot;displacement&amp;quot;, &amp;quot;gear_ratio&amp;quot;, &amp;quot;foreign&amp;quot;)] &amp;gt; X$foreign &amp;lt;- as.</description>
+    </item>
+    
+    <item>
+      <title>Installation</title>
+      <link>https://statalasso.github.io/docs/ddml/installation/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/installation/</guid>
+      <description>SSC version # You can get the lastest versions from github:
+net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) Please check for updates on a regular basis.
+Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &amp;ldquo;Code&amp;rdquo; and &amp;ldquo;Download ZIP&amp;rdquo;. Then run net install as above but from() should refer to the downloaded and unzipped repository folder.</description>
     </item>
     
     <item>
@@ -213,12 +225,12 @@ Here, we use pystacked with njobs(-1) which indicates that we want to use all av
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/installation/</guid>
-      <description>SSC version #  You can get pdslasso from SSC:
-ssc install pdslasso  Note that pdslasso requires lassopack to be installed.
+      <description>SSC version # You can get pdslasso from SSC:
+ssc install pdslasso Note that pdslasso requires lassopack to be installed.
 Add replace to overwrite existing versions of the packages.
-Github installation #  Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
-net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;)  Please check for updates on a regular basis.
-Installing old versions: #  We keep old versions of lassopack and pdslasso on github to facilitate reproducibility.</description>
+Github installation # Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
+net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;) Please check for updates on a regular basis.
+Installing old versions: # We keep old versions of lassopack and pdslasso on github to facilitate reproducibility.</description>
     </item>
     
     <item>
@@ -227,7 +239,7 @@ Installing old versions: #  We keep old versions of lassopack and pdslasso on gi
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pdslasso/pdslasso_cite/</guid>
-      <description>Citation #  pdslasso and ivlasso are not official Stata commands. They are free contributions to the research community, like a paper.
+      <description>Citation # pdslasso and ivlasso are not official Stata commands. They are free contributions to the research community, like a paper.
 Please cite it as such:
 Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018. pdslasso and ivlasso: Programs for post-selection and post-regularization OLS or IV estimation and inference. http://ideas.repec.org/c/boc/bocode/s458459.html
 Bibtex file</description>
@@ -239,11 +251,11 @@ Bibtex file</description>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/installation/</guid>
-      <description>SSC version #  You can get lassopack from SSC:
-ssc install lassopack  Add replace to overwrite existing versions of the packages.
-Github installation #  Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
-net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;)  Please check for updates on a regular basis.
-Installing old versions: #  We keep old versions of lassopack on github to facilitate reproducibility.</description>
+      <description>SSC version # You can get lassopack from SSC:
+ssc install lassopack Add replace to overwrite existing versions of the packages.
+Github installation # Please note that we update the SSC versions less frequently. You can get the lastest versions from github:
+net install pdslasso, /// from(&amp;quot;https://raw.githubusercontent.com/statalasso/pdslasso/master/&amp;quot;) Please check for updates on a regular basis.
+Installing old versions: # We keep old versions of lassopack on github to facilitate reproducibility.</description>
     </item>
     
     <item>
@@ -252,9 +264,10 @@ Installing old versions: #  We keep old versions of lassopack on github to facil
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/installation/</guid>
-      <description>Installation #  You can get the lastest versions from Github:
+      <description>Installation # You can get the lastest versions from Github:
 net install pystacked, /// from(https://raw.githubusercontent.com/aahrens1/pystacked/main) replace Please check for updates on a regular basis.
-pystacked requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher). Python and scikit-learn are available for free.  Setting up Python #  If you haven&amp;rsquo;t set up Python for Stata, type help python and check this Stata blog post for how to set up Python for Stata on your system.</description>
+pystacked requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher). Python and scikit-learn are available for free. You can also install from SSC, but note that we update the SSC version less regularly:
+ssc install pystacked Install old versions # To install an old version:</description>
     </item>
     
     <item>
@@ -263,7 +276,7 @@ pystacked requires at least Stata 16 (or higher), a Python installation and scik
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/lassopack_cite/</guid>
-      <description>Citation #  lassopack is not an official Stata package. It is a free contribution to the research community, like a paper.
+      <description>Citation # lassopack is not an official Stata package. It is a free contribution to the research community, like a paper.
 Please cite it as such:
 Ahrens, A., Hansen, C.B., Schaffer, M.E. 2018. LASSOPACK: Stata module for lasso, square-root lasso, elastic net, ridge, adaptive lasso estimation and cross-validation. http://ideas.repec.org/c/boc/bocode/s458458.html
 Bibtex file
@@ -276,7 +289,7 @@ Ahrens A, Hansen CB, Schaffer ME (2020). lassopack: Model selection and predicti
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/citation/</guid>
-      <description>Citation #  pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
+      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
 Also cite scikit-learn as explained here:
 @article{scikit-learn, title={Scikit-learn: Machine Learning in {P}ython}, author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A.</description>
     </item>
@@ -287,7 +300,7 @@ Also cite scikit-learn as explained here:
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/</guid>
-      <description>Logistic Lasso: Spam data #  For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
+      <description>Logistic Lasso: Spam data # For demonstration we consider the Spambase Data Set from the Machine Learning Repository. The data set includes 4,601 observations and 57 variables. The aim is to predict if an email is spam (i.e., unsolicited commercial e-mail) or not. Each observation corresponds to one email.
 Predictors v1-v48 percentage of words in the e-mail that match a specific word, i.e. 100 * (number of times the word appears in the e-mail) divided by total number of words in e-mail.</description>
     </item>
     

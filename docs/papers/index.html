@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Stata Journal paper #  A SJ Paper entitled lassopack: Model selection and prediction with regularized regression in Stata is now available.
-Abstract #  In this article, we introduce lassopack, a suite of programs for regularized regression in Stata. lassopack implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso, and postestimation ordinary least squares. The methods are suitable for the high-dimensional setting, where the number of predictors p may be large and possibly greater than the number of observations, n.">
+<meta name="description" content="pystacked # Ahrens, A., Hansen, C.B. and Schaffer, M.E., 2022. pystacked: Stacking generalization and machine learning in Stata. arXiv preprint arXiv:2208.10896.
+pystacked implements stacked generalization (Wolpert, 1992) for regression and binary classification via Python&rsquo;s scikit-learn. Stacking combines multiple supervised machine learners &ndash; the &ldquo;base&rdquo; or &ldquo;level-0&rdquo; learners &ndash; into a single learner. The currently supported base learners include regularized regression, random forest, gradient boosted trees, support vector machines, and feed-forward neural nets (multi-layer perceptron).">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Paper" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Readings" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://statalasso.github.io/docs/papers/" />
 
-<title>Paper | Stata ML Page</title>
+<title>Readings | Stata ML Page</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -519,6 +519,40 @@ https://github.com/alex-shpak/hugo-book
       
     
       
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
         <li>
           
   
@@ -543,7 +577,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class=" active">Paper</a>
+    <a href="https://statalasso.github.io/docs/papers/" class=" active">Readings</a>
   
 
           
@@ -575,7 +609,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -590,7 +624,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Paper</strong>
+  <strong>Readings</strong>
 
   <label for="toc-control">
     
@@ -606,12 +640,8 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#stata-journal-paper">Stata Journal paper</a>
-      <ul>
-        <li><a href="#abstract">Abstract</a></li>
-        <li><a href="#suggested-citation">Suggested citation</a></li>
-      </ul>
-    </li>
+    <li><a href="#pystacked">pystacked</a></li>
+    <li><a href="#lassopack">lassopack</a></li>
     <li><a href="#slides">Slides</a></li>
   </ul>
 </nav>
@@ -625,27 +655,29 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="stata-journal-paper">
-  Stata Journal paper
-  <a class="anchor" href="#stata-journal-paper">#</a>
+  <article class="markdown"><h2 id="pystacked">
+  pystacked
+  <a class="anchor" href="#pystacked">#</a>
 </h2>
-<p>A SJ Paper entitled <em>lassopack: Model selection and prediction with regularized regression in Stata</em>
-is now available.</p>
-<h3 id="abstract">
-  Abstract
-  <a class="anchor" href="#abstract">#</a>
-</h3>
-<p>In this article, we introduce <strong>lassopack</strong>, a suite of programs for regularized regression in Stata. <strong>lassopack</strong> implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso, and postestimation ordinary least squares. The methods are suitable for the high-dimensional setting, where the number of predictors <em>p</em> may be large and possibly greater than the number of observations, <em>n</em>. We offer three approaches for selecting the penalization (“tuning”) parameters: information criteria (implemented in <code>lasso2</code>), <em>K</em>-fold cross-validation and <em>h</em>-step-ahead rolling cross-validation for cross-section, panel, and time-series data (<code>cvlasso</code>), and theory-driven (“rigorous” or plugin) penalization for the lasso and square-root lasso for cross-section and panel data (<code>rlasso</code>). We discuss the theoretical framework and practical considerations for each approach. We also present Monte Carlo results to compare the performances of the penalization approaches.</p>
-<p><a href="https://arxiv.org/abs/1901.05397">Download earlier arXiv-Version</a>
-<a href="https://doi.org/10.1177%2F1536867X20909697">Stata Journal</a></p>
-<p>Feel free to contact me (AA) if you have trouble accessing the SJ version.</p>
-<h3 id="suggested-citation">
-  Suggested citation
-  <a class="anchor" href="#suggested-citation">#</a>
-</h3>
+<p>Ahrens, A., Hansen, C.B. and Schaffer, M.E., 2022. <strong>pystacked: Stacking generalization and machine learning in Stata.</strong> arXiv preprint arXiv:2208.10896.</p>
+<blockquote>
+<p>pystacked implements stacked generalization (Wolpert, 1992) for regression and binary classification via Python&rsquo;s scikit-learn. Stacking combines multiple supervised machine learners &ndash; the &ldquo;base&rdquo; or &ldquo;level-0&rdquo; learners &ndash; into a single learner. The currently supported base learners include regularized regression, random forest, gradient boosted trees, support vector machines, and feed-forward neural nets (multi-layer perceptron). pystacked can also be used with as a &lsquo;regular&rsquo; machine learning program to fit a single base learner and, thus, provides an easy-to-use API for scikit-learn&rsquo;s machine learning algorithms.</p>
+</blockquote>
+<p><a href="https://arxiv.org/abs/2208.10896">Link to working paper</a></p>
+<p><a href="/dta/pystacked.bib">Bibtex file</a></p>
+<h2 id="lassopack">
+  lassopack
+  <a class="anchor" href="#lassopack">#</a>
+</h2>
 <p>Ahrens A, Hansen CB, Schaffer ME (2020).
-lassopack: Model selection and prediction with regularized regression in Stata. <em>The Stata Journal</em>.
+<strong>lassopack: Model selection and prediction with regularized regression in Stata.</strong> <em>The Stata Journal</em>.
 20(1):176-235. doi:<a href="https://doi.org/10.1177%2F1536867X20909697">10.1177/1536867X20909697</a></p>
+<blockquote>
+<p>In this article, we introduce <strong>lassopack</strong>, a suite of programs for regularized regression in Stata. <strong>lassopack</strong> implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso, and postestimation ordinary least squares. The methods are suitable for the high-dimensional setting, where the number of predictors <em>p</em> may be large and possibly greater than the number of observations, <em>n</em>. We offer three approaches for selecting the penalization (“tuning”) parameters: information criteria (implemented in <code>lasso2</code>), <em>K</em>-fold cross-validation and <em>h</em>-step-ahead rolling cross-validation for cross-section, panel, and time-series data (<code>cvlasso</code>), and theory-driven (“rigorous” or plugin) penalization for the lasso and square-root lasso for cross-section and panel data (<code>rlasso</code>). We discuss the theoretical framework and practical considerations for each approach. We also present Monte Carlo results to compare the performances of the penalization approaches.</p>
+</blockquote>
+<p><a href="https://arxiv.org/abs/1901.05397">Download earlier arXiv-Version</a> &ndash;
+<a href="https://doi.org/10.1177%2F1536867X20909697">Stata Journal paper</a></p>
+<p>Feel free to contact me (AA) if you have trouble accessing the SJ version.</p>
 <p><a href="/dta/AHS2018.bib">Bibtex file</a></p>
 <h2 id="slides">
   Slides
@@ -654,6 +686,8 @@ lassopack: Model selection and prediction with regularized regression in Stata. 
 <ul>
 <li>Presentation slides from our presentation at the <a href="https://www.stata.com/meeting/uk18/">2018 London Stata Conference</a>
 are available <a href="https://statalasso.github.io/pdf/StataConference2018_AhrensSchaffer.pdf">here</a>.</li>
+<li>Presentation slides for <code>pystacked</code> are <a href="https://statalasso.github.io/pdf/pres_pystacked.pdf">here</a>.</li>
+<li>Presentation slides for <code>ddml</code> are <a href="https://statalasso.github.io/pdf/pres_ddml.pdf">here</a>.</li>
 </ul>
 </article>
  
@@ -671,7 +705,7 @@ are available <a href="https://statalasso.github.io/pdf/StataConference2018_Ahre
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
@@ -696,12 +730,8 @@ are available <a href="https://statalasso.github.io/pdf/StataConference2018_Ahre
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#stata-journal-paper">Stata Journal paper</a>
-      <ul>
-        <li><a href="#abstract">Abstract</a></li>
-        <li><a href="#suggested-citation">Suggested citation</a></li>
-      </ul>
-    </li>
+    <li><a href="#pystacked">pystacked</a></li>
+    <li><a href="#lassopack">lassopack</a></li>
     <li><a href="#slides">Slides</a></li>
   </ul>
 </nav>

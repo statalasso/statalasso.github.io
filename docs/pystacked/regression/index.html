@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
-. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&gt;.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
-. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.">
+<meta name="description" content="Stacking regression # First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&gt;.75 We now consider a more complicated pystacked application with 5 base learners: linear regression, two versions of lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) /// methods(ols lassoic lassoic rf gradboost) /// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Regression" />
-<meta property="og:description" content="Stacking regression #  First load the Boston housing data and split the data randomly in training and test sample:
-. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=rnormal() . replace train=train&gt;.75 We now consider a more complicated pystacked application with 4 base learners: linear regression, lasso with AIC-chosen penalty, random forest and gradient boosting:
-. pystacked medv crim-lstat if train,	/// type(regress) pyseed(123)	/// methods(ols lassoic lassoic rf gradboost)	/// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0." />
+<meta property="og:description" content="Stacking regression # First load the Boston housing data and split the data randomly in training and test sample:
+. insheet using /// https://statalasso.github.io/dta/housing.csv, /// clear comma . set seed 789 . gen train=runiform() . replace train=train&gt;.75 We now consider a more complicated pystacked application with 5 base learners: linear regression, two versions of lasso with AIC-chosen penalty, random forest and gradient boosting:
+. pystacked medv crim-lstat if train, /// type(regress) /// methods(ols lassoic lassoic rf gradboost) /// pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/pystacked/regression/" /><meta property="article:section" content="docs" />
 
@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e43c28ed71e1f8f926354c8954d873bdcb33019589b412496febd24aae6d8512.js" integrity="sha256-5Dwo7XHh&#43;PkmNUyJVNhzvcszAZWJtBJJb&#43;vSSq5thRI=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -523,6 +523,40 @@ https://github.com/alex-shpak/hugo-book
       
     
       
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle"  />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
         <li>
           
   
@@ -547,7 +581,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class="">Paper</a>
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
   
 
           
@@ -579,7 +613,7 @@ https://github.com/alex-shpak/hugo-book
 
 
 
-  <script>(function(){var a=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(b){localStorage.setItem("menu.scrollTop",a.scrollTop)}),a.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
 
 
  
@@ -616,7 +650,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#changing-the-final-estimator">Changing the final estimator</a></li>
         <li><a href="#predictions">Predictions</a></li>
         <li><a href="#plotting">Plotting</a></li>
-        <li><a href="#mspe-table">MSPE table</a></li>
+        <li><a href="#root-mean-squared-prediction-error-rmspe">Root mean squared prediction error (RMSPE)</a></li>
       </ul>
     </li>
   </ul>
@@ -637,28 +671,29 @@ https://github.com/alex-shpak/hugo-book
 </h2>
 <p>First load the Boston housing data and split the data randomly in training and test sample:</p>
 <pre tabindex="0"><code>. insheet using ///
-	https://statalasso.github.io/dta/housing.csv,  ///
-	clear comma
+     https://statalasso.github.io/dta/housing.csv,  ///
+     clear comma
 . set seed 789
-. gen train=rnormal()
+. gen train=runiform()
 . replace train=train&gt;.75
 </code></pre><p>We now consider a more complicated <code>pystacked</code> application with
-4 base learners: linear regression, lasso with AIC-chosen
+5 base learners: linear regression, two versions of lasso with AIC-chosen
 penalty, random forest and gradient boosting:</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train,				///
-	type(regress) pyseed(123)					///
-	methods(ols lassoic lassoic rf gradboost)			///
-	pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.01)		///
-	n_estimators(1000))
+<pre tabindex="0"><code>. pystacked medv crim-lstat if train,                              ///
+      type(regress)                                                ///
+      methods(ols lassoic lassoic rf gradboost)                    ///
+      pipe1(poly2) pipe3(poly2) cmdopt5(learning_rate(0.01)        ///
+      n_estimators(1000))
 
+Stacking weights:
 ---------------------------------------
   Method         |      Weight
 -----------------+---------------------
-  ols            |      0.0009770
+  ols            |      0.0139419
   lassoic        |      0.0000000
-  lassoic        |      0.2865443
-  rf             |      0.2629368
-  gradboost      |      0.4495419
+  lassoic        |      0.3959649
+  rf             |      0.5900932
+  gradboost      |      0.0000000
 </code></pre><p>In this example, we use the lasso twice&mdash;once with and once without the <code>poly2</code> pipeline. Indeed, nothing keeps us from using base learners multiple times. This way we can compare and combine different sets of options.</p>
 <p>Note the numbering of the <code>pipe*()</code> and <code>cmdopt*()</code> options: We apply the <code>poly2</code> pipe to the first and third method (<em>ols</em> and <em>lassoic</em>). We also change the default learning rate and number of estimators for gradient boosting (the 5th estimator).</p>
 <p>The weights determine how much each method contributes to the final stacking contribution. <em>lassoic</em> without <code>poly2</code> receives a weight of 0, while <em>lassoic</em> with <code>poly2</code> gets a positive weight.</p>
@@ -671,57 +706,71 @@ penalty, random forest and gradient boosting:</p>
   Alternative Syntax
   <a class="anchor" href="#alternative-syntax">#</a>
 </h3>
-<p>The above syntax becomes, admittedly, a bit difficult to read, especially with many methods and many options. We offer an alternative syntax for easier use with many base learners. Another advantage of this alternative syntax is that it doesn&rsquo;t impose a limit on the number of base learners, whereas the previous syntax only works with up to 10 base learners.</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train                                     || ///
-                 m(ols) pipe(poly2)                                      || ///
-                 m(lassoic)                                              || ///
-                 m(lassoic) pipe(poly2)                                  || ///
-                 m(rf)                                                   || ///
-                 m(gradboost) opt(learning_rate(0.01) n_estimators(1000))   ///
-                 , type(regress) pyseed(123) 
+<p>The above syntax becomes, admittedly, a bit difficult to read, especially with many methods and many options. We offer an alternative syntax for easier use with many base learners:</p>
+<pre tabindex="0"><code>. pystacked medv crim-lstat                                                 || ///
+                   m(ols) pipe(poly2)                                       || ///
+                   m(lassoic)                                               || ///
+                   m(lassoic) pipe(poly2)                                   || ///
+                   m(rf)                                                    || ///
+                   m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) | ///
+                   if train , type(regress)
+
+Stacking weights:
+---------------------------------------
+  Method         |      Weight
+-----------------+---------------------
+  ols            |      0.0000000
+  lassoic        |      0.0000000
+  lassoic        |      0.3696124
+  rf             |      0.6303876
+  gradboost      |      0.0000000
 </code></pre><h3 id="changing-the-final-estimator">
   Changing the final estimator
   <a class="anchor" href="#changing-the-final-estimator">#</a>
 </h3>
 <p>The default final learner of <code>pystacked</code>
-is non-negative least squares (NNLS) where the weights are standardized to sum to 1. The following example demonstrates why using NNLS is a good idea. Here we change the final estimator to ridge:</p>
-<pre tabindex="0"><code>. pystacked medv crim-lstat if train                                      || ///
-                 m(ols) pipe(poly2)                                       || ///
-                 m(lassoic)                                               || ///
-                 m(lassoic) pipe(poly2)                                   || ///
-                 m(rf)                                                    || ///
-                 m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) 	 ///
-                 , type(regress) pyseed(123) finalest(ridge)
+is non-negative least squares (NNLS) where the are constrained to be non-negative and
+to sum to 1.</p>
+<p>Here, we switch to the &ldquo;singlebest&rdquo; approach which selects
+the base learner with the lowest RMSPE.</p>
+<pre tabindex="0"><code>. pystacked medv crim-lstat                                                 || ///
+                   m(ols) pipe(poly2)                                       || ///
+                   m(lassoic)                                               || ///
+                   m(lassoic) pipe(poly2)                                   || ///
+                   m(rf)                                                    || ///
+                   m(gradboost) opt(learning_rate(0.01) n_estimators(1000)) ///
+                   if train, type(regress) finalest(singlebest)
 
+Stacking weights:
 ---------------------------------------
   Method         |      Weight
 -----------------+---------------------
-  ols            |      0.0024167
-  lassoic        |     -0.2479425
-  lassoic        |      0.7035482
-  rf             |      0.5091350
-  gradboost      |      0.2330788
-
-</code></pre><p>The second base learner (<code>lassoic</code> without <code>poly2</code>) receives a negative weight and the total sum of weights is greater than 1. Thus, we might end up with more &ldquo;extreme&rdquo; predictions.</p>
-<h3 id="predictions">
+  ols            |      0.0000000
+  lassoic        |      0.0000000
+  lassoic        |      0.0000000
+  rf             |      0.0000000
+  gradboost      |      1.0000000
+</code></pre><h3 id="predictions">
   Predictions
   <a class="anchor" href="#predictions">#</a>
 </h3>
-<p>In addition to the stacking predicted values, we can also get the predicted values of each base learner using the <code>transform</code> option:</p>
+<p>In addition to the stacking predicted values, we can also get the predicted values of each base learner using the <code>basexb</code> option (formerly called <code>transform</code>):</p>
 <pre tabindex="0"><code>. predict double yh, xb
-. predict double ytrans, transf
-. list yh ytrans* if _n &lt;= 5
+. predict double ybase, basexb
+. list yh ybase* if _n &lt;= 5
 
-     +---------------------------------------------------------------------+
-     |        yh     ytrans1     ytrans2     ytrans3   ytrans4     ytrans5 |
-     |---------------------------------------------------------------------|
-  1. | 28.224864    24.16234   30.418286    30.14668    25.676   24.230348 |
-  2. | 23.247924   22.962887   25.708668   25.059641    22.454   20.273125 |
-  3. | 33.321977   31.672703    31.20616   31.444894    31.136    31.01379 |
-  4. | 33.348748   36.276995   29.749546   30.880321    31.214   31.065185 |
-  5. | 34.001815   36.277167   29.699732   30.733921    32.471   31.510242 |
-     +---------------------------------------------------------------------+
-</code></pre><h3 id="plotting">
+     +-----------------------------------------------------------------------+
+     |        yh      ybase1      ybase2      ybase3      ybase4      ybase5 |
+     |-----------------------------------------------------------------------|
+  1. | 24.726908   22.301384    30.27872   25.451438      25.721   24.726908 |
+  2. | 21.993344   22.596584   25.133314   23.908178      21.356   21.993344 |
+  3. | 32.628795   29.987554   31.027162   33.898635   32.968001   32.628795 |
+  4. | 34.027947   30.977113   29.428614    32.00817   33.098001   34.027947 |
+  5. | 35.215694   34.034215    28.85696   32.311613   35.109001   35.215694 |
+     +-----------------------------------------------------------------------+
+</code></pre><p>Notice that the stacking predicted values are equal to the gradient boosting
+predicted values, since boosting was identified as the best learner.</p>
+<h3 id="plotting">
   Plotting
   <a class="anchor" href="#plotting">#</a>
 </h3>
@@ -729,24 +778,24 @@ is non-negative least squares (NNLS) where the weights are standardized to sum t
 <pre tabindex="0"><code>. pystacked, graph holdout
 </code></pre><p><img src="/img/stacking_regression_tutorial.png#center" alt="" /></p>
 <p>Here, we show the out-of-sample predicted values. To see the in-sample predicted values, simply omit the <code>holdout</code> option. Note that the <code>holdout</code> option won&rsquo;t work if the estimation was run on the whole sample.</p>
-<h3 id="mspe-table">
-  MSPE table
-  <a class="anchor" href="#mspe-table">#</a>
+<h3 id="root-mean-squared-prediction-error-rmspe">
+  Root mean squared prediction error (RMSPE)
+  <a class="anchor" href="#root-mean-squared-prediction-error-rmspe">#</a>
 </h3>
-<p>The <code>table</code> option allows to compare stacking weights with in-sample and out-of-sample MSPE. As with the <code>graph</code> option, we can use <code>table</code> as a post-estimation command:</p>
+<p>The <code>table</code> option allows to compare stacking weights with three types of RMSPE: in-sample RMSPE of learners fit on the whole training sample, RMSPE of cross-validated predictions, and out-of-sample RMSPE. As with the <code>graph</code> option, we can use <code>table</code> as a post-estimation command:</p>
 <pre tabindex="0"><code>. pystacked, table holdout
-[...]
+Number of holdout observations:  361
 
-MSPE: In-Sample and Out-of-Sample
------------------------------------------------------
-  Method         | Weight   In-Sample   Out-of-Sample
------------------+-----------------------------------
-  STACKING       |    .        1.876         4.442
-  ols            | 0.002       1.876         4.442
-  lassoic        | -0.248      0.924        14.681
-  lassoic        | 0.704       4.636         5.424
-  rf             | 0.509       4.158         5.108
-  gradboost      | 0.233       1.373         4.489
+RMSPE: In-Sample, CV, Holdout
+-----------------------------------------------------------------
+  Method         | Weight   In-Sample        CV         Holdout
+-----------------+-----------------------------------------------
+  STACKING       |    .        0.637        4.547        3.664
+  ols            | 0.000       1.308       18.660       11.529
+  lassoic        | 0.000       4.501        5.179        5.218
+  lassoic        | 0.000       1.798        4.913        4.964
+  rf             | 0.000       1.484        4.599        3.932
+  gradboost      | 1.000       0.637        4.547        3.664
 </code></pre></article>
  
       
@@ -763,7 +812,7 @@ MSPE: In-Sample and Out-of-Sample
 
 
 
-  <script>(function(){function a(c){const a=window.getSelection(),b=document.createRange();b.selectNodeContents(c),a.removeAllRanges(),a.addRange(b)}document.querySelectorAll("pre code").forEach(b=>{b.addEventListener("click",function(c){a(b.parentElement),navigator.clipboard&&navigator.clipboard.writeText(b.parentElement.textContent)})})})()</script>
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
 
 
  
@@ -794,7 +843,7 @@ MSPE: In-Sample and Out-of-Sample
         <li><a href="#changing-the-final-estimator">Changing the final estimator</a></li>
         <li><a href="#predictions">Predictions</a></li>
         <li><a href="#plotting">Plotting</a></li>
-        <li><a href="#mspe-table">MSPE table</a></li>
+        <li><a href="#root-mean-squared-prediction-error-rmspe">Root mean squared prediction error (RMSPE)</a></li>
       </ul>
     </li>
   </ul>
