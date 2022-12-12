@@ -24,7 +24,7 @@ Partial linear model [partial] # \[ Y = a.D &amp;#43; g(X) &amp;#43; U \\ D = m(
       
       <guid>https://statalasso.github.io/docs/ddml/crossfit/</guid>
       <description>DDML Algorithm # DDML estimators proceed in two stages:
-Cross-fitting to estimate conditional expectation functions. Second stage estimation based on Neyman orthogonal scores. Chernozhukov et al. 2018) show that cross-fitting ensures that we can leverage a large class of machine learners for causal inference &amp;ndash; including popular machine learners such as random forests or gradient boosting. Cross-fitting ensures independence between the estimation error from the first step and the regression residual in the second stage.</description>
+Cross-fitting to estimate conditional expectation functions. Second stage estimation based on Neyman orthogonal scores. Chernozhukov et al. (2018) show that cross-fitting ensures that we can leverage a large class of machine learners for causal inference &amp;ndash; including popular machine learners such as random forests or gradient boosting. Cross-fitting ensures independence between the estimation error from the first step and the regression residual in the second stage.</description>
     </item>
     
     <item>
