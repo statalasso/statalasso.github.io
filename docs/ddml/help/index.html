@@ -1,0 +1,1300 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="------------------------------------------------------------------------------------------------------------------------ help ddml v0.5 ------------------------------------------------------------------------------------------------------------------------ Title ddml -- Stata package for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Help file" />
+<meta property="og:description" content="------------------------------------------------------------------------------------------------------------------------ help ddml v0.5 ------------------------------------------------------------------------------------------------------------------------ Title ddml -- Stata package for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/help/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Help file | Stata ML Page</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/models/" class="">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class="">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class="">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class="">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class=" active">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Help file</strong>
+
+  <label for="toc-control">
+    
+  </label>
+</div>
+
+
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown">
+<pre id="stlog-1" style="font-size: 11px" class="sthlp">------------------------------------------------------------------------------------------------------------------------
+<b>help ddml</b>                                                                                                           v0.5
+------------------------------------------------------------------------------------------------------------------------
+
+<b><u>Title</u></b>
+
+    <b>ddml</b> --       Stata package for Double Debiased Machine Learning
+
+    <b>ddml</b> implements algorithms for causal inference aided by supervised machine learning as proposed in
+    <i>Double/debiased machine learning for treatment and structural parameters</i> (Econometrics Journal, 2018). Five
+    different models are supported, allowing for binary or continous treatment variables and endogeneity,
+    high-dimensional controls and/or instrumental variables.  <b>ddml</b> supports a variety of different ML programs,
+    including but not limited to <a href="http://www.stata.com/help.cgi?lassopack"><b>lassopack</b></a> and <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a>.
+
+    The package includes the wrapper program <a href="http://www.stata.com/help.cgi?qddml"><b>qddml</b></a>, which uses a simplified one-line syntax, but offers less
+    flexibility.
+
+    <b>qddml</b> relies on <a href="http://www.stata.com/help.cgi?crossfit"><b>crossfit</b></a>, which can be used as a standalone program.
+
+    Please check the <a href="#stlog-1-examples"><b>examples</b></a> provided at the end of the help file.
+
+<a name="stlog-1-syntax"></a><b><u>Syntax</u></b>
+
+    Estimation with <b>ddml</b> proceeds in four steps.
+
+    <u>Step 1.</u> Initialize <b>ddml</b> and select model:
+
+        <b>ddml init</b> <i>model</i> [if] [in] [ , <b>mname(</b><i>name</i><b>)</b> <b>kfolds(</b><i>integer</i><b>)</b> <b>fcluster(</b><i>varname</i><b>)</b> <b>foldvar(</b><i>varlist</i><b>)</b> <b>reps(</b><i>integer</i><b>)</b>
+              <b>norandom</b> <b>tabfold</b> <b>vars(</b><i>varlist</i><b>)</b> ]
+
+    where <i>model</i> is either <i>partial</i>, <i>iv</i>, <i>interactive</i>, <i>fiv</i>, <i>interactiveiv</i>; see <a href="#stlog-1-models"><b>model descriptions</b></a>.
+
+    <u>Step 2.</u> Add supervised ML programs for estimating conditional expectations:
+
+        <b>ddml</b> <i>eq</i> [ , <b>mname(</b><i>name</i><b>)</b> <b>vname(</b><i>varname</i><b>)</b> <b><u>l</u></b><b>earner(</b><i>varname</i><b>)</b> <b>vtype(</b><i>string</i><b>)</b> <b>predopt(</b><i>string</i><b>)</b> ] :  <i>command</i> <i>depvar</i> <i>vars</i> [
+              , <i>cmdopt</i> ]
+
+    where, depending on model chosen in Step 1, <i>eq</i> is either <i>E[Y|X]</i> <i>E[Y|D,X]</i> <i>E[Y|X,Z]</i> <i>E[D|X]</i> <i>E[D|X,Z]</i> <i>E[Z|X]</i>.  <i>command</i>
+    is a supported supervised ML program (e.g. <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a> or <a href="http://www.stata.com/help.cgi?cvlasso"><b>cvlasso</b></a>).  See <a href="#stlog-1-compatibility"><b>supported programs</b></a>.
+
+    Note: Options before ":" and after the first comma refer to <b>ddml</b>.  Options that come after the final comma refer
+    to the estimation command.
+
+    <u>Step 3.</u> Cross-fitting:
+
+        <b>ddml crossfit</b> [ , <b>mname(</b><i>name</i><b>)</b> <b>shortstack</b> ]
+
+    This step implements the cross-fitting algorithm. Each learner is fitted iteratively on training folds and
+    out-of-sample predicted values are obtained.
+
+    <u>Step 4.</u> Estimate causal effects:
+
+        <b>ddml estimate</b> [ , <b>mname(</b><i>name</i><b>)</b> <b><u>r</u></b><b>obust</b> <b>cluster(</b><i>varname</i><b>)</b> <b>vce(</b><i>type</i><b>)</b> <b>att</b> <b>trim(</b><i>real</i><b>)</b> ]
+
+    The <b>ddml estimate</b> command returns treatment effect estimates for all combination of learners added in Step 2.
+
+    <u>Optional.</u> Report/post selected results:
+
+        <b>ddml estimate</b> [ , <b>replay</b> <b>mname(</b><i>name</i><b>)</b> <b>spec(</b><i>integer or string</i><b>)</b> <b>rep(</b><i>integer or string</i><b>)</b> <b><u>full</u></b><b>table</b> <b><u>not</u></b><b>able</b> <b><u>all</u></b><b>est</b> ]
+
+    <u>Auxiliary sub-programs:</u>
+
+    Download latest <b>ddml</b> from Github:
+
+        <b>ddml update</b>
+
+    Report information about <b>ddml</b> model:
+
+        <b>ddml desc</b> [ , <b>mname(</b><i>name</i><b>)</b> <b><u>learn</u></b><b>ers</b> <b><u>cross</u></b><b>fit</b> <b><u>est</u></b><b>imates</b> <b><u>sam</u></b><b>ple</b> <b>all</b> ]
+
+    Export results in csv format:
+
+        <b>ddml export</b> [ , <b>mname(</b><i>name</i><b>)</b> <b>fname(</b><i>name</i><b>)</b> ]
+
+    Retrieve information from <b>ddml</b>:
+
+        <b>ddml extract</b> [ <i>object_name</i> , <b>mname(</b><i>name</i><b>)</b> <b>show(</b><i>display_item</i><b>)</b> <b>ename(</b><i>name</i><b>)</b> <b>vname(</b><i>varname</i><b>)</b> <b>stata</b> <b>keys</b> <b>key1(</b><i>string</i><b>)</b>
+              <b>key2(</b><i>string</i><b>)</b> <b>key3(</b><i>string</i><b>)</b> <b>subkey1(</b><i>string</i><b>)</b> <b>subkey2(</b><i>string</i><b>)</b> ]
+
+    <i>display_item</i> can be <i>mse</i>, <i>n</i> or <i>pystacked</i>.  <b>ddml</b> stores many internal results on associative arrays.  These can be
+    retrieved using the different key options.  See <a href="http://www.stata.com/help.cgi?ddml+extract"><b>ddml extract</b></a> for details.
+
+    Drop the <b>ddml</b> estimation <i>mname</i> and all associated variables:
+
+        <b>ddml drop</b> <i>mname</i>
+
+<a name="stlog-1-syntax"></a><b><u>Options</u></b>
+
+    <i>init options</i>          Description
+    ------------------------------------------------------------------------------------------------------------------
+    <b>mname(</b><i>name</i><b>)</b>            name of the DDML model. Allows to run multiple DDML models simultaneously. Defaults to <i>m0</i>.
+    <b>kfolds(</b><i>integer</i><b>)</b>        number of cross-fitting folds. The default is 5.
+    <b>fcluster(</b><i>varname</i><b>)</b>      cluster identifiers for cluster randomization of random folds.
+    <b>foldvar(</b><i>varlist</i><b>)</b>       integer variable with user-specified cross-fitting folds (one per cross-fitting
+                            repetition).
+    <b>norandom</b>               use observations in existing order instead of randomizing before splitting into folds; if
+                            multiple resamples, applies to first resample only; ignored if user-defined fold variables
+                            are provided in <b>foldvar(</b><i>varlist</i><b>)</b>.
+    <b>reps(</b><i>integer</i><b>)</b>          number of re-sampling iterations, i.e., how often the cross-fitting procedure is repeated
+                            on randomly generated folds.
+    <b>tabfold</b>                prints a table with frequency of observations by fold.
+    ------------------------------------------------------------------------------------------------------------------
+
+    <i>Equation options</i>      Description
+    ------------------------------------------------------------------------------------------------------------------
+    <b>mname(</b><i>name</i><b>)</b>            name of the DDML model. Defaults to <i>m0</i>.
+    <b>vname(</b><i>varname</i><b>)</b>         name of the dependent variable in the reduced form estimation.  This is usually inferred
+                            from the command line but is mandatory for the <i>fiv</i> model.
+    <b><u>l</u></b><b>earner(</b><i>varname</i><b>)</b>       name of the variable to be created.
+    <b>vtype(</b><i>string</i><b>)</b>          variable type of the variable to be created. Defaults to <i>double</i>.  <i>none</i> can be used to leave
+                            the type field blank (this is required when using <b>ddml</b> with <a href="http://www.stata.com/help.cgi?rforest"><b>rforest</b></a>.)
+    <b>predopt(</b><i>string</i><b>)</b>        <b>predict</b> option to be used to get predicted values.  Typical values could be <b>xb</b> or <b>pr</b>.
+                            Default is blank.
+    ------------------------------------------------------------------------------------------------------------------
+
+    <i>Cross-fitting</i>         Description
+    ------------------------------------------------------------------------------------------------------------------
+    <b>mname(</b><i>name</i><b>)</b>            name of the DDML model. Defaults to <i>m0</i>.
+    <b>shortstack</b>             asks for short-stacking to be used.  Short-stacking runs contrained non-negative least
+                            squares on the cross-fitted predicted values to obtain a weighted average of several base
+                            learners.
+    ------------------------------------------------------------------------------------------------------------------
+
+    <i>Estimation</i>            Description
+    ------------------------------------------------------------------------------------------------------------------
+    <b>mname(</b><i>name</i><b>)</b>            name of the DDML model. Defaults to <i>m0</i>.
+    <b>spec(</b><i>integer/string</i><b>)</b>   select specification (specification number, "mse" or "ss")
+    <b>rep(</b><i>integer/string</i><b>)</b>    select resampling iteration (resample number, "mn" or "md")
+    <b><u>r</u></b><b>obust</b>                 report SEs that are robust to the presence of arbitrary heteroskedasticity.
+    <b>cluster(</b><i>varname</i><b>)</b>       select cluster-robust variance-covariance estimator.
+    <b>vce(</b><i>type</i><b>)</b>              select variance-covariance estimator, see <a href="http://www.stata.com/help.cgi?regress#vcetype"><b>here</b></a>
+    <b>trim(</b><i>real</i><b>)</b>             trimming of propensity scores. The default is 0.01 (that is, values below 0.01 and above
+                            0.99 are set to 0.01 and 0.99, respectively).
+    ------------------------------------------------------------------------------------------------------------------
+
+    <i>Auxiliary</i>             Description
+    ------------------------------------------------------------------------------------------------------------------
+    <b>mname(</b><i>name</i><b>)</b>            name of the DDML model. Defaults to <i>m0</i>.
+    ------------------------------------------------------------------------------------------------------------------
+
+<a name="stlog-1-models"></a><b><u>Models</u></b>
+
+    This section provides an overview of supported models.
+
+    Throughout we use <i>Y</i> to denote the outcome variable, <i>X</i> to denote confounders, <i>Z</i> to denote instrumental variable(s),
+    and <i>D</i> to denote the treatment variable(s) of interest.
+
+    <u>Partial linear model</u> [<i>partial</i>]
+
+        Y = <i>a</i>.D + g(X) + U
+        D = m(X) + V
+
+    where the aim is to estimate <i>a</i> while controlling for X. To this end, we estimate the conditional expectations
+    E[Y|X] and E[D|X] using a supervised machine learner.
+
+    <u>Interactive model</u> [<i>interactive</i>]
+
+        Y = g(X,D) + U
+        D = m(X) + V
+
+    which relaxes the assumption that X and D are separable.  D is a binary treatment variable.  We estimate the
+    conditional expectations E[D|X], as well as E[Y|X,D=0] and E[Y|X,D=1] (jointly added using <b>ddml E[Y|X,D]</b>).
+
+    <u>Partial linear IV model</u> [<i>iv</i>]
+
+        Y = <i>a</i>.D + g(X) + U
+        Z = m(X) + V
+
+    where the aim is to estimate <i>a</i>.  We estimate the conditional expectations E[Y|X], E[D|X] and E[Z|X] using a
+    supervised machine learner.
+
+    <u>Interactive IV model</u> [<i>interactiveiv</i>]
+
+        Y = g(Z,X) + U
+        D = h(Z,X) + V
+        Z = m(X) + E
+
+    where the aim is to estimate the local average treatment effect.  We estimate, using a supervised machine learner,
+    the following conditional expectations:  E[Y|X,Z=0] and E[Y|X,Z=1] (jointly added using <b>ddml E[Y|X,Z]</b>); E[D|X,Z=0]
+    and E[D|X,Z=1] (jointly added using <b>ddml E[D|X,Z]</b>); E[Z|X].
+
+    <u>Flexible Partially Liner IV model</u> [<i>fiv</i>]
+
+        Y = <i>a</i>.D + g(X) + U
+        D = m(Z) + g(X) + V 
+
+    where the estimand of interest is <i>a</i>.  We estimate the conditional expectations E[Y|X], E[D^|X] and D^:=E[D|Z,X]
+    using a supervised machine learner. The instrument is then formed as D^-E^[D^|X] where E^[D^|X] denotes the
+    estimate of E[D^|X].
+
+    Note: "{D}" is a placeholder that is used because last step (estimation of E[D|X]) uses the fitted values from
+    estimating E[D|X,Z].  Please see <a href="#stlog-1-examples"><b>example section below</b></a>.
+
+<a name="stlog-1-compatibility"></a><b><u>Compatible programs</u></b>
+
+    <b>ddml</b> is compatible with a large set of user-written Stata commands.  It has been tested with
+
+       - <a href="http://www.stata.com/help.cgi?lassopack"><b>lassopack</b></a> for regularized regression (see <a href="http://www.stata.com/help.cgi?lasso2"><b>lasso2</b></a>, <a href="http://www.stata.com/help.cgi?cvlasso"><b>cvlasso</b></a>, <a href="http://www.stata.com/help.cgi?rlasso"><b>rlasso</b></a>).
+
+       - the <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a> package (see <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a>.  Note that <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a> requires Stata 16.
+
+       - <a href="http://www.stata.com/help.cgi?rforest"><b>rforest</b></a> by Zou &amp; Schonlau. Note that <b>rforest</b> requires the option <b>vtype(none)</b>.
+
+       - <a href="http://www.stata.com/help.cgi?svmachines"><b>svmachines</b></a> by Guenther &amp; Schonlau.
+
+    Beyond these, it is compatible with any Stata program that
+
+       - uses the standard "<i>reg y x</i>" syntax,
+
+       - supports <i>if</i>-conditions,
+
+       - and comes with <a href="http://www.stata.com/help.cgi?predict"><b>predict</b></a> post-estimation programs.
+
+<a name="stlog-1-examples"></a><b><u>Examples</u></b>
+
+    Below we demonstrate the use of <b>ddml</b> for each of the 5 models supported.  Note that estimation models are chosen
+    for demonstration purposes only and kept simple to allow you to run the code quickly.
+
+    <u>Partially linear model I.</u>
+
+    Preparations: we load the data, define global macros and set the seed.
+        . use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear
+        . global Y net_tfa
+        . global D e401
+        . global X tw age inc fsize educ db marr twoearn pira hown
+        . set seed 42
+
+    We next initialize the ddml estimation and select the model.  <i>partial</i> refers to the partially linear model.  The
+    model will be stored on a Mata object with the default name "m0" unless otherwise specified using the <b>mname(</b><i>name</i><b>)</b>
+    option.
+ 
+    Note that we set the number of random folds to 2, so that the model runs quickly. The default is <b>kfolds(</b><i>5</i><b>)</b>. We
+    recommend to consider at least 5-10 folds and even more if your sample size is small.
+ 
+    Note also that we recommend re-running the model multiple times on different random folds; see options
+    <b>reps(</b><i>integer</i><b>)</b>.
+ 
+        . ddml init partial, kfolds(2)
+
+    We add a supervised machine learners for estimating the conditional expectation E[Y|X]. We first add simple linear
+    regression.
+        . ddml E[Y|X]: reg $Y $X
+
+    We can add more than one learner per reduced form equation. Here, we also add a random forest learner (implemented
+    in <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a>).
+        . ddml E[Y|X]: pystacked $Y $X, type(reg) method(rf)
+
+    We do the same for the conditional expectation E[D|X].
+        . ddml E[D|X]: reg $D $X
+        . ddml E[D|X]: pystacked $D $X, type(reg) method(rf)
+
+    Optionally, you can check if the learners have been added correctly.
+        . ddml desc
+
+    Cross-fitting. The learners are iteratively fitted on the training data.  This step may take a while.
+        . ddml crossfit
+
+    Finally, we obtain estimates of the coefficients of interest.  Since we added two learners for each of our two
+    reduced form equations, we get 4 point estimates. The result shown corresponds to the model with the lowest
+    out-of-sample MSPE.
+        . ddml estimate, robust
+
+    To retrieve the very first specification shown, you can type:
+        . ddml estimate, robust spec(1) replay
+
+    You could manually retrieve the same point estimate by typing:
+        . reg Y1_reg D1_reg, nocons robust
+    or graphically:
+        . twoway (scatter Y1_reg D1_reg) (lfit Y1_reg D1_reg)
+
+    where <b>Y1_reg</b> and <b>D1_reg</b> are the orthogonalized versions of <b>net_tfa</b> and <b>e401</b>.
+
+    To describe the ddml model setup or results in detail, you can use<b> ddml describe</b> with the relevant option (<b>sample</b>,
+    <b>learners</b>, <b>crossfit</b>, <b>estimates</b>), or just describe them all with the <b>all</b> option:
+        . ddml describe, all
+
+    <u>Partially linear model II. Stacking regression using </u><a href="http://www.stata.com/help.cgi?pystacked"><b><u>pystacked</u></b></a><u>.</u>
+
+    Stacking regression is a simple and powerful method for combining predictions from multiple learners.  It is
+    available in Stata via the <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a> package.  Below is an example with the partially linear model, but it can be
+    used with any model supported by <b>ddml</b>.
+
+    Preparation: use the data and globals as above.  Use the name <b>m1</b> for this new estimation, to distinguish it from
+    the previous example that uses the default name <b>m0</b>.  This enables having multiple estimations available for
+    comparison.  Also specify 5 resamplings.
+        . set seed 42
+        . ddml init partial, kfolds(2) reps(5) mname(m1)
+
+    Add supervised machine learners for estimating conditional expectations.  The first learner in the stacked
+    ensemble is OLS.  We also use cross-validated lasso, ridge and two random forests with different settings, which
+    we save in the following macros:
+        . global rflow max_features(5) min_samples_leaf(1) max_samples(.7)
+        . global rfhigh max_features(5) min_samples_leaf(10) max_samples(.7)
+
+    In each step, we add the <b>mname(m1)</b> option to ensure that the learners are not added to the <b>m0</b> model which is still
+    in memory.  We also specify the names of the variables containing the estimated conditional expectations using the
+    <b>learner(</b><i>varname</i><b>)</b> option.  This avoids overwriting the variables created for the <b>m0</b> model using default naming.
+
+        . ddml E[Y|X], mname(m1) learner(Y_m1): pystacked $Y $X || method(ols) || method(lassocv) || method(ridgecv)
+            || method(rf) opt($rflow) || method(rf) opt($rfhigh), type(reg)
+        . ddml E[D|X], mname(m1) learner(D_m1): pystacked $D $X || method(ols) || method(lassocv) || method(ridgecv)
+            || method(rf) opt($rflow) || method(rf) opt($rfhigh), type(reg)
+
+    Note: Options before ":" and after the first comma refer to <b>ddml</b>.  Options that come after the final comma refer
+    to the estimation command.  Make sure to not confuse the two types of options.
+
+    Check if learners were correctly added:
+        . ddml desc, mname(m1) learners
+
+    Cross-fitting and estimation.
+        . ddml crossfit, mname(m1)
+        . ddml estimate, mname(m1) robust
+
+    Examine the learner weights used by <b>pystacked</b>.
+        . ddml extract, mname(m1) show(pystacked)
+
+    We can compare the effects with the first <b>ddml</b> model (if you have run the first example above).
+        . ddml estimate, mname(m0) replay
+
+    <u>Partially linear IV model.</u>
+
+    Preparations: we load the data, define global macros and set the seed.
+        . use https://statalasso.github.io/dta/AJR.dta, clear
+        . global Y logpgp95
+        . global D avexpr
+        . global Z logem4
+        . global X lat_abst edes1975 avelf temp* humid* steplow-oilres
+        . set seed 42
+
+    Preparations: we load the data, define global macros and set the seed. Since the data set is very small, we
+    consider 30 cross-fitting folds.
+        . ddml init iv, kfolds(30)
+
+    The partially linear IV model has three conditional expectations:  E[Y|X], E[D|X] and E[Z|X]. For each reduced
+    form equation, we add two learners: <a href="http://www.stata.com/help.cgi?regress"><b>regress</b></a> and <a href="http://www.stata.com/help.cgi?rforest"><b>rforest</b></a>.
+
+    We need to add the option <b>vtype(</b><i>none</i><b>)</b> for <a href="http://www.stata.com/help.cgi?rforest"><b>rforest</b></a> to work with <b>ddml</b> since <a href="http://www.stata.com/help.cgi?rforest"><b>rforest</b></a>'s <b>predict</b> command doesn't
+    support variable types.
+        . ddml E[Y|X]: reg $Y $X
+        . ddml E[Y|X], vtype(none): rforest $Y $X, type(reg)
+        . ddml E[D|X]: reg $D $X
+        . ddml E[D|X], vtype(none): rforest $D $X, type(reg)
+        . ddml E[Z|X]: reg $Z $X
+        . ddml E[Z|X], vtype(none): rforest $Z $X, type(reg)
+
+    Cross-fitting and estimation.
+        . ddml crossfit
+        . ddml estimate, robust
+
+    If you are curious what <b>ddml</b> does in the background:
+        . ddml estimate m0, spec(8) rep(1)
+        . ivreg Y2_rf (D2_rf = Z2_rf), nocons
+
+    <u>Interactive model--ATE and ATET estimation.</u>
+
+    Preparations: we load the data, define global macros and set the seed.
+        . webuse cattaneo2, clear
+        . global Y bweight
+        . global D mbsmoke
+        . global X mage prenatal1 mmarried fbaby mage medu
+        . set seed 42
+
+    We use 5 folds and 5 resamplings; that is, we estimate the model 5 times using randomly chosen folds.
+        . ddml init interactive, kfolds(5) reps(5)
+
+    We need to estimate the conditional expectations of E[Y|X,D=0], E[Y|X,D=1] and E[D|X]. The first two conditional
+    expectations are added jointly.
+ 
+    We consider two supervised learners: linear regression and gradient boosted trees (implemented in <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a>).
+    Note that we use gradient boosted regression trees for E[Y|X,D], but gradient boosted classification trees for
+    E[D|X].
+ 
+        . ddml E[Y|X,D]: reg $Y $X
+        . ddml E[Y|X,D]: pystacked $Y $X, type(reg) method(gradboost)
+        . ddml E[D|X]: logit $D $X
+        . ddml E[D|X]: pystacked $D $X, type(class) method(gradboost)
+
+    Cross-fitting:
+        . ddml crossfit
+
+    In the final estimation step, we can estimate both the average treatment effect (the default) or the average
+    treatment effect of the treated (<b>atet</b>).
+        . ddml estimate
+        . ddml estimate, atet trim(0)
+
+    Recall that we have specified 5 resampling iterations (<b>reps(</b><i>5</i><b>)</b>) By default, the median over the minimum-MSE
+    specification per resampling iteration is shown.  At the bottom, a table of summary statistics over resampling
+    iterations is shown.
+
+    <u>Interactive IV model--LATE estimation.</u>
+
+    Preparations: we load the data, define global macros and set the seed.
+        . use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear
+        . global Y earnings
+        . global D training
+        . global Z assignmt
+        . global X sex age married black hispanic
+        . set seed 42
+
+    We initialize the model.
+        . ddml init interactiveiv, kfolds(5)
+
+    We again add two learners per reduced form equation.
+        . ddml E[Y|X,Z]: reg $Y $X
+        . ddml E[Y|X,Z]: pystacked $Y c.($X)# #c($X), type(reg) m(lassocv)
+        . ddml E[D|X,Z]: logit $D $X
+        . ddml E[D|X,Z]: pystacked $D c.($X)# #c($X), type(class) m(lassocv)
+        . ddml E[Z|X]: logit $Z $X
+        . ddml E[Z|X]: pystacked $Z c.($X)# #c($X), type(class) m(lassocv)
+
+    Cross-fitting and estimation.
+        . ddml crossfit
+        . ddml estimate
+
+    <u>Flexible Partially Linear IV model.</u>
+
+    Preparations: we load the data, define global macros and set the seed.
+        . use https://github.com/aahrens1/ddml/raw/master/data/BLP.dta, clear
+        . global Y share
+        . global D price
+        . global X hpwt air mpd space
+        . global Z sum*
+        . set seed 42
+
+    We initialize the model.
+        . ddml init fiv
+
+    We add learners for E[Y|X] in the usual way.
+        . ddml E[Y|X]: reg $Y $X
+        . ddml E[Y|X]: pystacked $Y $X, type(reg)
+
+    There are some pecularities that we need to bear in mind when adding learners for E[D|Z,X] and E[D|X].  The reason
+    for this is that the estimation of E[D|X] depends on the estimation of E[D|X,Z].  More precisely, we first obtain
+    the fitted values D^=E[D|X,Z] and fit these against X to estimate E[D^|X].
+
+    When adding learners for E[D|Z,X], we need to provide a name for each learners using <b>learner(</b><i>name</i><b>)</b>.
+        . ddml E[D|Z,X], learner(Dhat_reg): reg $D $X $Z
+        . ddml E[D|Z,X], learner(Dhat_pystacked): pystacked $D $X $Z, type(reg)
+
+    When adding learners for E[D|X], we explicitly refer to the learner from the previous step (e.g.,
+    <b>learner(Dhat_reg)</b>) and also provide the name of the treatment variable (<b>vname($D)</b>).  Finally, we use the
+    placeholder <b>{D}</b> in place of the dependent variable.
+        . ddml E[D|X], learner(Dhat_reg) vname($D): reg {D} $X
+        . ddml E[D|X], learner(Dhat_pystacked) vname($D): pystacked {D} $X, type(reg)
+ 
+    That's it. Now we can move to cross-fitting and estimation.
+        . ddml crossfit
+        . ddml estimate
+
+    If you are curious what <b>ddml</b> does in the background:
+        . ddml estimate m0, spec(8) rep(1)
+        . gen Dtilde = $D - Dhat_pystacked_h_1
+        . gen Zopt = Dhat_pystacked_1 - Dhat_pystacked_h_1
+        . ivreg Y2_pystacked_1 (Dtilde=Zopt), nocons
+
+<a name="stlog-1-references"></a><b><u>References</u></b>
+
+    Chernozhukov, V., Chetverikov, D., Demirer, M., Duflo, E., Hansen, C., Newey, W. and Robins, J. (2018),
+    Double/debiased machine learning for treatment and structural parameters.  <i>The Econometrics Journal</i>, 21: C1-C68. 
+    https://doi.org/10.1111/ectj.12097
+
+<a name="stlog-1-installation"></a><b><u>Installation</u></b>
+
+    To get the latest stable version of <b>ddml</b> from our website, check the installation instructions at 
+    https://statalasso.github.io/installation/.  We update the stable website version more frequently than the SSC
+    version.
+
+    To verify that <b>ddml</b> is correctly installed, click on or type whichpkg ddml (which requires <a href="http://www.stata.com/help.cgi?whichpkg"><b>whichpkg</b></a> to be
+    installed; ssc install whichpkg).
+
+<b><u>Authors</u></b>
+
+    Achim Ahrens, Public Policy Group, ETH Zurich, Switzerland
+    achim.ahrens@gess.ethz.ch
+
+    Christian B. Hansen, University of Chicago, USA
+    Christian.Hansen@chicagobooth.edu
+
+    Mark E Schaffer, Heriot-Watt University, UK
+    m.e.schaffer@hw.ac.uk
+
+    Thomas Wiemann, University of Chicago, USA
+    wiemann@uchicago.edu
+
+<b><u>Also see (if installed)</u></b>
+
+    Help: <a href="http://www.stata.com/help.cgi?lasso2"><b>lasso2</b></a>, <a href="http://www.stata.com/help.cgi?cvlasso"><b>cvlasso</b></a>, <a href="http://www.stata.com/help.cgi?rlasso"><b>rlasso</b></a>, <a href="http://www.stata.com/help.cgi?ivlasso"><b>ivlasso</b></a>, <a href="http://www.stata.com/help.cgi?pdslasso"><b>pdslasso</b></a>, <a href="http://www.stata.com/help.cgi?pystacked"><b>pystacked</b></a>.
+</pre>
+
+
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

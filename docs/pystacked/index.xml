@@ -56,7 +56,7 @@ pystacked can be parallelized at the level of the base learners or at the stacki
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/help/</guid>
-      <description>------------------------------------------------------------------------------------------------------ help pystacked v0.2 ------------------------------------------------------------------------------------------------------ Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms.</description>
+      <description>------------------------------------------------------------------------------------------------------------------------ help pystacked v0.4.8 ------------------------------------------------------------------------------------------------------------------------ Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining multiple supervised machine learners (the &#34;base&#34; or &#34;level-0&#34; learners) into a meta learner. The currently supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms.</description>
     </item>
     
     <item>
@@ -77,9 +77,9 @@ ssc install pystacked Install old versions # To install an old version:</descrip
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/citation/</guid>
-      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
-Also cite scikit-learn as explained here:
-@article{scikit-learn, title={Scikit-learn: Machine Learning in {P}ython}, author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A.</description>
+      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contribution to the research community, like a paper. Please cite it as such.
+To cite our working paper:
+@misc{https://doi.org/10.48550/arxiv.2208.10896, doi = {10.48550/ARXIV.2208.10896}, url = {https://arxiv.org/abs/2208.10896}, author = {Ahrens, Achim and Hansen, Christian B. and Schaffer, Mark E.}, keywords = {Econometrics (econ.EM), Machine Learning (stat.ML), FOS: Economics and business, FOS: Economics and business, FOS: Computer and information sciences, FOS: Computer and information sciences}, title = {pystacked: Stacking generalization and machine learning in Stata}, publisher = {arXiv}, year = {2022}, copyright = {Creative Commons Attribution Share Alike 4.</description>
     </item>
     
   </channel>

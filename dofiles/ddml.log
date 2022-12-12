@@ -1,0 +1,842 @@
+------------------------------------------------------------------------------------------------------------------------
+      name:  <unnamed>
+       log:  /Users/kahrens/MyProjects/statalasso_website/static/dofiles/ddml.log
+  log type:  text
+ opened on:  28 Nov 2022, 22:47:49
+
+. 
+. 
+. global tol = 0.0001
+
+. which ddml
+/Users/kahrens/MyProjects/ddml/ddml.ado
+*! ddml v0.5
+*! last edited: 23aug2022
+*! authors: aa/ms
+
+. which pystacked
+/Users/kahrens/MyProjects/pystacked/pystacked.ado
+*! pystacked v0.4.7
+*! last edited: 26nov2022
+*! authors: aa/ms
+
+.    
+. * The code below is equivalent to the code from "helpb ddml"
+.         
+. **** Partially linear model.
+. 
+. use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear
+
+. global Y net_tfa
+
+. global D e401
+
+. global X tw age inc fsize educ db marr twoearn pira hown
+
+. set seed 42
+
+. 
+. ddml init partial, kfolds(2)
+
+. 
+. ddml E[Y|X]: reg $Y $X
+Learner Y1_reg added successfully.
+
+. 
+. ddml E[Y|X]: pystacked $Y $X, type(reg) method(rf)
+Learner Y2_pystacked added successfully.
+
+. 
+. ddml E[D|X]: reg $D $X
+Learner D1_reg added successfully.
+
+. ddml E[D|X]: pystacked $D $X, type(reg) method(rf)
+Learner D2_pystacked added successfully.
+
+. 
+. ddml desc
+
+Model:                  partial, crossfit folds k=2, resamples r=1
+Dependent variable (Y): net_tfa
+ net_tfa learners:      Y1_reg Y2_pystacked
+D equations (1):        e401
+ e401 learners:         D1_reg D2_pystacked
+
+. 
+. ddml crossfit
+Cross-fitting E[Y|X] equation: net_tfa
+Cross-fitting fold 1 2 ...completed cross-fitting
+Cross-fitting E[D|X] equation: e401
+Cross-fitting fold 1 2 ...completed cross-fitting
+
+. 
+. ddml estimate, robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308(1130.901)
+   2  1        Y1_reg  D2_pystacked  6707.514 (880.374)
+*  3  1  Y2_pystacked        D1_reg  7044.822(1127.173)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (755.805)
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 3
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   7044.822   1127.173     6.25   0.000     4835.603    9254.042
+------------------------------------------------------------------------------
+
+
+. 
+. ddml estimate, robust spec(1)
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308(1130.901)
+   2  1        Y1_reg  D2_pystacked  6707.514 (880.374)
+*  3  1  Y2_pystacked        D1_reg  7044.822(1127.173)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (755.805)
+* = minimum MSE specification for that resample.
+
+DDML model, specification 1
+y-E[y|X]  = Y1_reg_1                               Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   5397.308   1130.901     4.77   0.000     3180.783    7613.834
+------------------------------------------------------------------------------
+
+
+. 
+. reg Y1_reg D1_reg, nocons robust
+
+Linear regression                               Number of obs     =      9,915
+                                                F(1, 9914)        =      22.78
+                                                Prob > F          =     0.0000
+                                                R-squared         =     0.0037
+                                                Root MSE          =      39626
+
+------------------------------------------------------------------------------
+             |               Robust
+    Y1_reg_1 | Coefficient  std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    D1_reg_1 |   5397.308   1130.901     4.77   0.000     3180.512    7614.105
+------------------------------------------------------------------------------
+
+. 
+. ddml describe, all
+
+Model:                  partial, crossfit folds k=2, resamples r=1
+Dependent variable (Y): net_tfa
+ net_tfa learners:      Y1_reg Y2_pystacked
+D equations (1):        e401
+ e401 learners:         D1_reg D2_pystacked
+
+ID:                     m0_id
+Full sample indic.:     m0_sample (N=9915)
+Fold ID:                  m0_fid_1  
+Fold sample indic.:     m0_sample_1 
+Estimation N:               9915    
+
+Y learners (detail):
+ Learner:     Y1_reg
+              est cmd: reg net_tfa tw age inc fsize educ db marr twoearn pira hown
+ Learner:     Y2_pystacked
+              est cmd: pystacked net_tfa tw age inc fsize educ db marr twoearn pira hown, type(reg) method(rf)
+D learners (detail):
+ Learner:     D1_reg
+              est cmd: reg e401 tw age inc fsize educ db marr twoearn pira hown
+ Learner:     D2_pystacked
+              est cmd: pystacked e401 tw age inc fsize educ db marr twoearn pira hown, type(reg) method(rf)
+
+Crossfit results (detail):
+                                     All    By fold:
+Cond. exp.  Learner      rep         MSE        1         2 
+net_tfa    Y1_reg         1       1.6e+09   1.6e+09   1.6e+09
+           Y2_pysta~d     1       1.3e+09   1.2e+09   1.3e+09
+e401       D1_reg         1          0.20      0.20      0.21
+           D2_pysta~d     1          0.21      0.21      0.21
+
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308 (886.798)
+   2  1        Y1_reg  D2_pystacked  6707.514 (864.024)
+*  3  1  Y2_pystacked        D1_reg  7044.822 (786.503)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (767.089)
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 3
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+     net_tfa | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   7044.822   786.5034     8.96   0.000     5503.304    8586.341
+------------------------------------------------------------------------------
+
+
+. 
+. **** Partially linear model II
+. 
+. set seed 42
+
+. ddml init partial, kfolds(2) reps(5) mname(m1)
+
+. 
+. global rflow max_features(5) min_samples_leaf(1) max_samples(.7)
+
+. global rfhigh max_features(5) min_samples_leaf(10) max_samples(.7)
+
+. 
+. ddml E[Y|X], mname(m1) learner(Y_m1): pystacked $Y $X            || ///
+>                                method(ols)                       || ///
+>                                method(lassocv)                   || ///
+>                                method(ridgecv)                   || ///
+>                                method(rf) opt($rflow)            || ///
+>                                method(rf) opt($rfhigh), type(reg)
+Learner Y_m1 added successfully.
+
+. ddml E[D|X], mname(m1) learner(D_m1): pystacked $D $X            || ///
+>                                method(ols)                       || ///
+>                                method(lassocv)                   || ///
+>                                method(ridgecv)                   || ///
+>                                method(rf) opt($rflow)            || ///
+>                                method(rf) opt($rfhigh), type(reg)
+Learner D_m1 added successfully.
+
+. 
+. ddml desc, mname(m1) learners
+
+Model:                  partial, crossfit folds k=2, resamples r=5
+Dependent variable (Y): net_tfa
+ net_tfa learners:      Y_m1
+D equations (1):        e401
+ e401 learners:         D_m1
+
+Y learners (detail):
+ Learner:     Y_m1
+              est cmd: pystacked net_tfa tw age inc fsize educ db marr twoearn pira hown            ||                  
+>               method(ols)                       ||                                method(lassocv)                   ||
+>                                 method(ridgecv)                   ||                                method(rf) opt(max
+> _features(5) min_samples_leaf(1) max_samples(.7))            ||                                method(rf) opt(max_feat
+> ures(5) min_samples_leaf(10) max_samples(.7)), type(reg)
+D learners (detail):
+ Learner:     D_m1
+              est cmd: pystacked e401 tw age inc fsize educ db marr twoearn pira hown            ||                     
+>            method(ols)                       ||                                method(lassocv)                   ||   
+>                              method(ridgecv)                   ||                                method(rf) opt(max_fe
+> atures(5) min_samples_leaf(1) max_samples(.7))            ||                                method(rf) opt(max_feature
+> s(5) min_samples_leaf(10) max_samples(.7)), type(reg)
+
+. 
+. ddml crossfit, mname(m1)
+Cross-fitting E[Y|X] equation: net_tfa
+Resample 1...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Cross-fitting E[D|X] equation: e401
+Resample 1...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 ...completed cross-fitting
+
+. ddml estimate, mname(m1) robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+*  1  1          Y_m1          D_m1  7386.929 (939.818)
+*  1  2          Y_m1          D_m1  6882.647 (901.494)
+*  1  3          Y_m1          D_m1  6532.074 (874.233)
+*  1  4          Y_m1          D_m1  6533.431 (948.284)
+*  1  5          Y_m1          D_m1  6671.850 (980.995)
+* = minimum MSE specification for that resample.
+
+Mean/med.   Y learner     D learner         b        SE
+ mse mn     [min-mse]         [mse]  6801.386 (972.913)
+ mse md     [min-mse]         [mse]  6671.850 (958.334)
+
+Median over min-mse specifications
+y-E[y|X]  = Y_m1                                   Number of obs   =      9915
+D-E[D|X,Z]= D_m1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |    6671.85   958.3335     6.96   0.000      4793.55    8550.149
+------------------------------------------------------------------------------
+
+Summary over 5 resamples:
+       D eqn      mean       min       p25       p50       p75       max
+        e401   6801.3863 6532.0747 6533.4312 6671.8496 6882.6470 7386.9292
+
+. 
+. ddml extract, mname(m1) show(pystacked)
+
+pystacked weights for D_m1 (e401)
+           learner   resample     fold_1     fold_2
+    ols          1          1   .0004422  .00071577
+lassocv          2          1   .2675189  .00071482
+ridgecv          3          1   .0004422  .35869613
+     rf          4          1  2.233e-17  1.621e-17
+     rf          5          1  .73159671  .63987328
+    ols          1          2          0          0
+lassocv          2          2  .35508388  .32797871
+ridgecv          3          2          0  1.965e-18
+     rf          4          2          0  1.176e-17
+     rf          5          2  .64491612  .67202129
+    ols          1          3  .00069796  .00100822
+lassocv          2          3  .27614676  .38464348
+ridgecv          3          3  .00069796  .00100822
+     rf          4          3          0  1.984e-17
+     rf          5          3  .72245732  .61334008
+    ols          1          4  8.132e-18  .00113967
+lassocv          2          4  .33787969  .30182868
+ridgecv          3          4  1.877e-17  .00113967
+     rf          4          4  1.618e-17          0
+     rf          5          4  .66212031  .69589197
+    ols          1          5          0  .00062916
+lassocv          2          5  .37739827  .32235514
+ridgecv          3          5          0  .00062916
+     rf          4          5  1.735e-18          0
+     rf          5          5  .62260173  .67638654
+
+pystacked weights for Y_m1 (net_tfa)
+           learner   resample     fold_1     fold_2
+    ols          1          1  .18600833          0
+lassocv          2          1          0          0
+ridgecv          3          1          0  .37690816
+     rf          4          1  .87258864  .71398467
+     rf          5          1          0          0
+    ols          1          2  .16206747          0
+lassocv          2          2  9.611e-11  .22439846
+ridgecv          3          2   .1201739          0
+     rf          4          2  .54263251  .88941492
+     rf          5          2  .17512621          0
+    ols          1          3          0          0
+lassocv          2          3          0  .41206298
+ridgecv          3          3  .11766886          0
+     rf          4          3  .93077825   .6556954
+     rf          5          3          0          0
+    ols          1          4          0          0
+lassocv          2          4          0          0
+ridgecv          3          4  .41455365          0
+     rf          4          4  .65834363          1
+     rf          5          4          0          0
+    ols          1          5  .85511453          0
+lassocv          2          5          0          0
+ridgecv          3          5          0          0
+     rf          4          5  .15379787          1
+     rf          5          5          0          0
+
+. 
+. ddml estimate, mname(m0) replay 
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308 (886.798)
+   2  1        Y1_reg  D2_pystacked  6707.514 (864.024)
+*  3  1  Y2_pystacked        D1_reg  7044.822 (786.503)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (767.089)
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 3
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+     net_tfa | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   7044.822   786.5034     8.96   0.000     5503.304    8586.341
+------------------------------------------------------------------------------
+
+
+.  
+. **** Partially linear IV model.
+. 
+. use https://statalasso.github.io/dta/AJR.dta, clear
+
+. global Y logpgp95
+
+. global D avexpr
+
+. global Z logem4
+
+. global X lat_abst edes1975 avelf temp* humid* steplow-oilres
+
+. set seed 42
+
+. 
+. ddml init iv, kfolds(30)
+warning - model m0 already exists
+all existing model results and variables will
+be dropped and model m0 will be re-initialized
+
+. 
+. ddml E[Y|X]: reg $Y $X
+Learner Y1_reg added successfully.
+
+. ddml E[Y|X], vtype(none): rforest $Y $X, type(reg)
+Learner Y2_rforest added successfully.
+
+. ddml E[D|X]: reg $D $X
+Learner D1_reg added successfully.
+
+. ddml E[D|X], vtype(none): rforest $D $X, type(reg)
+Learner D2_rforest added successfully.
+
+. ddml E[Z|X]: reg $Z $X
+Learner Z1_reg added successfully.
+
+. ddml E[Z|X], vtype(none): rforest $Z $X, type(reg)
+Learner Z2_rforest added successfully.
+
+. 
+. ddml crossfit
+Z equations (1): logem4
+Cross-fitting E[Y|X] equation: logpgp95
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-f
+> itting
+Cross-fitting E[D|X] equation: avexpr
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-f
+> itting
+Cross-fitting E[Z|X]: logem4
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-f
+> itting
+
+. ddml estimate, robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE     Z learner
+   1  1        Y1_reg        D1_reg     0.378  ( 0.123)        Z1_reg
+   2  1        Y1_reg        D1_reg    -0.101  ( 1.184)    Z2_rforest
+   3  1        Y1_reg    D2_rforest     2.434  ( 3.750)        Z1_reg
+   4  1        Y1_reg    D2_rforest     0.052  ( 0.492)    Z2_rforest
+   5  1    Y2_rforest        D1_reg     0.122  ( 0.210)        Z1_reg
+   6  1    Y2_rforest        D1_reg    -1.485  ( 3.531)    Z2_rforest
+   7  1    Y2_rforest    D2_rforest     0.784  ( 0.502)        Z1_reg
+*  8  1    Y2_rforest    D2_rforest     0.771  ( 0.204)    Z2_rforest
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 8
+y-E[y|X]  = Y2_rforest_1                           Number of obs   =        64
+D-E[D|X,Z]= D2_rforest_1
+Z-E[Z|X]  = Z2_rforest_1
+------------------------------------------------------------------------------
+             |               Robust
+    logpgp95 | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      avexpr |    .770743    .203672     3.78   0.000     .3715532    1.169933
+------------------------------------------------------------------------------
+
+
+. 
+. ddml estimate m0, spec(8) rep(1)
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE     Z learner
+   1  1        Y1_reg        D1_reg     0.378  ( 0.085)        Z1_reg
+   2  1        Y1_reg        D1_reg    -0.101  ( 0.827)    Z2_rforest
+   3  1        Y1_reg    D2_rforest     2.434  ( 2.243)        Z1_reg
+   4  1        Y1_reg    D2_rforest     0.052  ( 0.351)    Z2_rforest
+   5  1    Y2_rforest        D1_reg     0.122  ( 0.091)        Z1_reg
+   6  1    Y2_rforest        D1_reg    -1.485  ( 2.455)    Z2_rforest
+   7  1    Y2_rforest    D2_rforest     0.784  ( 0.578)        Z1_reg
+*  8  1    Y2_rforest    D2_rforest     0.771  ( 0.202)    Z2_rforest
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 8
+y-E[y|X]  = Y2_rforest_1                           Number of obs   =        64
+D-E[D|X,Z]= D2_rforest_1
+Z-E[Z|X]  = Z2_rforest_1
+------------------------------------------------------------------------------
+    logpgp95 | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      avexpr |    .770743   .2018379     3.82   0.000      .375148    1.166338
+------------------------------------------------------------------------------
+
+
+. ivreg Y2_rf (D2_rf = Z2_rf), nocons
+
+Instrumental variables 2SLS regression
+
+      Source |       SS           df       MS      Number of obs   =        64
+-------------+----------------------------------   F(1, 63)        =         .
+       Model | -4.59844887         1 -4.59844887   Prob > F        =         .
+    Residual |  39.7479425        63  .630919722   R-squared       =         .
+-------------+----------------------------------   Adj R-squared   =         .
+       Total |  35.1494936        64  .549210838   Root MSE        =     .7943
+
+------------------------------------------------------------------------------
+Y2_rforest_1 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+D2_rforest_1 |    .770743   .2018379     3.82   0.000     .3674021    1.174084
+------------------------------------------------------------------------------
+Instrumented: D2_rforest_1
+ Instruments: Z2_rforest_1
+
+. 
+. **** Interactive model--ATE and ATET estimation.
+. 
+. webuse cattaneo2, clear
+(Excerpt from Cattaneo (2010) Journal of Econometrics 155: 138–154)
+
+. global Y bweight
+
+. global D mbsmoke
+
+. global X mage prenatal1 mmarried fbaby mage medu
+
+. set seed 42
+
+. 
+. ddml init interactive, kfolds(5) reps(5)
+warning - model m0 already exists
+all existing model results and variables will
+be dropped and model m0 will be re-initialized
+
+. 
+. ddml E[Y|X,D]: reg $Y $X
+Learner Y1_reg added successfully.
+
+. ddml E[Y|X,D]: pystacked $Y $X, type(reg) method(gradboost)
+Learner Y2_pystacked added successfully.
+
+. ddml E[D|X]: logit $D $X
+Learner D1_logit added successfully.
+
+. ddml E[D|X]: pystacked $D $X, type(class) method(gradboost)
+Learner D2_pystacked added successfully.
+
+. 
+. ddml crossfit
+Cross-fitting E[Y|X,D] equation: bweight
+Resample 1...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Cross-fitting E[D|X] equation: mbsmoke
+Resample 1...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+
+. 
+. ddml estimate
+
+DDML estimation results:
+spec  r    Y0 learner    Y1 learner     D learner         b        SE
+   1  1        Y1_reg        Y1_reg      D1_logit  -232.439  (23.705)
+*  2  1        Y1_reg        Y1_reg  D2_pystacked  -207.548  (32.276)
+   3  1        Y1_reg  Y2_pystacked      D1_logit  -212.864  (24.366)
+   4  1        Y1_reg  Y2_pystacked  D2_pystacked  -196.989  (30.886)
+   5  1  Y2_pystacked        Y1_reg      D1_logit  -233.565  (23.707)
+   6  1  Y2_pystacked        Y1_reg  D2_pystacked  -206.370  (32.298)
+   7  1  Y2_pystacked  Y2_pystacked      D1_logit  -213.989  (24.372)
+   8  1  Y2_pystacked  Y2_pystacked  D2_pystacked  -195.812  (30.885)
+   1  2        Y1_reg        Y1_reg      D1_logit  -231.528  (23.962)
+*  2  2        Y1_reg        Y1_reg  D2_pystacked  -212.120  (29.030)
+   ...  <-click or type ddml estimate, replay full to display full summary
+* = minimum MSE specification for that resample.
+
+Mean/med.  Y0 learner    Y1 learner     D learner         b        SE
+ mse mn     [min-mse]         [mse]         [mse]  -216.073  (30.660)
+ mse md     [min-mse]         [mse]         [mse]  -216.073  (29.490)
+
+Median over min-mse specifications
+y-E[y|X,D=0] = Y1_reg                              Number of obs   =      4642
+y-E[y|X,D=1] = Y1_reg
+D-E[D|X]     = D2_pystacked
+------------------------------------------------------------------------------
+             |               Robust
+     bweight | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     mbsmoke |  -216.0733   29.48997    -7.33   0.000    -273.8725    -158.274
+------------------------------------------------------------------------------
+Warning: 5 resamples had propensity scores trimmed to lower limit .01.
+
+Summary over 5 resamples:
+       D eqn      mean       min       p25       p50       p75       max
+     mbsmoke   -216.0727 -227.9799 -216.6422 -216.0733 -212.1205 -207.5478
+
+. ddml estimate, atet trim(0)
+
+DDML estimation results:
+spec  r    Y0 learner    Y1 learner     D learner         b        SE
+   1  1        Y1_reg        Y1_reg      D1_logit  -219.785  (23.719)
+*  2  1        Y1_reg        Y1_reg  D2_pystacked  -234.764  (24.667)
+   3  1        Y1_reg  Y2_pystacked      D1_logit  -219.785  (23.719)
+   4  1        Y1_reg  Y2_pystacked  D2_pystacked  -234.764  (24.667)
+   5  1  Y2_pystacked        Y1_reg      D1_logit  -225.738  (24.082)
+   6  1  Y2_pystacked        Y1_reg  D2_pystacked  -228.703  (25.699)
+   7  1  Y2_pystacked  Y2_pystacked      D1_logit  -225.738  (24.082)
+   8  1  Y2_pystacked  Y2_pystacked  D2_pystacked  -228.703  (25.699)
+   1  2        Y1_reg        Y1_reg      D1_logit  -219.674  (23.696)
+*  2  2        Y1_reg        Y1_reg  D2_pystacked  -231.267  (25.229)
+   ...  <-click or type ddml estimate, replay full to display full summary
+* = minimum MSE specification for that resample.
+
+Mean/med.  Y0 learner    Y1 learner     D learner         b        SE
+ mse mn     [min-mse]         [mse]         [mse]  -235.908  (24.954)
+ mse md     [min-mse]         [mse]         [mse]  -234.764  (24.919)
+
+Median over min-mse specifications
+y-E[y|X,D=0] = Y1_reg                              Number of obs   =      4642
+y-E[y|X,D=1] = Y1_reg
+D-E[D|X]     = D2_pystacked
+------------------------------------------------------------------------------
+             |               Robust
+     bweight | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+     mbsmoke |  -234.7643   24.91944    -9.42   0.000    -283.6055   -185.9231
+------------------------------------------------------------------------------
+
+Summary over 5 resamples:
+       D eqn      mean       min       p25       p50       p75       max
+     mbsmoke   -235.9077 -239.9554 -239.3867 -234.7643 -234.1649 -231.2672
+
+. 
+. **** Interactive IV model--LATE estimation.
+. 
+. use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear
+
+. global Y earnings
+
+. global D training
+
+. global Z assignmt
+
+. global X sex age married black hispanic
+
+. set seed 42
+
+. 
+. ddml init interactiveiv, kfolds(5)
+warning - model m0 already exists
+all existing model results and variables will
+be dropped and model m0 will be re-initialized
+
+. 
+. ddml E[Y|X,Z]: reg $Y $X
+Learner Y1_reg added successfully.
+
+. ddml E[Y|X,Z]: pystacked $Y c.($X)# #c($X), type(reg) m(lassocv)
+Learner Y2_pystacked added successfully.
+
+. ddml E[D|X,Z]: logit $D $X
+Learner D1_logit added successfully.
+
+. ddml E[D|X,Z]: pystacked $D c.($X)# #c($X), type(class) m(lassocv)
+Learner D2_pystacked added successfully.
+
+. ddml E[Z|X]: logit $Z $X
+Learner Z1_logit added successfully.
+
+. ddml E[Z|X]: pystacked $Z c.($X)# #c($X), type(class) m(lassocv)
+Learner Z2_pystacked added successfully.
+
+. 
+. ddml crossfit
+Z equations (1): assignmt
+Cross-fitting E[Y|X,Z] equation: earnings
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Cross-fitting E[D|X,Z] equation: training
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Cross-fitting E[Z|X]: assignmt
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+
+. ddml estimate
+
+DDML estimation results:
+spec  r    Y0 learner    Y1 learner    D0 learner    D1 learner         b        SE     Z learner
+   1  1        Y1_reg        Y1_reg      D1_logit      D1_logit  1800.600 (513.492)      Z1_logit
+   2  1        Y1_reg        Y1_reg      D1_logit      D1_logit  1803.585 (515.113)  Z2_pystacked
+   3  1        Y1_reg        Y1_reg      D1_logit  D2_pystacked  1802.494 (513.966)      Z1_logit
+   4  1        Y1_reg        Y1_reg      D1_logit  D2_pystacked  1805.322 (515.543)  Z2_pystacked
+   5  1        Y1_reg        Y1_reg  D2_pystacked      D1_logit  1800.659 (513.506)      Z1_logit
+   6  1        Y1_reg        Y1_reg  D2_pystacked      D1_logit  1803.378 (515.051)  Z2_pystacked
+   7  1        Y1_reg        Y1_reg  D2_pystacked  D2_pystacked  1802.553 (513.980)      Z1_logit
+   8  1        Y1_reg        Y1_reg  D2_pystacked  D2_pystacked  1805.115 (515.481)  Z2_pystacked
+   9  1        Y1_reg  Y2_pystacked      D1_logit      D1_logit  1808.209 (512.654)      Z1_logit
+  10  1        Y1_reg  Y2_pystacked      D1_logit      D1_logit  1811.073 (514.270)  Z2_pystacked
+   ...  <-click or type ddml estimate, replay full to display full summary
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 28
+y-E[y|X,D=0] = Y2_pystacked0_1                     Number of obs   =     11204
+y-E[y|X,D=1] = Y2_pystacked1_1
+D-E[D|X,Z=0] = D1_logit0_1
+D-E[D|X,Z=1] = D2_pystacked1_1
+Z-E[Z|X]     = Z2_pystacked_1
+------------------------------------------------------------------------------
+             |               Robust
+    earnings | Coefficient  std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    training |   1802.897   514.4563     3.50   0.000     794.5815    2811.213
+------------------------------------------------------------------------------
+
+
+. 
+. **** High-dim IV
+. 
+. use https://statalasso.github.io/dta/BLP_CHS.dta, clear
+
+. global Y y
+
+. global D price
+
+. global X hpwt air mpd space
+
+. global Z Zbase*
+
+. set seed 42
+
+. 
+. ddml init ivhd
+warning - model m0 already exists
+all existing model results and variables will
+be dropped and model m0 will be re-initialized
+
+. 
+. ddml E[Y|X]: reg $Y $X
+Learner Y1_reg added successfully.
+
+. ddml E[Y|X]: pystacked $Y $X, type(reg)
+Learner Y2_pystacked added successfully.
+
+. 
+. ddml E[D|Z,X], learner(Dhat_reg): reg $D $X $Z
+Learner Dhat_reg added successfully.
+
+. ddml E[D|Z,X], learner(Dhat_pystacked): pystacked $D $X $Z, type(reg)
+Learner Dhat_pystacked added successfully.
+
+. 
+. ddml E[D|X], learner(Dhat_reg) vname($D): reg {D} $X
+Learner Dhat_reg_h added successfully.
+
+. ddml E[D|X], learner(Dhat_pystacked) vname($D): pystacked {D} $X, type(reg)
+Replacing existing learner Dhat_pystacked_h...
+Learner Dhat_pystacked_h added successfully.
+
+.  
+. ddml crossfit
+Cross-fitting E[Y|X,Z] equation: y
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+Cross-fitting E[D|X,Z] and E[D|X] equation: price
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
+
+. ddml estimate
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE    DH learner
+   1  1        Y1_reg      Dhat_reg    -0.137  ( 0.011)    Dhat_reg_h
+   2  1        Y1_reg      Dhat_reg     0.363  ( 0.145) Dhat_pystac~h
+   3  1        Y1_reg Dhat_pystac~d    -0.089  ( 0.005)    Dhat_reg_h
+   4  1        Y1_reg Dhat_pystac~d    -0.114  ( 0.009) Dhat_pystac~h
+   5  1  Y2_pystacked      Dhat_reg    -0.096  ( 0.010)    Dhat_reg_h
+   6  1  Y2_pystacked      Dhat_reg    -0.208  ( 0.073) Dhat_pystac~h
+*  7  1  Y2_pystacked Dhat_pystac~d    -0.042  ( 0.005)    Dhat_reg_h
+   8  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 7
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      2217
+E[D|X,Z]  = Dhat_pystacked_1
+E[D|X]    = Dhat_reg_h_1
+Orthogonalised D = D - E[D|X]; optimal IV = E[D|X,Z] - E[D|X].
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       price |  -.0422251   .0046777    -9.03   0.000    -.0513933    -.033057
+------------------------------------------------------------------------------
+
+
+. 
+. ddml estimate m0, spec(8) rep(1)
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE    DH learner
+   1  1        Y1_reg      Dhat_reg    -0.137  ( 0.011)    Dhat_reg_h
+   2  1        Y1_reg      Dhat_reg     0.363  ( 0.145) Dhat_pystac~h
+   3  1        Y1_reg Dhat_pystac~d    -0.089  ( 0.005)    Dhat_reg_h
+   4  1        Y1_reg Dhat_pystac~d    -0.114  ( 0.009) Dhat_pystac~h
+   5  1  Y2_pystacked      Dhat_reg    -0.096  ( 0.010)    Dhat_reg_h
+   6  1  Y2_pystacked      Dhat_reg    -0.208  ( 0.073) Dhat_pystac~h
+*  7  1  Y2_pystacked Dhat_pystac~d    -0.042  ( 0.005)    Dhat_reg_h
+   8  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
+* = minimum MSE specification for that resample.
+
+DDML model, specification 8
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      2217
+E[D|X,Z]  = Dhat_pystacked_1
+E[D|X]    = Dhat_pystacked_h_1
+Orthogonalised D = D - E[D|X]; optimal IV = E[D|X,Z] - E[D|X].
+------------------------------------------------------------------------------
+           y | Coefficient  Std. err.      z    P>|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+       price |  -.0976524   .0079768   -12.24   0.000    -.1132866   -.0820181
+------------------------------------------------------------------------------
+
+
+. gen Dtilde = $D - Dhat_pystacked_h_1
+
+. gen Zopt = Dhat_pystacked_1 - Dhat_pystacked_h_1
+
+.  
+. ivreg Y2_pystacked_1 (Dtilde=Zopt), nocons
+
+Instrumental variables 2SLS regression
+
+      Source |       SS           df       MS      Number of obs   =     2,217
+-------------+----------------------------------   F(1, 2216)      =         .
+       Model |  303.676955         1  303.676955   Prob > F        =         .
+    Residual |  2283.27076     2,216  1.03035684   R-squared       =         .
+-------------+----------------------------------   Adj R-squared   =         .
+       Total |  2586.94771     2,217  1.16686861   Root MSE        =    1.0151
+
+------------------------------------------------------------------------------
+Y2_pystack~1 | Coefficient  Std. err.      t    P>|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      Dtilde |  -.0976524   .0079768   -12.24   0.000    -.1132952   -.0820096
+------------------------------------------------------------------------------
+Instrumented: Dtilde
+ Instruments: Zopt
+
+. 
+. log close
+      name:  <unnamed>
+       log:  /Users/kahrens/MyProjects/statalasso_website/static/dofiles/ddml.log
+  log type:  text
+ closed on:  28 Nov 2022, 22:50:23
+------------------------------------------------------------------------------------------------------------------------

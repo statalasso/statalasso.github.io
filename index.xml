@@ -16,6 +16,17 @@
     </item>
     
     <item>
+      <title>Model overview</title>
+      <link>https://statalasso.github.io/docs/ddml/models/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/models/</guid>
+      <description>Supported models # Throughout we use \(Y\) to denote the outcome variable, \(X\) to denote confounders, \(Z\) to denote instrumental variable(s), and \(D\) to denote the treatment variable(s) of interest.
+For a full discussion, please check our working paper.
+Partial linear model [partial] # \[ Y = a.D &amp;#43; g(X) &amp;#43; U \\ D = m(X) &amp;#43; V \quad\quad~~\] where the aim is to estimate \(a\) while flexibly controlling for \(X\) .</description>
+    </item>
+    
+    <item>
       <title>Models</title>
       <link>https://statalasso.github.io/docs/pdslasso/pdslasso_models/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -32,6 +43,16 @@
       
       <guid>https://statalasso.github.io/docs/lassopack/package_overview/</guid>
       <description>The package consists of the following programs: # lasso2 implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso and post-estimation OLS. The lasso (Least Absolute Shrinkage and Selection Operator, Tibshirani 1996), the square-root-lasso (Belloni et al. 2011) and the adaptive lasso (Zou 2006) are regularization methods that use \(\ell_1\) norm penalization to achieve sparse solutions: of the full set of \(p\) predictors, typically most will have coefficients set to zero.</description>
+    </item>
+    
+    <item>
+      <title>Algorithm</title>
+      <link>https://statalasso.github.io/docs/ddml/crossfit/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/crossfit/</guid>
+      <description>DDML Algorithm # DDML estimators proceed in two stages:
+Cross-fitting to estimate conditional expectation functions. Second stage estimation based on Neyman orthogonal scores. Chernozhukov et al. 2018) show that cross-fitting ensures that we can leverage a large class of machine learners for causal inference &amp;ndash; including popular machine learners such as random forests or gradient boosting. Cross-fitting ensures independence between the estimation error from the first step and the regression residual in the second stage.</description>
     </item>
     
     <item>
@@ -109,12 +130,42 @@ Gradient boosting # We load the example data set and randomly split the data in 
     </item>
     
     <item>
+      <title>Partial Linear Model (PLM)</title>
+      <link>https://statalasso.github.io/docs/ddml/plm/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/plm/</guid>
+      <description>Partially Linear Model # Preparations # We load the data, define global macros and set the seed.
+. use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear . global Y net_tfa . global D e401 . global X tw age inc fsize educ db marr twoearn pira hown . set seed 42 Step 1: Initialize DDML model # We next initialize the ddml estimation and select the model. partial refers to the partially linear model. The model will be stored on a Mata object with the default name &amp;ldquo;m0&amp;rdquo; unless otherwise specified using the mname(name) option.</description>
+    </item>
+    
+    <item>
       <title>help lassologit</title>
       <link>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</guid>
       <description></description>
+    </item>
+    
+    <item>
+      <title>PLM &amp; Stacking</title>
+      <link>https://statalasso.github.io/docs/ddml/plm2/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/plm2/</guid>
+      <description>Partially linear model with Stacking # Stacking regression is a simple and powerful method for combining predictions from multiple learners. It is available in Stata via the pystacked package (see here). Below is an example with the partially linear model, but it can be used with any model supported by ddml.
+Step 1: Initialization # Preparation: use the data and globals as above. Use the name m1 for this new estimation, to distinguish it from the previous example that uses the default name m0.</description>
+    </item>
+    
+    <item>
+      <title>Interactive</title>
+      <link>https://statalasso.github.io/docs/ddml/interactive/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/interactive/</guid>
+      <description>Interactive Model # Preparations: we load the data, define global macros and set the seed.
+. webuse cattaneo2, clear (Excerpt from Cattaneo (2010) Journal of Econometrics 155: 138–154) . global Y bweight . global D mbsmoke . global X mage prenatal1 mmarried fbaby mage medu . set seed 42 Step 1: Initialization # We use 5 folds and 5 resamplings; that is, we estimate the model 5 times using randomly chosen folds.</description>
     </item>
     
     <item>
@@ -128,6 +179,28 @@ For demonstation, we consider the nlswork example data set:</description>
     </item>
     
     <item>
+      <title>Partial Linear IV</title>
+      <link>https://statalasso.github.io/docs/ddml/iv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/iv/</guid>
+      <description>Partial Linear IV Model # Preparations # We load the data, define global macros and set the seed.
+. use https://statalasso.github.io/dta/AJR.dta, clear . global Y logpgp95 . global D avexpr . global Z logem4 . global X lat_abst edes1975 avelf temp* humid* steplow-oilres . set seed 42 Step 1: Initialization # Since the data set is very small, we consider 30 cross-fitting folds.
+. ddml init iv, kfolds(30) Step 2: Adding learners # The partially linear IV model has three conditional expectations: \(E[Y|X]\) , \(E[D|X]\) and \(E[Z|X]\) .</description>
+    </item>
+    
+    <item>
+      <title>Flexible IV</title>
+      <link>https://statalasso.github.io/docs/ddml/ivhd/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/ivhd/</guid>
+      <description>Flexible Partially Linear IV Model # Preparations # We load the data, define global macros and set the seed.
+. use https://statalasso.github.io/dta/BLP_CHS.dta, clear . global Y y . global D price . global X hpwt air mpd space . global Z Zbase* . set seed 42 Step 1: Initialization # We initialize the model.
+. ddml init ivhd Step 2: Add learners # We add learners for \(E[Y|X]\) in the usual way.</description>
+    </item>
+    
+    <item>
       <title>Cross-validation</title>
       <link>https://statalasso.github.io/docs/lassopack/cvlasso/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
@@ -135,6 +208,17 @@ For demonstation, we consider the nlswork example data set:</description>
       <guid>https://statalasso.github.io/docs/lassopack/cvlasso/</guid>
       <description>Cross-validation # In the course of cross-validation, the data is repeatedly partitioned into training and validation data. The model is fit to the training data and the validation data is used to calculate the prediction error. This in turn enables us to identify the values of \(\lambda\) and \(\alpha\) that optimize predictive performance (i.e., minimize the estimated mean-squared prediction error).
 cvlasso supports \(K\) -fold cross-validation and \(h\) -step ahead rolling cross-validation.</description>
+    </item>
+    
+    <item>
+      <title>Interactive IV</title>
+      <link>https://statalasso.github.io/docs/ddml/interactiveiv/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/interactiveiv/</guid>
+      <description>Interactive IV Model # Preparations # We load the data, define global macros and set the seed.
+. use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear . global Y earnings . global D training . global Z assignmt . global X sex age married black hispanic . set seed 42 Step 1: Initialization # We initialize the model.
+. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We again add two learners per reduced form equation.</description>
     </item>
     
     <item>
@@ -190,11 +274,20 @@ pystacked can be parallelized at the level of the base learners or at the stacki
     
     <item>
       <title>Help file</title>
+      <link>https://statalasso.github.io/docs/ddml/help/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/help/</guid>
+      <description>------------------------------------------------------------------------------------------------------------------------ help ddml v0.5 ------------------------------------------------------------------------------------------------------------------------ Title ddml -- Stata package for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked.</description>
+    </item>
+    
+    <item>
+      <title>Help file</title>
       <link>https://statalasso.github.io/docs/pystacked/help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/help/</guid>
-      <description>------------------------------------------------------------------------------------------------------ help pystacked v0.2 ------------------------------------------------------------------------------------------------------ Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining predictions from multiple supervised machine learners (the &#34;base learners&#34;) into a final prediction to improve performance. The currently-supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms.</description>
+      <description>------------------------------------------------------------------------------------------------------------------------ help pystacked v0.4.8 ------------------------------------------------------------------------------------------------------------------------ Title pystacked -- Stata program for Stacking Regression Overview pystacked implements stacking regression (Wolpert, 1992) via scikit-learn&#39;s sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier. Stacking is a way of combining multiple supervised machine learners (the &#34;base&#34; or &#34;level-0&#34; learners) into a meta learner. The currently supported base learners are linear regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP). pystacked can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn&#39;s machine learning algorithms.</description>
     </item>
     
     <item>
@@ -214,7 +307,7 @@ pystacked can be parallelized at the level of the base learners or at the stacki
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/ddml/installation/</guid>
-      <description>SSC version # You can get the lastest versions from github:
+      <description>Installation # You can get the lastest versions from github:
 net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) Please check for updates on a regular basis.
 Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &amp;ldquo;Code&amp;rdquo; and &amp;ldquo;Download ZIP&amp;rdquo;. Then run net install as above but from() should refer to the downloaded and unzipped repository folder.</description>
     </item>
@@ -289,9 +382,9 @@ Ahrens A, Hansen CB, Schaffer ME (2020). lassopack: Model selection and predicti
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/pystacked/citation/</guid>
-      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contributions to the research community, like a paper. Please cite it as such.
-Also cite scikit-learn as explained here:
-@article{scikit-learn, title={Scikit-learn: Machine Learning in {P}ython}, author={Pedregosa, F. and Varoquaux, G. and Gramfort, A. and Michel, V. and Thirion, B. and Grisel, O. and Blondel, M. and Prettenhofer, P. and Weiss, R. and Dubourg, V. and Vanderplas, J. and Passos, A.</description>
+      <description>Citation # pystacked is not an official Stata command. It&amp;rsquo;s a free contribution to the research community, like a paper. Please cite it as such.
+To cite our working paper:
+@misc{https://doi.org/10.48550/arxiv.2208.10896, doi = {10.48550/ARXIV.2208.10896}, url = {https://arxiv.org/abs/2208.10896}, author = {Ahrens, Achim and Hansen, Christian B. and Schaffer, Mark E.}, keywords = {Econometrics (econ.EM), Machine Learning (stat.ML), FOS: Economics and business, FOS: Economics and business, FOS: Computer and information sciences, FOS: Computer and information sciences}, title = {pystacked: Stacking generalization and machine learning in Stata}, publisher = {arXiv}, year = {2022}, copyright = {Creative Commons Attribution Share Alike 4.</description>
     </item>
     
     <item>

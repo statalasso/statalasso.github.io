@@ -1,0 +1,974 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Partial Linear IV Model # Preparations # We load the data, define global macros and set the seed.
+. use https://statalasso.github.io/dta/AJR.dta, clear . global Y logpgp95 . global D avexpr . global Z logem4 . global X lat_abst edes1975 avelf temp* humid* steplow-oilres . set seed 42 Step 1: Initialization # Since the data set is very small, we consider 30 cross-fitting folds.
+. ddml init iv, kfolds(30) Step 2: Adding learners # The partially linear IV model has three conditional expectations: \(E[Y|X]\) , \(E[D|X]\) and \(E[Z|X]\) .">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Partial Linear IV" />
+<meta property="og:description" content="Partial Linear IV Model # Preparations # We load the data, define global macros and set the seed.
+. use https://statalasso.github.io/dta/AJR.dta, clear . global Y logpgp95 . global D avexpr . global Z logem4 . global X lat_abst edes1975 avelf temp* humid* steplow-oilres . set seed 42 Step 1: Initialization # Since the data set is very small, we consider 30 cross-fitting folds.
+. ddml init iv, kfolds(30) Step 2: Adding learners # The partially linear IV model has three conditional expectations: \(E[Y|X]\) , \(E[D|X]\) and \(E[Z|X]\) ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/iv/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Partial Linear IV | Stata ML Page</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/models/" class="">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class="">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class="">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class=" active">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Partial Linear IV</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#preparations">Preparations</a></li>
+        <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
+        <li><a href="#step-2-adding-learners">Step 2: Adding learners</a></li>
+        <li><a href="#step-34-cross-fitting-and-estimation">Step 3/4: Cross-fitting and estimation</a></li>
+        <li><a href="#manual-estimation">Manual estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h1 id="partial-linear-iv-model">
+  Partial Linear IV Model
+  <a class="anchor" href="#partial-linear-iv-model">#</a>
+</h1>
+<h3 id="preparations">
+  Preparations
+  <a class="anchor" href="#preparations">#</a>
+</h3>
+<p>We load the data, define global macros and set the seed.</p>
+<pre tabindex="0"><code>. use https://statalasso.github.io/dta/AJR.dta, clear
+. global Y logpgp95
+. global D avexpr
+. global Z logem4
+. global X lat_abst edes1975 avelf temp* humid* steplow-oilres
+. set seed 42
+</code></pre><h3 id="step-1-initialization">
+  Step 1: Initialization
+  <a class="anchor" href="#step-1-initialization">#</a>
+</h3>
+<p>Since the data set is very small, we consider 30
+cross-fitting folds.</p>
+<pre tabindex="0"><code>. ddml init iv, kfolds(30)
+</code></pre><h3 id="step-2-adding-learners">
+  Step 2: Adding learners
+  <a class="anchor" href="#step-2-adding-learners">#</a>
+</h3>
+<p>The partially linear IV model has three conditional expectations:  
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(E[Y|X]\)
+</span>
+, <span>
+  \(E[D|X]\)
+</span>
+ and <span>
+  \(E[Z|X]\)
+</span>
+. For each reduced form equation, we
+add two learners: regress and rforest.</p>
+<p>We need to add the option <code>vtype(none)</code> for rforest to work with <code>ddml</code> since <code>rforest</code>&rsquo;s <code>predict</code> command doesn&rsquo;t support variable
+types.</p>
+<pre tabindex="0"><code>. ddml E[Y|X]: reg $Y $X
+Learner Y1_reg added successfully.
+. ddml E[Y|X], vtype(none): rforest $Y $X, type(reg)
+Learner Y2_rforest added successfully.
+. ddml E[D|X]: reg $D $X
+Learner D1_reg added successfully.
+. ddml E[D|X], vtype(none): rforest $D $X, type(reg)
+Learner D2_rforest added successfully.
+. ddml E[Z|X]: reg $Z $X
+Learner Z1_reg added successfully.
+. ddml E[Z|X], vtype(none): rforest $Z $X, type(reg)
+Learner Z2_rforest added successfully.
+</code></pre><h3 id="step-34-cross-fitting-and-estimation">
+  Step 3/4: Cross-fitting and estimation
+  <a class="anchor" href="#step-34-cross-fitting-and-estimation">#</a>
+</h3>
+<pre tabindex="0"><code>. ddml crossfit
+Z equations (1): logem4
+Cross-fitting E[Y|X] equation: logpgp95
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
+Cross-fitting E[D|X] equation: avexpr
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
+Cross-fitting E[Z|X]: logem4
+Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
+</code></pre><h3 id="manual-estimation">
+  Manual estimation
+  <a class="anchor" href="#manual-estimation">#</a>
+</h3>
+<p>If you are curious what <code>ddml</code> does in the background:</p>
+<pre tabindex="0"><code>. ddml estimate m0, spec(8) rep(1)
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE     Z learner
+   1  1        Y1_reg        D1_reg     0.378  ( 0.085)        Z1_reg
+   2  1        Y1_reg        D1_reg    -0.101  ( 0.827)    Z2_rforest
+   3  1        Y1_reg    D2_rforest     2.434  ( 2.243)        Z1_reg
+   4  1        Y1_reg    D2_rforest     0.052  ( 0.351)    Z2_rforest
+   5  1    Y2_rforest        D1_reg     0.122  ( 0.091)        Z1_reg
+   6  1    Y2_rforest        D1_reg    -1.485  ( 2.455)    Z2_rforest
+   7  1    Y2_rforest    D2_rforest     0.784  ( 0.578)        Z1_reg
+*  8  1    Y2_rforest    D2_rforest     0.771  ( 0.202)    Z2_rforest
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 8
+y-E[y|X]  = Y2_rforest_1                           Number of obs   =        64
+D-E[D|X,Z]= D2_rforest_1
+Z-E[Z|X]  = Z2_rforest_1
+------------------------------------------------------------------------------
+    logpgp95 | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      avexpr |    .770743   .2018379     3.82   0.000      .375148    1.166338
+------------------------------------------------------------------------------
+
+. ivreg Y2_rf (D2_rf = Z2_rf), nocons
+
+Instrumental variables 2SLS regression
+
+      Source |       SS           df       MS      Number of obs   =        64
+-------------+----------------------------------   F(1, 63)        =         .
+       Model | -4.59844887         1 -4.59844887   Prob &gt; F        =         .
+    Residual |  39.7479425        63  .630919722   R-squared       =         .
+-------------+----------------------------------   Adj R-squared   =         .
+       Total |  35.1494936        64  .549210838   Root MSE        =     .7943
+
+------------------------------------------------------------------------------
+Y2_rforest_1 | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+D2_rforest_1 |    .770743   .2018379     3.82   0.000     .3674021    1.174084
+------------------------------------------------------------------------------
+Instrumented: D2_rforest_1
+ Instruments: Z2_rforest_1
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li>
+      <ul>
+        <li><a href="#preparations">Preparations</a></li>
+        <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
+        <li><a href="#step-2-adding-learners">Step 2: Adding learners</a></li>
+        <li><a href="#step-34-cross-fitting-and-estimation">Step 3/4: Cross-fitting and estimation</a></li>
+        <li><a href="#manual-estimation">Manual estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

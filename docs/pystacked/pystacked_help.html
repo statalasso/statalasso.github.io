@@ -1,6 +1,6 @@
-<pre id="stlog-1" style="font-size: 11px" class="sthlp">------------------------------------------------------------------------------------------------------
-<b>help pystacked</b>                                                                                    v0.2
-------------------------------------------------------------------------------------------------------
+<pre id="stlog-1" style="font-size: 11px" class="sthlp">------------------------------------------------------------------------------------------------------------------------
+<b>help pystacked</b>                                                                                                    v0.4.8
+------------------------------------------------------------------------------------------------------------------------
 
 <b><u>Title</u></b>
 
@@ -8,18 +8,17 @@
 
 <b><u>Overview</u></b>
 
-    <b>pystacked</b> implements stacking regression (<a href="#stlog-1-Wolpert1992"><b>Wolpert, 1992</b></a>) via scikit-learn's
-    sklearn.ensemble.StackingRegressor and sklearn.ensemble.StackingClassifier.  Stacking is a way
-    of combining predictions from multiple supervised machine learners (the "base learners") into a
-    final prediction to improve performance.  The currently-supported base learners are linear
-    regression, logit, lasso, ridge, elastic net, (linear) support vector machines, gradient
-    boosting, and neural nets (MLP).
+    <b>pystacked</b> implements stacking regression (<a href="#stlog-1-Wolpert1992"><b>Wolpert, 1992</b></a>) via scikit-learn's sklearn.ensemble.StackingRegressor and
+    sklearn.ensemble.StackingClassifier.  Stacking is a way of combining multiple supervised machine learners (the
+    "base" or "level-0" learners) into a meta learner.  The currently supported base learners are linear regression,
+    logit, lasso, ridge, elastic net, (linear) support vector machines, gradient boosting, and neural nets (MLP).
 
-    <b>pystacked</b> can also be used with a single base learner and, thus, provides an easy-to-use API for
-    scikit-learn's machine learning algorithms.
+    <b>pystacked</b> can also be used with a single base learner and, thus, provides an easy-to-use API for scikit-learn's
+    machine learning algorithms.
 
-    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24
-    or higher).  See <a href="http://www.stata.com/help.cgi?python"><b>here</b></a> and here for how to set up Python for Stata on your system.
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).
+    <b>pystacked</b> has been tested with scikit-learn 0.24, 1.0, 1.1.0, 1.1.1 and 1.1.2.  See <a href="http://www.stata.com/help.cgi?python"><b>here</b></a> and here for how to set
+    up Python for Stata on your system.
 
 <a name="stlog-1-methodopts"></a><b><u>Contents</u></b>
 
@@ -32,7 +31,8 @@
         <a href="#stlog-1-base_learners"><b>Supported base learners</b></a>
         <a href="#stlog-1-base_learners_opt"><b>Base learners: Options</b></a>
         <a href="#stlog-1-pipelines"><b>Pipelines</b></a>
-        <a href="#stlog-1-example_prostate"><b>Example Stacking Regression</b></a>
+        <a href="#stlog-1-predictors"><b>Learner-specific predictors</b></a>
+        <a href="#stlog-1-example_boston"><b>Example Stacking Regression</b></a>
         <a href="#stlog-1-example_spam"><b>Example Stacking Classification</b></a>
         <a href="#stlog-1-installation"><b>Installation</b></a>
         <a href="#stlog-1-misc"><b>Misc (references, contact, etc.)</b></a>
@@ -41,93 +41,114 @@
 
     There are two alternative syntaxes. The <u>first syntax</u> is:
 
-        <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>methods(</b><i>string</i><b>)</b> <b>cmdopt1(</b><i>string</i><b>)</b>
-              <b>cmdopt2(</b><i>string</i><b>)</b> <b>...</b>  <b>pipe1(</b><i>string</i><b>)</b> <b>pipe2(</b><i>string</i><b>)</b> <b>...</b>  <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
+        <b>pystacked</b> <i>depvar</i> <i>predictors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>methods(</b><i>string</i><b>)</b> <b>cmdopt1(</b><i>string</i><b>)</b> <b>cmdopt2(</b><i>string</i><b>)</b> <b>...</b>
+              <b>pipe1(</b><i>string</i><b>)</b> <b>pipe2(</b><i>string</i><b>)</b> <b>...</b>  <b>xvars1(</b><i>varlist</i><b>)</b> <b>xvars2(</b><i>varlist</i><b>)</b> <b>...</b>  <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
 
     The <u>second syntax</u> is:
 
-        <b>pystacked</b> <i>depvar</i> <i>regressors</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> <b>opt(</b><i>string</i><b>)</b>
-              <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> || <b>...</b>  [<b>,</b> <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
+        <b>pystacked</b> <i>depvar</i> <i>predictors</i> || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> <b>xvars(</b><i>varlist</i><b>)</b> || <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>
+              <b>opt(</b><i>string</i><b>)</b> <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> <b>xvars(</b><i>varlist</i><b>)</b> || <b>...</b>  || [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <a href="#stlog-1-otheropts"><i>otheropts</i></a> ]
 
-    The first syntax uses <b>methods(</b><i>string</i><b>)</b> to select base learners, where <i>string</i> is a list of base
-    learners.  Options are passed on to base learners via <b>cmdopt1(</b><i>string</i><b>)</b>, <b>cmdopt2(</b><i>string</i><b>)</b> to
-    <b>cmdopt10(</b><i>string</i><b>)</b>.  That is, up to 10 base learners can be specified and options are passed on in
-    the order in which they appear in <b>methods(</b><i>string</i><b>)</b> (see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>).  Likewise, the
-    <b>pipe*(</b><i>string</i><b>)</b> option can be used for pre-processing predictors within Python on the fly (see
-    <a href="#stlog-1-pipelines"><b>Pipelines</b></a>).
+    The first syntax uses <b>methods(</b><i>string</i><b>)</b> to select base learners, where <i>string</i> is a list of base learners.  Options
+    are passed on to base learners via <b>cmdopt1(</b><i>string</i><b>)</b>, <b>cmdopt2(</b><i>string</i><b>)</b> to <b>cmdopt10(</b><i>string</i><b>)</b>.  That is, up to 10 base
+    learners can be specified and options are passed on in the order in which they appear in <b>methods(</b><i>string</i><b>)</b> (see
+    <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>).  Likewise, the <b>pipe*(</b><i>string</i><b>)</b> option can be used for pre-processing predictors within Python on
+    the fly (see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>).  Furthermore, <b>xvars*(</b><i>varlist</i><b>)</b> allows to specify a learner-specific varlist of predictors.
 
-    The second syntax imposes no limit on the number of base learners (aside from the increasing
-    computational complexity). Base learners are added before the comma using <b>method(</b><i>string</i><b>)</b>
-    together with <b>opt(</b><i>string</i><b>)</b> and separated by "||".
+    The second syntax imposes no limit on the number of base learners (aside from the increasing computational
+    complexity). Base learners are added before the comma using <b>method(</b><i>string</i><b>)</b> together with <b>opt(</b><i>string</i><b>)</b> and separated
+    by "||".
 
 <a name="stlog-1-syntax1"></a><b><u>Syntax 1</u></b>
 
     <i>Option</i>                Description
-    ------------------------------------------------------------------------------------------------
-    <b>methods(</b><i>string</i><b>)</b>        a list of base learners, defaults to "<i>ols lassoic gradboost</i>" for
-                            regression and "<i>logit lassocv gradboost</i>" for classification; see <a href="#stlog-1-base_learners"><b>Base</b></a>
-                            <a href="#stlog-1-base_learners"><b>learners</b></a>.
+    ------------------------------------------------------------------------------------------------------------------
+    <b>methods(</b><i>string</i><b>)</b>        a list of base learners, defaults to "<i>ols lassocv gradboost</i>" for regression and "<i>logit</i>
+                            <i>lassocv gradboost</i>" for classification; see <a href="#stlog-1-base_learners"><b>Base learners</b></a>.
     <b>cmdopt*(</b><i>string</i><b>)</b>        options passed to the base learners, see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>.
-    <b>pipe*(</b><i>string</i><b>)</b>          pipelines passed to the base learners, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.
-    ------------------------------------------------------------------------------------------------
+    <b>pipe*(</b><i>string</i><b>)</b>          pipelines passed to the base learners, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.  Regularized linear learners use the
+                            <i>stdscaler</i> pipeline by default, which standardizes the predictors. To suppress this, use
+                            <i>nostdscaler</i>.  For other learners, there is no default pipeline.
+    <b>xvars*(</b><i>varlist</i><b>)</b>        overwrites the default list of predictors.  That is, you can specify learner-specific lists
+                            of predictors.  See <a href="#stlog-1-predictors"><b>here</b></a>.
+    ------------------------------------------------------------------------------------------------------------------
     <i>Note:</i> <b>*</b> is replaced with 1 to 10. The number refers to the order given in <b>methods(</b><i>string</i><b>)</b>.
 
 <a name="stlog-1-syntax2"></a><b><u>Syntax 2</u></b>
 
     <i>Option</i>                Description
-    ------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------
     <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b>         a base learner, see <a href="#stlog-1-base_learners"><b>Base learners</b></a>.
     <b>opt(</b><i>string</i><b>)</b>            options, see <a href="#stlog-1-base_learners_opt"><b>Command options</b></a>.
-    <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>       pipelines applied to the predictors, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.
-    ------------------------------------------------------------------------------------------------
+    <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>       pipelines applied to the predictors, see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.  pipelines passed to the base learners,
+                            see <a href="#stlog-1-pipelines"><b>Pipelines</b></a>.  Regularized linear learners use the <i>stdscaler</i> pipeline by default, which
+                            standardizes the predictors. To suppress this, use <i>nostdscaler</i>.  For other learners, there
+                            is no default pipeline.
+    <b>xvars(</b><i>varlist</i><b>)</b>         overwrites the default list of predictors.  That is, you can specify learner-specific lists
+                            of predictors.  See <a href="#stlog-1-predictors"><b>here</b></a>.
+    ------------------------------------------------------------------------------------------------------------------
 
 <a name="stlog-1-otheropts"></a><b><u>Other options</u></b>
 
     <i>Option</i>                Description
-    ------------------------------------------------------------------------------------------------
-    <b>type(</b><i>string</i><b>)</b>           <i>reg(ress)</i> for regression problems or <i>class(ify)</i> for classification
-                            problems.
-    <b><u>final</u></b><b>est(</b><i>string</i><b>)</b>       final estimator used to combine base learners.  This can be <i>nnls</i>
-                            (non-negative least squares, the default), <i>ols</i> (ordinary least squares)
-                            or <i>ridge</i> for (logistic) ridge, which is the sklearn default. For more
+    ------------------------------------------------------------------------------------------------------------------
+    <b>type(</b><i>string</i><b>)</b>           <i>reg(ress)</i> for regression problems or <i>class(ify)</i> for classification problems.  The default
+                            is regression.
+    <b><u>final</u></b><b>est(</b><i>string</i><b>)</b>       final estimator used to combine base learners.  The default is non-negative least squares
+                            without an intercept and the additional constraint that weights sum to 1 (<i>nnls1</i>).
+                            Alternatives are <i>nnls0</i> (non-negative least squares without intercept without the
+                            sum-to-one constraint), <i>singlebest</i> (use base learner with minimum MSE), <i>ols</i> (ordinary
+                            least squares) or <i>ridge</i> for (logistic) ridge, which is the sklearn default. For more
                             information, see <a href="#stlog-1-section_stacking"><b>here</b></a>.
-    <b><u>nosavep</u></b><b>red</b>             do not save predicted values (do not use if <b>predict</b> is used after
-                            estimation)
-    <b><u>nosavet</u></b><b>ransform</b>        do not save predicted values of each base learner (do not use if <b>predict</b>
-                            with <b><u>transf</u></b><b>orm</b> is used after estimation)
-    <b>njobs(</b><i>int</i><b>)</b>             number of jobs for parallel computing. The default is 1 (no
-                            parallelization), -1 uses all available CPUs, -2 uses all CPUs minus 1.
-    <b>backend(</b><i>string</i><b>)</b>        joblib backend used for parallelization; the default is 'loky' under
-                            Linux/MacOS and 'threading' under Windows.  See here for more
-                            information.
-    <b>folds(</b><i>int</i><b>)</b>             number of folds used for cross-validation (not relevant for voting);
-                            default is 5
-    <b>pyseed(</b><i>int</i><b>)</b>            set the Python seed. Note that, since <b>pystacked</b> uses Python, using <a href="http://www.stata.com/help.cgi?set+seed"><b>set</b></a>
-                            <a href="http://www.stata.com/help.cgi?set+seed"><b>seed</b></a> won't be sufficient for replication.
-    ------------------------------------------------------------------------------------------------
+    <b><u>nosavep</u></b><b>red</b>             do not save predicted values (do not use if <b>predict</b> is used after estimation)
+    <b><u>nosaveb</u></b><b>asexb</b>           do not save predicted values of each base learner (do not use if <b>predict</b> with <b><u>base</u></b><b>xb</b> is
+                            used after estimation)
+    <b>njobs(</b><i>int</i><b>)</b>             number of jobs for parallel computing. The default is 0 (no parallelization), -1 uses all
+                            available CPUs, -2 uses all CPUs minus 1.
+    <b>backend(</b><i>string</i><b>)</b>        joblib backend used for parallelization; the default is 'loky' under Linux/MacOS and
+                            'threading' under Windows.  See here for more information.
+    <b>folds(</b><i>int</i><b>)</b>             number of folds used for cross-validation (not relevant for voting); default is 5. Ignored
+                            if <b>foldvar(</b><i>varname</i><b>)</b> if specified.
+    <b>foldvar(</b><i>varname</i><b>)</b>       integer fold variable for cross-validation.
+    <b>bfolds(</b><i>int</i><b>)</b>            number of folds used for <i>base learners</i> that use cross-validation (e.g. <i>lassocv</i>); default is
+                            5.
+    <b>norandom</b>               folds are created using the ordering of the data.
+    <b>noshuffle</b>              cross-validation folds for <i>base learners</i> that use cross-validation (e.g. <i>lassocv</i>) are based
+                            on ordering of the data.
+    <b>sparse</b>                 converts predictor matrix to a sparse matrix. This will only lead to speed improvements if
+                            the predictor matrix is sufficiently sparse. Not all learners support sparse matrices and
+                            not all learners will benefit from sparse matrices in the same way. You can also use the
+                            sparse pipeline to use sparse matrices for some learners, but not for others.
+    <b>pyseed(</b><i>int</i><b>)</b>            set the Python seed. Note that since <b>pystacked</b> uses Python, we also need to set the Python
+                            seed to ensure replicability.  Three options: 1) <b>pyseed(</b><i>-1</i><b>)</b> draws a number between 0 and
+                            10^8 in Stata which is then used as a Python seed.  This way, you only need to deal with
+                            the Stata seed. For example, <b>set seed 42</b> is sufficient, as the Python seed is generated
+                            automatically. 2) Setting <b>pyseed(</b><i>x</i><b>)</b> with any positive integer <i>x</i> allows to control the
+                            Python seed directly. 3) <b>pyseed(</b><i>0</i><b>)</b> sets the seed to None in Python.  The default is
+                            <b>pyseed(</b><i>-1</i><b>)</b>.
+    ------------------------------------------------------------------------------------------------------------------
 
     <i>Voting</i>                Description
-    ------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------
     <b>voting</b>                 use voting regressor (ensemble.VotingRegressor) or voting classifier
                             (ensemble.VotingClassifier); see <a href="#stlog-1-section_stacking"><b>here</b></a> for a brief explanation.
     <b><u>votet</u></b><b>ype(</b><i>string</i><b>)</b>       type of voting classifier:  <i>hard</i> (default) or <i>soft</i>
-    <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>   positive weights used for voting regression/classification.  The length
-                            of <i>numlist</i> should be the number of base learners - 1. The last weight is
-                            calculated to ensure that sum(weights)=1.
-    ------------------------------------------------------------------------------------------------
+    <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>   positive weights used for voting regression/classification.  The length of <i>numlist</i> should
+                            be the number of base learners - 1. The last weight is calculated to ensure that
+                            sum(weights)=1.
+    ------------------------------------------------------------------------------------------------------------------
 
 <a name="stlog-1-postestimation"></a><b><u>Postestimation and prediction options</u></b>
 
     <u>Postestimation tables</u>
 
-    After estimation, <b>pystacked</b> can report a table of in-sample and, optionally, out-of-sample
-    (holdout sample) performance for both the stacking regression and the base learners.  For
-    regression problems, the table reports the MSPE (mean squared prediction error); for
-    classification problems, a confusion matrix is reported.  The default holdout sample used for
-    out-of-sample performance with the <b>holdout</b> option is all observations not included in the
-    estimation.  Alternatively, the user can specify the holdout sample explicitly using the syntax
-    <b>holdout(</b><i>varname</i><b>)</b>.  The table can be requested postestimation as below, or as part of the
-    <b>pystacked</b> estimation command.
+    After estimation, <b>pystacked</b> can report a table of in-sample (both cross-validated and full-sample-refitted) and,
+    optionally, out-of-sample (holdout sample) performance for both the stacking regression and the base learners.
+    For regression problems, the table reports the root MSPE (mean squared prediction error); for classification
+    problems, a confusion matrix is reported.  The default holdout sample used for out-of-sample performance with the
+    <b>holdout</b> option is all observations not included in the estimation.  Alternatively, the user can specify the
+    holdout sample explicitly using the syntax <b>holdout(</b><i>varname</i><b>)</b>.  The table can be requested postestimation as below,
+    or as part of the <b>pystacked</b> estimation command.
 
     Table syntax:
 
@@ -135,19 +156,17 @@
 
     <u>Postestimation graphs</u>
 
-    <b>pystacked</b> can also report graphs of in-sample and, optionally, out-of-sample (holdout sample)
-    performance for both the stacking regression and the base learners.  For regression problems,
-    the graphs compare predicted vs actual values of <i>depvar</i>.  For classification problems, the
-    default is to report ROC curves; optionally, histograms of predicted probabilities are reported.
-    As with the <b>table</b> option, the default holdout sample used for out-of-sample performance is all
-    observations not included in the estimation, but the user can instead specify the holdout sample
-    explicitly.  The table can be requested postestimation as below, or as part of the <b>pystacked</b>
-    estimation command.
+    <b>pystacked</b> can also report graphs of in-sample and, optionally, out-of-sample (holdout sample) performance for both
+    the stacking regression and the base learners.  For regression problems, the graphs compare predicted vs actual
+    values of <i>depvar</i>.  For classification problems, the default is to report ROC curves; optionally, histograms of
+    predicted probabilities are reported.  As with the <b>table</b> option, the default holdout sample used for out-of-sample
+    performance is all observations not included in the estimation, but the user can instead specify the holdout
+    sample explicitly.  The table can be requested postestimation as below, or as part of the <b>pystacked</b> estimation
+    command.
 
-    The <b>graph</b> option on its own reports the graphs using <b>psytack</b>'s default settings.  Because graphs
-    are produced using Stata's <a href="http://www.stata.com/help.cgi?twoway"><b>twoway</b></a>, <a href="http://www.stata.com/help.cgi?roctab"><b>roctab</b></a> and <a href="http://www.stata.com/help.cgi?histogram"><b>histogram</b></a> commands, the user can control either
-    the combined graph (<b>graph(</b><i>options</i><b>)</b>) or the individual learner graphs (<b>lgraph(</b><i>options</i><b>)</b>) appear by
-    passing options to these commands.
+    The <b>graph</b> option on its own reports the graphs using <b>pystacked</b>'s default settings.  Because graphs are produced
+    using Stata's <a href="http://www.stata.com/help.cgi?twoway"><b>twoway</b></a>, <a href="http://www.stata.com/help.cgi?roctab"><b>roctab</b></a> and <a href="http://www.stata.com/help.cgi?histogram"><b>histogram</b></a> commands, the user can control either the combined graph
+    (<b>graph(</b><i>options</i><b>)</b>) or the individual learner graphs (<b>lgraph(</b><i>options</i><b>)</b>) appear by passing options to these commands.
 
     Graph syntax:
 
@@ -155,47 +174,47 @@
 
     <u>Prediction</u>
 
-    To get predicted values:
+    To get stacking predicted values:
 
-        <b>predict</b> <i>type</i> <i>newname</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>pr</b> <b>xb</b> ]
+        <b>predict</b> <i>type</i> <i>newname</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b>pr</b> <b>class</b> <b>xb</b> <b>resid</b> ]
 
     To get fitted values for each base learner:
 
-        <b>predict</b> <i>type</i> <i>stub</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b><u>transf</u></b><b>orm</b> ]
+        <b>predict</b> <i>type</i> <i>stub</i> [<b>if</b> <i>exp</i>] [<b>in</b> <i>range</i>] [<b>,</b> <b><u>base</u></b><b>xb</b> <b><u>cv</u></b><b>alid</b> ]
 
     <i>Option</i>                Description
-    ------------------------------------------------------------------------------------------------
-    <b>pr</b>                     predicted probability (classification only)
-    <b>xb</b>                     the default; predicted value (regression) or predicted class
-                            (classification)
-    <b><u>transf</u></b><b>orm</b>              predicted values for each base learner
-    ------------------------------------------------------------------------------------------------
+    ------------------------------------------------------------------------------------------------------------------
+    <b>xb</b>                     predicted value; the default for regression
+    <b>pr</b>                     predicted probability; the default for classification
+    <b>class</b>                  predicted class
+    <b>resid</b>                  residuals
+    <b><u>base</u></b><b>xb</b>                 predicted values for each base learner (default = use base learners re-fitted on full
+                            estimation sample)
+    <b><u>cv</u></b><b>alid</b>                 cross-validated predicted values. Currently only supported if combined with <b><u>base</u></b><b>xb</b>.
+    ------------------------------------------------------------------------------------------------------------------
 
-    <i>Note:</i> Predicted values (in and out-sample) are calculated when <b>pystacked</b> is run and stored in
-    Python memory. <b>predict</b> pulls the predicted values from Python memory and saves them in Stata
-    memory. This means that no changes on the data in Stata memory should be made <i>between</i> <b>pystacked</b>
-    call and <b>predict</b> call. If changes to the data set are made, <b>predict</b> will return an error.
+    <i>Note:</i> Predicted values (in and out-sample) are calculated and stored in Python memory when <b>pystacked</b> is run.
+    <b>predict</b> pulls the predicted values from Python memory and saves them in Stata memory. This means that no changes
+    on the data in Stata memory should be made <i>between</i> <b>pystacked</b> call and <b>predict</b> call. If changes to the data set are
+    made, <b>predict</b> will return an error.
 
 <a name="stlog-1-section_stacking"></a><b><u>Stacking</u></b>
 
-    Stacking is a way of combining cross-validated predictions from multiple base learners into a
-    final prediction. A final estimator is used to combine the base predictions.
+    Stacking is a way of combining cross-validated predictions from multiple base ("level-0") learners into a final
+    prediction. A final estimator ("level-1") is used to combine the base predictions.
 
-    The default final predictor for stacking regession is non-negative least squares (NNLS) without
-    an intercept.  The NNLS coefficients are standardized to sum to one.  Note that in this respect
-    we deviate from the scikit-learn default and follow the recommendation in Hastie et al. (<a href="#stlog-1-Hastie2009"><b>2009</b></a>,
-    p. 290).  The scikit-learn defaults for the final estimator are ridge regression for stacking
-    regression and {browse:
-    "https://scikit-learn.org/stable/modules/generated/sklearn.linear_model.LogisticRegression.html#
-    &gt; sklearn.linear_model.LogisticRegression":logistic ridge} for classification tasks.  To use the
-    scikit-learn default, use <b><u>final</u></b><b>est(</b><i>ridge</i><b>)</b>.  <b>pystacked</b> also supports ordinary (unconstrained)
-    least squares as the final estimator (<b><u>final</u></b><b>est(</b><i>ols</i><b>)</b>).
+    The default final predictor for stacking regession is non-negative least squares (NNLS) without an intercept and
+    with the constraint that weights sum to one.  Note that in this respect we deviate from the scikit-learn default
+    and follow the recommendation in Breiman (1996) and Hastie et al. (<a href="#stlog-1-Hastie2009"><b>2009</b></a>, p. 290).  The scikit-learn defaults for
+    the final estimator are ridge regression for stacking regression and logistic ridge for classification tasks.  To
+    use the scikit-learn default, use <b><u>final</u></b><b>est(</b><i>ridge</i><b>)</b>.  <b>pystacked</b> also supports ordinary (unconstrained) least squares
+    as the final estimator (<b><u>final</u></b><b>est(</b><i>ols</i><b>)</b>).  Finally, <i>singlebest</i> uses the single base learner that exhibits the
+    smallest cross-validated mean squared error.
 
-    An alternative to stacking is voting. Voting regression uses the weighted average of base
-    learners to form predictions. By default, the unweighted average is used, but the user can
-    specify weights using <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>. Voting classifier uses a majority rule by default
-    (hard voting). An alternative is soft voting where the (weighted) probabilities are used to form
-    the final prediction.
+    An alternative to stacking is voting. Voting regression uses the weighted average of base learners to form
+    predictions. By default, the unweighted average is used, but the user can specify weights using
+    <b><u>votew</u></b><b>eights(</b><i>numlist</i><b>)</b>. Voting classifier uses a majority rule by default (hard voting). An alternative is soft
+    voting where the (weighted) probabilities are used to form the final prediction.
 
 <a name="stlog-1-base_learners"></a><b><u>Supported base learners</u></b>
 
@@ -214,41 +233,43 @@
       <i>linsvm</i>                Linear SVM
       <i>nnet</i>                  Neural net
 
-    The base learners can be chosen using the <b>methods(</b><i>lassoic gradboost nnet</i><b>)</b> (Syntax 1) or
-    <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> options (Syntax 2).
+    The base learners can be chosen using the <b>methods(</b><i>lassocv gradboost nnet</i><b>)</b> (Syntax 1) or <b><u>m</u></b><b>ethod(</b><i>string</i><b>)</b> options
+    (Syntax 2).
 
     Please see links in the next section for more information on each method.
 
 <a name="stlog-1-base_learners_opt"></a><b><u>Base learners: Options</u></b>
 
-    This section lists the options of each base learners supported by <b>pystacked</b>.  Options can be
-    passed to the base learners via <b>cmdopt*(</b><i>string</i><b>)</b> (Syntax 1) or <b>opt(</b><i>string</i><b>)</b> (Syntax 2).  The
-    defaults are adopted from scikit-learn, with some modifications highlighted below.
+    Options can be passed to the base learners via <b>cmdopt*(</b><i>string</i><b>)</b> (Syntax 1) or <b>opt(</b><i>string</i><b>)</b> (Syntax 2).  The defaults
+    are adopted from scikit-learn.
 
-    For the sake of brevity, the base learners options are not discussed here in detail.  Please see
-    the scikit-learn documentations linked below.  We <i>strongly recommend</i> that you read the
-    scikit-learn documentation carefully.
+    To see the default options of each base learners, simply click on the "Show options" links below. To see which
+    alternative settings are allowed, please see the scikit-learn documentations linked below.  We <i>strongly recommend</i>
+    that you read the scikit-learn documentation carefully.
+
+    The option <b><u>showopt</u></b><b>ions</b> shows the options passed on to Python.  We recommend to verify that options have been
+    passed to Python as intended.
 
     <u>Linear regression</u>
     Methods <i>ols</i>
     <i>Type:</i> <i>reg</i>
     <i>Documentation:</i> linear_model.LinearRegression
 
-        <b><u>nocons</u></b><b>tant</b> <b><u>non</u></b><b>ormalize</b> <b><u>pos</u></b><b>itive</b>
+    Show options
 
     <u>Logistic regression</u>
     Methods: <i>logit</i>
     Type: <i>class</i>
     Documentation: linear_model.LogisticRegression
 
-        <b><u>nocons</u></b><b>tant</b>
+    Show options
 
     <u>Penalized regression with information criteria</u>
     Methods <i>lassoic</i>
     Type: <i>reg</i>
     Documentation: linear_model.LassoLarsIC
 
-        <b>criterion(</b><i>aic</i>|<i>bic</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>max_iter(</b><i>int 500</i><b>)</b> <b>eps(</b><i>real</i><b>)</b> <b>positive</b>
+    Show options
 
     <u>Penalized regression with cross-validation</u>
 
@@ -256,159 +277,114 @@
       Type: <i>regress</i>
       Documentation: linear_model.ElasticNetCV
 
-        <b>l1_ratio(</b><i>real 0</i>.<i>5</i><b>)</b> <b>eps(</b><i>real 1e-3</i><b>)</b> <b>n_alphas(</b><i>integer 100</i><b>)</b> <b>alphas(</b><i>numlist</i><b>)</b> <b><u>nocons</u></b><b>tant</b>
-        <b><u>non</u></b><b>ormalize</b> <b>max_iter(</b><i>integer 1000</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>cv(</b><i>integer 5</i><b>)</b> <b>n_jobs(</b><i>integer 1</i><b>)</b> <b>positive</b>
-        <b>random_state(</b><i>integer</i><b>)</b> <b>selection(</b><i>cyclic</i>|<i>random</i><b>)</b>
-
-    Note: <i>lassocv</i> uses <b>l1_ratio(</b><i>1</i><b>)</b>, <i>ridgecv</i> uses <b>l1_ratio(</b><i>0</i><b>)</b>, <i>elasticcv</i> uses <b>l1_ratio(</b>.<i>5</i><b>)</b>; other
-    options are the same.
+    Show lasso options
+    Show ridge options
+    Show elastic net options
 
     <u>Penalized logistic regression with cross-validation</u>
     Methods: <i>lassocv</i>, <i>ridgecv</i> and <i>elasticv</i>
     Type: <i>class</i>
     Documentation: linear_model.LogisticRegressionCV
 
-        <b>l1_ratios(</b><i>numlist</i><b>)</b> <b><u>c</u></b><b>s(</b><i>integer 10</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>cv(</b><i>integer 5</i><b>)</b> <b>penalty(</b><i>l1</i>|<i>l2</i>|<i>elasticnet</i><b>)</b>
-        <b>solver(</b><i>string</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>max_iter(</b><i>integer 100</i><b>)</b> <b>n_jobs(</b><i>integer 1</i><b>)</b> <b>norefit</b>
-        <b>intercept_scaling(</b><i>real 1</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b>
-
-    Note: <i>lassocv</i> uses <b>penalty(</b><i>l1</i><b>)</b>, <i>ridgecv</i> uses <b>penalty(</b><i>l2</i><b>)</b>, <i>elasticcv</i> uses <b>penalty(</b><i>elasticnet</i><b>)</b>
-    <i>l1_ratios</i><b>(</b><i>0 </i>.<i>5 1</i><b>)</b>; other options are the same.
+    Show lasso options
+    Show ridge options
+    Show elastic options
 
     <u>Random forest classifier</u>
     Method: <i>rf</i>
     Type: <i>class</i>
     Documentation: ensemble.RandomForestClassifier
 
-        <b>n_estimators(</b><i>int 100</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b> <b>max_depth(</b><i>int</i><b>)</b> <b>min_samples_split(</b><i>integer 2</i><b>)</b>
-        <b>min_samples_leaf(</b><i>integer 1</i><b>)</b> <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b>
-        <b>max_leaf_nodes(</b><i>int</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b><u>noboots</u></b><b>trap</b> <b>oob_score</b> <b>n_jobs(</b><i>int</i><b>)</b>
-        <b>random_state(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b> <b>max_samples(</b><i>integer</i><b>)</b>
+    Show options
 
     <u>Random forest regressor</u>
     Method: <i>rf</i>
     Type: <i>reg</i>
     Documentation: ensemble.RandomForestRegressor
 
-        <b>n_estimators(</b><i>int 100</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b> <b>max_depth(</b><i>int</i><b>)</b> <b>min_samples_split(</b><i>integer</i><b>)</b>
-        <b>min_samples_leaf(</b><i>integer</i><b>)</b> <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b>
-        <b>max_leaf_nodes(</b><i>integer</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b> <b><u>noboots</u></b><b>trap</b> <b>oob_score</b> <b>n_jobs(</b><i>integer</i>
-        <i>1</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b> <b>max_samples(</b><i>integer</i><b>)</b>
-
-    <u>Gradient boosted classification trees</u>
-    Method: <i>gradboost</i>
-    Type: <i>class</i>
-    Documentation: ensemble.GradientBoostingClassifier
-
-        <b>loss(</b><i>deviance</i>|<i>exponential</i><b>)</b> <b>learning_rate(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_estimators(</b><i>integer 100</i><b>)</b> <b>subsample(</b><i>real</i>
-        <i>1</i><b>)</b> <b>criterion(</b><i>string</i><b>)</b> <b>min_samples_split(</b><i>integer 2</i><b>)</b> <b>min_samples_leaf(</b><i>integer 1</i><b>)</b>
-        <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_depth(</b><i>integer 3</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b>
-        <b>init(</b><i>string</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>max_features(</b><i>auto</i>|<i>sqrt</i>|<i>log2</i><b>)</b> <b>max_leaf_nodes(</b><i>integer</i><b>)</b>
-        <b>warm_start</b> <b>validation_fraction(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_iter_no_change(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b>
-        <b>ccp_alpha(</b><i>real 0</i><b>)</b>
+    Show options
 
     <u>Gradient boosted regression trees</u>
     Method: <i>gradboost</i>
     Type: <i>reg</i>
     Documentation: ensemble.GradientBoostingRegressor
 
-        <b>loss(</b><i>string</i><b>)</b> <b>learning_rate(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_estimators(</b><i>integer 100</i><b>)</b> <b>subsample(</b><i>real 1</i><b>)</b>
-        <b>criterion(</b><i>string</i><b>)</b> <b>min_samples_split(</b><i>integer 2</i><b>)</b> <b>min_samples_leaf(</b><i>integer 1</i><b>)</b>
-        <b>min_weight_fraction_leaf(</b><i>real 0</i><b>)</b> <b>max_depth(</b><i>integer 3</i><b>)</b> <b>min_impurity_decrease(</b><i>real 0</i><b>)</b>
-        <b>init(</b><i>string</i><b>)</b> <b>random_state(</b><i>integer</i><b>)</b> <b>max_features(</b><i>string</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>9</i><b>)</b>
-        <b>max_leaf_nodes(</b><i>integer</i><b>)</b> <b>warm_start</b> <b>validation_fraction(</b><i>real 0</i>.<i>1</i><b>)</b> <b>n_iter_no_change(</b><i>integer</i><b>)</b>
-        <b>tol(</b><i>real 1e-4</i><b>)</b> <b>ccp_alpha(</b><i>real 0</i><b>)</b>
-
-    <u>Linear SVM (SVC)</u>
-    Method: <i>linsvm</i>
-    Type: <i>class</i>
-    Documentation: svm.LinearSVC
-
-        <b>penalty(</b><i>string</i><b>)</b> <b>loss(</b><i>string</i><b>)</b> <b>primal</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b><u>nocons</u></b><b>tant</b>
-        <b>intercept_scaling(</b><i>real 1</i><b>)</b> <b>random_state(</b><i>integer -1</i><b>)</b> <b>max_iter(</b><i>integer 1000</i><b>)</b>
+    Show options
 
     <u>Linear SVM (SVR)</u>
     Method: <i>linsvm</i>
     Type: <i>reg</i>
     Documentation: svm.LinearSVR
 
-        <b>epsilon(</b><i>real 0</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b>loss(</b><i>string</i><b>)</b> <b><u>nocons</u></b><b>tant</b> <b>intercept_scaling(</b><i>real 1</i><b>)</b>
-        <b>primal</b> <b>random_state(</b><i>integer -1</i><b>)</b> <b>max_iter(</b><i>integer 1000</i><b>)</b>
+    Show options
 
     <u>SVM (SVR)</u>
     Method: <i>svm</i>
     Type: <i>class</i>
     Documentation: svm.SVR
 
-        <b><u>ker</u></b><b>nel(</b><i>linear</i>|<i>poly</i>|<i>rbf</i>|<i>sigmoid</i><b>)</b> <b>degree(</b><i>integer 3</i><b>)</b> <b><u>gam</u></b><b>ma(</b><i>scale</i>|<i>auto</i><b>)</b> <b>coef0(</b><i>real 0</i><b>)</b> <b>tol(</b><i>real</i>
-        <i>1e-3</i><b>)</b> <b>c(</b><i>real 1</i><b>)</b> <b>epsilon(</b><i>real 0</i>.<i>1</i><b>)</b> <b><u>noshr</u></b><b>inking</b> <b>cache_size(</b><i>real 200</i><b>)</b> <b>max_iter(</b><i>integer -1</i><b>)</b>
+    Show options
 
     <u>SVM (SVC)</u>
     Method: <i>svm</i>
     Type: <i>reg</i>
     Documentation: svm.SVC
 
-        <b>c(</b><i>real 1</i><b>)</b> <b><u>ker</u></b><b>nel(</b><i>linear</i>|<i>poly</i>|<i>rbf</i>|<i>sigmoid</i><b>)</b> <b>degree(</b><i>integer 3</i><b>)</b> <b><u>gam</u></b><b>ma(</b><i>scale</i>|<i>auto</i><b>)</b> <b>coef0(</b><i>real 0</i><b>)</b>
-        <b>probability</b> <b>tol(</b><i>real 1e-3</i><b>)</b> <b>epsilon(</b><i>real 0</i>.<i>1</i><b>)</b> <b><u>noshr</u></b><b>inking</b> <b>cache_size(</b><i>real 200</i><b>)</b>
-        <b>max_iter(</b><i>integer -1</i><b>)</b> <b>decision_function_shape(</b><i>ovr</i>|<i>ovo</i><b>)</b> <b>break_ties</b> <b>random_state(</b><i>integer -1</i><b>)</b>
+    Show options
 
     <u>Neural net classifier (Multi-layer Perceptron)</u>
     Method: <i>nnet</i>
     Type: <i>class</i>
     Documentation: sklearn.neural_network.MLPClassifier
 
-        <b>hidden_layer_sizes(</b><i>numlist &gt;0 integer</i><b>)</b> <b>activation(</b><i>identity</i>|<i>logistic</i>|<i>tanh</i>|<i>relu</i><b>)</b>
-        <b>solver(</b><i>lbfgs</i>|<i>sgd</i>|<i>adam</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>0001</i><b>)</b> <b>batch_size(</b><i>integer</i><b>)</b>
-        <b>learning_rate(</b><i>constant</i>|<i>invscaling</i>|<i>adaptive</i><b>)</b> <b>learning_rate_init(</b><i>real -1</i><b>)</b> <b>power_t(</b><i>real </i>.<i>5</i><b>)</b>
-        <b>max_iter(</b><i>integer 200</i><b>)</b> <b><u>nosh</u></b><b>uffle</b> <b>random_state(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>verbose</b> <b>warm_start</b>
-        <b>momentum(</b><i>real </i>.<i>9</i><b>)</b> <b><u>nonest</u></b><b>erovs_momentum</b> <b>early_stopping</b> <b>validation_fraction(</b><i>real </i>.<i>1</i><b>)</b>
-        <b>beta_1(</b><i>real </i>.<i>9</i><b>)</b> <b>beta_2(</b><i>real </i>.<i>999</i><b>)</b> <b>epsilon(</b><i>real 1e-8</i><b>)</b> <b>n_iter_no_change(</b><i>integer 10</i><b>)</b>
-        <b>max_fun(</b><i>integer 15000</i><b>)</b>
+    Show options
 
     <u>Neural net regressor (Multi-layer Perceptron)</u>
     Method: <i>nnet</i>
     Type: <i>reg</i>
     Documentation: sklearn.neural_network.MLPRegressor
 
-        <b>hidden_layer_sizes(</b><i>numlist &gt;0 integer</i><b>)</b> <b>activation(</b><i>identity</i>|<i>logistic</i>|<i>tanh</i>|<i>relu</i><b>)</b>
-        <b>solver(</b><i>lbfgs</i>|<i>sgd</i>|<i>adam</i><b>)</b> <b>alpha(</b><i>real 0</i>.<i>0001</i><b>)</b> <b>batch_size(</b><i>integer</i><b>)</b>
-        <b>learning_rate(</b><i>constant</i>|<i>invscaling</i>|<i>adaptive</i><b>)</b> <b>learning_rate_init(</b><i>real 0</i>.<i>001</i><b>)</b> <b>power_t(</b><i>real </i>.<i>5</i><b>)</b>
-        <b>max_iter(</b><i>integer 200</i><b>)</b> <b><u>nosh</u></b><b>uffle</b> <b>random_state(</b><i>integer</i><b>)</b> <b>tol(</b><i>real 1e-4</i><b>)</b> <b>verbose</b> <b>warm_start</b>
-        <b>momentum(</b><i>real </i>.<i>9</i><b>)</b> <b>NONESTerovs_momentum</b> <b>early_stopping</b> <b>validation_fraction(</b><i>real </i>.<i>1</i><b>)</b>
-        <b>beta_1(</b><i>real </i>.<i>9</i><b>)</b> <b>beta_2(</b><i>real </i>.<i>999</i><b>)</b> <b>epsilon(</b><i>real 1e-8</i><b>)</b> <b>n_iter_no_change(</b><i>integer 10</i><b>)</b>
-        <b>max_fun(</b><i>integer 15000</i><b>)</b>
+    Show options
+
+<a name="stlog-1-predictors"></a><b><u>Learner-specific predictors</u></b>
+
+    By default, <b>pystacked</b> uses the same set of predictors for all base learners. This is often not desirable. For
+    example, when using linear machine learners such as the lasso, it is recommended to create interactions. There are
+    two methods to allow for learner-specific sets of predictors:
+
+    1) Pipelines, discussed in the next section, can be used to create polynomials on the fly.
+
+    2) The <b>xvars*(</b><i>varlist</i><b>)</b> option allows to specify predictors for a specific learner.  If <b>xvars*(</b><i>varlist</i><b>)</b> is missing
+    for a specific learner, the default predictor list is used.
 
 <a name="stlog-1-pipelines"></a><b><u>Pipelines</u></b>
 
-    Scikit-learn uses pipelines to pre-preprocess input data on the fly.  Pipelines can be used to
-    impute missing observations or create transformation of predictors such as interactions and
-    polynomials.  For example, when using linear machine learners such as the lasso, it is
-    recommended to create interactions. This can be done on the fly in Python.
+    Scikit-learn uses pipelines to pre-preprocess input data on the fly.  Pipelines can be used to impute missing
+    observations or create transformation of predictors such as interactions and polynomials.
 
     The following pipelines are currently supported:
 
     Pipelines               
       <i>stdscaler</i>             StandardScaler()
+      <i>stdscaler0</i>            StandardScaler(with_mean=False)
+      <i>sparse</i>                SparseTransformer()
+      <i>onehot</i>                OneHotEncoder()()
       <i>minmaxscaler</i>          MinMaxScaler()
       <i>medianimputer</i>         SimpleImputer(strategy='median')
       <i>knnimputer</i>            KNNImputer()
       <i>poly2</i>                 PolynomialFeatures(degree=2)
       <i>poly3</i>                 PolynomialFeatures(degree=3)
 
-    Pipelines can be passed to the base learners via <b>pipe*(</b><i>string</i><b>)</b> (Syntax 1) or <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b>
-    (Syntax 2).
+    Pipelines can be passed to the base learners via <b>pipe*(</b><i>string</i><b>)</b> (Syntax 1) or <b><u>pipe</u></b><b>line(</b><i>string</i><b>)</b> (Syntax 2).
 
-    NB: Users should take care when employing pipelines that they don't accidentally introduce data
-    leakage.  For example, a pipeline that transforms the data prior to passing the data to a base
-    learner that uses cross-validation could do this if the data transformation (e.g., standardizing
-    predictors) uses information from the entire dataset.
+    <i>stdscaler0</i> is intended for sparse matrices, since <i>stdscaler</i> will make a sparse matrix dense.
 
-<a name="stlog-1-example_prostate"></a><b><u>Example using Boston Housing data (Harrison et al., </u></b><a href="#stlog-1-Harrison1978"><b><u>1978</u></b></a><b><u>)</u></b>
+<a name="stlog-1-example_boston"></a><b><u>Example using Boston Housing data (Harrison et al., </u></b><a href="#stlog-1-Harrison1978"><b><u>1978</u></b></a><b><u>)</u></b>
 
 <a name="stlog-1-examples_data"></a>    <u>Data set</u>
 
-    The data set is available from the UCI Machine Learning Repository.  The following variables are
-    included in the data set of 506 observations:
+    The data set is available from the UCI Machine Learning Repository.  The following variables are included in the
+    data set of 506 observations:
 
     Predictors    
       CRIM      per capita crime rate by town
@@ -433,104 +409,97 @@
     Load housing data.
         . insheet using https://statalasso.github.io/dta/housing.csv, clear
 
-    Define a global for the model:
-        . global model medv crim-lstat
-
     Stacking regression with lasso, random forest and gradient boosting.
-        . pystacked $model, type(regress) pyseed(123) methods(lassoic rf gradboost)
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(lassocv rf gradboost)
 
     The weights determine how much each base learner contributes to the final stacking prediction.
 
-    Request the MSPE table (in-sample only):
+    Request the root MSPE table (in-sample only):
         . pystacked, table
 
-    Re-estimate using the first 400 observations, and request the MSPE table. Both in-sample and the
-    default holdout sample (all unused observations) are reported.:
-        . pystacked $model if _n&lt;=400, type(regress) pyseed(123) methods(lassoic rf gradboost)
+    Re-estimate using the first 400 observations, and request the root MSPE table.  RMSPEs for both in-sample (both
+    refitted and cross-validated) and the default holdout sample (all unused observations) are reported.:
+        . pystacked medv crim-lstat if _n&lt;=400, type(regress) pyseed(123) methods(lassocv rf gradboost)
         . pystacked, table holdout
 
     Graph predicted vs actual for the holdout sample:
         . pystacked, graph holdout
 
-    Getting the predicted values:
+    Storing the predicted values:
         . predict double yhat, xb
 
+    Storing the cross-validated predicted values:
+        . predict double yhat_cv, xb cvalid
+
     We can also save the predicted values of each base learner:
-        . predict double yhat, transform
+        . predict double yhat, basexb
 
-    <u>Using pipelines (Syntax 1)</u>
+    <u>Learner-specific predictors (Syntax 1)</u>
 
-    Pipelines allow pre-processing predictors on the fly. For example, linear estimators might
-    perform better if interactions are provided as inputs. Here, we use interactions and 2nd-order
-    polynomials for ols and lasso, but not for the random forest. Note that the base inputs in Stata
-    are only provided in levels.
-        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2)
-            pipe2(poly2)
-        . predict a, transf
+    <b>pystacked</b> allows the use of different sets of predictors for each base learners. For example, linear estimators
+    might perform better if interactions are provided as inputs. Here, we use interactions and 2nd-order polynomials
+    for the lasso, but not for the other base learners.
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(ols lassocv rf) xvars2(c.(crim-lstat)#
+            #c.(crim-lstat))
 
-    You can verify that you get the same ols and lasso predicted values when creating the
-    polynomials in Stata:
-        . pystacked medv c.(crim-lstat)# #c.(crim-lstat), type(regress) pyseed(123) methods(ols
-            lassoic rf)
-        . predict b, transf
-        . list a1 b1 a2 b2
+    The same can be achieved using pipelines which create polynomials on-the-fly in Python.
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(ols lassocv rf) pipe2(poly2)
 
-    Note that the stacking weights are different in the second estimation.  This is because we also
-    include 2nd-order polynomials as inputs for the random forest.
+    <u>Learner-specific predictors (Syntax 2)</u>
 
-    You can also use the same base learner more than once with different pipelines and/or different
-    options.
-        . pystacked $model, type(regress) pyseed(123) methods(lassoic lassoic lassoic) pipe2(poly2)
-            pipe3(poly3)
+    We demonstrate the same using the alternative syntax, which is often more handy:
+
+        . pystacked medv crim-lstat || m(ols) || m(lassocv) xvars(c.(crim-lstat)# #c.(crim-lstat)) || m(rf) || ,
+            type(regress) pyseed(123)
+        . pystacked medv crim-lstat || m(ols) || m(lassocv) pipe(poly2) || m(rf) || , type(regress) pyseed(123)
 
     <u>Options of base learners (Syntax 1)</u>
 
-    We can pass options to the base learners using {cmdopt*(string)}. In this example, we change the
-    maximum tree depth for the random forest. Since random forest is the third base learner, we use
-    {cmdopt3(max_depth(3))}.
-        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2)
-            pipe2(poly2) cmdopt3(max_depth(3))
+    We can pass options to the base learners using <b>cmdopt*(</b><i>string</i><b>)</b>. In this example, we change the maximum tree depth
+    for the random forest. Since random forest is the third base learner, we use <b>cmdopt3(</b><i>max_depth</i><b>(</b><i>3</i><b>))</b>.
+
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(ols lassocv rf) pipe1(poly2) pipe2(poly2)
+            cmdopt3(max_depth(3))
 
     You can verify that the option has been passed to Python correctly:
         . di e(pyopt3)
 
-    <u>Using the alternative syntax (Syntax 2)</u>
+    <u>Options of base learners (Syntax 2)</u>
 
-    The same results as above can be achieved using the alternative syntax, which imposes no limit
-    on the number of base learners.
-        . pystacked $model || m(ols) pipe(poly2) || m(lassoic) pipe(poly2) || m(rf)
-            opt(max_depth(3)) , type(regress) pyseed(123)
+    The same results as above can be achieved using the alternative syntax, which imposes no limit on the number of
+    base learners.
+
+        . pystacked medv crim-lstat || m(ols) pipe(poly2) || m(lassocv) pipe(poly2) || m(rf) opt(max_depth(3)) ,
+            type(regress) pyseed(123)
 
     <u>Single base learners</u>
 
-    You can use <b>pystacked</b> with a single base learner.  In this example, we are using a conventional
-    random forest:
-        . pystacked $model, type(regress) pyseed(123) methods(rf)
+    You can use <b>pystacked</b> with a single base learner.  In this example, we are using a conventional random forest:
+
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(rf)
 
     <u>Voting</u>
 
-    You can also use pre-defined weights. Here, we assign weights of 0.5 to OLS, .1 to the lasso
-    and, implicitly, .4 to the random foreset.
-        . pystacked $model, type(regress) pyseed(123) methods(ols lassoic rf) pipe1(poly2)
-            pipe2(poly2) voting voteweights(.5 .1)
+    You can also use pre-defined weights. Here, we assign weights of 0.5 to OLS, .1 to the lasso and, implicitly, .4
+    to the random foreset.
+        . pystacked medv crim-lstat, type(regress) pyseed(123) methods(ols lassocv rf) pipe1(poly2) pipe2(poly2)
+            voting voteweights(.5 .1)
 
 <a name="stlog-1-example_spam"></a><b><u>Classification Example using Spam data</u></b>
 
     <u>Data set</u>
 
-    For demonstration we consider the Spambase Data Set from the UCI Machine Learning Repository.
-    The data includes 4,601 observations and 57 variables.  The aim is to predict whether an email
-    is spam (i.e., unsolicited commercial e-mail) or not.  Each observation corresponds to one
-    email.
+    For demonstration we consider the Spambase Data Set from the UCI Machine Learning Repository.  The data includes
+    4,601 observations and 57 variables.  The aim is to predict whether an email is spam (i.e., unsolicited commercial
+    e-mail) or not.  Each observation corresponds to one email.
 
     Predictors    
-      v1-v48    percentage of words in the e-mail that match a specific <i>word</i>, i.e. 100 * (number of
-                  times the word appears in the e-mail) divided by total number of words in e-mail.
-                  To see which word each predictor corresponds to, see link below.
-      v49-v54   percentage of characters in the e-mail that match a specific <i>character</i>, i.e. 100 *
-                  (number of times the character appears in the e-mail) divided by total number of
-                  characters in e-mail.  To see which character each predictor corresponds to, see
-                  link below.
+      v1-v48    percentage of words in the e-mail that match a specific <i>word</i>, i.e. 100 * (number of times the word
+                  appears in the e-mail) divided by total number of words in e-mail.  To see which word each predictor
+                  corresponds to, see link below.
+      v49-v54   percentage of characters in the e-mail that match a specific <i>character</i>, i.e. 100 * (number of times
+                  the character appears in the e-mail) divided by total number of characters in e-mail.  To see which
+                  character each predictor corresponds to, see link below.
       v55       average length of uninterrupted sequences of capital letters
       v56       length of longest uninterrupted sequence of capital letters
       v57       total number of capital letters in the e-mail
@@ -541,13 +510,12 @@
     For more information about the data see https://archive.ics.uci.edu/ml/datasets/spambase.
 
     Load spam data.
-        . insheet using
-            https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, clear
-            comma
+        . insheet using https://archive.ics.uci.edu/ml/machine-learning-databases/spambase/spambase.data, clear comma
+
+    Throughout this example, we add the option <b>njobs(</b><i>4</i><b>)</b>, which enables parallelization with 4 cores.
 
     We consider three base learners: logit, random forest and gradient boosting:
-        . pystacked v58 v1-v57, type(class) pyseed(123) methods(logit rf gradboost) njobs(4)
-            pipe1(poly2)
+        . pystacked v58 v1-v57, type(class) pyseed(123) methods(logit rf gradboost) njobs(4) pipe1(poly2)
 
     <u>Out-of-sample classification.</u>
 
@@ -557,8 +525,7 @@
         . sort u
 
     Estimation on the first 2000 observations.
-        . pystacked v58 v1-v57 if _n&lt;=2000, type(class) pyseed(123) methods(logit rf gradboost)
-            njobs(4) pipe1(poly2)
+        . pystacked v58 v1-v57 if _n&lt;=2000, type(class) pyseed(123) methods(logit rf gradboost) njobs(4) pipe1(poly2)
 
     We can get both the predicted probabilities or the predicted class:
         . predict spam, class
@@ -575,60 +542,56 @@
     ROC curves for the default holdout sample. Specify a subtitle for the combined graph.
         . pystacked, graph(subtitle(Spam data)) holdout
 
-    Predicted probabilites (<b>hist</b> option) for the default holdout sample.  Specify number of bins for
-    the individual learner graphs.
+    Predicted probabilites (<b>hist</b> option) for the default holdout sample.  Specify number of bins for the individual
+    learner graphs.
         . pystacked, graph hist lgraph(bin(20)) holdout
 
 
 <a name="stlog-1-installation"></a><b><u>Installation</u></b>
 
-    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24
-    or higher).  See <a href="http://www.stata.com/help.cgi?python"><b>help python</b></a> and the Stata blog for how to set up Python on your system.
-    Installing Anaconda is in most cases the easiest way of installing Python including all required
-    packages.
+    <b>pystacked</b> requires at least Stata 16 (or higher), a Python installation and scikit-learn (0.24 or higher).  See
+    <a href="http://www.stata.com/help.cgi?python"><b>this help file</b></a>, this Stata blog entry and this Youtube video for how to set up Python on your system.  Installing
+    Anaconda is in most cases the easiest way of installing Python including all required packages.
 
     You can check your scikit-learn version using:
         . python: import sklearn
         . python: sklearn.__version__
 
-    <i>Updating scikit-learn:</i>  If you use Anaconda, update scikit-learn through your Anaconda Python
-    distribution. Make sure that you have linked Stata with the correct Python installation using 
-    python query.
+    <i>Updating scikit-learn:</i>  If you use Anaconda, update scikit-learn through your Anaconda Python distribution. Make
+    sure that you have linked Stata with the correct Python installation using python query.
 
-    If you use pip, you can update scikit-learn by typing "&lt;Python path&gt; -m pip install -U
-    scikit-learn" into the <i>terminal</i>, or directly in Stata:
+    If you use pip, you can update scikit-learn by typing "&lt;Python path&gt; -m pip install -U scikit-learn" into the
+    <i>terminal</i>, or directly in Stata:
         . shell &lt;Python path&gt; -m pip install -U scikit-learn
 
-    Note that you might need to restart Stata for changes to your Python installation to take
-    effect.
+    Note that you might need to restart Stata for changes to your Python installation to take effect.
 
     For further information, see https://scikit-learn.org/stable/install.html.
 
     To install/update <b>pystacked</b>, type
-        . net install pystacked, from(https://raw.githubusercontent.com/aahrens1/pystacked/main)
-            replace
+        . net install pystacked, from(https://raw.githubusercontent.com/aahrens1/pystacked/main) replace
 
 <a name="stlog-1-misc"></a><b><u>References</u></b>
 <a name="stlog-1-Harrison1978"></a>
-    Harrison, D. and Rubinfeld, D.L (1978). Hedonic prices and the demand for clean air. <i>J. Environ.</i>
-    <i>Economics &amp; Management</i>, vol.5, 81-102, 1978.
+    Harrison, D. and Rubinfeld, D.L (1978). Hedonic prices and the demand for clean air. <i>J. Environ. Economics &amp;</i>
+    <i>Management</i>, vol.5, 81-102, 1978.
 
-<a name="stlog-1-Hastie2009"></a>    Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009).  The elements of statistical learning: data
-    mining, inference, and prediction. Springer Science &amp; Business Media.
+<a name="stlog-1-Hastie2009"></a>    Hastie, T., Tibshirani, R., &amp; Friedman, J. (2009).  The elements of statistical learning: data mining, inference,
+    and prediction. Springer Science &amp; Business Media.
 
 <a name="stlog-1-Wolpert1992"></a>    Wolpert, David H. Stacked generalization. <i>Neural networks</i> 5.2 (1992): 241-259.  
     https://doi.org/10.1016/S0893-6080(05)80023-1
 
 <b><u>Contact</u></b>
 
-    If you encounter an error, contact us via email. If you have a question, you can also post on
-    Statalist (please tag @Achim Ahrens).
+    If you encounter an error, contact us via email. If you have a question, you can also post on Statalist (please
+    tag @Achim Ahrens).
 
 <b><u>Acknowledgements</u></b>
 
-    <b>pystacked</b> took some inspiration from Michael Droste's pylearn, which implements other Sklearn
-    programs for Stata.  Thanks to Jan Ditzen for testing an early version of the program. All
-    remaining errors are our own.
+    <b>pystacked</b> took some inspiration from Michael Droste's pylearn, which implements other scikit-learn programs for
+    Stata.  Thanks to Jan Ditzen for testing an early version of the program. We also thank Brigham Frandsen and Marco
+    Alfano for feedback.  All remaining errors are our own.
 
 <b><u>Citation</u></b>
 
@@ -636,10 +599,11 @@
 
 <b><u>Authors</u></b>
 
-        Achim Ahrens, Public Policy Group, ETH Zurich, Switzerland
-        achim.ahrens@gess.ethz.ch
+    Achim Ahrens, Public Policy Group, ETH Zurich, Switzerland
+    achim.ahrens@gess.ethz.ch
 
-        Christian B. Hansen, University of Chicago, USA
+    Christian B. Hansen, University of Chicago, USA
+    Christian.Hansen@chicagobooth.edu
 
-        Mark E. Schaffer, Heriot-Watt University, UK
+    Mark E Schaffer, Heriot-Watt University, UK
 </pre>

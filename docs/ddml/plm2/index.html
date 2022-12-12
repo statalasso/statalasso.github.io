@@ -1,0 +1,967 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Partially linear model with Stacking # Stacking regression is a simple and powerful method for combining predictions from multiple learners. It is available in Stata via the pystacked package (see here). Below is an example with the partially linear model, but it can be used with any model supported by ddml.
+Step 1: Initialization # Preparation: use the data and globals as above. Use the name m1 for this new estimation, to distinguish it from the previous example that uses the default name m0.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="PLM &amp; Stacking" />
+<meta property="og:description" content="Partially linear model with Stacking # Stacking regression is a simple and powerful method for combining predictions from multiple learners. It is available in Stata via the pystacked package (see here). Below is an example with the partially linear model, but it can be used with any model supported by ddml.
+Step 1: Initialization # Preparation: use the data and globals as above. Use the name m1 for this new estimation, to distinguish it from the previous example that uses the default name m0." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/plm2/" /><meta property="article:section" content="docs" />
+
+
+
+<title>PLM &amp; Stacking | Stata ML Page</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/models/" class="">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class="">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class=" active">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class="">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>PLM &amp; Stacking</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#partially-linear-model-with-stacking">Partially linear model with Stacking</a>
+      <ul>
+        <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
+        <li><a href="#step-2-add-learners">Step 2: Add learners</a></li>
+        <li><a href="#step-34-cross-fitting-and-estimation">Step 3/4: Cross-fitting and estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><h2 id="partially-linear-model-with-stacking">
+  Partially linear model with Stacking
+  <a class="anchor" href="#partially-linear-model-with-stacking">#</a>
+</h2>
+<p>Stacking regression is a simple and powerful method for combining predictions from multiple learners.  It is available in Stata
+via the <code>pystacked</code> package (see <a href="https://statalasso.github.io/docs/pystacked/">here</a>).  Below is an example with the partially linear model, but it can be used with any model supported by
+<code>ddml</code>.</p>
+<h3 id="step-1-initialization">
+  Step 1: Initialization
+  <a class="anchor" href="#step-1-initialization">#</a>
+</h3>
+<p>Preparation: use the data and globals as above.  Use the name <em>m1</em> for this new estimation, to distinguish it from the previous
+example that uses the default name <em>m0</em>.  This enables having multiple estimations available for comparison.  Also specify 5
+cross-fitting repetitions.</p>
+<pre tabindex="0"><code>. set seed 42
+. ddml init partial, kfolds(2) reps(5) mname(m1)
+</code></pre><blockquote class="book-hint warning">
+  <em>Cross-fitting repetitions</em><br>
+The results of DDML depends on the exact cross-fit fold split.
+We recommend re-running the (final) model multiple times on different random folds; see options <code>reps(integer)</code>.
+</blockquote>
+
+<h3 id="step-2-add-learners">
+  Step 2: Add learners
+  <a class="anchor" href="#step-2-add-learners">#</a>
+</h3>
+<p>Add supervised machine learners for estimating conditional expectations.  The first learner in the stacked ensemble is OLS.  We
+also use cross-validated lasso, ridge and two random forests with different settings, which we save in the following macros:</p>
+<pre tabindex="0"><code>. global rflow max_features(5) min_samples_leaf(1) max_samples(.7)
+. global rfhigh max_features(5) min_samples_leaf(10) max_samples(.7)
+</code></pre><p>In each step, we add the <code>mname(m1)</code> option to ensure that the learners are not added to the m0 model which is still in memory.  We
+also specify the names of the variables containing the estimated conditional expectations using the <code>learner(varname)</code> option.
+This avoids overwriting the variables created for the m0 model using default naming.</p>
+<pre tabindex="0"><code>. ddml E[Y|X], mname(m1) learner(Y_m1): pystacked $Y $X            || ///
+&gt;                                method(ols)                       || ///
+&gt;                                method(lassocv)                   || ///
+&gt;                                method(ridgecv)                   || ///
+&gt;                                method(rf) opt($rflow)            || ///
+&gt;                                method(rf) opt($rfhigh), type(reg)
+Learner Y_m1 added successfully.
+
+. ddml E[D|X], mname(m1) learner(D_m1): pystacked $D $X            || ///
+&gt;                                method(ols)                       || ///
+&gt;                                method(lassocv)                   || ///
+&gt;                                method(ridgecv)                   || ///
+&gt;                                method(rf) opt($rflow)            || ///
+&gt;                                method(rf) opt($rfhigh), type(reg)
+Learner D_m1 added successfully.
+</code></pre><blockquote class="book-hint warning">
+  <em>Options</em><br>
+Note: Options before &ldquo;:&rdquo; and after the first comma refer to <code>ddml</code>.  Options that come after the final comma refer to the
+estimation command.  Make sure to not confuse the two types of options.
+</blockquote>
+
+<p>Check if learners were correctly added (output omitted):</p>
+<pre tabindex="0"><code>. ddml desc, mname(m1) learners
+</code></pre><h3 id="step-34-cross-fitting-and-estimation">
+  Step 3/4: Cross-fitting and estimation
+  <a class="anchor" href="#step-34-cross-fitting-and-estimation">#</a>
+</h3>
+<pre tabindex="0"><code>. ddml crossfit, mname(m1)
+Cross-fitting E[Y|X] equation: net_tfa
+Resample 1...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Cross-fitting E[D|X] equation: e401
+Resample 1...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 2...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 3...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 4...
+Cross-fitting fold 1 2 ...completed cross-fitting
+Resample 5...
+Cross-fitting fold 1 2 ...completed cross-fitting
+
+. ddml estimate, mname(m1) robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+*  1  1          Y_m1          D_m1  7386.929 (939.818)
+*  1  2          Y_m1          D_m1  6882.647 (901.494)
+*  1  3          Y_m1          D_m1  6532.074 (874.233)
+*  1  4          Y_m1          D_m1  6533.431 (948.284)
+*  1  5          Y_m1          D_m1  6671.850 (980.995)
+* = minimum MSE specification for that resample.
+
+Mean/med.   Y learner     D learner         b        SE
+ mse mn     [min-mse]         [mse]  6801.386 (972.913)
+ mse md     [min-mse]         [mse]  6671.850 (958.334)
+
+Median over min-mse specifications
+y-E[y|X]  = Y_m1                                   Number of obs   =      9915
+D-E[D|X,Z]= D_m1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |    6671.85   958.3335     6.96   0.000      4793.55    8550.149
+------------------------------------------------------------------------------
+
+Summary over 5 resamples:
+       D eqn      mean       min       p25       p50       p75       max
+        e401   6801.3863 6532.0747 6533.4312 6671.8496 6882.6470 7386.9292
+</code></pre><p>Examine the learner weights used by <code>pystacked</code>:</p>
+<pre tabindex="0"><code>. ddml extract, mname(m1) show(pystacked)
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#partially-linear-model-with-stacking">Partially linear model with Stacking</a>
+      <ul>
+        <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
+        <li><a href="#step-2-add-learners">Step 2: Add learners</a></li>
+        <li><a href="#step-34-cross-fitting-and-estimation">Step 3/4: Cross-fitting and estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

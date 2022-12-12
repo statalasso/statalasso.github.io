@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Supported models # Throughout we use \(Y\) to denote the outcome variable, \(X\) to denote confounders, \(Z\) to denote instrumental variable(s), and \(D\) to denote the treatment variable(s) of interest.
+For a full discussion, please check our working paper.
+Partial linear model [partial] # \[ Y = a.D &#43; g(X) &#43; U \\ D = m(X) &#43; V \quad\quad~~\] where the aim is to estimate \(a\) while flexibly controlling for \(X\) .">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Model overview" />
+<meta property="og:description" content="Supported models # Throughout we use \(Y\) to denote the outcome variable, \(X\) to denote confounders, \(Z\) to denote instrumental variable(s), and \(D\) to denote the treatment variable(s) of interest.
+For a full discussion, please check our working paper.
+Partial linear model [partial] # \[ Y = a.D &#43; g(X) &#43; U \\ D = m(X) &#43; V \quad\quad~~\] where the aim is to estimate \(a\) while flexibly controlling for \(X\) ." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/models/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Model overview | Stata ML Page</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/models/" class=" active">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class="">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class="">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class="">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Model overview</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#supported-models">Supported models</a>
+      <ul>
+        <li><a href="#partial-linear-model-partial">Partial linear model [partial]</a></li>
+        <li><a href="#interactive-model-interactive">Interactive model [interactive]</a></li>
+        <li><a href="#partial-linear-iv-model-iv">Partial linear IV model [iv]</a></li>
+        <li><a href="#flexible-iv-model-fiv">Flexible IV model [fiv]</a></li>
+        <li><a href="#interactive-iv-model-interactiveiv">Interactive IV model [interactiveiv]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="supported-models">
+  Supported models
+  <a class="anchor" href="#supported-models">#</a>
+</h2>
+<p>Throughout we use 
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(Y\)
+</span>
+ to denote the outcome variable,<span>
+  \(X\)
+</span>
+to denote confounders,<span>
+  \(Z\)
+</span>
+to denote instrumental variable(s), and<span>
+  \(D\)
+</span>
+to
+denote the treatment variable(s) of interest.</p>
+<p>For a full discussion, please check our working paper.</p>
+<h3 id="partial-linear-model-partial">
+  Partial linear model [partial]
+  <a class="anchor" href="#partial-linear-model-partial">#</a>
+</h3>
+<span>
+  \[        Y = a.D &#43; g(X) &#43; U \\
+        D = m(X) &#43; V \quad\quad~~\]
+</span>
+
+<p>where the aim is to estimate <span>
+  \(a\)
+</span>
+ while flexibly controlling for <span>
+  \(X\)
+</span>
+. <code>ddml</code> allows for multiple treatment variables, which may be binary or continuous.</p>
+<h3 id="interactive-model-interactive">
+  Interactive model [interactive]
+  <a class="anchor" href="#interactive-model-interactive">#</a>
+</h3>
+<span>
+  \[        Y = g(X,D) &#43; U\\
+        D = m(X) &#43; V\quad\]
+</span>
+
+<p>which relaxes the assumption that<span>
+  \(X\)
+</span>
+and<span>
+  \(D\)
+</span>
+are separable. <span>
+  \(D\)
+</span>
+is a binary treatment variable. We are interested in the <em>Average Treatment Effect</em> or <em>Average Treatment Effect of the Treated</em>.</p>
+<h3 id="partial-linear-iv-model-iv">
+  Partial linear IV model [iv]
+  <a class="anchor" href="#partial-linear-iv-model-iv">#</a>
+</h3>
+<span>
+  \[        Y = a.D &#43; g(X) &#43; U\\
+        Z = m(X) &#43; V\quad\quad~~\]
+</span>
+
+<p>The parameter of interest is <span>
+  \(a\)
+</span>
+.  We leverage instrumental variables <span>
+  \(Z\)
+</span>
+ to identify <span>
+  \(a\)
+</span>
+, while flexibly controlling for <span>
+  \(X\)
+</span>
+.</p>
+<h3 id="flexible-iv-model-fiv">
+  Flexible IV model [fiv]
+  <a class="anchor" href="#flexible-iv-model-fiv">#</a>
+</h3>
+<span>
+  \[        Y = a.D &#43; g(X) &#43; U ~~~\\
+        D= m(Z) &#43; g(X) &#43; V \]
+</span>
+
+<p>As in the Partial Linear Model, we are interested in <span>
+  \(a\)
+</span>
+. The Flexible Partially Linear IV Model allows for approximation of optimal instruments, but relies on a stronger independence assumption than the Partially Linear IV Model.</p>
+<h3 id="interactive-iv-model-interactiveiv">
+  Interactive IV model [interactiveiv]
+  <a class="anchor" href="#interactive-iv-model-interactiveiv">#</a>
+</h3>
+<span>
+  \[        Y = g(Z,X) &#43; U\\
+        D = h(Z,X) &#43; V\\
+        Z = m(X) &#43; E~~~\]
+</span>
+
+<p>where the aim is to estimate the local average treatment effect, while flexibly controlling for <span>
+  \(X\)
+</span>
+. Both <span>
+  \(Z\)
+</span>
+ and <span>
+  \(D\)
+</span>
+ are binary.</p>
+</article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#supported-models">Supported models</a>
+      <ul>
+        <li><a href="#partial-linear-model-partial">Partial linear model [partial]</a></li>
+        <li><a href="#interactive-model-interactive">Interactive model [interactive]</a></li>
+        <li><a href="#partial-linear-iv-model-iv">Partial linear IV model [iv]</a></li>
+        <li><a href="#flexible-iv-model-fiv">Flexible IV model [fiv]</a></li>
+        <li><a href="#interactive-iv-model-interactiveiv">Interactive IV model [interactiveiv]</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+

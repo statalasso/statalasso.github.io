@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="DDML # The Stata package ddml implements Double/Debiased Machine Learning (DDML) for Stata. The three main features of the program:
-ddml supports five different statistical models that allow to flexibly control for confounders: (1) the Partially Linear Model, (2) the Interactive Model (for binary treatment), (3) the Partially Linear IV Model, the (4) High-dimensional IV Model, and (5) the Interactive IV Model (for binary treatment and instrument).
-ddml provides flexible multi-line syntax and short one-line syntax.">
+<meta name="description" content="DDML # The Stata package ddml implements Double/Debiased Machine Learning (DDML; Chernozhukov et al. 2018) for Stata. The three main features of the program:
+ddml supports five different statistical models that allow to flexibly control for confounders: (1) the Partially Linear Model, (2) the Interactive Model (for binary treatment), (3) the Partially Linear IV Model, the (4) High-dimensional IV Model, and (5) the Interactive IV Model (for binary treatment and instrument).">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="DDML" />
 <meta property="og:description" content="" />
@@ -17,7 +16,7 @@ ddml provides flexible multi-line syntax and short one-line syntax.">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e147b07cb4ff5da05e4898846270dddcb1d39b04bd4c622420459ff4d2cc6eec.js" integrity="sha256-4UewfLT/XaBeSJiEYnDd3LHTmwS9TGIkIEWf9NLMbuw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -542,6 +541,123 @@ https://github.com/alex-shpak/hugo-book
   
 
   
+    <a href="https://statalasso.github.io/docs/ddml/models/" class="">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class="">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class="">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class="">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
     <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
   
 
@@ -641,7 +757,11 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ddml">DDML</a></li>
+    <li><a href="#ddml">DDML</a>
+      <ul>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 
@@ -658,7 +778,7 @@ https://github.com/alex-shpak/hugo-book
   DDML
   <a class="anchor" href="#ddml">#</a>
 </h2>
-<p>The Stata package <code>ddml</code> implements <a href="https://doi.org/10.1111/ectj.12097">Double/Debiased Machine Learning (DDML)</a> for Stata. The three main features of the program:</p>
+<p>The Stata package <code>ddml</code> implements <a href="https://doi.org/10.1111/ectj.12097">Double/Debiased Machine Learning (DDML; Chernozhukov et al. 2018)</a> for Stata. The three main features of the program:</p>
 <ul>
 <li>
 <p><code>ddml</code> supports five different statistical models that allow to flexibly control for confounders: (1) the Partially Linear Model, (2) the Interactive Model (for binary treatment), (3) the Partially Linear IV Model, the (4) High-dimensional IV Model, and (5) the Interactive IV Model (for binary treatment and instrument).</p>
@@ -671,6 +791,11 @@ https://github.com/alex-shpak/hugo-book
 </li>
 </ul>
 <p>Our recommendation is to use <code>ddml</code> in combination with <code>pystacked</code>. While <code>pystacked</code> allows for fast estimation of popular supervised machine learners, the main advantages is its support for stacking regression and classification.</p>
+<h3 id="reference">
+  Reference
+  <a class="anchor" href="#reference">#</a>
+</h3>
+<p>Victor Chernozhukov, Denis Chetverikov, Mert Demirer, Esther Duflo, Christian Hansen, Whitney Newey, James Robins, <em>Double/debiased machine learning for treatment and structural parameters</em>, <em>The Econometrics Journal</em>, Volume 21, Issue 1, 1 February 2018, Pages C1–C68, <a href="https://doi.org/10.1111/ectj.12097">https://doi.org/10.1111/ectj.12097</a></p>
 </article>
  
       
@@ -712,7 +837,11 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ddml">DDML</a></li>
+    <li><a href="#ddml">DDML</a>
+      <ul>
+        <li><a href="#reference">Reference</a></li>
+      </ul>
+    </li>
   </ul>
 </nav>
 

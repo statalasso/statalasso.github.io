@@ -46,8 +46,38 @@ ddml estimate, robust spec(1)
 
 reg Y1_reg D1_reg, nocons robust
 
+ddml describe, all
 
+**** Partially linear model II
 
+set seed 42
+ddml init partial, kfolds(2) reps(5) mname(m1)
+
+global rflow max_features(5) min_samples_leaf(1) max_samples(.7)
+global rfhigh max_features(5) min_samples_leaf(10) max_samples(.7)
+
+ddml E[Y|X], mname(m1) learner(Y_m1): pystacked $Y $X            || ///
+                               method(ols)                       || ///
+                               method(lassocv)                   || ///
+                               method(ridgecv)                   || ///
+                               method(rf) opt($rflow)            || ///
+                               method(rf) opt($rfhigh), type(reg)
+ddml E[D|X], mname(m1) learner(D_m1): pystacked $D $X            || ///
+                               method(ols)                       || ///
+                               method(lassocv)                   || ///
+                               method(ridgecv)                   || ///
+                               method(rf) opt($rflow)            || ///
+                               method(rf) opt($rfhigh), type(reg)
+
+ddml desc, mname(m1) learners
+
+ddml crossfit, mname(m1)
+ddml estimate, mname(m1) robust
+
+ddml extract, mname(m1) show(pystacked)
+
+ddml estimate, mname(m0) replay 
+ 
 **** Partially linear IV model.
 
 use https://statalasso.github.io/dta/AJR.dta, clear
@@ -115,7 +145,7 @@ ddml estimate
 
 **** High-dim IV
 
-use https://github.com/aahrens1/ddml/raw/master/data/BLP.dta, clear
+use https://statalasso.github.io/dta/BLP_CHS.dta, clear
 global Y y
 global D price
 global X hpwt air mpd space

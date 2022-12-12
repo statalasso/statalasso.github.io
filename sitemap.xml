@@ -6,6 +6,8 @@
   </url><url>
     <loc>https://statalasso.github.io/docs/lassopack/</loc>
   </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/models/</loc>
+  </url><url>
     <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_models/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/lassopack/package_overview/</loc>
@@ -13,6 +15,8 @@
     <loc>https://statalasso.github.io/docs/pdslasso/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/pystacked/</loc>
+  </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/crossfit/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_demo/</loc>
   </url><url>
@@ -28,13 +32,25 @@
   </url><url>
     <loc>https://statalasso.github.io/docs/lassopack/help/rlasso_help/</loc>
   </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/plm/</loc>
+  </url><url>
     <loc>https://statalasso.github.io/docs/lassopack/help/lassologit_help/</loc>
+  </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/plm2/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/ddml/</loc>
   </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/interactive/</loc>
+  </url><url>
     <loc>https://statalasso.github.io/docs/pdslasso/pdslasso_panel/</loc>
   </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/iv/</loc>
+  </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/ivhd/</loc>
+  </url><url>
     <loc>https://statalasso.github.io/docs/lassopack/cvlasso/</loc>
+  </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/interactiveiv/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/pystacked/regression/</loc>
   </url><url>
@@ -51,6 +67,8 @@
     <loc>https://statalasso.github.io/docs/pdslasso/ivlasso_help/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/pystacked/parallel/</loc>
+  </url><url>
+    <loc>https://statalasso.github.io/docs/ddml/help/</loc>
   </url><url>
     <loc>https://statalasso.github.io/docs/pystacked/help/</loc>
   </url><url>

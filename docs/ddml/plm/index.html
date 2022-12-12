@@ -1,0 +1,993 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Partially Linear Model # Preparations # We load the data, define global macros and set the seed.
+. use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear . global Y net_tfa . global D e401 . global X tw age inc fsize educ db marr twoearn pira hown . set seed 42 Step 1: Initialize DDML model # We next initialize the ddml estimation and select the model. partial refers to the partially linear model. The model will be stored on a Mata object with the default name &ldquo;m0&rdquo; unless otherwise specified using the mname(name) option.">
+<meta name="theme-color" content="#FFFFFF">
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Partial Linear Model (PLM)" />
+<meta property="og:description" content="Partially Linear Model # Preparations # We load the data, define global macros and set the seed.
+. use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear . global Y net_tfa . global D e401 . global X tw age inc fsize educ db marr twoearn pira hown . set seed 42 Step 1: Initialize DDML model # We next initialize the ddml estimation and select the model. partial refers to the partially linear model. The model will be stored on a Mata object with the default name &ldquo;m0&rdquo; unless otherwise specified using the mname(name) option." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/ddml/plm/" /><meta property="article:section" content="docs" />
+
+
+
+<title>Partial Linear Model (PLM) | Stata ML Page</title>
+<link rel="manifest" href="/manifest.json">
+<link rel="icon" href="/favicon.png" type="image/x-icon">
+<link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
+  <script defer src="/flexsearch.min.js"></script>
+  <script defer src="/en.search.min.3a0cc9054e29f649cde29dc3ffe1649a543de668f172c5d0257df96c814a2041.js" integrity="sha256-OgzJBU4p9knN4p3D/&#43;FkmlQ95mjxcsXQJX35bIFKIEE=" crossorigin="anonymous"></script>
+
+<script type="application/javascript">
+var doNotTrack = false;
+if (!doNotTrack) {
+	window.ga=window.ga||function(){(ga.q=ga.q||[]).push(arguments)};ga.l=+new Date;
+	ga('create', 'UA-126129436-1', 'auto');
+	
+	ga('send', 'pageview');
+}
+</script>
+<script async src='https://www.google-analytics.com/analytics.js'></script>
+<!--
+Made with Book Theme
+https://github.com/alex-shpak/hugo-book
+-->
+  
+</head>
+<body dir="ltr">
+  <input type="checkbox" class="hidden toggle" id="menu-control" />
+  <input type="checkbox" class="hidden toggle" id="toc-control" />
+  <main class="container flex">
+    <aside class="book-menu">
+      <div class="book-menu-content">
+        
+  <nav>
+<h2 class="book-brand">
+  <a class="flex align-center" href="/"><span>Stata ML Page</span>
+  </a>
+</h2>
+
+
+<div class="book-search">
+  <input type="text" id="book-search-input" placeholder="Search" aria-label="Search" maxlength="64" data-hotkeys="s/" />
+  <div class="book-search-spinner hidden"></div>
+  <ul id="book-search-results"></ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <ul>
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/package_overview/" class="">Package overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/estimators/" class="">Estimation methods</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/regularized_reg/" class="">Regularized regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/cvlasso/" class="">Cross-validation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/rlasso/" class="">Rigorous lasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-7b22f9a619ffc04f2040b80267ff8ec1" class="toggle"  />
+    <label for="section-7b22f9a619ffc04f2040b80267ff8ec1" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/lassopack/lassologit/" class="">Lassologit</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassologit/lassologit_demo/" class="">Example using Spam data</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lasso2_replication/" class="">Comparison glmnet</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="toggle"  />
+    <label for="section-de33cd2a5faa36dd8a4f9fdad33eadc5" class="flex justify-between">
+      <a role="button" class="">Help files</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/lasso2_help/" class="">help lasso2</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/cvlasso_help/" class="">help cvlasso</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/help/rlasso_help/" class="">help  rlasso</a>
+  
+
+        </li>
+      
+    
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/lassopack/lassopack_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-1660971b512dcfeb0bcc54343ae1329f" class="toggle"  />
+    <label for="section-1660971b512dcfeb0bcc54343ae1329f" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pdslasso/" class="">PDSLASSO</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_models/" class="">Models</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_demo/" class="">Demonstration</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_panel/" class="">Panel FE</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/ivlasso_help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pdslasso/pdslasso_cite/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-a6d0313d37b86997de2e3c697c4d2888" class="toggle"  />
+    <label for="section-a6d0313d37b86997de2e3c697c4d2888" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/pystacked/" class="">PYSTACKED</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/getting_started/" class="">Getting started</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/regression/" class="">Regression</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/classification/" class="">Classification</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/parallel/" class="">Parallelization</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/pystacked/citation/" class="">Citation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li class="book-section-flat" >
+          
+  
+  
+
+  
+    <input type="checkbox" id="section-72f375ffaf85eea4cd43789c74047530" class="toggle" checked />
+    <label for="section-72f375ffaf85eea4cd43789c74047530" class="flex justify-between">
+      <a href="https://statalasso.github.io/docs/ddml/" class="">DDML</a>
+    </label>
+  
+
+          
+  <ul>
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/models/" class="">Model overview</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/crossfit/" class="">Algorithm</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm/" class=" active">Partial Linear Model (PLM)</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/plm2/" class="">PLM &amp; Stacking</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactive/" class="">Interactive</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/iv/" class="">Partial Linear IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/ivhd/" class="">Flexible IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/interactiveiv/" class="">Interactive IV</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/installation/" class="">Installation</a>
+  
+
+        </li>
+      
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/about/" class="">About</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
+  
+
+          
+  <ul>
+    
+  </ul>
+
+        </li>
+      
+    
+  </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</nav>
+
+
+
+
+  <script>(function(){var e=document.querySelector("aside .book-menu-content");addEventListener("beforeunload",function(){localStorage.setItem("menu.scrollTop",e.scrollTop)}),e.scrollTop=localStorage.getItem("menu.scrollTop")})()</script>
+
+
+ 
+      </div>
+    </aside>
+
+    <div class="book-page">
+      <header class="book-header">
+        
+  <div class="flex align-center justify-between">
+  <label for="menu-control">
+    <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
+  </label>
+
+  <strong>Partial Linear Model (PLM)</strong>
+
+  <label for="toc-control">
+    
+    <img src="/svg/toc.svg" class="book-icon" alt="Table of Contents" />
+    
+  </label>
+</div>
+
+
+  
+  <aside class="hidden clearfix">
+    
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#partially-linear-model">Partially Linear Model</a>
+      <ul>
+        <li><a href="#preparations">Preparations</a></li>
+        <li><a href="#step-1-initialize-ddml-model">Step 1: Initialize DDML model</a></li>
+        <li><a href="#step-2-all-machine-learners">Step 2: All machine learners</a></li>
+        <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
+        <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+
+  </aside>
+  
+ 
+      </header>
+
+      
+      
+  <article class="markdown"><!-- raw HTML omitted -->
+<!-- raw HTML omitted -->
+<h2 id="partially-linear-model">
+  Partially Linear Model
+  <a class="anchor" href="#partially-linear-model">#</a>
+</h2>
+<h3 id="preparations">
+  Preparations
+  <a class="anchor" href="#preparations">#</a>
+</h3>
+<p>We load the data, define global macros and set the seed.</p>
+<pre tabindex="0"><code>. use https://github.com/aahrens1/ddml/raw/master/data/sipp1991.dta, clear
+. global Y net_tfa
+. global D e401
+. global X tw age inc fsize educ db marr twoearn pira hown
+. set seed 42
+</code></pre><h3 id="step-1-initialize-ddml-model">
+  Step 1: Initialize DDML model
+  <a class="anchor" href="#step-1-initialize-ddml-model">#</a>
+</h3>
+<p>We next initialize the ddml estimation and select the model.  <code>partial</code> refers to the partially linear model.  The model will be
+stored on a Mata object with the default name &ldquo;m0&rdquo; unless otherwise specified using
+the <code>mname(name)</code> option.</p>
+<blockquote class="book-hint warning">
+  <em>Number of folds</em><br>
+Note that we set the number of random folds to 2, so that the model runs quickly. The default is <code>kfolds(5)</code>. We recommend to
+consider at least 5-10 folds and even more if your sample size is small.
+</blockquote>
+
+<pre tabindex="0"><code>. ddml init partial, kfolds(2)
+</code></pre><h3 id="step-2-all-machine-learners">
+  Step 2: All machine learners
+  <a class="anchor" href="#step-2-all-machine-learners">#</a>
+</h3>
+<p>We add a supervised machine learners for estimating the conditional expectation 
+<link rel="stylesheet" href="/katex/katex.min.css" />
+<script defer src="/katex/katex.min.js"></script>
+<script defer src="/katex/auto-render.min.js" onload="renderMathInElement(document.body);"></script><span>
+  \(E[Y|X]\)
+</span>
+. We first add simple linear regression.</p>
+<pre tabindex="0"><code>. ddml E[Y|X]: reg $Y $X
+Learner Y1_reg added successfully.
+</code></pre><p>We can add more than one learner per reduced form equation. Here, we also add a random forest learner (implemented in pystacked).</p>
+<pre tabindex="0"><code>. ddml E[Y|X]: pystacked $Y $X, type(reg) method(rf)
+Learner Y2_pystacked added successfully.
+</code></pre><p>We do the same for the conditional expectation E[D|X].</p>
+<pre tabindex="0"><code>. ddml E[D|X]: reg $D $X
+Learner D1_reg added successfully.
+
+. ddml E[D|X]: pystacked $D $X, type(reg) method(rf)
+Learner D2_pystacked added successfully.
+</code></pre><p>Optionally, you can check if the learners have been added correctly.</p>
+<pre tabindex="0"><code>. ddml desc
+
+Model:                  partial, crossfit folds k=2, resamples r=1
+Dependent variable (Y): net_tfa
+ net_tfa learners:      Y1_reg Y2_pystacked
+D equations (1):        e401
+ e401 learners:         D1_reg D2_pystacked
+</code></pre><h3 id="step-3-cross-fitting">
+  Step 3: Cross-fitting
+  <a class="anchor" href="#step-3-cross-fitting">#</a>
+</h3>
+<p>The learners are iteratively fitted on the training data.  This step may take a while.</p>
+<pre tabindex="0"><code>. ddml crossfit
+Cross-fitting E[Y|X] equation: net_tfa
+Cross-fitting fold 1 2 ...completed cross-fitting
+Cross-fitting E[D|X] equation: e401
+Cross-fitting fold 1 2 ...completed cross-fitting
+</code></pre><h3 id="step-4-estimation">
+  Step 4: Estimation
+  <a class="anchor" href="#step-4-estimation">#</a>
+</h3>
+<p>Finally, we obtain estimates of the coefficients of interest.  Since we added two learners for each of our two reduced form
+equations, we get 4 point estimates. The result shown corresponds to the model with the lowest out-of-sample MSPE.</p>
+<pre tabindex="0"><code>. ddml estimate, robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308(1130.901)
+   2  1        Y1_reg  D2_pystacked  6707.514 (880.374)
+*  3  1  Y2_pystacked        D1_reg  7044.822(1127.173)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (755.805)
+* = minimum MSE specification for that resample.
+
+Min MSE DDML model, specification 3
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   7044.822   1127.173     6.25   0.000     4835.603    9254.042
+------------------------------------------------------------------------------
+</code></pre><p>To retrieve the very first specification shown, you can type:</p>
+<pre tabindex="0"><code>. ddml estimate, robust spec(1)
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+   1  1        Y1_reg        D1_reg  5397.308(1130.901)
+   2  1        Y1_reg  D2_pystacked  6707.514 (880.374)
+*  3  1  Y2_pystacked        D1_reg  7044.822(1127.173)
+   4  1  Y2_pystacked  D2_pystacked  6991.835 (755.805)
+* = minimum MSE specification for that resample.
+
+DDML model, specification 1
+y-E[y|X]  = Y1_reg_1                               Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   5397.308   1130.901     4.77   0.000     3180.783    7613.834
+------------------------------------------------------------------------------
+</code></pre><p>You could manually retrieve the same point estimate by typing:</p>
+<pre tabindex="0"><code>. reg Y1_reg D1_reg, nocons robust
+
+Linear regression                               Number of obs     =      9,915
+                                                F(1, 9914)        =      22.78
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.0037
+                                                Root MSE          =      39626
+
+------------------------------------------------------------------------------
+             |               Robust
+    Y1_reg_1 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    D1_reg_1 |   5397.308   1130.901     4.77   0.000     3180.512    7614.105
+------------------------------------------------------------------------------
+</code></pre><p>or graphically:</p>
+<pre tabindex="0"><code>. twoway (scatter Y1_reg D1_reg) (lfit Y1_reg D1_reg)
+</code></pre><p>where <code>Y1_reg</code> and <code>D1_reg</code> are the orthogonalized versions of <code>net_tfa</code> and <code>e401</code>.</p>
+<p>To describe the ddml model setup or results in detail, you can use ddml describe with the relevant option (sample, learners,
+crossfit, estimates), or just describe them all with the all option:</p>
+<pre tabindex="0"><code>. ddml describe, all
+</code></pre></article>
+ 
+      
+
+      <footer class="book-footer">
+        
+  <div class="flex flex-wrap justify-between">
+
+
+
+
+
+</div>
+
+
+
+  <script>(function(){function e(e){const t=window.getSelection(),n=document.createRange();n.selectNodeContents(e),t.removeAllRanges(),t.addRange(n)}document.querySelectorAll("pre code").forEach(t=>{t.addEventListener("click",function(){e(t.parentElement),navigator.clipboard&&navigator.clipboard.writeText(t.parentElement.textContent)})})})()</script>
+
+
+ 
+        
+      </footer>
+
+      
+  
+  <div class="book-comments">
+
+</div>
+  
+ 
+
+      <label for="menu-control" class="hidden book-menu-overlay"></label>
+    </div>
+
+    
+    <aside class="book-toc">
+      <div class="book-toc-content">
+        
+  
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#partially-linear-model">Partially Linear Model</a>
+      <ul>
+        <li><a href="#preparations">Preparations</a></li>
+        <li><a href="#step-1-initialize-ddml-model">Step 1: Initialize DDML model</a></li>
+        <li><a href="#step-2-all-machine-learners">Step 2: All machine learners</a></li>
+        <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
+        <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+
+
+ 
+      </div>
+    </aside>
+    
+  </main>
+
+  
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
