@@ -42,7 +42,7 @@ ddml crossfit
 
 ddml estimate, robust
 
-ddml estimate, robust spec(1)
+ddml estimate, robust spec(1) allcombos
 
 reg Y1_reg D1_reg, nocons robust
 
@@ -99,7 +99,7 @@ ddml E[Z|X], vtype(none): rforest $Z $X, type(reg)
 ddml crossfit
 ddml estimate, robust
 
-ddml estimate m0, spec(8) rep(1)
+ddml estimate, spec(8) rep(1) allcombos
 ivreg Y2_rf (D2_rf = Z2_rf), nocons
 
 **** Interactive model--ATE and ATET estimation.
@@ -166,7 +166,7 @@ ddml E[D|X], learner(Dhat_pystacked) vname($D): pystacked {D} $X, type(reg)
 ddml crossfit
 ddml estimate
 
-ddml estimate m0, spec(8) rep(1)
+ddml estimate, spec(8) rep(1) allcombos
 gen Dtilde = $D - Dhat_pystacked_h_1
 gen Zopt = Dhat_pystacked_1 - Dhat_pystacked_h_1
  

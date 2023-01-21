@@ -19,7 +19,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -647,7 +647,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -765,6 +778,7 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#step-2-adding-learners">Step 2: Adding learners</a></li>
         <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
         <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
+        <li><a href="#short-stacking">Short-stacking</a></li>
       </ul>
     </li>
   </ul>
@@ -836,82 +850,55 @@ Learner D2_pystacked added successfully.
   <a class="anchor" href="#step-4-estimation">#</a>
 </h3>
 <p>In the final estimation step, we can estimate both the average treatment effect (the default) or the average treatment effect of
-the treated (atet).</p>
+the treated (<code>atet</code>; output not shown).</p>
 <pre tabindex="0"><code>. ddml estimate
 
-DDML estimation results:
+DDML estimation results (ATE):
 spec  r    Y0 learner    Y1 learner     D learner         b        SE
-   1  1        Y1_reg        Y1_reg      D1_logit  -232.439  (23.705)
-*  2  1        Y1_reg        Y1_reg  D2_pystacked  -207.548  (32.276)
-   3  1        Y1_reg  Y2_pystacked      D1_logit  -212.864  (24.366)
-   4  1        Y1_reg  Y2_pystacked  D2_pystacked  -196.989  (30.886)
-   5  1  Y2_pystacked        Y1_reg      D1_logit  -233.565  (23.707)
-   6  1  Y2_pystacked        Y1_reg  D2_pystacked  -206.370  (32.298)
-   7  1  Y2_pystacked  Y2_pystacked      D1_logit  -213.989  (24.372)
-   8  1  Y2_pystacked  Y2_pystacked  D2_pystacked  -195.812  (30.885)
-   1  2        Y1_reg        Y1_reg      D1_logit  -231.528  (23.962)
-*  2  2        Y1_reg        Y1_reg  D2_pystacked  -212.120  (29.030)
-   ...  &lt;-click or type ddml estimate, replay full to display full summary
-* = minimum MSE specification for that resample.
+ opt  1  Y1_pystacked  Y1_pystacked  D1_pystacked  -219.583  (26.027)
+ opt  2  Y1_pystacked  Y1_pystacked  D1_pystacked  -220.967  (25.586)
+ opt  3  Y1_pystacked  Y1_pystacked  D1_pystacked  -227.103  (26.256)
+ opt  4  Y1_pystacked  Y1_pystacked  D1_pystacked  -221.207  (25.830)
+ opt  5  Y1_pystacked  Y1_pystacked  D1_pystacked  -224.497  (25.840)
+opt = minimum MSE specification for that resample.
 
 Mean/med.  Y0 learner    Y1 learner     D learner         b        SE
- mse mn     [min-mse]         [mse]         [mse]  -216.073  (30.660)
- mse md     [min-mse]         [mse]         [mse]  -216.073  (29.490)
+ mse mn     [min-mse]         [mse]         [mse]  -222.672  (26.045)
+ mse md     [min-mse]         [mse]         [mse]  -221.207  (26.049)
 
-Median over min-mse specifications
-y-E[y|X,D=0] = Y1_reg                              Number of obs   =      4642
-y-E[y|X,D=1] = Y1_reg
-D-E[D|X]     = D2_pystacked
+Median over 5 min-mse specifications (ATE)
+E[y|X,D=0]   = Y1_pystacked                        Number of obs   =      4642
+E[y|X,D=1]   = Y1_pystacked
+E[D|X]       = D1_pystacked
 ------------------------------------------------------------------------------
              |               Robust
      bweight | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-     mbsmoke |  -216.0733   29.48997    -7.33   0.000    -273.8725    -158.274
-------------------------------------------------------------------------------
-Warning: 5 resamples had propensity scores trimmed to lower limit .01.
-
-Summary over 5 resamples:
-       D eqn      mean       min       p25       p50       p75       max
-     mbsmoke   -216.0727 -227.9799 -216.6422 -216.0733 -212.1205 -207.5478
-
-. ddml estimate, atet trim(0)
-
-DDML estimation results:
-spec  r    Y0 learner    Y1 learner     D learner         b        SE
-   1  1        Y1_reg        Y1_reg      D1_logit  -219.785  (23.719)
-*  2  1        Y1_reg        Y1_reg  D2_pystacked  -234.764  (24.667)
-   3  1        Y1_reg  Y2_pystacked      D1_logit  -219.785  (23.719)
-   4  1        Y1_reg  Y2_pystacked  D2_pystacked  -234.764  (24.667)
-   5  1  Y2_pystacked        Y1_reg      D1_logit  -225.738  (24.082)
-   6  1  Y2_pystacked        Y1_reg  D2_pystacked  -228.703  (25.699)
-   7  1  Y2_pystacked  Y2_pystacked      D1_logit  -225.738  (24.082)
-   8  1  Y2_pystacked  Y2_pystacked  D2_pystacked  -228.703  (25.699)
-   1  2        Y1_reg        Y1_reg      D1_logit  -219.674  (23.696)
-*  2  2        Y1_reg        Y1_reg  D2_pystacked  -231.267  (25.229)
-   ...  &lt;-click or type ddml estimate, replay full to display full summary
-* = minimum MSE specification for that resample.
-
-Mean/med.  Y0 learner    Y1 learner     D learner         b        SE
- mse mn     [min-mse]         [mse]         [mse]  -235.908  (24.954)
- mse md     [min-mse]         [mse]         [mse]  -234.764  (24.919)
-
-Median over min-mse specifications
-y-E[y|X,D=0] = Y1_reg                              Number of obs   =      4642
-y-E[y|X,D=1] = Y1_reg
-D-E[D|X]     = D2_pystacked
-------------------------------------------------------------------------------
-             |               Robust
-     bweight | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
--------------+----------------------------------------------------------------
-     mbsmoke |  -234.7643   24.91944    -9.42   0.000    -283.6055   -185.9231
+     mbsmoke |  -221.2069    26.0486    -8.49   0.000    -272.2612   -170.1526
 ------------------------------------------------------------------------------
 
 Summary over 5 resamples:
        D eqn      mean       min       p25       p50       p75       max
-     mbsmoke   -235.9077 -239.9554 -239.3867 -234.7643 -234.1649 -231.2672
+     mbsmoke   -222.6716 -227.1032 -224.4971 -221.2069 -220.9675 -219.5831
+
+. qui ddml estimate, atet
 </code></pre><p>Recall that we have specified 5 resampling iterations (reps(5)) By default, the median over the minimum-MSE specification per
 resampling iteration is shown.  At the bottom, a table of summary statistics over resampling iterations is shown.</p>
-</article>
+<h3 id="short-stacking">
+  Short-stacking
+  <a class="anchor" href="#short-stacking">#</a>
+</h3>
+<p>To estimate using the same two base learners but with short-stacking instead of stacking, we would enter the learners <em>separately</em>
+and use the <code>shortstack</code> option:</p>
+<pre tabindex="0"><code>. set seed 42
+. ddml init interactive, kfolds(5) reps(5)
+. ddml E[Y|X,D]: reg $Y $X
+. ddml E[Y|X,D]: pystacked $Y $X, type(reg) method(gradboost)
+. ddml E[D|X]: logit $D $X
+. ddml E[D|X]: pystacked $D $X, type(class) method(gradboost)
+. ddml crossfit, shortstack
+. ddml estimate
+</code></pre></article>
  
       
 
@@ -958,6 +945,7 @@ resampling iteration is shown.  At the bottom, a table of summary statistics ove
         <li><a href="#step-2-adding-learners">Step 2: Adding learners</a></li>
         <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
         <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
+        <li><a href="#short-stacking">Short-stacking</a></li>
       </ul>
     </li>
   </ul>

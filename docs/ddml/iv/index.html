@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -649,7 +649,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -842,31 +855,48 @@ Learner Z2_rforest added successfully.
   Step 3/4: Cross-fitting and estimation
   <a class="anchor" href="#step-34-cross-fitting-and-estimation">#</a>
 </h3>
-<pre tabindex="0"><code>. ddml crossfit
-Z equations (1): logem4
-Cross-fitting E[Y|X] equation: logpgp95
-Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
-Cross-fitting E[D|X] equation: avexpr
-Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
-Cross-fitting E[Z|X]: logem4
-Cross-fitting fold 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 ...completed cross-fitting
+<p>We use the <code>shortstack</code> option to combine the base learners. Short-stacking is a computationally
+cheaper alternative to stacking. Whereas stacking relies on cross-validated predicted values to obtain the relative weights for
+the base learners, short-stacking uses the cross-fitted predicted values.</p>
+<pre tabindex="0"><code>. qui ddml crossfit
+
+. ddml estimate, robust
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE     Z learner
+ opt  1    Y2_rforest    D2_rforest     0.772  ( 0.207)              
+  ss  1  [shortstack]          [ss]     0.716  ( 0.196)          [ss]
+opt = minimum MSE specification for that resample.
+
+Shortstack DDML model
+y-E[y|X]  = logpgp95_ss_1                          Number of obs   =        64
+D-E[D|X,Z]= avexpr_ss_1
+Z-E[Z|X]  = logem4_ss_1
+------------------------------------------------------------------------------
+             |               Robust
+    logpgp95 | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+      avexpr |   .7158468   .1958356     3.66   0.000     .3320162    1.099677
+       _cons |  -.0308525   .0914993    -0.34   0.736    -.2101878    .1484828
+------------------------------------------------------------------------------
 </code></pre><h3 id="manual-estimation">
   Manual estimation
   <a class="anchor" href="#manual-estimation">#</a>
 </h3>
 <p>If you are curious what <code>ddml</code> does in the background:</p>
-<pre tabindex="0"><code>. ddml estimate m0, spec(8) rep(1)
+<pre tabindex="0"><code>. ddml estimate, allcombos spec(8) rep(1) robust
 
 DDML estimation results:
 spec  r     Y learner     D learner         b        SE     Z learner
-   1  1        Y1_reg        D1_reg     0.378  ( 0.085)        Z1_reg
-   2  1        Y1_reg        D1_reg    -0.101  ( 0.827)    Z2_rforest
-   3  1        Y1_reg    D2_rforest     2.434  ( 2.243)        Z1_reg
-   4  1        Y1_reg    D2_rforest     0.052  ( 0.351)    Z2_rforest
-   5  1    Y2_rforest        D1_reg     0.122  ( 0.091)        Z1_reg
-   6  1    Y2_rforest        D1_reg    -1.485  ( 2.455)    Z2_rforest
-   7  1    Y2_rforest    D2_rforest     0.784  ( 0.578)        Z1_reg
-*  8  1    Y2_rforest    D2_rforest     0.771  ( 0.202)    Z2_rforest
+   1  1        Y1_reg        D1_reg     0.378  ( 0.125)        Z1_reg
+   2  1        Y1_reg        D1_reg    -0.187  ( 1.573)    Z2_rforest
+   3  1        Y1_reg    D2_rforest     2.413  ( 3.594)        Z1_reg
+   4  1        Y1_reg    D2_rforest     0.083  ( 0.475)    Z2_rforest
+   5  1    Y2_rforest        D1_reg     0.123  ( 0.207)        Z1_reg
+   6  1    Y2_rforest        D1_reg    -1.749  ( 4.690)    Z2_rforest
+   7  1    Y2_rforest    D2_rforest     0.783  ( 0.504)        Z1_reg
+*  8  1    Y2_rforest    D2_rforest     0.772  ( 0.207)    Z2_rforest
+  ss  1  [shortstack]          [ss]     0.716  ( 0.196)          [ss]
 * = minimum MSE specification for that resample.
 
 Min MSE DDML model, specification 8
@@ -874,26 +904,28 @@ y-E[y|X]  = Y2_rforest_1                           Number of obs   =        64
 D-E[D|X,Z]= D2_rforest_1
 Z-E[Z|X]  = Z2_rforest_1
 ------------------------------------------------------------------------------
-    logpgp95 | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+             |               Robust
+    logpgp95 | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-      avexpr |    .770743   .2018379     3.82   0.000      .375148    1.166338
+      avexpr |    .772314   .2068282     3.73   0.000     .3669382     1.17769
+       _cons |  -.0119092   .1009289    -0.12   0.906    -.2097263    .1859079
 ------------------------------------------------------------------------------
 
-. ivreg Y2_rf (D2_rf = Z2_rf), nocons
 
-Instrumental variables 2SLS regression
+. ivreg Y2_rf (D2_rf = Z2_rf), robust
 
-      Source |       SS           df       MS      Number of obs   =        64
--------------+----------------------------------   F(1, 63)        =         .
-       Model | -4.59844887         1 -4.59844887   Prob &gt; F        =         .
-    Residual |  39.7479425        63  .630919722   R-squared       =         .
--------------+----------------------------------   Adj R-squared   =         .
-       Total |  35.1494936        64  .549210838   Root MSE        =     .7943
+Instrumental variables 2SLS regression          Number of obs     =         64
+                                                F(1, 62)          =      13.94
+                                                Prob &gt; F          =     0.0004
+                                                R-squared         =          .
+                                                Root MSE          =     .80209
 
 ------------------------------------------------------------------------------
-Y2_rforest_1 | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+             |               Robust
+Y2_rforest_1 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-D2_rforest_1 |    .770743   .2018379     3.82   0.000     .3674021    1.174084
+D2_rforest_1 |    .772314   .2068282     3.73   0.000     .3588703    1.185758
+       _cons |  -.0119092   .1009289    -0.12   0.906    -.2136633    .1898448
 ------------------------------------------------------------------------------
 Instrumented: D2_rforest_1
  Instruments: Z2_rforest_1

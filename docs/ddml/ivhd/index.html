@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -649,7 +649,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -875,58 +888,55 @@ Cross-fitting E[Y|X,Z] equation: y
 Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
 Cross-fitting E[D|X,Z] and E[D|X] equation: price
 Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
-</code></pre><pre tabindex="0"><code>. ddml estimate
+</code></pre><pre tabindex="0"><code>. ddml estimate, robust
 
 DDML estimation results:
 spec  r     Y learner     D learner         b        SE    DH learner
-   1  1        Y1_reg      Dhat_reg    -0.137  ( 0.011)    Dhat_reg_h
-   2  1        Y1_reg      Dhat_reg     0.363  ( 0.145) Dhat_pystac~h
-   3  1        Y1_reg Dhat_pystac~d    -0.089  ( 0.005)    Dhat_reg_h
-   4  1        Y1_reg Dhat_pystac~d    -0.114  ( 0.009) Dhat_pystac~h
-   5  1  Y2_pystacked      Dhat_reg    -0.096  ( 0.010)    Dhat_reg_h
-   6  1  Y2_pystacked      Dhat_reg    -0.208  ( 0.073) Dhat_pystac~h
-*  7  1  Y2_pystacked Dhat_pystac~d    -0.042  ( 0.005)    Dhat_reg_h
-   8  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
-* = minimum MSE specification for that resample.
+ opt  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
+opt = minimum MSE specification for that resample.
 
-Min MSE DDML model, specification 7
+Min MSE DDML model
 y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      2217
 E[D|X,Z]  = Dhat_pystacked_1
-E[D|X]    = Dhat_reg_h_1
+E[D|X]    = Dhat_pystacked_h_1
 Orthogonalised D = D - E[D|X]; optimal IV = E[D|X,Z] - E[D|X].
 ------------------------------------------------------------------------------
-           y | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+             |               Robust
+       share | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-       price |  -.0422251   .0046777    -9.03   0.000    -.0513933    -.033057
+       price |  -.0979042   .0075006   -13.05   0.000     -.112605   -.0832033
+       _cons |   .0033532   .0215627     0.16   0.876    -.0389089    .0456154
 ------------------------------------------------------------------------------
 </code></pre><h3 id="manual-estimation">
   Manual estimation
   <a class="anchor" href="#manual-estimation">#</a>
 </h3>
 <p>If you are curious what ddml does in the background:</p>
-<pre tabindex="0"><code>. ddml estimate m0, spec(8) rep(1)
+<pre tabindex="0"><code>. ddml estimate, allcombos spec(8) rep(1) robust
 
 DDML estimation results:
 spec  r     Y learner     D learner         b        SE    DH learner
-   1  1        Y1_reg      Dhat_reg    -0.137  ( 0.011)    Dhat_reg_h
-   2  1        Y1_reg      Dhat_reg     0.363  ( 0.145) Dhat_pystac~h
+   1  1        Y1_reg      Dhat_reg    -0.137  ( 0.012)    Dhat_reg_h
+   2  1        Y1_reg      Dhat_reg     0.369  ( 0.207) Dhat_pystac~h
    3  1        Y1_reg Dhat_pystac~d    -0.089  ( 0.005)    Dhat_reg_h
    4  1        Y1_reg Dhat_pystac~d    -0.114  ( 0.009) Dhat_pystac~h
-   5  1  Y2_pystacked      Dhat_reg    -0.096  ( 0.010)    Dhat_reg_h
-   6  1  Y2_pystacked      Dhat_reg    -0.208  ( 0.073) Dhat_pystac~h
-*  7  1  Y2_pystacked Dhat_pystac~d    -0.042  ( 0.005)    Dhat_reg_h
-   8  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
+   5  1  Y2_pystacked      Dhat_reg    -0.096  ( 0.011)    Dhat_reg_h
+   6  1  Y2_pystacked      Dhat_reg    -0.212  ( 0.087) Dhat_pystac~h
+   7  1  Y2_pystacked Dhat_pystac~d    -0.042  ( 0.004)    Dhat_reg_h
+*  8  1  Y2_pystacked Dhat_pystac~d    -0.098  ( 0.008) Dhat_pystac~h
 * = minimum MSE specification for that resample.
 
-DDML model, specification 8
+Min MSE DDML model, specification 8
 y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      2217
 E[D|X,Z]  = Dhat_pystacked_1
 E[D|X]    = Dhat_pystacked_h_1
 Orthogonalised D = D - E[D|X]; optimal IV = E[D|X,Z] - E[D|X].
 ------------------------------------------------------------------------------
-           y | Coefficient  Std. err.      z    P&gt;|z|     [95% conf. interval]
+             |               Robust
+       share | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-       price |  -.0976524   .0079768   -12.24   0.000    -.1132866   -.0820181
+       price |  -.0979042   .0075006   -13.05   0.000     -.112605   -.0832033
+       _cons |   .0033532   .0215627     0.16   0.876    -.0389089    .0456154
 ------------------------------------------------------------------------------
 
 
@@ -934,21 +944,20 @@ Orthogonalised D = D - E[D|X]; optimal IV = E[D|X,Z] - E[D|X].
 
 . gen Zopt = Dhat_pystacked_1 - Dhat_pystacked_h_1
 
-. ivreg Y2_pystacked_1 (Dtilde=Zopt), nocons
+. ivreg Y2_pystacked_1 (Dtilde=Zopt), robust
 
-Instrumental variables 2SLS regression
-
-      Source |       SS           df       MS      Number of obs   =     2,217
--------------+----------------------------------   F(1, 2216)      =         .
-       Model |  303.676955         1  303.676955   Prob &gt; F        =         .
-    Residual |  2283.27076     2,216  1.03035684   R-squared       =         .
--------------+----------------------------------   Adj R-squared   =         .
-       Total |  2586.94771     2,217  1.16686861   Root MSE        =    1.0151
+Instrumental variables 2SLS regression          Number of obs     =      2,217
+                                                F(1, 2215)        =     170.38
+                                                Prob &gt; F          =     0.0000
+                                                R-squared         =     0.1175
+                                                Root MSE          =     1.0152
 
 ------------------------------------------------------------------------------
-Y2_pystack~1 | Coefficient  Std. err.      t    P&gt;|t|     [95% conf. interval]
+             |               Robust
+Y2_pystack~1 | Coefficient  std. err.      t    P&gt;|t|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-      Dtilde |  -.0976524   .0079768   -12.24   0.000    -.1132952   -.0820096
+      Dtilde |  -.0979042   .0075006   -13.05   0.000    -.1126131   -.0831953
+       _cons |   .0033532   .0215627     0.16   0.876     -.038932    .0456385
 ------------------------------------------------------------------------------
 Instrumented: Dtilde
  Instruments: Zopt

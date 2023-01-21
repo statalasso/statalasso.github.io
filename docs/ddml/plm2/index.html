@@ -19,7 +19,7 @@ Step 1: Initialization # Preparation: use the data and globals as above. Use the
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -647,7 +647,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -838,44 +851,22 @@ estimation command.  Make sure to not confuse the two types of options.
   Step 3/4: Cross-fitting and estimation
   <a class="anchor" href="#step-34-cross-fitting-and-estimation">#</a>
 </h3>
-<pre tabindex="0"><code>. ddml crossfit, mname(m1)
-Cross-fitting E[Y|X] equation: net_tfa
-Resample 1...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 2...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 3...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 4...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 5...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Cross-fitting E[D|X] equation: e401
-Resample 1...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 2...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 3...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 4...
-Cross-fitting fold 1 2 ...completed cross-fitting
-Resample 5...
-Cross-fitting fold 1 2 ...completed cross-fitting
+<pre tabindex="0"><code>. qui ddml crossfit, mname(m1)
 
 . ddml estimate, mname(m1) robust
 
 DDML estimation results:
 spec  r     Y learner     D learner         b        SE
-*  1  1          Y_m1          D_m1  7386.929 (939.818)
-*  1  2          Y_m1          D_m1  6882.647 (901.494)
-*  1  3          Y_m1          D_m1  6532.074 (874.233)
-*  1  4          Y_m1          D_m1  6533.431 (948.284)
-*  1  5          Y_m1          D_m1  6671.850 (980.995)
-* = minimum MSE specification for that resample.
+ opt  1          Y_m1          D_m1  7362.283 (937.426)
+ opt  2          Y_m1          D_m1  6958.283 (899.946)
+ opt  3          Y_m1          D_m1  6531.201 (872.895)
+ opt  4          Y_m1          D_m1  6532.662 (952.414)
+ opt  5          Y_m1          D_m1  6672.368 (981.239)
+opt = minimum MSE specification for that resample.
 
 Mean/med.   Y learner     D learner         b        SE
- mse mn     [min-mse]         [mse]  6801.386 (972.913)
- mse md     [min-mse]         [mse]  6671.850 (958.334)
+ mse mn     [min-mse]         [mse]  6811.360 (973.863)
+ mse md     [min-mse]         [mse]  6672.368 (962.606)
 
 Median over min-mse specifications
 y-E[y|X]  = Y_m1                                   Number of obs   =      9915
@@ -884,13 +875,13 @@ D-E[D|X,Z]= D_m1
              |               Robust
      net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-        e401 |    6671.85   958.3335     6.96   0.000      4793.55    8550.149
+        e401 |   6672.368   962.6062     6.93   0.000     4785.695    8559.042
 ------------------------------------------------------------------------------
 
 Summary over 5 resamples:
        D eqn      mean       min       p25       p50       p75       max
-        e401   6801.3863 6532.0747 6533.4312 6671.8496 6882.6470 7386.9292
-</code></pre><p>Examine the learner weights used by <code>pystacked</code>:</p>
+        e401   6811.3596 6531.2007 6532.6626 6672.3682 6958.2832 7362.2832
+</code></pre><p>Examine the learner weights used by <code>pystacked</code> (not shown):</p>
 <pre tabindex="0"><code>. ddml extract, mname(m1) show(pystacked)
 </code></pre></article>
  

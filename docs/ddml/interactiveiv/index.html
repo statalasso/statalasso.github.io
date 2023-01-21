@@ -5,12 +5,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="Interactive IV Model # Preparations # We load the data, define global macros and set the seed.
 . use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear . global Y earnings . global D training . global Z assignmt . global X sex age married black hispanic . set seed 42 Step 1: Initialization # We initialize the model.
-. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We again add two learners per reduced form equation.">
+. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We use stacking (implemented in pystacked) with two base learners for each reduced form equation.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Interactive IV" />
 <meta property="og:description" content="Interactive IV Model # Preparations # We load the data, define global macros and set the seed.
 . use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear . global Y earnings . global D training . global Z assignmt . global X sex age married black hispanic . set seed 42 Step 1: Initialization # We initialize the model.
-. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We again add two learners per reduced form equation." />
+. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We use stacking (implemented in pystacked) with two base learners for each reduced form equation." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://statalasso.github.io/docs/ddml/interactiveiv/" /><meta property="article:section" content="docs" />
 
@@ -21,7 +21,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -649,7 +649,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -766,7 +779,8 @@ https://github.com/alex-shpak/hugo-book
         <li><a href="#preparations">Preparations</a></li>
         <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
         <li><a href="#step-2-add-learners">Step 2: Add learners</a></li>
-        <li><a href="#step-3-cross-fitting-and-estimation">Step 3: Cross-fitting and estimation.</a></li>
+        <li><a href="#step-3-4-cross-fitting-and-estimation">Step 3-4: Cross-fitting and estimation.</a></li>
+        <li><a href="#short-stacking">Short-stacking</a></li>
       </ul>
     </li>
   </ul>
@@ -806,31 +820,21 @@ https://github.com/alex-shpak/hugo-book
   Step 2: Add learners
   <a class="anchor" href="#step-2-add-learners">#</a>
 </h3>
-<p>We again add two learners per reduced form equation.</p>
-<pre tabindex="0"><code>. ddml E[Y|X,Z]: reg $Y $X
-Learner Y1_reg added successfully.
+<p>We use stacking (implemented in <code>pystacked</code>) with two base learners for each reduced form equation.</p>
+<pre tabindex="0"><code>. ddml E[Y|X,Z]: pystacked $Y c.($X)# #c($X), type(reg) m(ols lassocv)
+Learner Y1_pystacked added successfully.
 
-. ddml E[Y|X,Z]: pystacked $Y c.($X)# #c($X), type(reg) m(lassocv)
-Learner Y2_pystacked added successfully.
+. ddml E[D|X,Z]: pystacked $D c.($X)# #c($X), type(class) m(logit lassocv)
+Learner D1_pystacked added successfully.
 
-. ddml E[D|X,Z]: logit $D $X
-Learner D1_logit added successfully.
-
-. ddml E[D|X,Z]: pystacked $D c.($X)# #c($X), type(class) m(lassocv)
-Learner D2_pystacked added successfully.
-
-. ddml E[Z|X]: logit $Z $X
-Learner Z1_logit added successfully.
-
-. ddml E[Z|X]: pystacked $Z c.($X)# #c($X), type(class) m(lassocv)
-Learner Z2_pystacked added successfully.
-</code></pre><h3 id="step-3-cross-fitting-and-estimation">
-  Step 3: Cross-fitting and estimation.
-  <a class="anchor" href="#step-3-cross-fitting-and-estimation">#</a>
+. ddml E[Z|X]: pystacked $Z c.($X)# #c($X), type(class) m(logit lassocv)
+Learner Z1_pystacked added successfully.
+</code></pre><h3 id="step-3-4-cross-fitting-and-estimation">
+  Step 3-4: Cross-fitting and estimation.
+  <a class="anchor" href="#step-3-4-cross-fitting-and-estimation">#</a>
 </h3>
 <pre tabindex="0"><code>. ddml crossfit
-Z equations (1): assignmt
-Cross-fitting E[Y|X,Z] equation: earnings
+Cross-fitting E[y|X,Z] equation: earnings
 Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
 Cross-fitting E[D|X,Z] equation: training
 Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
@@ -839,32 +843,75 @@ Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting
 
 . ddml estimate
 
-DDML estimation results:
+DDML estimation results (LATE):
 spec  r    Y0 learner    Y1 learner    D0 learner    D1 learner         b        SE     Z learner
-   1  1        Y1_reg        Y1_reg      D1_logit      D1_logit  1800.600 (513.492)      Z1_logit
-   2  1        Y1_reg        Y1_reg      D1_logit      D1_logit  1803.585 (515.113)  Z2_pystacked
-   3  1        Y1_reg        Y1_reg      D1_logit  D2_pystacked  1802.494 (513.966)      Z1_logit
-   4  1        Y1_reg        Y1_reg      D1_logit  D2_pystacked  1805.322 (515.543)  Z2_pystacked
-   5  1        Y1_reg        Y1_reg  D2_pystacked      D1_logit  1800.659 (513.506)      Z1_logit
-   6  1        Y1_reg        Y1_reg  D2_pystacked      D1_logit  1803.378 (515.051)  Z2_pystacked
-   7  1        Y1_reg        Y1_reg  D2_pystacked  D2_pystacked  1802.553 (513.980)      Z1_logit
-   8  1        Y1_reg        Y1_reg  D2_pystacked  D2_pystacked  1805.115 (515.481)  Z2_pystacked
-   9  1        Y1_reg  Y2_pystacked      D1_logit      D1_logit  1808.209 (512.654)      Z1_logit
-  10  1        Y1_reg  Y2_pystacked      D1_logit      D1_logit  1811.073 (514.270)  Z2_pystacked
-   ...  &lt;-click or type ddml estimate, replay full to display full summary
-* = minimum MSE specification for that resample.
+ opt  1  Y1_pystacked  Y1_pystacked  D1_pystacked  D1_pystacked  1817.206 (512.772)  Z1_pystacked
+opt = minimum MSE specification for that resample.
 
-Min MSE DDML model, specification 28
-y-E[y|X,D=0] = Y2_pystacked0_1                     Number of obs   =     11204
-y-E[y|X,D=1] = Y2_pystacked1_1
-D-E[D|X,Z=0] = D1_logit0_1
-D-E[D|X,Z=1] = D2_pystacked1_1
-Z-E[Z|X]     = Z2_pystacked_1
+
+E[y|X,D=0]   = Y1_pystacked0_1                     Number of obs   =     11204
+E[y|X,D=1]   = Y1_pystacked1_1
+E[D|X,Z=0]   = D1_pystacked0_1
+E[D|X,Z=1]   = D1_pystacked1_1
+E[Z|X]       = Z1_pystacked_1
 ------------------------------------------------------------------------------
              |               Robust
     earnings | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-    training |   1802.897   514.4563     3.50   0.000     794.5815    2811.213
+    training |   1817.206   512.7723     3.54   0.000     812.1911    2822.221
+------------------------------------------------------------------------------
+</code></pre><h3 id="short-stacking">
+  Short-stacking
+  <a class="anchor" href="#short-stacking">#</a>
+</h3>
+<p>If we wanted to short-stack instead of stack, we proceed as follows.</p>
+<p>Initialization:</p>
+<pre tabindex="0"><code>. set seed 42
+. ddml init interactiveiv, kfolds(5)
+warning - model m0 already exists
+all existing model results and variables will
+be dropped and model m0 will be re-initialized
+</code></pre><p>Adding base learners:</p>
+<pre tabindex="0"><code>. ddml E[Y|X,Z]: reg $Y $X
+Learner Y1_reg added successfully.
+. ddml E[Y|X,Z]: pystacked $Y c.($X)# #c($X), type(reg) m(lassocv)
+Learner Y2_pystacked added successfully.
+. ddml E[D|X,Z]: logit $D $X
+Learner D1_logit added successfully.
+. ddml E[D|X,Z]: pystacked $D c.($X)# #c($X), type(class) m(lassocv)
+Learner D2_pystacked added successfully.
+. ddml E[Z|X]: logit $Z $X
+Learner Z1_logit added successfully.
+. ddml E[Z|X]: pystacked $Z c.($X)# #c($X), type(class) m(lassocv)
+Learner Z2_pystacked added successfully.
+</code></pre><p>Cross-fitting with <code>shortstack</code> option:</p>
+<pre tabindex="0"><code>. ddml crossfit, shortstack
+Cross-fitting E[y|X,Z] equation: earnings
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting...completed short-stacking
+Cross-fitting E[D|X,Z] equation: training
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting...completed short-stacking
+Cross-fitting E[Z|X]: assignmt
+Cross-fitting fold 1 2 3 4 5 ...completed cross-fitting...completed short-stacking
+</code></pre><p>Estimation stage:</p>
+<pre tabindex="0"><code>. ddml estimate, robust
+
+DDML estimation results (LATE):
+spec  r    Y0 learner    Y1 learner    D0 learner    D1 learner         b        SE     Z learner
+ opt  1  Y2_pystacked  Y2_pystacked      D1_logit  D2_pystacked  1824.422 (514.303)  Z2_pystacked
+  ss  1  [shortstack]          [ss]          [ss]          [ss]  1818.488 (513.133)          [ss]
+opt = minimum MSE specification for that resample.
+
+Shortstack DDML model (LATE)
+E[y|X,D=0]   = earnings_ss0_1                      Number of obs   =     11204
+E[y|X,D=1]   = earnings_ss1_1
+E[D|X,Z=0]   = training_ss0_1
+E[D|X,Z=1]   = training_ss1_1
+E[Z|X]       = assignmt_ss_1
+------------------------------------------------------------------------------
+             |               Robust
+    earnings | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+    training |   1818.488    513.133     3.54   0.000     812.7663    2824.211
 ------------------------------------------------------------------------------
 </code></pre></article>
  
@@ -912,7 +959,8 @@ Z-E[Z|X]     = Z2_pystacked_1
         <li><a href="#preparations">Preparations</a></li>
         <li><a href="#step-1-initialization">Step 1: Initialization</a></li>
         <li><a href="#step-2-add-learners">Step 2: Add learners</a></li>
-        <li><a href="#step-3-cross-fitting-and-estimation">Step 3: Cross-fitting and estimation.</a></li>
+        <li><a href="#step-3-4-cross-fitting-and-estimation">Step 3-4: Cross-fitting and estimation.</a></li>
+        <li><a href="#short-stacking">Short-stacking</a></li>
       </ul>
     </li>
   </ul>

@@ -87,16 +87,25 @@ Step 1: Initialization # Preparation: use the data and globals as above. Use the
       <guid>https://statalasso.github.io/docs/ddml/interactiveiv/</guid>
       <description>Interactive IV Model # Preparations # We load the data, define global macros and set the seed.
 . use http://fmwww.bc.edu/repec/bocode/j/jtpa.dta,clear . global Y earnings . global D training . global Z assignmt . global X sex age married black hispanic . set seed 42 Step 1: Initialization # We initialize the model.
-. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We again add two learners per reduced form equation.</description>
+. ddml init interactiveiv, kfolds(5) Step 2: Add learners # We use stacking (implemented in pystacked) with two base learners for each reduced form equation.</description>
     </item>
     
     <item>
-      <title>Help file</title>
+      <title>ddml help file</title>
       <link>https://statalasso.github.io/docs/ddml/help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/ddml/help/</guid>
-      <description>------------------------------------------------------------------------------------------------------------------------ help ddml v0.5 ------------------------------------------------------------------------------------------------------------------------ Title ddml -- Stata package for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked.</description>
+      <description>----------------------------------------------------------------------------------------------------------------------------------------------------------------- help ddml v1.2 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- Title ddml -- Stata package for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked.</description>
+    </item>
+    
+    <item>
+      <title>qddml help file</title>
+      <link>https://statalasso.github.io/docs/ddml/help_qddml/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/ddml/help_qddml/</guid>
+      <description>----------------------------------------------------------------------------------------------------------------------------------------------------------------- help ddml v1.2 ----------------------------------------------------------------------------------------------------------------------------------------------------------------- Title qddml -- Stata program for Double Debiased Machine Learning ddml implements algorithms for causal inference aided by supervised machine learning as proposed in Double/debiased machine learning for treatment and structural parameters (Econometrics Journal, 2018). Five different models are supported, allowing for binary or continous treatment variables and endogeneity, high-dimensional controls and/or instrumental variables. ddml supports a variety of different ML programs, including but not limited to lassopack and pystacked.</description>
     </item>
     
     <item>
@@ -106,8 +115,9 @@ Step 1: Initialization # Preparation: use the data and globals as above. Use the
       
       <guid>https://statalasso.github.io/docs/ddml/installation/</guid>
       <description>Installation # You can get the lastest versions from github:
-net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) Please check for updates on a regular basis.
-Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &amp;ldquo;Code&amp;rdquo; and &amp;ldquo;Download ZIP&amp;rdquo;. Then run net install as above but from() should refer to the downloaded and unzipped repository folder.</description>
+net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) To install an older version, use for example:
+net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/v1.2) Please check for updates on a regular basis.
+Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &amp;ldquo;Code&amp;rdquo; and &amp;ldquo;Download ZIP&amp;rdquo;.</description>
     </item>
     
   </channel>

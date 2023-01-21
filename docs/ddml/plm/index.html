@@ -19,7 +19,7 @@
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.e52ffb04a2b180d25b9be8b687065c14d434a33f964c43f3070976be6e456c8c.js" integrity="sha256-5S/7BKKxgNJbm&#43;i2hwZcFNQ0oz&#43;WTEPzBwl2vm5FbIw=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -647,7 +647,20 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/ddml/help/" class="">Help file</a>
+    <a href="https://statalasso.github.io/docs/ddml/help/" class="">ddml help file</a>
+  
+
+        </li>
+      
+    
+      
+        <li>
+          
+  
+  
+
+  
+    <a href="https://statalasso.github.io/docs/ddml/help_qddml/" class="">qddml help file</a>
   
 
         </li>
@@ -763,7 +776,7 @@ https://github.com/alex-shpak/hugo-book
       <ul>
         <li><a href="#preparations">Preparations</a></li>
         <li><a href="#step-1-initialize-ddml-model">Step 1: Initialize DDML model</a></li>
-        <li><a href="#step-2-all-machine-learners">Step 2: All machine learners</a></li>
+        <li><a href="#step-2-add-machine-learners">Step 2: Add machine learners</a></li>
         <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
         <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
       </ul>
@@ -810,9 +823,9 @@ consider at least 5-10 folds and even more if your sample size is small.
 </blockquote>
 
 <pre tabindex="0"><code>. ddml init partial, kfolds(2)
-</code></pre><h3 id="step-2-all-machine-learners">
-  Step 2: All machine learners
-  <a class="anchor" href="#step-2-all-machine-learners">#</a>
+</code></pre><h3 id="step-2-add-machine-learners">
+  Step 2: Add machine learners
+  <a class="anchor" href="#step-2-add-machine-learners">#</a>
 </h3>
 <p>We add a supervised machine learners for estimating the conditional expectation 
 <link rel="stylesheet" href="/katex/katex.min.css" />
@@ -823,7 +836,7 @@ consider at least 5-10 folds and even more if your sample size is small.
 . We first add simple linear regression.</p>
 <pre tabindex="0"><code>. ddml E[Y|X]: reg $Y $X
 Learner Y1_reg added successfully.
-</code></pre><p>We can add more than one learner per reduced form equation. Here, we also add a random forest learner (implemented in pystacked).</p>
+</code></pre><p>We can add more than one learner per reduced form equation. Here, we also add a random forest learner implemented in <code>pystacked</code>. (In the next example we show how to use <code>pystacked</code> to stack multiple learners, but here we use it to implement a single learner.)</p>
 <pre tabindex="0"><code>. ddml E[Y|X]: pystacked $Y $X, type(reg) method(rf)
 Learner Y2_pystacked added successfully.
 </code></pre><p>We do the same for the conditional expectation E[D|X].</p>
@@ -854,8 +867,7 @@ Cross-fitting fold 1 2 ...completed cross-fitting
   Step 4: Estimation
   <a class="anchor" href="#step-4-estimation">#</a>
 </h3>
-<p>Finally, we obtain estimates of the coefficients of interest.  Since we added two learners for each of our two reduced form
-equations, we get 4 point estimates. The result shown corresponds to the model with the lowest out-of-sample MSPE.</p>
+<p>Finally, we obtain estimates of the coefficients of interest.   Since we added two learners for each of our two reduced form equations, there are four possible specifications.  By default, the result shown corresponds to the specification with the lowest out-of-sample MSPE:</p>
 <pre tabindex="0"><code>. ddml estimate, robust
 
 DDML estimation results:
@@ -875,16 +887,35 @@ D-E[D|X,Z]= D1_reg_1
 -------------+----------------------------------------------------------------
         e401 |   7044.822   1127.173     6.25   0.000     4835.603    9254.042
 ------------------------------------------------------------------------------
-</code></pre><p>To retrieve the very first specification shown, you can type:</p>
-<pre tabindex="0"><code>. ddml estimate, robust spec(1)
+</code></pre><p>To estimate all four specifications, we use the <code>allcombos</code> option:</p>
+<pre tabindex="0"><code>. ddml estimate, robust allcombos
 
 DDML estimation results:
 spec  r     Y learner     D learner         b        SE
-   1  1        Y1_reg        D1_reg  5397.308(1130.901)
-   2  1        Y1_reg  D2_pystacked  6707.514 (880.374)
-*  3  1  Y2_pystacked        D1_reg  7044.822(1127.173)
-   4  1  Y2_pystacked  D2_pystacked  6991.835 (755.805)
+   1  1        Y1_reg        D1_reg  5397.208(1130.776)
+   2  1        Y1_reg  D2_pystacked  6705.740 (878.656)
+*  3  1  Y2_pystacked        D1_reg  7044.518(1126.896)
+   4  1  Y2_pystacked  D2_pystacked  6979.699 (753.471)
 * = minimum MSE specification for that resample.
+
+Min MSE DDML model
+y-E[y|X]  = Y2_pystacked_1                         Number of obs   =      9915
+D-E[D|X,Z]= D1_reg_1
+------------------------------------------------------------------------------
+             |               Robust
+     net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
+-------------+----------------------------------------------------------------
+        e401 |   7044.518   1126.896     6.25   0.000     4835.843    9253.193
+       _cons |  -317.8379   352.8666    -0.90   0.368    -1009.444     373.768
+------------------------------------------------------------------------------
+</code></pre><p>After having estimated all specifications, we can retrieve specific results. Here we use the specification relying on OLS for
+both estimating both E[Y|X] and E[D|X]:</p>
+<pre tabindex="0"><code>. ddml estimate, robust spec(1) replay
+
+DDML estimation results:
+spec  r     Y learner     D learner         b        SE
+ opt  1  Y2_pystacked        D1_reg  7044.518(1126.896)
+opt = minimum MSE specification for that resample.
 
 DDML model, specification 1
 y-E[y|X]  = Y1_reg_1                               Number of obs   =      9915
@@ -893,10 +924,16 @@ D-E[D|X,Z]= D1_reg_1
              |               Robust
      net_tfa | Coefficient  std. err.      z    P&gt;|z|     [95% conf. interval]
 -------------+----------------------------------------------------------------
-        e401 |   5397.308   1130.901     4.77   0.000     3180.783    7613.834
+        e401 |   5397.208   1130.776     4.77   0.000     3180.928    7613.488
+       _cons |   -104.854   397.9023    -0.26   0.792     -884.728    675.0201
 ------------------------------------------------------------------------------
-</code></pre><p>You could manually retrieve the same point estimate by typing:</p>
-<pre tabindex="0"><code>. reg Y1_reg D1_reg, nocons robust
+</code></pre><blockquote class="book-hint warning">
+  <em>Inclusion of the constant</em><br>
+Since the residualized outcome and treatment may not be exactly mean-zero in finite samples, <code>ddml</code> includes the constant by default in the estimation stage of partially linear models. Asymptotically, the intercept is not required. Earlier versions of <code>ddml</code> (before 1.2) did not include the constant.
+</blockquote>
+
+<p>You could manually retrieve the same point estimate by typing:</p>
+<pre tabindex="0"><code>. reg Y1_reg D1_reg, robust
 
 Linear regression                               Number of obs     =      9,915
                                                 F(1, 9914)        =      22.78
@@ -961,7 +998,7 @@ crossfit, estimates), or just describe them all with the all option:</p>
       <ul>
         <li><a href="#preparations">Preparations</a></li>
         <li><a href="#step-1-initialize-ddml-model">Step 1: Initialize DDML model</a></li>
-        <li><a href="#step-2-all-machine-learners">Step 2: All machine learners</a></li>
+        <li><a href="#step-2-add-machine-learners">Step 2: Add machine learners</a></li>
         <li><a href="#step-3-cross-fitting">Step 3: Cross-fitting</a></li>
         <li><a href="#step-4-estimation">Step 4: Estimation</a></li>
       </ul>
