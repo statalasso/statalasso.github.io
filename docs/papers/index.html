@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="pystacked # Ahrens, A., Hansen, C.B. and Schaffer, M.E., 2022. pystacked: Stacking generalization and machine learning in Stata. arXiv preprint arXiv:2208.10896.
-pystacked implements stacked generalization (Wolpert, 1992) for regression and binary classification via Python&rsquo;s scikit-learn. Stacking combines multiple supervised machine learners &ndash; the &ldquo;base&rdquo; or &ldquo;level-0&rdquo; learners &ndash; into a single learner. The currently supported base learners include regularized regression, random forest, gradient boosted trees, support vector machines, and feed-forward neural nets (multi-layer perceptron).">
+<meta name="description" content="ddml # Ahrens, A., Hansen, C.B.,Schaffer, M.E. and Wiemann, T. 2023. ddml: Double/debiased machine learning in Stata. arXiv preprint arXiv:2301.09397.
+We introduce the package ddml for Double/Debiased Machine Learning (DDML) in Stata. Estimators of causal parameters for five different econometric models are supported, allowing for flexible estimation of causal effects of endogenous variables in settings with unknown functional forms and/or many exogenous variables. ddml is compatible with many existing supervised machine learning programs in Stata.">
 <meta name="theme-color" content="#FFFFFF">
 <meta name="color-scheme" content="light dark"><meta property="og:title" content="Readings" />
 <meta property="og:description" content="" />
@@ -16,7 +16,7 @@ pystacked implements stacked generalization (Wolpert, 1992) for regression and b
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
   <script defer src="/flexsearch.min.js"></script>
-  <script defer src="/en.search.min.ecb198b5e8063db3008ce2abda5bca996630fcc102a6e2dfb723961faed7c9ea.js" integrity="sha256-7LGYtegGPbMAjOKr2lvKmWYw/MECpuLftyOWH67Xyeo=" crossorigin="anonymous"></script>
+  <script defer src="/en.search.min.6535232e031b896f3d765fd77f8c6d675a685642871f590fedcbe06d0eb152ca.js" integrity="sha256-ZTUjLgMbiW89dl/Xf4xtZ1poVkKHH1kP7cvgbQ6xUso=" crossorigin="anonymous"></script>
 
 <script type="application/javascript">
 var doNotTrack = false;
@@ -770,6 +770,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ddml">ddml</a></li>
     <li><a href="#pystacked">pystacked</a></li>
     <li><a href="#lassopack">lassopack</a></li>
     <li><a href="#slides">Slides</a></li>
@@ -785,7 +786,17 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="pystacked">
+  <article class="markdown"><h2 id="ddml">
+  ddml
+  <a class="anchor" href="#ddml">#</a>
+</h2>
+<p>Ahrens, A., Hansen, C.B.,Schaffer, M.E. and Wiemann, T. 2023. <strong>ddml: Double/debiased machine learning in Stata.</strong> arXiv preprint arXiv:2301.09397.</p>
+<blockquote>
+<p>We introduce the package <code>ddml</code> for Double/Debiased Machine Learning (DDML) in Stata. Estimators of causal parameters for five different econometric models are supported, allowing for flexible estimation of causal effects of endogenous variables in settings with unknown functional forms and/or many exogenous variables. <code>ddml</code> is compatible with many existing supervised machine learning programs in Stata. We recommend using DDML in combination with stacking estimation which combines multiple machine learners into a final predictor. We provide Monte Carlo evidence to support our recommendation.</p>
+</blockquote>
+<p><a href="https://arxiv.org/abs/2301.09397">Link to working paper</a></p>
+<p><a href="/dta/ddml.bib">Bibtex file</a></p>
+<h2 id="pystacked">
   pystacked
   <a class="anchor" href="#pystacked">#</a>
 </h2>
@@ -860,6 +871,7 @@ are available <a href="https://statalasso.github.io/pdf/StataConference2018_Ahre
   
 <nav id="TableOfContents">
   <ul>
+    <li><a href="#ddml">ddml</a></li>
     <li><a href="#pystacked">pystacked</a></li>
     <li><a href="#lassopack">lassopack</a></li>
     <li><a href="#slides">Slides</a></li>
