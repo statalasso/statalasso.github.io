@@ -114,10 +114,11 @@ Step 1: Initialization # Preparation: use the data and globals as above. Use the
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
       
       <guid>https://statalasso.github.io/docs/ddml/installation/</guid>
-      <description>Installation # You can get the lastest versions from github:
-net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/master) To install an older version, use for example:
-net install ddml, from(https://raw.githubusercontent.com/aahrens1/ddml/v1.2) Please check for updates on a regular basis.
-Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories. The links to repositories are above; click the green button &amp;ldquo;Code&amp;rdquo; and &amp;ldquo;Download ZIP&amp;rdquo;.</description>
+      <description>Installation # You can install ddml from SSC:
+ssc install ddml, replace We tend to update our Github version more regularly. You can get the lastest versions from github:
+net install ddml, /// from(https://raw.githubusercontent.com/aahrens1/ddml/master) /// replace To install an older version, use for example:
+net install ddml, /// from(https://raw.githubusercontent.com/aahrens1/ddml/v1.2) /// replace Please check for updates on a regular basis.
+Offline installation # If you want to use ddml in an offline environment, we recommend to download the packages from the Github repositories.</description>
     </item>
     
   </channel>
