@@ -3,14 +3,17 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
+<meta name="description" content="Setting up Stata&rsquo;s Python integration # pystacked requires at least Stata 16 (or higher), a Python installation (3.8 or higher) and scikit-learn (0.24 or higher). You should also install Python if you want to use ddml.
+StataCorp provides detailed instructions on how to set up Stata&rsquo;s Python integration in three blog entries: Link 1, Link 2 Link 3.
+Below, we briefly outline the steps.
+1. Python installation # You have (at least) three options:">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Categories" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Install Stata/Python" />
 <meta property="og:description" content="" />
 <meta property="og:type" content="website" />
-<meta property="og:url" content="https://statalasso.github.io/categories/" />
+<meta property="og:url" content="https://statalasso.github.io/docs/python/" />
 
-<title>Categories | Stata ML Page</title>
+<title>Install Stata/Python | Stata ML Page</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
@@ -27,7 +30,7 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-<link rel="alternate" type="application/rss+xml" href="https://statalasso.github.io/categories/index.xml" title="Stata ML Page" />
+<link rel="alternate" type="application/rss+xml" href="https://statalasso.github.io/docs/python/index.xml" title="Stata ML Page" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -688,7 +691,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/python/" class="">Install Stata/Python</a>
+    <a href="https://statalasso.github.io/docs/python/" class=" active">Install Stata/Python</a>
   
 
           
@@ -771,7 +774,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Categories</strong>
+  <strong>Install Stata/Python</strong>
 
   <label for="toc-control">
     
@@ -784,29 +787,21 @@ https://github.com/alex-shpak/hugo-book
   
   <aside class="hidden clearfix">
     
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#setting-up-statas-python-integration">Setting up Stata&rsquo;s Python integration</a>
       <ul>
-      
+        <li><a href="#1-python-installation">1. Python installation</a></li>
+        <li><a href="#2-set-up-python-integration">2. Set up Python integration</a></li>
+        <li><a href="#3-managing-packages">3. Managing packages</a></li>
+        <li><a href="#4-check-that-it-works">4. Check that it works</a></li>
+        <li><a href="#optional-use-stata-with-python-environments">Optional: Use Stata with Python environments</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
 
   </aside>
@@ -816,9 +811,122 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  
+  <article class="markdown"><h2 id="setting-up-statas-python-integration">
+  Setting up Stata&rsquo;s Python integration
+  <a class="anchor" href="#setting-up-statas-python-integration">#</a>
+</h2>
+<p><code>pystacked</code> requires at least Stata 16 (or higher), a Python installation (3.8 or higher) and <em>scikit-learn</em> (0.24 or higher). You should also install Python if you want to use <code>ddml</code>.</p>
+<p>StataCorp provides detailed instructions on how to set up Stata&rsquo;s Python integration in three blog entries: <a href="https://blog.stata.com/2020/08/18/stata-python-integration-part-1-setting-up-stata-to-use-python/">Link 1</a>, <a href="https://blog.stata.com/2020/08/25/stata-python-integration-part-2-three-ways-to-use-python-in-stata/">Link 2</a>
+<a href="https://blog.stata.com/2020/09/01/stata-python-integration-part-3-how-to-install-python-packages/">Link 3</a>.</p>
+<p>Below, we briefly outline the steps.</p>
+<h3 id="1-python-installation">
+  1. Python installation
+  <a class="anchor" href="#1-python-installation">#</a>
+</h3>
+<p>You have (at least) three options:</p>
+<ol>
+<li>For many, the easiest way is to <strong>install Anaconda</strong> which is available <a href="https://www.anaconda.com/products/distribution">here</a>. Anaconda is a Python distribution that comes with the most important packages, a package manager and an editor.</li>
+<li>Alternatively, you can download and <strong>install plain Python</strong> <a href="https://www.python.org/downloads/">from here</a>.</li>
+<li>If you already have a recent Python version installed on your system, you could set up a separate <strong>Python environment</strong> for Stata. This is optional, but might be useful if you want to use different libraries in different projects (see instructions <a href="https://statalasso.github.io/docs/docs/python/#optional-use-stata-with-python-environments">here</a>).</li>
+</ol>
+<h3 id="2-set-up-python-integration">
+  2. Set up Python integration
+  <a class="anchor" href="#2-set-up-python-integration">#</a>
+</h3>
+<p>Once you have installed Python, you need to tell Stata where to find the Python installation.</p>
+<p>You can search for Python installations on your system using</p>
+<pre tabindex="0"><code>. python search
+</code></pre><p>Note that multiple Python installations might show up (e.g. MacOS is shipped with an old Python version) and that Stata will not always find all Python installations on your system.</p>
+<p>To link Stata to a particular Python installation use:</p>
+<pre tabindex="0"><code>python set exec &lt;pyexecutable&gt; , permanently 
+</code></pre><p>where <code>&lt;pyexecutable&gt;</code> could be, for example, <code> /usr/local/bin/python3</code>, <code>C:\Program Files\Python38\python.exe</code> or <code>C:\Users\&lt;user&gt;\AppData\Local\Programs\Python\Python38\python.exe</code>, depending on your OS and where you installed Python.</p>
+<p>Type <code>python query</code> to check that the installation was correctly linked:</p>
+<pre tabindex="0"><code>.  python query
+------------------------------------------------------------------ 
+    Python Settings
+      set python_exec      /usr/bin/python3
+      set python_userpath  
 
-  
+    Python system information
+      initialized          no
+      version              3.8.9
+      architecture         64-bit
+</code></pre><p>You can start Python within Stata just by typing <code>python</code> and go back to the Stata environment
+using <code>end</code>:</p>
+<pre tabindex="0"><code>. python
+----------------------------------------------- python (type end to exit) ----------
+&gt;&gt;&gt; print(&#39;hello&#39;)
+hello
+&gt;&gt;&gt; end
+------------------------------------------------------------------------------------
+</code></pre><h3 id="3-managing-packages">
+  3. Managing packages
+  <a class="anchor" href="#3-managing-packages">#</a>
+</h3>
+<p><code>pystacked</code> requires <em>scikit-learn</em> (abbreviated <code>sklearn</code>). You can check from within Stata whether <code>sklearn</code> is installed:</p>
+<pre tabindex="0"><code>. python which sklearn
+&lt;module &#39;sklearn&#39; from &#39;/Users/&lt;username&gt;/Library/Python/3.8/lib/python/site-packages/sklearn/__init__.py&#39;&gt;
+</code></pre><p>If Stata doesn&rsquo;t find <code>sklearn</code>, this is either because you have linked Stata to the wrong Python installation or because you still need to install <code>sklearn</code>.</p>
+<p><strong>If you use Anaconda</strong>, <code>sklearn</code> is automatically included and you can update <em>scikit-learn</em> through your Anaconda Python distribution (see <a href="https://docs.anaconda.com/navigator/tutorials/manage-packages/">here</a>) or using <code>conda install</code> in the terminal.</p>
+<p><strong>If you do not use Anaconda</strong>, you can install and update packages using <code>pip</code>. For example, you can install <code>sklearn</code> by typing <code>&lt;Python path&gt; -m pip install -U scikit-learn</code> into the terminal, or directly
+in Stata:</p>
+<pre tabindex="0"><code>. shell &lt;Python path&gt; -m pip install -U scikit-learn
+</code></pre><p>where <code>&lt;Python path&gt;</code> refer to the Python installation that you want to use with Stata. If you just want to use your default Python installation, you can also replace <code>&lt;Python path&gt;</code> with <code>python3</code> (on Mac) or <code>py</code> (on Win).</p>
+<h3 id="4-check-that-it-works">
+  4. Check that it works
+  <a class="anchor" href="#4-check-that-it-works">#</a>
+</h3>
+<p>To test that Stata&rsquo;s Python integration works on your system, run the following test code in Stata:</p>
+<pre tabindex="0"><code>clear all 
+use http://www.stata-press.com/data/r16/iris
+
+python:
+from sfi import Data
+import numpy as np
+from sklearn.svm import SVC
+
+# Use the sfi Data class to pull data from Stata variables into Python
+X = np.array(Data.get(&#34;seplen sepwid petlen petwid&#34;))
+y = np.array(Data.get(&#34;iris&#34;))
+
+# Use the data to train C-Support Vector Classifier
+svc_clf = SVC(gamma=&#39;auto&#39;)
+svc_clf.fit(X, y)
+end
+</code></pre><p>To test that <code>pystacked</code> works on your system, run the following test code in Stata:</p>
+<pre tabindex="0"><code>clear all
+use https://statalasso.github.io/dta/cal_housing.dta, clear
+set seed 42
+gen train=runiform()
+replace train=train&lt;.75
+set seed 42
+pystacked medh longi-medi if train 
+</code></pre><h3 id="optional-use-stata-with-python-environments">
+  Optional: Use Stata with Python environments
+  <a class="anchor" href="#optional-use-stata-with-python-environments">#</a>
+</h3>
+<p>You can also use Stata with Python environments. This can be useful if you want to work with multiple versions of Python on your system. A full guide on how Python environments work is available <a href="https://packaging.python.org/en/latest/guides/installing-using-pip-and-virtual-environments/#creating-a-virtual-environment">here</a>. Below is a step-by-step guide.</p>
+<p><strong>MacOS:</strong></p>
+<ol>
+<li>Close Stata and create folder where you would like to save your Python environments. I use the folder <code>/Users/myname/python_envs</code>.</li>
+<li>Open the Terminal and navigate to that folder. In my example, this would be <code>cd /Users/myname/python_envs</code>.</li>
+<li>Set up the Python environment: <code>python3 -m venv myenv</code> where <code>myenv</code> can be replaced by whatever name you want to use.</li>
+<li>Activate the environment: <code>source venv/bin/activate</code></li>
+<li>Install sklearn: <code>python3 -m pip install scikit-learn</code></li>
+<li>Deactivate the environment: <code>deactivate</code></li>
+<li>Open Stata and type <code>python set exec &quot;/Users/myname/python_envs/myenv/bin/python3&quot;, perm</code></li>
+</ol>
+<p><strong>Windows:</strong></p>
+<ol>
+<li>Close Stata and create folder where you would like to save your Python environments. I use the folder <code> C:\Users\myname\python_envs</code>.</li>
+<li>Open the Command Prompt and navigate to that folder. In my example, this would be <code>cd C:\Users\myname\python_envs</code>.</li>
+<li>Set up the Python environment: <code>py -m venv myenv</code> where <code>myenv</code> can be replaced by whatever name you want to use.</li>
+<li>Activate the environment: <code>.\venv\bin\activate</code></li>
+<li>Install sklearn: <code>py -m pip install scikit-learn</code></li>
+<li>Deactivate the environment: <code>deactivate</code></li>
+<li>Open Stata and type <code>python set exec &quot;C:\Users\myname\python_envs\Scripts\python.exe&quot;, perm</code></li>
+</ol>
+</article>
  
       
 
@@ -843,6 +951,10 @@ https://github.com/alex-shpak/hugo-book
 
       
   
+  <div class="book-comments">
+
+</div>
+  
  
 
       <label for="menu-control" class="hidden book-menu-overlay"></label>
@@ -852,29 +964,21 @@ https://github.com/alex-shpak/hugo-book
     <aside class="book-toc">
       <div class="book-toc-content">
         
-  <nav>
+  
+<nav id="TableOfContents">
   <ul>
-  
-    
-    <li class="book-section-flat">
-      <strong>Categories</strong>
+    <li><a href="#setting-up-statas-python-integration">Setting up Stata&rsquo;s Python integration</a>
       <ul>
-      
+        <li><a href="#1-python-installation">1. Python installation</a></li>
+        <li><a href="#2-set-up-python-integration">2. Set up Python integration</a></li>
+        <li><a href="#3-managing-packages">3. Managing packages</a></li>
+        <li><a href="#4-check-that-it-works">4. Check that it works</a></li>
+        <li><a href="#optional-use-stata-with-python-environments">Optional: Use Stata with Python environments</a></li>
       </ul>
     </li>
-    
-  
-    
-    <li class="book-section-flat">
-      <strong>Tags</strong>
-      <ul>
-      
-      </ul>
-    </li>
-    
-  
   </ul>
 </nav>
+
 
  
       </div>
