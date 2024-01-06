@@ -3,15 +3,20 @@
 <head>
   <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="ddml # Ahrens, A., Hansen, C.B.,Schaffer, M.E. and Wiemann, T. 2023. ddml: Double/debiased machine learning in Stata. arXiv preprint arXiv:2301.09397.
-We introduce the package ddml for Double/Debiased Machine Learning (DDML) in Stata. Estimators of causal parameters for five different econometric models are supported, allowing for flexible estimation of causal effects of endogenous variables in settings with unknown functional forms and/or many exogenous variables. ddml is compatible with many existing supervised machine learning programs in Stata.">
+<meta name="description" content="Python support using sklearn # As of version 1.4.3, lassopack supports Stata&rsquo;s Python integration for lasso2 and cvlasso via the sklearn option.
+The lassopack will take advantage of scikit-learn&rsquo;s Python implementations of the lasso, elastic net and ridge estimators; the speed gains using this package can be large.
+The sklearn option requires Stata 16 or higher, a Python installation and scikit-learn (0.24 or higher). See help pystata_integration, here and here for how to set up Python for Stata on your system.">
 <meta name="theme-color" content="#FFFFFF">
-<meta name="color-scheme" content="light dark"><meta property="og:title" content="Readings" />
-<meta property="og:description" content="" />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://statalasso.github.io/docs/papers/" />
+<meta name="color-scheme" content="light dark"><meta property="og:title" content="Python support" />
+<meta property="og:description" content="Python support using sklearn # As of version 1.4.3, lassopack supports Stata&rsquo;s Python integration for lasso2 and cvlasso via the sklearn option.
+The lassopack will take advantage of scikit-learn&rsquo;s Python implementations of the lasso, elastic net and ridge estimators; the speed gains using this package can be large.
+The sklearn option requires Stata 16 or higher, a Python installation and scikit-learn (0.24 or higher). See help pystata_integration, here and here for how to set up Python for Stata on your system." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://statalasso.github.io/docs/lassopack/python_support/" /><meta property="article:section" content="docs" />
 
-<title>Readings | Stata ML Page</title>
+
+
+<title>Python support | Stata ML Page</title>
 <link rel="manifest" href="/manifest.json">
 <link rel="icon" href="/favicon.png" type="image/x-icon">
 <link rel="stylesheet" href="/book.min.faa17d5e23166cd4e013165a396fc44278cb9136b0672f68e8ff906d4e5b956b.css" integrity="sha256-&#43;qF9XiMWbNTgExZaOW/EQnjLkTawZy9o6P&#43;QbU5blWs=" crossorigin="anonymous">
@@ -28,7 +33,6 @@ if (!doNotTrack) {
 }
 </script>
 <script async src='https://www.google-analytics.com/analytics.js'></script>
-<link rel="alternate" type="application/rss+xml" href="https://statalasso.github.io/docs/papers/index.xml" title="Stata ML Page" />
 <!--
 Made with Book Theme
 https://github.com/alex-shpak/hugo-book
@@ -80,7 +84,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle"  />
+    <input type="checkbox" id="section-a28c195407e662cdbffd5df0c1ccdd3c" class="toggle" checked />
     <label for="section-a28c195407e662cdbffd5df0c1ccdd3c" class="flex justify-between">
       <a href="https://statalasso.github.io/docs/lassopack/" class="">LASSOPACK</a>
     </label>
@@ -174,7 +178,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/lassopack/python_support/" class="">Python support</a>
+    <a href="https://statalasso.github.io/docs/lassopack/python_support/" class=" active">Python support</a>
   
 
         </li>
@@ -738,7 +742,7 @@ https://github.com/alex-shpak/hugo-book
   
 
   
-    <a href="https://statalasso.github.io/docs/papers/" class=" active">Readings</a>
+    <a href="https://statalasso.github.io/docs/papers/" class="">Readings</a>
   
 
           
@@ -785,7 +789,7 @@ https://github.com/alex-shpak/hugo-book
     <img src="/svg/menu.svg" class="book-icon" alt="Menu" />
   </label>
 
-  <strong>Readings</strong>
+  <strong>Python support</strong>
 
   <label for="toc-control">
     
@@ -801,10 +805,7 @@ https://github.com/alex-shpak/hugo-book
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ddml">ddml</a></li>
-    <li><a href="#pystacked">pystacked</a></li>
-    <li><a href="#lassopack">lassopack</a></li>
-    <li><a href="#slides">Slides</a></li>
+    <li><a href="#python-support-using-sklearn">Python support using <code>sklearn</code></a></li>
   </ul>
 </nav>
 
@@ -817,51 +818,22 @@ https://github.com/alex-shpak/hugo-book
 
       
       
-  <article class="markdown"><h2 id="ddml">
-  ddml
-  <a class="anchor" href="#ddml">#</a>
+  <article class="markdown"><h2 id="python-support-using-sklearn">
+  Python support using <code>sklearn</code>
+  <a class="anchor" href="#python-support-using-sklearn">#</a>
 </h2>
-<p>Ahrens, A., Hansen, C.B.,Schaffer, M.E. and Wiemann, T. 2023. <strong>ddml: Double/debiased machine learning in Stata.</strong> arXiv preprint arXiv:2301.09397.</p>
-<blockquote>
-<p>We introduce the package <code>ddml</code> for Double/Debiased Machine Learning (DDML) in Stata. Estimators of causal parameters for five different econometric models are supported, allowing for flexible estimation of causal effects of endogenous variables in settings with unknown functional forms and/or many exogenous variables. <code>ddml</code> is compatible with many existing supervised machine learning programs in Stata. We recommend using DDML in combination with stacking estimation which combines multiple machine learners into a final predictor. We provide Monte Carlo evidence to support our recommendation.</p>
-</blockquote>
-<p><a href="https://arxiv.org/abs/2301.09397">Link to working paper</a></p>
-<p><a href="/dta/ddml.bib">Bibtex file</a></p>
-<h2 id="pystacked">
-  pystacked
-  <a class="anchor" href="#pystacked">#</a>
-</h2>
-<p>Ahrens, A., Hansen, C.B. and Schaffer, M.E., 2022. <strong>pystacked: Stacking generalization and machine learning in Stata.</strong> arXiv preprint arXiv:2208.10896.</p>
-<blockquote>
-<p>pystacked implements stacked generalization (Wolpert, 1992) for regression and binary classification via Python&rsquo;s scikit-learn. Stacking combines multiple supervised machine learners &ndash; the &ldquo;base&rdquo; or &ldquo;level-0&rdquo; learners &ndash; into a single learner. The currently supported base learners include regularized regression, random forest, gradient boosted trees, support vector machines, and feed-forward neural nets (multi-layer perceptron). pystacked can also be used with as a &lsquo;regular&rsquo; machine learning program to fit a single base learner and, thus, provides an easy-to-use API for scikit-learn&rsquo;s machine learning algorithms.</p>
-</blockquote>
-<p><a href="https://arxiv.org/abs/2208.10896">Link to working paper</a></p>
-<p><a href="/dta/pystacked.bib">Bibtex file</a></p>
-<h2 id="lassopack">
-  lassopack
-  <a class="anchor" href="#lassopack">#</a>
-</h2>
-<p>Ahrens A, Hansen CB, Schaffer ME (2020).
-<strong>lassopack: Model selection and prediction with regularized regression in Stata.</strong> <em>The Stata Journal</em>.
-20(1):176-235. doi:<a href="https://doi.org/10.1177%2F1536867X20909697">10.1177/1536867X20909697</a></p>
-<blockquote>
-<p>In this article, we introduce <strong>lassopack</strong>, a suite of programs for regularized regression in Stata. <strong>lassopack</strong> implements lasso, square-root lasso, elastic net, ridge regression, adaptive lasso, and postestimation ordinary least squares. The methods are suitable for the high-dimensional setting, where the number of predictors <em>p</em> may be large and possibly greater than the number of observations, <em>n</em>. We offer three approaches for selecting the penalization (“tuning”) parameters: information criteria (implemented in <code>lasso2</code>), <em>K</em>-fold cross-validation and <em>h</em>-step-ahead rolling cross-validation for cross-section, panel, and time-series data (<code>cvlasso</code>), and theory-driven (“rigorous” or plugin) penalization for the lasso and square-root lasso for cross-section and panel data (<code>rlasso</code>). We discuss the theoretical framework and practical considerations for each approach. We also present Monte Carlo results to compare the performances of the penalization approaches.</p>
-</blockquote>
-<p><a href="https://arxiv.org/abs/1901.05397">Download earlier arXiv-Version</a> &ndash;
-<a href="https://doi.org/10.1177%2F1536867X20909697">Stata Journal paper</a></p>
-<p>Feel free to contact me (AA) if you have trouble accessing the SJ version.</p>
-<p><a href="/dta/AHS2018.bib">Bibtex file</a></p>
-<h2 id="slides">
-  Slides
-  <a class="anchor" href="#slides">#</a>
-</h2>
-<ul>
-<li>Presentation slides from our presentation at the <a href="https://www.stata.com/meeting/uk18/">2018 London Stata Conference</a>
-are available <a href="https://statalasso.github.io/pdf/StataConference2018_AhrensSchaffer.pdf">here</a>.</li>
-<li>Presentation slides for <code>pystacked</code> are <a href="https://statalasso.github.io/pdf/pres_pystacked.pdf">here</a>.</li>
-<li>Presentation slides for <code>ddml</code> are <a href="https://statalasso.github.io/pdf/pres_ddml.pdf">here</a>.</li>
-</ul>
-</article>
+<p>As of version 1.4.3, <strong>lassopack</strong> supports Stata&rsquo;s Python integration for <code>lasso2</code> and <code>cvlasso</code> via the <code>sklearn</code> option.</p>
+<p>The <strong>lassopack</strong> will take advantage of <a href="https://scikit-learn.org/stable/">scikit-learn</a>&rsquo;s Python implementations of the lasso, elastic net and ridge estimators;
+the speed gains using this package can be large.</p>
+<p>The <code>sklearn</code> option requires Stata 16 or higher, a Python installation and
+scikit-learn (0.24 or higher).  See <code>help pystata_integration</code>, <a href="https://blog.stata.com/2020/08/18/stata-python-integration-part-1-setting-up-stata-to-use-python/">here</a> and <a href="https://statalasso.github.io/docs/python/">here</a> for how to set up Python for Stata on your system.</p>
+<p>Once you have set up Stata&rsquo;s Python integration, all you have to do is to add the <code>sklearn</code> option:</p>
+<pre tabindex="0"><code>insheet using ///
+   https://web.stanford.edu/~hastie/ElemStatLearn/datasets/prostate.data, ///
+   clear tab
+cvlasso lpsa lcavol lweight age lbph svi lcp gleason pgg45, ///
+   seed(123) sklearn
+</code></pre></article>
  
       
 
@@ -902,10 +874,7 @@ are available <a href="https://statalasso.github.io/pdf/StataConference2018_Ahre
   
 <nav id="TableOfContents">
   <ul>
-    <li><a href="#ddml">ddml</a></li>
-    <li><a href="#pystacked">pystacked</a></li>
-    <li><a href="#lassopack">lassopack</a></li>
-    <li><a href="#slides">Slides</a></li>
+    <li><a href="#python-support-using-sklearn">Python support using <code>sklearn</code></a></li>
   </ul>
 </nav>
 

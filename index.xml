@@ -253,6 +253,17 @@ We start again with the prostate cancer data for demonstration.</description>
     </item>
     
     <item>
+      <title>Python support</title>
+      <link>https://statalasso.github.io/docs/lassopack/python_support/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>https://statalasso.github.io/docs/lassopack/python_support/</guid>
+      <description>Python support using sklearn # As of version 1.4.3, lassopack supports Stata&amp;rsquo;s Python integration for lasso2 and cvlasso via the sklearn option.
+The lassopack will take advantage of scikit-learn&amp;rsquo;s Python implementations of the lasso, elastic net and ridge estimators; the speed gains using this package can be large.
+The sklearn option requires Stata 16 or higher, a Python installation and scikit-learn (0.24 or higher). See help pystata_integration, here and here for how to set up Python for Stata on your system.</description>
+    </item>
+    
+    <item>
       <title>Help file</title>
       <link>https://statalasso.github.io/docs/pdslasso/ivlasso_help/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
